@@ -104,6 +104,10 @@ def categories():
         for page in range(1, 5):
             f = d / f"{cat}-p{page}.json.gz"
             if f.exists():
+                with gzip.open(f, "rt", encoding="utf-8") as fh:
+                    prev = json.load(fh)
+                if prev.get("http_status") != 200 or len(prev.get("body") or []) < 250:
+                    break  # 该分类已取完（上次最后一页不满 250）
                 continue
             st, body, url, at = get("/coins/markets", {"vs_currency": "usd", "category": cat,
                                                        "per_page": 250, "page": page})

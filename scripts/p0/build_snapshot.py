@@ -56,6 +56,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--version", default="v1")
     ap.add_argument("--reason", default="初版快照")
+    ap.add_argument("--allow-partial", action="store_true", help="仅用于测试：允许在归档未完成时生成")
     a = ap.parse_args()
 
     out = SNAP / f"snapshot_{a.version}.json"
@@ -64,6 +65,10 @@ def main():
 
     uni = load(RAW / "universe.json.gz")
     excl = excluded_ids()
+    prog = RAW / "progress.json"
+    finished = prog.exists() and json.loads(prog.read_text()).get("finished")
+    if not a.allow_partial and (not finished or not excl):
+        sys.exit("归档未完成或分类排除数据缺失，拒绝生成正式快照（测试可加 --allow-partial）")
     if not excl:
         print("警告：分类排除数据缺失，排除规则未能执行（会在报告中写明）")
     fails = {}
