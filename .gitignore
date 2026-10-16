@@ -1,0 +1,13 @@
+# 运行时数据默认不入库；P0 归档和快照例外（不可再生，入库做异地备份）
+data/*
+!data/raw/
+data/raw/*
+!data/raw/p0-archive/
+!data/snapshot/
+logs/
+config/application-local.yml
+target/
+*.tmp
+__pycache__/
+.idea/
+*.iml
