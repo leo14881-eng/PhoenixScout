@@ -23,6 +23,12 @@ EXCLUDE_CATEGORIES = [
 _last = 0.0
 S = requests.Session()
 S.headers["User-Agent"] = "PhoenixScout-P0/1.0"
+# 可选：CoinGecko 免费 Demo key（30 次/分钟）。从文件读取，不写进代码或日志。
+_KEY_FILE = os.environ.get("COINGECKO_DEMO_KEY_FILE", str(ROOT / "config" / "coingecko-demo.key"))
+if os.path.exists(_KEY_FILE):
+    S.headers["x-cg-demo-api-key"] = open(_KEY_FILE, encoding="utf-8").read().strip()
+    if "MIN_INTERVAL" not in os.environ:
+        MIN_INTERVAL = 2.2
 
 
 def now():
@@ -146,7 +152,7 @@ def history(coins):
 
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
-    log(f"P0 archive start TOP_N={TOP_N} interval={MIN_INTERVAL}s -> {OUT}")
+    log(f"P0 archive start TOP_N={TOP_N} interval={MIN_INTERVAL}s demo_key={'x-cg-demo-api-key' in S.headers} -> {OUT}")
     cs = universe()
     history(cs)
     categories()

@@ -6,6 +6,8 @@ data/raw/*
 !data/snapshot/
 logs/
 config/application-local.yml
+config/*.key
+.sync/
 target/
 *.tmp
 __pycache__/
