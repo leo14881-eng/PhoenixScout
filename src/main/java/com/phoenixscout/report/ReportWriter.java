@@ -108,8 +108,8 @@ public class ReportWriter {
         s.append("条件（V2.3.1）：滚动 30/90 天同时跑赢 BTC、ETH、基准 B（A2，必要条件）+ 长期跑输 BTC 和 ETH + 没有出现更低的低点。A1（长期跌幅 ≥65% 且跑输 BTC、ETH，近期领先最强基准 20 个百分点）为参考加分。\n\n");
         if (o.pathA().isEmpty()) s.append("今日无。\n\n");
         else {
-            s.append("| 币 | 市值 | FDV | 长期 | 近期 | 30天 | 90天 | 180天 | 365天 | A1 | 跌幅65–90% | 更高低点 | 上涨集中度 | 量能比 |\n");
-            s.append("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n");
+            s.append("| 币 | 市值 | FDV | 长期 | 近期 | 30天 | 90天 | 180天 | 365天 | A1 | 跌幅65–90% | 更高低点 | 上涨集中度 | 量能比 | 现价 / 目标 / 防守位 / 盈亏比 |\n");
+            s.append("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n");
             for (var c : o.pathA()) {
                 PathA.Result r = c.result();
                 s.append("| ").append(name(c.coin())).append(c.inPriorityRange() ? "" : " ⓘ").append(" | ").append(usd(c.coin().marketCap()))
@@ -118,7 +118,8 @@ public class ReportWriter {
                         .append(" | ").append(pct(r.r365())).append(" | ").append(r.a1Pass() ? "✓" : "✗").append(" | ")
                         .append(r.drop65to90() ? "✓" : "✗").append(" | ").append(mark(r.higherLow())).append(" | ")
                         .append(r.top3Concentration() == null ? "缺失" : String.format(Locale.ROOT, "%.0f%%", r.top3Concentration() * 100))
-                        .append(" | ").append(r.volumeRatio() == null ? "缺失" : String.format(Locale.ROOT, "%.2f", r.volumeRatio())).append(" |\n");
+                        .append(" | ").append(r.volumeRatio() == null ? "缺失" : String.format(Locale.ROOT, "%.2f", r.volumeRatio()))
+                        .append(" | ").append(RiskReward.forPriceStructure(c.price(), c.basePrice(), c.baseLabel(), c.low30())).append(" |\n");
             }
             s.append("\nⓘ = 市值不在优先区间（3,000 万–10 亿美元）。上涨集中度 = 90 天里最好 3 天的贡献占比，越高越集中。量能比 = 近 30 天均量 / 之前 60 天均量。\n\n");
         }
@@ -178,7 +179,7 @@ public class ReportWriter {
     }
 
     static String prelimLine(com.phoenixscout.scan.PrelimValuation.Result pv) {
-        StringBuilder s = new StringBuilder("现在买入（初步）：");
+        StringBuilder s = new StringBuilder(RiskReward.forScenarios(pv.price(), pv.scenarios())).append("\n  现在买入（初步）：");
         java.util.List<String> parts = new java.util.ArrayList<>();
         for (var sc : pv.scenarios()) {
             parts.add(sc.label() + " 12月" + String.format(Locale.ROOT, "%.1fx", sc.multipleAt().get(12))
@@ -212,8 +213,10 @@ public class ReportWriter {
             var r = c.result();
             s.append("\n").append(i + 1).append(". ").append(name(c.coin())).append(" ").append(usd(c.coin().marketCap()))
                     .append("｜长期 ").append(pct(r.rLong())).append("｜30天 ").append(pct(r.r30())).append(" 90天 ").append(pct(r.r90()))
-                    .append(r.a1Pass() ? "｜A1✓" : "").append(Boolean.TRUE.equals(r.higherLow()) ? "｜更高低点✓" : "");
+                    .append(r.a1Pass() ? "｜A1✓" : "").append(Boolean.TRUE.equals(r.higherLow()) ? "｜更高低点✓" : "")
+                    .append("\n   ").append(RiskReward.forPriceStructure(c.price(), c.basePrice(), c.baseLabel(), c.low30()));
         }
+        if (!top.isEmpty()) s.append("\n（路径 A 的目标与防守位是价格结构参考，不是估值；研究层核实后给估值推算）");
         if (o.pathA().size() > top.size()) s.append("\n…其余见报告");
         s.append("\n\n路径B 收入连增 ").append(o.pathB().size()).append(" 个");
         o.pathB().stream().limit(5).forEach(r -> {

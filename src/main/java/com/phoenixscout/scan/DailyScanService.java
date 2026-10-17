@@ -63,7 +63,9 @@ public class DailyScanService {
     public record BenchmarkInfo(int aTotal, int aComputable, int aNoCurrentData, int bTotal, int bComputable,
                                 LocalDate baseDate, LocalDate midDate, Double breadthTop100Long) { }
 
-    public record CandidateA(MarketCoin coin, PathA.Result result, boolean inPriorityRange) { }
+    /** price = 最新完整日线收盘价；basePrice = 长期区间起点价（快照 2025-10-31，没有则一年前）；low30 = 近 30 天最低价。 */
+    public record CandidateA(MarketCoin coin, PathA.Result result, boolean inPriorityRange,
+                             Double price, Double basePrice, String baseLabel, Double low30) { }
 
     public record NewCoin(MarketCoin coin, LocalDate firstDay) { }
 
@@ -345,7 +347,15 @@ public class DailyScanService {
             if (r.candidate()) {
                 MarketCoin c = byId.get(id);
                 boolean inRange = c.marketCap() != null && c.marketCap() >= sc.capMinUsd() && c.marketCap() <= sc.capMaxUsd();
-                pathA.add(new CandidateA(c, r, inRange));
+                var hh = hist.get(id);
+                Double basePx = base;
+                String baseLabel = "2025-10-31 价";
+                if (basePx == null) {
+                    basePx = Returns.price(hh, day.minusDays(365)).orElse(null);
+                    baseLabel = "一年前价";
+                }
+                pathA.add(new CandidateA(c, r, inRange, Returns.price(hh, day).orElse(null), basePx, baseLabel,
+                        Returns.minPrice(hh, day.minusDays(29), day).orElse(null)));
             }
         }
         pathA.sort(Comparator.comparing((CandidateA c) -> c.result().a1Pass()).reversed()

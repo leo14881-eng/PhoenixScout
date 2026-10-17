@@ -195,6 +195,10 @@ public class ResearchService {
         JsonNode vc = r.path("items").path("value_capture");
         s.append("价值捕获机制：").append(vc.path("mechanism").asText("—")).append("\n");
 
+        if (res.inputs() != null && !res.scenarios().isEmpty()) {
+            s.append("\n现在买入：").append(com.phoenixscout.report.RiskReward.forScenarios(res.inputs().price(), res.scenarios()))
+                    .append("（情景推算，不是预测或承诺）\n");
+        }
         s.append("\n5/10/20倍所需（按36个月后流通量）：\n");
         for (var t : res.targets()) {
             if (t.times() != 5 && t.times() != 10 && t.times() != 20) continue;

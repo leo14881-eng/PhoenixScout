@@ -31,7 +31,7 @@ public final class PrelimValuation {
         }
     }
 
-    public record Result(String coinId, String peerGroup, int peerCount, double annualRevenue, double marketCap,
+    public record Result(String coinId, double price, String peerGroup, int peerCount, double annualRevenue, double marketCap,
                          double currentMultiple, Map<String, Double> peerMultiples, Map<String, Double> growth,
                          List<ScenarioCalculator.Scenario> scenarios) { }
 
@@ -67,7 +67,7 @@ public final class PrelimValuation {
         g.put("base", Math.min(0.5, recent * 0.5));
         g.put("optimistic", Math.min(1.0, recent));
         var in = new ScenarioCalculator.Inputs(price, circulating, null, Map.of(), annual, g, mult);
-        return new Result(coinId, useSame ? category : "全部协议", use.size(), annual, marketCap, marketCap / annual,
+        return new Result(coinId, price, useSame ? category : "全部协议", use.size(), annual, marketCap, marketCap / annual,
                 mult, g, ScenarioCalculator.scenarios(in));
     }
 
