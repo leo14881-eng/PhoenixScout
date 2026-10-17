@@ -114,6 +114,39 @@ public class CoinGeckoClient {
         return http;
     }
 
+    public record LivePrice(double price, java.time.Instant updatedAt) { }
+
+    /**
+     * 实时价（批量，一次最多 250 个币）：走公共接口、不带 key，不占 Demo key 的月额度；2 分钟缓存。
+     * 只用于实时盈亏展示，不用于任何判定（判定一律用 00:00 UTC 收盘价）。
+     */
+    public Map<String, LivePrice> livePrices(java.util.Collection<String> ids) throws ApiException, InterruptedException {
+        Map<String, LivePrice> out = new HashMap<>();
+        if (ids.isEmpty()) return out;
+        String path = "/simple/price?vs_currencies=usd&include_last_updated_at=true&ids=" + String.join(",", new java.util.TreeSet<>(ids));
+        String key = "cg-live:" + path;
+        String body = cache.get(key, Duration.ofMinutes(2)).orElse(null);
+        if (body == null) {
+            RateLimitedHttp.Response r = http.get(baseUrl + path, Map.of());
+            if (r == null || !r.ok()) throw new ApiException("CoinGecko 实时价 -> " + (r == null ? -1 : r.status()), r == null ? -1 : r.status());
+            body = r.body();
+            cache.put(key, body);
+        }
+        try {
+            JsonNode j = om.readTree(body);
+            j.fields().forEachRemaining(e -> {
+                JsonNode usd = e.getValue().get("usd");
+                if (usd != null && usd.isNumber()) {
+                    long t = e.getValue().path("last_updated_at").asLong(0);
+                    out.put(e.getKey(), new LivePrice(usd.asDouble(), t > 0 ? java.time.Instant.ofEpochSecond(t) : null));
+                }
+            });
+        } catch (IOException e) {
+            throw new ApiException("实时价无法解析", 200);
+        }
+        return out;
+    }
+
     /**
      * 原样请求，供 P0 归档保存接口原始返回值。同一请求 2 天内已被每日扫描取过时直接复用（保留原始请求时间），
      * 新取到的也写进缓存，扫描可复用。

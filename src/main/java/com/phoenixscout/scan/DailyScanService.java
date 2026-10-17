@@ -280,7 +280,7 @@ public class DailyScanService {
         tracked.addAll(preIds);
         tracked.addAll(protoByCoin.keySet());
         tracked.addAll(newIds);
-        if (sim != null) tracked.addAll(sim.openCoinIds());   // 模拟仓持仓每天要有收盘价
+        if (sim != null) tracked.addAll(sim.coinsNeedingHistory(day));   // 模拟台账：组合持仓每天、选币台账每 7 天、到期观察点
 
         // 5. 增量补齐精确日线（只补缺的天数）
         for (String id : tracked) {
@@ -427,55 +427,57 @@ public class DailyScanService {
             if (first == null || first.isAfter(day.minusDays(90))) newPool.add(new NewCoin(byId.get(id), first));
         }
 
-        // 9b. 今日推荐：盈亏比最高的 10 个（路径 A 价格结构 + 路径 B 初步推算），并驱动模拟仓
+        // 9b. 今日推荐：盈亏比最高的 10 个（长线口径 V2.5），并驱动模拟台账
         List<Pick> picks = new ArrayList<>();
         for (CandidateA c : pathA) {
-            if (c.price() == null || c.basePrice() == null || c.low30() == null) continue;
+            if (c.price() == null || c.basePrice() == null) continue;
             double up = c.basePrice() / c.price() - 1;
             if (up <= 0.10) continue;
-            double sl = Math.min(c.low30(), c.price() * (1 - Pick.MIN_RISK));
+            Double low90 = Returns.minPrice(hist.get(c.coin().id()), day.minusDays(89), day).orElse(null);
+            double sl = Pick.stopFor(c.price(), low90);
             double down = 1 - sl / c.price();
             var r = c.result();
-            String reason = String.format(java.util.Locale.ROOT, "超跌转强：长期 %s，30天 %s，90天 %s%s%s；目标回到%s，防守近30日低点",
+            String reason = String.format(java.util.Locale.ROOT, "超跌转强：长期 %s，30天 %s，90天 %s%s%s；第一目标回到%s，之后回撤 40%%止盈",
                     com.phoenixscout.report.ReportWriter.pct(r.rLong()), com.phoenixscout.report.ReportWriter.pct(r.r30()),
                     com.phoenixscout.report.ReportWriter.pct(r.r90()), r.a1Pass() ? "，A1✓" : "",
                     Boolean.TRUE.equals(r.higherLow()) ? "，更高低点✓" : "", c.baseLabel());
             picks.add(new Pick(c.coin().id(), c.coin().name() + "（" + c.coin().symbol().toUpperCase(java.util.Locale.ROOT) + "）", "A",
-                    c.price(), c.basePrice(), sl, Pick.rankRatio(up, down), up, down, reason));
+                    c.price(), c.basePrice(), null, sl, up / down, up, down, reason));
         }
         for (PathB.Result b : pathB) {
             var pv = prelim.get(b.coinId());
             Double px = Returns.price(hist.get(b.coinId()), day).orElse(null);
             if (pv == null || px == null) continue;
             if (pv.currentMultiple() < pv.peerMultiples().get("p25") / 3) continue;   // 收入可能不归代币，先不推荐
-            com.phoenixscout.research.ScenarioCalculator.Scenario base = null, cons = null;
-            for (var s : pv.scenarios()) {
-                if (s.name().equals("base")) base = s;
-                if (s.name().equals("conservative")) cons = s;
-            }
-            if (base == null || cons == null) continue;
-            double b12 = base.multipleAt().get(12), c12 = cons.multipleAt().get(12);
+            com.phoenixscout.research.ScenarioCalculator.Scenario base = null;
+            for (var scn : pv.scenarios()) if (scn.name().equals("base")) base = scn;
+            if (base == null) continue;
+            double b12 = base.multipleAt().get(12), b36 = base.multipleAt().get(36);
             if (b12 <= 1.10) continue;
-            double sl = px * Math.min(c12, 1 - Pick.MIN_RISK);
+            Double low90 = Returns.minPrice(hist.get(b.coinId()), day.minusDays(89), day).orElse(null);
+            double sl = Pick.stopFor(px, low90);
             double up = b12 - 1, down = 1 - sl / px;
             MarketCoin mc = byId.get(b.coinId());
-            String reason = String.format(java.util.Locale.ROOT, "收入连增：季增 %s，币价90天 %s%s；基准12个月目标（同类估值倍数推算）",
+            String reason = String.format(java.util.Locale.ROOT, "收入连增：季增 %s，币价90天 %s%s；第一目标=基准12个月价，长期目标=基准36个月价",
                     com.phoenixscout.report.ReportWriter.pct(b.revenueGrowth()), com.phoenixscout.report.ReportWriter.pct(b.price90()),
                     b.priceLagging() ? "，价格未反映✓" : "");
             picks.add(new Pick(b.coinId(), mc == null ? b.protocol() : mc.name() + "（" + mc.symbol().toUpperCase(java.util.Locale.ROOT) + "）",
-                    "B", px, px * b12, sl, Pick.rankRatio(up, down), up, down, reason));
+                    "B", px, px * b12, b36 > b12 ? px * b36 : null, sl, up / down, up, down, reason));
         }
         picks.sort(Comparator.comparingDouble(Pick::ratio).reversed());
         if (picks.size() > MAX_PICKS) picks = new ArrayList<>(picks.subList(0, MAX_PICKS));
         List<com.phoenixscout.sim.SimLedger.Event> simEvents = List.of();
         com.phoenixscout.sim.SimLedger.Summary simSummary = null;
         if (sim != null) {
-            simEvents = sim.run(day, hist, picks);
-            simSummary = sim.summary();
+            java.util.Set<String> invalid = new java.util.HashSet<>(jdbc.queryForList(
+                    "SELECT g.coin_id FROM research_grade g JOIN (SELECT coin_id, MAX(id) mid FROM research_grade GROUP BY coin_id) l"
+                            + " ON g.id = l.mid WHERE g.grade = 'C'", String.class));
+            simEvents = sim.run(day, hist, picks, invalid, benchB);
+            simSummary = sim.summary(com.phoenixscout.sim.SimLedger.PORTFOLIO);
             try {
                 sim.exportCsv(reports.dir().getParent().resolve("sim").resolve("ledger.csv"));
             } catch (Exception e) {
-                problems.add("模拟仓 CSV 导出失败：" + e.getMessage());
+                problems.add("模拟台账 CSV 导出失败：" + e.getMessage());
             }
         }
 
@@ -497,6 +499,10 @@ public class DailyScanService {
                 picks, simEvents, simSummary);
         finishRun(day, status, om.writeValueAsString(q), ReportWriter.oneLine(o));
         boolean sent = notifier.send(reports.telegramSummary(o));
+        // 每周日（越南时间）推送模拟台账复盘
+        if (sim != null && day.getDayOfWeek() == java.time.DayOfWeek.SUNDAY) {
+            notifier.send(new com.phoenixscout.sim.SimReview(jdbc).weeklyText(sim));
+        }
         jdbc.update("INSERT INTO notification(kind, scan_day, sent_at, ok) VALUES ('daily', ?, ?, ?)",
                 day.toString(), Instant.now(clock).toString(), sent ? 1 : 0);
         log.info("扫描完成 {}：路径A {} 个，路径B {} 个，新币 {} 个，状态 {}", day, pathA.size(), pathB.size(), newPool.size(), status);
@@ -556,7 +562,7 @@ public class DailyScanService {
     }
 
     /** 第 101–500 名（下标 100–499）每隔 4 个取 1 个。 */
-    static List<String> bandSample(List<String> ranked) {
+    public static List<String> bandSample(List<String> ranked) {
         List<String> out = new ArrayList<>();
         for (int i = 100; i < Math.min(500, ranked.size()); i += 4) out.add(ranked.get(i));
         return out;

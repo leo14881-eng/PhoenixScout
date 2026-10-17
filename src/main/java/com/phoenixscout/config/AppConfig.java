@@ -83,6 +83,11 @@ public class AppConfig {
     }
 
     @Bean
+    com.phoenixscout.sim.LiveSimService liveSimService(JdbcTemplate jdbc, CoinGeckoClient cg) {
+        return new com.phoenixscout.sim.LiveSimService(jdbc, cg);
+    }
+
+    @Bean
     TelegramNotifier telegramNotifier(PsProperties p) {
         return new TelegramNotifier(p.telegram());
     }
