@@ -21,7 +21,7 @@ spring:
     timeout-per-shutdown-phase: 60s
 
 server:
-  port: 8090
+  port: 8100
   address: 127.0.0.1   # 只在本机可访问
   shutdown: graceful
 

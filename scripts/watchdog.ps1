@@ -10,7 +10,7 @@ $ErrorActionPreference = 'Stop'
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 $AppDir  = Split-Path -Parent $PSScriptRoot
-$Port    = 8090
+$Port    = 8100
 $Base    = "http://127.0.0.1:$Port"
 $Bin     = Join-Path $AppDir 'app'
 $State   = Join-Path $Bin 'watchdog-state.json'
@@ -78,7 +78,7 @@ function Get-Health {
     }
 }
 
-# 只结束我们自己的服务：java 进程且命令行含 phoenixscout.jar（8090 端口可能被别的程序占用）
+# 只结束我们自己的服务：java 进程且命令行含 phoenixscout.jar（8100 端口可能被别的程序占用）
 function Test-OurProcess($procId) {
     try {
         $p = Get-CimInstance Win32_Process -Filter "ProcessId=$procId" -ErrorAction Stop
@@ -136,7 +136,7 @@ try {
             $reason = if ($h -eq 'stale') { '服务卡住了（每日扫描运行超过 4 小时）' } else { '服务没有响应（约 6 分钟）' }
             if (-not (Test-OurProcess $procId)) {
                 Write-Log "端口 $Port 被其他程序占用 PID=$procId，不结束它"
-                if (-not $s.down) { Send-Telegram "❗ PhoenixScout 无法启动：8090 端口被其他程序占用（PID=$procId），请关掉那个程序" }
+                if (-not $s.down) { Send-Telegram "❗ PhoenixScout 无法启动：8100 端口被其他程序占用（PID=$procId），请关掉那个程序" }
                 $s.down = $true; if (-not $s.downSince) { $s.downSince = (Get-Date).ToString('o') }
                 Save-State $s
                 exit 0

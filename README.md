@@ -22,7 +22,7 @@ python3 scripts/p0/build_snapshot.py   # 生成只读 snapshot_v1 + SHA-256 + �
 
 一次性安装（普通用户权限）：运行 `scripts\install-autoupdate.cmd`，注册三个计划任务：
 
-- `PhoenixScout-Service`：登录后运行服务（端口 8090，只监听本机）
+- `PhoenixScout-Service`：登录后运行服务（端口 8100，只监听本机）
 - `PhoenixScout-Watchdog`：每 2 分钟检查，服务停止或卡住自动拉起，Telegram 告知
 - `PhoenixScout-AutoUpdate`：每 3 分钟检查 GitHub main，Windows CI 通过且本机构建测试通过才更新，失败自动回滚；
   每天确认接电源时不睡眠、合上盖子不睡眠

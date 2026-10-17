@@ -21,7 +21,7 @@ $AppDir  = Split-Path -Parent $PSScriptRoot
 $SrcDir  = 'D:\SOFT\tools\phoenixscout-src'
 $RepoUrl = 'https://github.com/leo14881-eng/PhoenixScout.git'
 $Branch  = 'main'
-$Port    = 8090
+$Port    = 8100
 $Base    = "http://127.0.0.1:$Port"
 $Bin     = Join-Path $AppDir 'app'
 $Jar     = Join-Path $Bin 'phoenixscout.jar'
@@ -75,7 +75,7 @@ function Get-ServicePid {
     return $null
 }
 
-# 只结束我们自己的服务：java 进程且命令行含 phoenixscout.jar（8090 端口可能被别的程序占用）
+# 只结束我们自己的服务：java 进程且命令行含 phoenixscout.jar（8100 端口可能被别的程序占用）
 function Test-OurProcess($procId) {
     try {
         $p = Get-CimInstance Win32_Process -Filter "ProcessId=$procId" -ErrorAction Stop
