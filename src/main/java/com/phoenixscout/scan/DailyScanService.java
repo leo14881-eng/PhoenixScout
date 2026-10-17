@@ -57,7 +57,8 @@ public class DailyScanService {
 
     public record Outcome(LocalDate scanDay, String status, PathA.Benchmarks benchmarks, BenchmarkInfo benchInfo,
                           List<CandidateA> pathA, List<PathB.Result> pathB, List<NewCoin> newPool,
-                          List<String> added, List<String> dropped, Quality quality, Path reportFile) { }
+                          List<String> added, List<String> dropped, Quality quality, Path reportFile,
+                          List<String> aGrades) { }
 
     public record BenchmarkInfo(int aTotal, int aComputable, int aNoCurrentData, int bTotal, int bComputable,
                                 LocalDate baseDate, LocalDate midDate) { }
@@ -375,15 +376,24 @@ public class DailyScanService {
                 llama.http().okCount(), llama.http().failedCount(), market.size(), sc.universeTopN(), tracked.size(),
                 withLatest, supplyKnown, protoByCoin.size(), snap.message(), exclFresh, problems);
         String status = problems.isEmpty() ? "ok" : "partial";
-        Outcome o = new Outcome(day, status, bm, bi, pathA, pathB, newPool, added, dropped, q, null);
+        List<String> aGrades = currentAGrades(byId);
+        Outcome o = new Outcome(day, status, bm, bi, pathA, pathB, newPool, added, dropped, q, null, aGrades);
         Path file = reports.write(o);
-        o = new Outcome(day, status, bm, bi, pathA, pathB, newPool, added, dropped, q, file);
+        o = new Outcome(day, status, bm, bi, pathA, pathB, newPool, added, dropped, q, file, aGrades);
         finishRun(day, status, om.writeValueAsString(q), ReportWriter.oneLine(o));
         boolean sent = notifier.send(reports.telegramSummary(o));
         jdbc.update("INSERT INTO notification(kind, scan_day, sent_at, ok) VALUES ('daily', ?, ?, ?)",
                 day.toString(), Instant.now(clock).toString(), sent ? 1 : 0);
         log.info("扫描完成 {}：路径A {} 个，路径B {} 个，新币 {} 个，状态 {}", day, pathA.size(), pathB.size(), newPool.size(), status);
         return o;
+    }
+
+    /** 研究层评为 A 且 14 天内仍有效的币（每个币取最新一次评级）。 */
+    private List<String> currentAGrades(Map<String, MarketCoin> byId) {
+        String since = Instant.now(clock).minus(14, ChronoUnit.DAYS).toString();
+        List<String> ids = jdbc.queryForList("SELECT g.coin_id FROM research_grade g JOIN (SELECT coin_id, MAX(id) mid FROM research_grade"
+                + " GROUP BY coin_id) l ON g.id = l.mid WHERE g.grade = 'A' AND g.graded_at >= ? ORDER BY g.id DESC", String.class, since);
+        return ids.stream().map(id -> byId.containsKey(id) ? byId.get(id).name() + "（" + byId.get(id).symbol().toUpperCase(java.util.Locale.ROOT) + "）" : id).toList();
     }
 
     private void finishRun(LocalDate day, String status, String quality, String summary) {

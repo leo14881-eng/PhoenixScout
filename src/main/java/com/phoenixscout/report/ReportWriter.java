@@ -70,7 +70,8 @@ public class ReportWriter {
         s.append("- 数据截止：").append(o.scanDay()).append(" 00:00 UTC 日线点（= ").append(o.scanDay().minusDays(1))
                 .append(" UTC 日收盘价），来源 CoinGecko 免费接口\n");
         s.append("- 状态：").append(o.status()).append("\n");
-        s.append("- **今日 A 级：无**（研究层上线前，所有候选上限为 B 级，需研究核实第十四条 9 项硬性条件）\n\n");
+        s.append(o.aGrades().isEmpty() ? "- **今日 A 级：无符合条件的项目**（候选须经研究层核实第十四条 9 项硬性条件才可评 A）\n\n"
+                : "- **当前 A 级（14 天内研究核实）：" + String.join("、", o.aGrades()) + "**\n\n");
 
         s.append("## 数据质量\n\n| 项目 | 数值 |\n|---|---|\n");
         s.append("| CoinGecko 请求 成功/失败/限流 | ").append(q.cgOk()).append(" / ").append(q.cgFailed()).append(" / ").append(q.cgRateLimited()).append(" |\n");
@@ -150,7 +151,8 @@ public class ReportWriter {
         var q = o.quality();
         StringBuilder s = new StringBuilder();
         s.append("🔥 PhoenixScout 日报 ").append(o.scanDay()).append("\n");
-        s.append("今日 A 级：无（研究层上线前，候选均为 B 级待研究）\n\n");
+        s.append(o.aGrades().isEmpty() ? "今日 A 级：无符合条件的项目（候选均为 B 级待研究）\n\n"
+                : "当前 A 级：" + String.join("、", o.aGrades()) + "（理由见单独推送）\n\n");
         s.append("基准 30天/90天：BTC ").append(pct(b.btc30())).append("/").append(pct(b.btc90()))
                 .append("｜ETH ").append(pct(b.eth30())).append("/").append(pct(b.eth90()))
                 .append("｜山寨中位数B ").append(pct(b.benchB30())).append("/").append(pct(b.benchB90())).append("\n");

@@ -118,6 +118,19 @@ public class ScanScheduler {
         return p0.state();
     }
 
+    @org.springframework.beans.factory.annotation.Autowired
+    private com.phoenixscout.research.ResearchService research;
+
+    /** 每 10 分钟处理研究层新写出的结果。 */
+    @Scheduled(fixedDelayString = "PT10M", initialDelayString = "PT2M")
+    public void ingestResearch() {
+        try {
+            research.ingest();
+        } catch (Exception e) {
+            log.warn("处理研究结果出错：{}", e.getMessage());
+        }
+    }
+
     @Scheduled(cron = "${phoenixscout.scan.cron}", zone = "${phoenixscout.scan.cron-zone}")
     public void daily() {
         scan.runToday();

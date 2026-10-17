@@ -74,6 +74,11 @@ public class AppConfig {
     }
 
     @Bean
+    com.phoenixscout.research.ResearchService researchService(Path dataDir, JdbcTemplate jdbc, TelegramNotifier tg, Clock clock) {
+        return new com.phoenixscout.research.ResearchService(dataDir.resolve("research"), jdbc, tg, clock);
+    }
+
+    @Bean
     TelegramNotifier telegramNotifier(PsProperties p) {
         return new TelegramNotifier(p.telegram());
     }

@@ -170,7 +170,7 @@ class DailyScanServiceTest {
         assertTrue(Files.exists(o.reportFile()));
         String md = Files.readString(o.reportFile());
         assertTrue(md.contains("hero"));
-        assertTrue(md.contains("今日 A 级：无"));
+        assertTrue(md.contains("今日 A 级：无符合条件的项目"));
         assertTrue(new ReportWriter(dir).telegramSummary(o).contains("路径A 超跌转强 1 个"));
         assertEquals("ok", db.jdbc.queryForObject("SELECT status FROM scan_run WHERE scan_day = ?", String.class, DAY.toString()));
 
