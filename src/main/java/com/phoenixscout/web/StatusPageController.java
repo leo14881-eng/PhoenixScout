@@ -90,39 +90,57 @@ public class StatusPageController {
         }
         h.append("</table>");
 
-        @SuppressWarnings("unchecked")
         Map<String, Object> sim = live.snapshot();
-        @SuppressWarnings("unchecked")
-        Map<String, Object> tot = (Map<String, Object>) sim.get("totals");
-        h.append("<h2>模拟仓（只记账，实时盈亏）</h2><p>")
-                .append(String.format(Locale.ROOT, "本金 %s｜实时权益 <b>%s</b>（收益 %s%%）｜持仓 %s 个，投入 %s，浮动 <b>%s</b>｜已平仓 %s 笔，胜率 %s%%，平均 %sR，已实现 %s｜现金 %s",
-                        tot.get("startEquity"), tot.get("equityLive"), tot.get("totalReturnPct"), tot.get("openPositions"), tot.get("invested"),
-                        money(tot.get("unrealizedUsd")), tot.get("closedTrades"), tot.get("winRatePct") == null ? "—" : tot.get("winRatePct"),
-                        tot.get("avgR") == null ? "—" : tot.get("avgR"), money(tot.get("realizedUsd")), tot.get("cash")));
-        if (sim.get("warning") != null) h.append("<br><span class=bad>").append(esc(sim.get("warning"))).append("</span>");
-        h.append("</p><table><tr><th>币</th><th>路径</th><th>入场日</th><th>入场价</th><th>金额</th><th>风险</th><th>现价</th><th>盈亏</th><th>R</th>"
-                + "<th>目标（距离）</th><th>防守（距离）</th><th>入场盈亏比 / 当前</th><th>入场原因</th></tr>");
-        for (Object o : (List<?>) sim.get("open")) {
-            Map<?, ?> p = (Map<?, ?>) o;
-            double pnl = ((Number) p.get("pnlUsd")).doubleValue();
-            h.append("<tr><td>").append(esc(p.get("name"))).append("</td><td>").append(esc(p.get("path"))).append("</td><td>")
-                    .append(esc(p.get("openedDay"))).append("</td><td>").append(esc(com.phoenixscout.report.RiskReward.price(((Number) p.get("entryPrice")).doubleValue())))
-                    .append("</td><td>").append(esc(p.get("amountUsd"))).append("</td><td>").append(esc(p.get("riskUsd"))).append("</td><td>")
-                    .append(esc(com.phoenixscout.report.RiskReward.price(((Number) p.get("price")).doubleValue()))).append("<br><span class=muted>")
-                    .append(esc(p.get("priceSource"))).append("</span></td><td class=").append(pnl >= 0 ? "ok" : "bad").append(">")
-                    .append(money(pnl)).append("（").append(esc(p.get("pnlPct"))).append("%）</td><td>").append(esc(p.get("rMultiple"))).append("</td><td>")
-                    .append(esc(com.phoenixscout.report.RiskReward.price(((Number) p.get("takeProfit")).doubleValue()))).append("（").append(esc(p.get("toTakeProfitPct"))).append("%）</td><td>")
-                    .append(esc(com.phoenixscout.report.RiskReward.price(((Number) p.get("stopLoss")).doubleValue()))).append("（").append(esc(p.get("toStopLossPct"))).append("%）</td><td>")
-                    .append(esc(p.get("entryRatio"))).append(" / ").append(esc(p.get("ratioNow"))).append("</td><td>").append(esc(p.get("reason"))).append("</td></tr>");
+        if (sim.get("warning") != null) h.append("<p class=bad>").append(esc(sim.get("warning"))).append("</p>");
+        for (String key : List.of("portfolio", "track")) {
+            Map<?, ?> b = (Map<?, ?>) sim.get(key);
+            Map<?, ?> rv = (Map<?, ?>) b.get("review");
+            if (key.equals("portfolio")) {
+                h.append(String.format(Locale.ROOT, "<h2>模拟组合（照着投能不能稳定赚）</h2><p>本金 %s｜实时权益 <b>%s</b>（%s%%）｜现金 %s｜持仓 %s 个，成本 %s，浮动 <b>%s</b>｜已平仓 %s 笔｜最大回撤 %s%%</p>",
+                        b.get("startEquity"), b.get("equityLive"), b.get("returnPct"), b.get("cash"), b.get("open"), b.get("invested"),
+                        money(b.get("unrealizedUsd")), b.get("closedTrades"), rv.get("maxDrawdownPct")));
+            } else {
+                h.append(String.format(Locale.ROOT, "<h2>选币台账（选得准不准，每个推荐等额 1,000 美元）</h2><p>记录 %s 笔，持仓 %s，浮动 %s｜已平仓 %s 笔，已实现 %s｜第一目标命中 %s%%，平均 %sR%s</p>",
+                        rv.get("trades"), b.get("open"), money(b.get("unrealizedUsd")), b.get("closedTrades"), money(b.get("realizedClosedUsd")),
+                        rv.get("tp1HitPct") == null ? "—" : rv.get("tp1HitPct"), rv.get("avgR") == null ? "—" : rv.get("avgR"),
+                        Boolean.TRUE.equals(rv.get("sampleEnough")) ? "" : "（样本不足 30 笔，结论不可靠）"));
+                Map<?, ?> hz = (Map<?, ?>) rv.get("horizons");
+                if (!hz.isEmpty()) {
+                    h.append("<table><tr><th>入场后</th><th>笔数</th><th>平均收益</th><th>跑赢 BTC</th><th>相对山寨中位数</th></tr>");
+                    hz.forEach((k, hv) -> {
+                        Map<?, ?> o = (Map<?, ?>) hv;
+                        h.append("<tr><td>").append(esc(k)).append("</td><td>").append(esc(o.get("n"))).append("</td><td>").append(esc(o.get("avgReturnPct")))
+                                .append("%</td><td>").append(esc(o.get("beatBtcPct"))).append("%</td><td>").append(esc(o.get("excessVsAltPct"))).append("%</td></tr>");
+                    });
+                    h.append("</table><br>");
+                }
+            }
+            h.append("<table><tr><th>币</th><th>路径</th><th>入场日</th><th>入场价</th><th>金额</th><th>风险</th><th>现价</th><th>盈亏</th><th>R</th>"
+                    + "<th>第一目标（距离）</th><th>防守（距离）</th><th>盈亏比 入场/当前</th><th>入场原因</th></tr>");
+            for (Object o : (List<?>) b.get("positions")) {
+                Map<?, ?> p = (Map<?, ?>) o;
+                double pnl = ((Number) p.get("pnlUsd")).doubleValue();
+                h.append("<tr><td>").append(esc(p.get("name"))).append(Boolean.TRUE.equals(p.get("halfSold")) ? "（已卖一半）" : "").append("</td><td>")
+                        .append(esc(p.get("path"))).append("</td><td>").append(esc(p.get("openedDay"))).append("</td><td>")
+                        .append(esc(com.phoenixscout.report.RiskReward.price(((Number) p.get("entryPrice")).doubleValue()))).append("</td><td>")
+                        .append(esc(p.get("amountUsd"))).append("</td><td>").append(esc(p.get("riskUsd"))).append("</td><td>")
+                        .append(esc(com.phoenixscout.report.RiskReward.price(((Number) p.get("price")).doubleValue()))).append("<br><span class=muted>")
+                        .append(esc(p.get("priceSource"))).append("</span></td><td class=").append(pnl >= 0 ? "ok" : "bad").append(">")
+                        .append(money(pnl)).append("（").append(esc(p.get("pnlPct"))).append("%）</td><td>").append(esc(p.get("rMultiple"))).append("</td><td>")
+                        .append(esc(com.phoenixscout.report.RiskReward.price(((Number) p.get("tp1")).doubleValue()))).append("（").append(esc(p.get("toTp1Pct"))).append("%）</td><td>")
+                        .append(esc(com.phoenixscout.report.RiskReward.price(((Number) p.get("stopLoss")).doubleValue()))).append("（").append(esc(p.get("toStopPct"))).append("%）</td><td>")
+                        .append(esc(p.get("entryRatio"))).append(" / ").append(esc(p.get("ratioNow"))).append("</td><td>").append(esc(p.get("reason"))).append("</td></tr>");
+            }
+            h.append("</table>");
         }
-        h.append("</table><h2>已平仓</h2><table><tr><th>币</th><th>入场日</th><th>平仓日</th><th>入场价</th><th>平仓价</th><th>金额</th><th>原因</th><th>盈亏</th><th>R</th><th>入场盈亏比</th></tr>");
-        for (Object o : (List<?>) sim.get("closed")) {
+        h.append("<h2>最近平仓</h2><table><tr><th>账本</th><th>币</th><th>入场日</th><th>平仓日</th><th>入场价</th><th>平仓价</th><th>金额</th><th>原因</th><th>盈亏</th><th>R</th><th>入场盈亏比</th></tr>");
+        for (Object o : (List<?>) sim.get("recentClosed")) {
             Map<?, ?> p = (Map<?, ?>) o;
-            h.append("<tr><td>").append(esc(p.get("name"))).append("</td><td>").append(esc(p.get("openedDay"))).append("</td><td>")
-                    .append(esc(p.get("closedDay"))).append("</td><td>").append(esc(p.get("entryPrice"))).append("</td><td>")
-                    .append(esc(p.get("exitPrice"))).append("</td><td>").append(esc(p.get("amountUsd"))).append("</td><td>")
-                    .append(esc(p.get("exitReason"))).append("</td><td>").append(money(p.get("pnlUsd"))).append("（").append(esc(p.get("pnlPct")))
-                    .append("%）</td><td>").append(esc(p.get("rMultiple"))).append("</td><td>").append(esc(p.get("entryRatio"))).append("</td></tr>");
+            h.append("<tr><td>").append("track".equals(p.get("book")) ? "选币台账" : "模拟组合").append("</td><td>").append(esc(p.get("name"))).append("</td><td>")
+                    .append(esc(p.get("opened_day"))).append("</td><td>").append(esc(p.get("closed_day"))).append("</td><td>").append(esc(p.get("entry_price")))
+                    .append("</td><td>").append(esc(p.get("exit_price"))).append("</td><td>").append(esc(p.get("amount_usd"))).append("</td><td>")
+                    .append(esc(p.get("exit_reason"))).append("</td><td>").append(money(p.get("pnl_usd"))).append("（").append(esc(p.get("pnl_pct")))
+                    .append("%）</td><td>").append(esc(p.get("r_multiple"))).append("</td><td>").append(esc(p.get("ratio"))).append("</td></tr>");
         }
         h.append("</table><p class=muted>页面每 60 秒刷新；实时价 2 分钟缓存。JSON 接口：<a href=/api/sim>/api/sim</a>（模拟仓）、<a href=/api/health>/api/health</a>（服务）。完整日报在 data\\reports，模拟仓明细在 data\\sim\\ledger.csv。</p></body></html>");
         return h.toString();

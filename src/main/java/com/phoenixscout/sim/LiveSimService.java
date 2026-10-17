@@ -6,126 +6,115 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
- * 模拟仓实时盈亏：持仓按 CoinGecko 实时价（公共接口，2 分钟缓存）计算浮动盈亏、距目标/防守的距离和当前剩余盈亏比。
- * 实时价拿不到时退回最近收盘价并标明来源。止盈止损仍只按每日收盘价执行。
+ * 模拟台账实时盈亏（/api/sim、状态页）：持仓按 CoinGecko 实时价（公共接口、不占 Demo key 额度、2 分钟缓存）计算。
+ * 实时价拿不到时用最近收盘价并标明。止盈止损只按每日 00:00 UTC 收盘价执行，实时价只用于查看。
  */
 public class LiveSimService {
 
     private final JdbcTemplate jdbc;
     private final CoinGeckoClient cg;
+    private final SimReview review;
 
     public LiveSimService(JdbcTemplate jdbc, CoinGeckoClient cg) {
         this.jdbc = jdbc;
         this.cg = cg;
+        this.review = new SimReview(jdbc);
     }
 
     public Map<String, Object> snapshot() {
-        List<Map<String, Object>> open = jdbc.queryForList("SELECT * FROM sim_position WHERE status='open' ORDER BY id");
-        List<Map<String, Object>> closed = jdbc.queryForList("SELECT * FROM sim_position WHERE status='closed' ORDER BY closed_day DESC, id DESC");
+        List<Map<String, Object>> open = jdbc.queryForList("SELECT * FROM sim_trade WHERE status='open' ORDER BY book DESC, id");
+        Set<String> ids = new LinkedHashSet<>();
+        open.forEach(p -> ids.add((String) p.get("coin_id")));
         Map<String, CoinGeckoClient.LivePrice> live = Map.of();
-        String liveError = null;
+        String warn = null;
         try {
-            live = cg.livePrices(open.stream().map(p -> (String) p.get("coin_id")).toList());
+            live = cg.livePrices(ids);
         } catch (Exception e) {
-            liveError = "实时价获取失败，改用最近收盘价：" + e.getMessage();
-        }
-        List<Map<String, Object>> positions = new ArrayList<>();
-        double invested = 0, value = 0, riskOpen = 0;
-        for (var p : open) {
-            String coin = (String) p.get("coin_id");
-            double entry = num(p.get("entry_price")), qty = num(p.get("qty")), amount = num(p.get("amount_usd"));
-            double tp = num(p.get("take_profit")), sl = num(p.get("stop_loss"));
-            var lp = live.get(coin);
-            double px = lp != null ? lp.price() : num(p.get("last_price"));
-            double val = qty * px * (1 - SimLedger.COST_RATE);
-            double pnl = val - amount;
-            Map<String, Object> m = new LinkedHashMap<>();
-            m.put("coin", coin);
-            m.put("name", p.get("name"));
-            m.put("path", p.get("path"));
-            m.put("openedDay", p.get("opened_day"));
-            m.put("entryPrice", entry);
-            m.put("amountUsd", round(amount));
-            m.put("riskUsd", p.get("risk_usd") == null ? null : round(num(p.get("risk_usd"))));
-            m.put("entryRatio", round(num(p.get("ratio"))));
-            m.put("price", px);
-            m.put("priceSource", lp != null ? "实时" : "收盘价 " + p.get("last_day"));
-            m.put("priceTime", lp != null && lp.updatedAt() != null ? lp.updatedAt().toString() : null);
-            m.put("valueUsd", round(val));
-            m.put("pnlUsd", round(pnl));
-            m.put("pnlPct", round(pnl / amount * 100));
-            m.put("rMultiple", p.get("risk_usd") == null ? null : round(pnl / num(p.get("risk_usd"))));
-            m.put("takeProfit", tp);
-            m.put("stopLoss", sl);
-            m.put("toTakeProfitPct", round((tp / px - 1) * 100));
-            m.put("toStopLossPct", round((sl / px - 1) * 100));
-            double up = tp / px - 1, down = 1 - sl / px;
-            m.put("ratioNow", down <= 0 ? null : round(up / down));
-            m.put("reason", p.get("reason"));
-            positions.add(m);
-            invested += amount;
-            value += val;
-            riskOpen += Math.max(0, qty * (px - sl));
-        }
-        double realized = closed.stream().mapToDouble(p -> num(p.get("pnl_usd"))).sum();
-        long wins = closed.stream().filter(p -> num(p.get("pnl_usd")) > 0).count();
-        double equity = SimLedger.START_EQUITY + realized;
-        Map<String, Object> totals = new LinkedHashMap<>();
-        totals.put("startEquity", SimLedger.START_EQUITY);
-        totals.put("equityRealized", round(equity));
-        totals.put("equityLive", round(equity + value - invested));
-        totals.put("cash", round(equity - invested));
-        totals.put("invested", round(invested));
-        totals.put("openValue", round(value));
-        totals.put("unrealizedUsd", round(value - invested));
-        totals.put("realizedUsd", round(realized));
-        totals.put("totalReturnPct", round((equity + value - invested) / SimLedger.START_EQUITY * 100 - 100));
-        totals.put("openPositions", open.size());
-        totals.put("closedTrades", closed.size());
-        totals.put("wins", wins);
-        totals.put("losses", closed.size() - wins);
-        totals.put("winRatePct", closed.isEmpty() ? null : round(wins * 100.0 / closed.size()));
-        totals.put("avgR", closed.isEmpty() ? null : round(closed.stream().filter(p -> p.get("r_multiple") != null)
-                .mapToDouble(p -> num(p.get("r_multiple"))).average().orElse(0)));
-        totals.put("riskToStopsUsd", round(riskOpen));
-        List<Map<String, Object>> hist = new ArrayList<>();
-        for (var p : closed) {
-            Map<String, Object> m = new LinkedHashMap<>();
-            m.put("coin", p.get("coin_id"));
-            m.put("name", p.get("name"));
-            m.put("path", p.get("path"));
-            m.put("openedDay", p.get("opened_day"));
-            m.put("closedDay", p.get("closed_day"));
-            m.put("entryPrice", p.get("entry_price"));
-            m.put("exitPrice", p.get("exit_price"));
-            m.put("amountUsd", round(num(p.get("amount_usd"))));
-            m.put("exitReason", p.get("exit_reason"));
-            m.put("pnlUsd", round(num(p.get("pnl_usd"))));
-            m.put("pnlPct", round(num(p.get("pnl_pct")) * 100));
-            m.put("rMultiple", p.get("r_multiple") == null ? null : round(num(p.get("r_multiple"))));
-            m.put("entryRatio", round(num(p.get("ratio"))));
-            m.put("reason", p.get("reason"));
-            hist.add(m);
+            warn = "实时价获取失败，改用最近收盘价：" + e.getMessage();
         }
         Map<String, Object> out = new LinkedHashMap<>();
         out.put("asOf", Instant.now().toString());
-        out.put("note", "模拟仓只记账，不下真实订单；实时盈亏按 CoinGecko 实时价（2 分钟缓存），止盈止损只按每日 00:00 UTC 收盘价执行");
-        if (liveError != null) out.put("warning", liveError);
-        out.put("totals", totals);
-        out.put("open", positions);
-        out.put("closed", hist);
+        out.put("note", "只记账，不下真实订单。实时盈亏按 CoinGecko 实时价（2 分钟缓存）；止盈止损只按每日 00:00 UTC 收盘价执行。");
+        if (warn != null) out.put("warning", warn);
+        for (String book : List.of(SimLedger.PORTFOLIO, SimLedger.TRACK)) {
+            List<Map<String, Object>> rows = new ArrayList<>();
+            double invested = 0, value = 0, partial = 0;
+            for (var p : open) {
+                if (!book.equals(p.get("book"))) continue;
+                String coin = (String) p.get("coin_id");
+                double entry = d(p.get("entry_price")), amount = d(p.get("amount_usd")), qty = d(p.get("qty")), qty0 = d(p.get("qty_initial"));
+                double risk = d(p.get("risk_usd")), tp1 = d(p.get("tp1")), stop = d(p.get("stop_loss")), realized = d(p.get("realized_usd"));
+                var lp = live.get(coin);
+                double px = lp != null ? lp.price() : d(p.get("last_price"));
+                double val = qty * px * (1 - SimLedger.COST_RATE);
+                double cost = amount * qty / qty0;
+                double pnl = val - cost + realized;
+                Map<String, Object> m = new LinkedHashMap<>();
+                m.put("coin", coin);
+                m.put("name", p.get("name"));
+                m.put("path", p.get("path"));
+                m.put("openedDay", p.get("opened_day"));
+                m.put("entryPrice", entry);
+                m.put("amountUsd", r(amount));
+                m.put("riskUsd", r(risk));
+                m.put("price", px);
+                m.put("priceSource", lp != null ? "实时" : "收盘价 " + p.get("last_day"));
+                m.put("pnlUsd", r(pnl));
+                m.put("pnlPct", r(pnl / amount * 100));
+                m.put("rMultiple", risk > 0 ? r(pnl / risk) : null);
+                m.put("halfSold", ((Number) p.get("tp1_done")).intValue() == 1);
+                m.put("tp1", tp1);
+                m.put("tp2", p.get("tp2"));
+                m.put("stopLoss", stop);
+                m.put("toTp1Pct", r((tp1 / px - 1) * 100));
+                m.put("toStopPct", r((stop / px - 1) * 100));
+                m.put("entryRatio", r(d(p.get("ratio"))));
+                double down = 1 - stop / px;
+                m.put("ratioNow", down > 0 && tp1 > px ? r((tp1 / px - 1) / down) : null);
+                m.put("reason", p.get("reason"));
+                m.put("sizeNote", p.get("size_note"));
+                rows.add(m);
+                invested += cost;
+                value += val;
+                partial += realized;
+            }
+            Map<String, Object> closed = jdbc.queryForMap("SELECT COUNT(*) n, COALESCE(SUM(pnl_usd),0) s FROM sim_trade WHERE book=? AND status='closed'", book);
+            double realizedClosed = d(closed.get("s"));
+            double unreal = value - invested;
+            Map<String, Object> b = new LinkedHashMap<>();
+            if (book.equals(SimLedger.PORTFOLIO)) {
+                double equity = SimLedger.START_EQUITY + realizedClosed + partial + unreal;
+                b.put("startEquity", SimLedger.START_EQUITY);
+                b.put("equityLive", r(equity));
+                b.put("returnPct", r(equity / SimLedger.START_EQUITY * 100 - 100));
+                b.put("cash", r(SimLedger.START_EQUITY + realizedClosed + partial - invested));
+            }
+            b.put("open", rows.size());
+            b.put("invested", r(invested));
+            b.put("unrealizedUsd", r(unreal + partial));
+            b.put("realizedClosedUsd", r(realizedClosed));
+            b.put("closedTrades", ((Number) closed.get("n")).intValue());
+            b.put("review", review.stats(book));
+            b.put("positions", rows);
+            out.put(book.equals(SimLedger.PORTFOLIO) ? "portfolio" : "track", b);
+        }
+        out.put("recentClosed", jdbc.queryForList("SELECT book, name, path, opened_day, closed_day, entry_price, exit_price, amount_usd, exit_reason,"
+                + " round(pnl_usd,2) pnl_usd, round(pnl_pct*100,1) pnl_pct, round(r_multiple,2) r_multiple, ratio, reason FROM sim_trade"
+                + " WHERE status='closed' ORDER BY closed_day DESC, id DESC LIMIT 50"));
         return out;
     }
 
-    static double num(Object o) {
+    static double d(Object o) {
         return o == null ? 0 : ((Number) o).doubleValue();
     }
 
-    static double round(double v) {
+    static double r(double v) {
         return Math.round(v * 100) / 100.0;
     }
 }

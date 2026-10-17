@@ -110,15 +110,17 @@ public class ReportWriter {
 
         List<com.phoenixscout.scan.Pick> picks = o.picks() == null ? List.of() : o.picks();
         s.append("## 今日推荐（盈亏比最高 ").append(picks.size()).append(" 个）\n\n");
-        s.append("排序：盈亏比 = 目标涨幅 ÷ 到防守价的跌幅（风险至少按 10% 计）。路径 A 目标 = 回到长期起点价、防守 = 近 30 天低点；")
-                .append("路径 B 目标 = 基准情景 12 个月价格、防守 = 保守情景 12 个月价格（至少 −10%）；当前市值/收入远低于同类的暂不推荐。\n\n");
+        s.append("长线口径（V2.5）：盈亏比 = 第一目标涨幅 ÷ 到防守价的跌幅；防守价 = 入场价 −35% 与近 90 天最低价中更低者。")
+                .append("路径 A 第一目标 = 回到长期起点价，之后剩余一半从最高收盘回撤 40% 止盈；路径 B 第一目标 = 基准 12 个月价、长期目标 = 基准 36 个月价；")
+                .append("当前市值/收入远低于同类的暂不推荐。\n\n");
         if (!picks.isEmpty()) {
-            s.append("| # | 币 | 路径 | 现价 | 目标 | 防守 | 盈亏比 | 理由 |\n|---|---|---|---|---|---|---|---|\n");
+            s.append("| # | 币 | 路径 | 现价 | 第一目标 | 长期目标 | 防守 | 盈亏比 | 理由 |\n|---|---|---|---|---|---|---|---|---|\n");
             for (int i = 0; i < picks.size(); i++) {
                 var k = picks.get(i);
                 s.append("| ").append(i + 1).append(" | ").append(k.name()).append(" | ").append(k.path()).append(" | ")
                         .append(RiskReward.price(k.price())).append(" | ").append(RiskReward.price(k.takeProfit()))
                         .append(String.format(Locale.ROOT, "（%+.0f%%）", k.upside() * 100)).append(" | ")
+                        .append(k.longTarget() == null ? "回撤 40% 止盈" : RiskReward.price(k.longTarget())).append(" | ")
                         .append(RiskReward.price(k.stopLoss())).append(String.format(Locale.ROOT, "（%+.0f%%）", -k.downside() * 100))
                         .append(String.format(Locale.ROOT, " | %.1f | ", k.ratio())).append(k.reason()).append(" |\n");
             }
@@ -126,17 +128,19 @@ public class ReportWriter {
         }
         if (o.simSummary() != null) {
             var sm = o.simSummary();
-            s.append("## 模拟仓（只记账，不下真实订单）\n\n");
-            s.append("规则：每天从推荐里按盈亏比补满空位（最多 10 个、每个 1,000 美元，按当日收盘价成交）；收盘 ≥ 目标止盈，≤ 防守止损；")
-                    .append("涨超 50% 后防守上移到入场价；满 180 天平仓；买卖各计 0.3% 成本。明细：data/sim/ledger.csv\n\n");
+            s.append("## 模拟组合（只记账，不下真实订单）\n\n");
+            s.append("规则（V2.5 长线）：本金 1 万美元，按盈亏比补满空位（最多 10 个），每笔风险 = 权益 1%（盈亏比高的放大），金额 = 风险 ÷ 跌幅；")
+                    .append("到第一目标卖一半并保本，剩余到长期目标或从最高收盘回撤 40% 卖出；收盘跌破防守价止损；翻倍后保本；最长 3 年；")
+                    .append("研究层判定逻辑失效即卖出；买卖各计 0.3% 成本。另有“选币台账”每个推荐等额记一笔，用来检验选得准不准。明细：data/sim/ledger.csv\n\n");
             for (var e : o.simEvents()) {
+                if (!com.phoenixscout.sim.SimLedger.PORTFOLIO.equals(e.book())) continue;
                 s.append("- ").append(e.kind()).append(" ").append(e.name()).append(" ").append(RiskReward.price(e.price()));
                 if (e.pnlUsd() != null) s.append(String.format(Locale.ROOT, "，盈亏 %+.0f 美元（%+.1f%%）", e.pnlUsd(), e.pnlPct() * 100));
                 if (e.note() != null) s.append("，").append(e.note());
                 s.append("\n");
             }
-            s.append(String.format(Locale.ROOT, "\n持仓 %d 个（市值 %.0f 美元，浮动盈亏 %+.0f）；已平仓 %d 笔（盈 %d / 亏 %d），已实现 %+.0f 美元\n\n",
-                    sm.open(), sm.openValue(), sm.unrealized(), sm.closed(), sm.wins(), sm.losses(), sm.realized()));
+            s.append(String.format(Locale.ROOT, "\n权益 %.0f 美元，现金 %.0f；持仓 %d 个（成本 %.0f，浮动 %+.0f）；已平仓 %d 笔（盈 %d / 亏 %d），已实现 %+.0f 美元\n\n",
+                    sm.equity() + sm.unrealized(), sm.cash(), sm.open(), sm.invested(), sm.unrealized(), sm.closed(), sm.wins(), sm.losses(), sm.realized()));
         }
 
         s.append("## 路径 A：长期严重超跌后转强（").append(o.pathA().size()).append(" 个，B 级待研究）\n\n");
@@ -247,7 +251,9 @@ public class ReportWriter {
             var k = picks.get(i);
             s.append("\n").append(i + 1).append(". ").append(k.name()).append(" [").append(k.path().equals("A") ? "超跌转强" : "收入连增").append("]")
                     .append("\n   现价 ").append(RiskReward.price(k.price()))
-                    .append("｜目标 ").append(RiskReward.price(k.takeProfit())).append("（").append(String.format(Locale.ROOT, "%+.0f%%", k.upside() * 100)).append("）")
+                    .append("｜第一目标 ").append(RiskReward.price(k.takeProfit())).append("（").append(String.format(Locale.ROOT, "%+.0f%%", k.upside() * 100)).append("）")
+                    .append(k.longTarget() == null ? "" : "｜长期目标 " + RiskReward.price(k.longTarget())
+                            + String.format(Locale.ROOT, "（%+.0f%%）", (k.longTarget() / k.price() - 1) * 100))
                     .append("｜防守 ").append(RiskReward.price(k.stopLoss())).append("（").append(String.format(Locale.ROOT, "%+.0f%%", -k.downside() * 100)).append("）")
                     .append(String.format(Locale.ROOT, "｜盈亏比 %.1f", k.ratio()))
                     .append("\n   ").append(k.reason());
@@ -258,21 +264,26 @@ public class ReportWriter {
 
         if (o.simSummary() != null) {
             var sm = o.simSummary();
-            s.append("\n\n🧪 模拟仓（只记账，不下真实订单）");
+            s.append("\n\n🧪 模拟组合（只记账，不下真实订单）");
+            int shown = 0;
             for (var e : o.simEvents()) {
+                if (!com.phoenixscout.sim.SimLedger.PORTFOLIO.equals(e.book())) continue;
+                shown++;
                 s.append("\n· ").append(e.kind()).append(" ").append(e.name()).append(" ").append(RiskReward.price(e.price()));
                 if (e.pnlUsd() != null) s.append(String.format(Locale.ROOT, "，盈亏 %+.0f 美元（%+.1f%%）", e.pnlUsd(), e.pnlPct() * 100));
                 if (e.note() != null) s.append("，").append(e.note());
             }
-            if (o.simEvents().isEmpty()) s.append("\n· 今日无变动");
-            s.append(String.format(Locale.ROOT, "\n持仓 %d 个，浮动盈亏 %+.0f 美元｜已平仓 %d 笔（盈 %d / 亏 %d），已实现 %+.0f 美元",
-                    sm.open(), sm.unrealized(), sm.closed(), sm.wins(), sm.losses(), sm.realized()));
+            if (shown == 0) s.append("\n· 今日无变动");
+            s.append(String.format(Locale.ROOT, "\n权益 %.0f 美元（%+.1f%%），持仓 %d 个｜已平仓 %d 笔（盈 %d / 亏 %d）",
+                    sm.equity() + sm.unrealized(), (sm.equity() + sm.unrealized()) / com.phoenixscout.sim.SimLedger.START_EQUITY * 100 - 100,
+                    sm.open(), sm.closed(), sm.wins(), sm.losses()));
+            s.append("\n实时盈亏：http://127.0.0.1:8100/");
         }
 
         s.append("\n\n数据：行情 ").append(q.marketCoins()).append("/").append(q.universeTarget()).append("，精确日线 ")
                 .append(q.trackedWithLatest()).append("/").append(q.tracked());
         if (!q.problems().isEmpty()) s.append("\n⚠️ ").append(String.join("；", q.problems().stream().limit(3).toList()));
-        s.append("\n完整报告：data\\reports\\").append(o.scanDay()).append(".md｜模拟仓明细：data\\sim\\ledger.csv");
+        s.append("\n完整报告：data\\reports\\").append(o.scanDay()).append(".md｜台账明细：data\\sim\\ledger.csv");
         return s.toString();
     }
 }

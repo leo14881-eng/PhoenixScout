@@ -147,7 +147,8 @@ public class ScanScheduler {
             java.nio.file.Path simReset = dir.resolve("sim.reset");
             if (java.nio.file.Files.deleteIfExists(simReset)) {
                 log.info("收到命令：清空模拟仓（重新按规则建仓）");
-                jdbc.update("DELETE FROM sim_position");
+                jdbc.update("DELETE FROM sim_trade");
+                jdbc.update("DELETE FROM sim_equity");
             }
             java.nio.file.Path resReq = dir.resolve("research.request");
             if (java.nio.file.Files.deleteIfExists(resReq)) {

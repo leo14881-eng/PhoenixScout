@@ -39,7 +39,7 @@ class ApplicationContextTest {
         assertTrue(page.contains("PhoenixScout 状态"), page);
         assertTrue(page.contains("模拟仓"));
         Map<String, Object> sim = rest.getForObject("/api/sim", Map.class);
-        assertNotNull(sim.get("totals"));
-        assertEquals(10000.0, ((Map<String, Object>) sim.get("totals")).get("startEquity"));
+        assertNotNull(sim.get("track"));
+        assertEquals(10000.0, ((Map<String, Object>) sim.get("portfolio")).get("startEquity"));
     }
 }
