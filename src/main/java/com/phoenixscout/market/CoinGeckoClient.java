@@ -64,6 +64,11 @@ public class CoinGeckoClient {
         return http;
     }
 
+    /** 原样请求（不走缓存），供 P0 归档保存接口原始返回值。 */
+    public RateLimitedHttp.Response rawGet(String pathAndQuery) throws InterruptedException {
+        return http.get(baseUrl + pathAndQuery, headers);
+    }
+
     private JsonNode getJson(String pathAndQuery, Duration ttl) throws ApiException, InterruptedException {
         String key = "cg:" + pathAndQuery;
         var cached = cache.get(key, ttl);

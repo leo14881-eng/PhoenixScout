@@ -69,6 +69,11 @@ public class AppConfig {
     }
 
     @Bean
+    com.phoenixscout.snapshot.P0ArchiveService p0ArchiveService(Path dataDir, CoinGeckoClient cg, PsProperties p) {
+        return new com.phoenixscout.snapshot.P0ArchiveService(dataDir, cg, p.scan().universeTopN());
+    }
+
+    @Bean
     TelegramNotifier telegramNotifier(PsProperties p) {
         return new TelegramNotifier(p.telegram());
     }

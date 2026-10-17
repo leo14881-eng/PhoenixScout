@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SnapshotServiceTest {
+public class SnapshotServiceTest {
 
     static final String JSON = "{\"version\":\"v1\",\"dates\":[\"2025-10-31\",\"2026-07-31\"],"
             + "\"historical_top_k_ids\":[\"bitcoin\",\"foo\"],\"coins\":["

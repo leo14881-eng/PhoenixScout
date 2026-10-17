@@ -37,11 +37,14 @@ public class ScanScheduler {
     private final JdbcTemplate jdbc;
     private final Path dataDir;
     private final boolean catchUp;
+    private final com.phoenixscout.snapshot.P0ArchiveService p0;
     private volatile boolean startupDone;
 
     public ScanScheduler(DailyScanService scan, ArchiveImporter importer, SnapshotService snapshots, SqliteApiCache cache,
-                         TelegramNotifier tg, JdbcTemplate jdbc, Path dataDir, com.phoenixscout.config.PsProperties props) {
+                         TelegramNotifier tg, JdbcTemplate jdbc, Path dataDir, com.phoenixscout.config.PsProperties props,
+                         com.phoenixscout.snapshot.P0ArchiveService p0) {
         this.catchUp = props.scan().catchUpOnStart();
+        this.p0 = p0;
         this.scan = scan;
         this.importer = importer;
         this.snapshots = snapshots;
@@ -67,7 +70,10 @@ public class ScanScheduler {
             importer.importAll(dataDir.resolve("raw").resolve("p0-archive").resolve("history"));
             var s = snapshots.load();
             log.info("快照状态：{}", s.message());
-            if (!s.available()) {
+            if (!s.available() && catchUp && !p0.snapshotExists()
+                    && com.phoenixscout.snapshot.P0ArchiveService.windowOpen(LocalDate.now(ZoneOffset.UTC))) {
+                startP0();
+            } else if (!s.available()) {
                 tg.send("⚠️ PhoenixScout 启动检查：" + s.message() + "。基准 A 与路径 A1 会停止计算，其余照常。");
             }
             cache.purgeOlderThan(Duration.ofDays(30));
@@ -85,6 +91,31 @@ public class ScanScheduler {
             log.info("今天（{}）的扫描还没完成，启动后补跑", today);
             scan.runToday();
         }
+    }
+
+    /** 后台归档 P0 并生成快照（可续跑，耗时数小时，不阻塞每日扫描）。 */
+    void startP0() {
+        Thread t = new Thread(() -> {
+            try {
+                log.info("开始 P0 历史快照归档（后台）");
+                String report = p0.run(LocalDate.now(ZoneOffset.UTC));
+                if (report != null) {
+                    importer.importAll(dataDir.resolve("raw").resolve("p0-archive").resolve("history"));
+                    tg.send(report);
+                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            } catch (Exception e) {
+                log.error("P0 归档出错", e);
+                tg.send("⚠️ PhoenixScout 历史快照归档出错：" + e.getMessage() + "。服务重启后会从断点续跑。");
+            }
+        }, "ps-p0-archive");
+        t.setDaemon(true);
+        t.start();
+    }
+
+    public String p0State() {
+        return p0.state();
     }
 
     @Scheduled(cron = "${phoenixscout.scan.cron}", zone = "${phoenixscout.scan.cron-zone}")

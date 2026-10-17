@@ -34,6 +34,7 @@ public class HealthController {
         m.put("lastScanFinish", scan.lastFinish() == null ? null : scan.lastFinish().toString());
         m.put("lastScanStatus", scan.lastStatus());
         m.put("lastScanError", scan.lastError());
+        m.put("p0Archive", scheduler.p0State());
         return m;
     }
 
