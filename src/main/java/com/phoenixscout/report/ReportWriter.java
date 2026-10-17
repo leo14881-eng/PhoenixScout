@@ -136,6 +136,25 @@ public class ReportWriter {
             s.append("\n");
         }
 
+        if (o.prelim() != null && !o.prelim().isEmpty()) {
+            s.append("### 路径 B 初步情景推算（现在买入的预期收益与时间）\n\n");
+            s.append("口径：年化收入 = 最近 91 天协议收入 × 365/91；估值倍数 = 同类协议“流通市值/年化收入”的 p25/中位数/p75；")
+                    .append("收入增速 保守 0、基准 = 两季度年化增速（封顶 100%）、乐观 = 基准×1.5（封顶 150%）；流通量按当前值，**未计解锁，偏乐观**。")
+                    .append("这是研究层核实前的参考，不是预测或承诺。\n\n");
+            s.append("| 代币 | 年化收入 | 当前市值/收入 | 同类倍数 p25/中位/p75（样本） | 情景 | 6月 | 12月 | 24月 | 36月 | 达到 3/5/10 倍 |\n|---|---|---|---|---|---|---|---|---|---|\n");
+            for (var pv : o.prelim().values()) {
+                for (var sc : pv.scenarios()) {
+                    s.append("| ").append(pv.coinId()).append(" | ").append(usd(pv.annualRevenue())).append(" | ")
+                            .append(String.format(Locale.ROOT, "%.1f", pv.currentMultiple())).append(" | ")
+                            .append(String.format(Locale.ROOT, "%.1f/%.1f/%.1f（%s %d 个）", pv.peerMultiples().get("p25"),
+                                    pv.peerMultiples().get("median"), pv.peerMultiples().get("p75"), pv.peerGroup(), pv.peerCount()))
+                            .append(" | ").append(sc.label()).append(String.format(Locale.ROOT, "（增速 %.0f%%，%.1f 倍）", sc.growth() * 100, sc.multiple()));
+                    sc.multipleAt().values().forEach(v -> s.append(" | ").append(String.format(Locale.ROOT, "%.2fx", v)));
+                    s.append(" | ").append(goals(sc)).append(" |\n");
+                }
+            }
+            s.append("\n");
+        }
         s.append("## 路径 C 与新币观察池\n\n路径 C（早期高成长）需要研究层核实产品、用户、代币经济和审计，研究层上线后输出。\n\n");
         s.append("新币观察池（历史不足 90 天，不参与路径 A 排名）：").append(o.newPool().size()).append(" 个\n\n");
         for (var n : o.newPool()) {
@@ -144,6 +163,29 @@ public class ReportWriter {
         }
         s.append("\n## 与上次比较\n\n- 新增：").append(o.added().isEmpty() ? "无" : String.join("、", o.added()))
                 .append("\n- 移出：").append(o.dropped().isEmpty() ? "无" : String.join("、", o.dropped())).append("\n");
+        return s.toString();
+    }
+
+    static String goals(com.phoenixscout.research.ScenarioCalculator.Scenario sc) {
+        java.util.List<String> parts = new java.util.ArrayList<>();
+        sc.monthsTo().forEach((goal, m) -> parts.add(goal + "倍" + (m == null ? "36月内不到" : "约" + m + "月")));
+        return String.join("，", parts);
+    }
+
+    public static String prelimLineForTest(com.phoenixscout.scan.PrelimValuation.Result pv) {
+        return prelimLine(pv);
+    }
+
+    static String prelimLine(com.phoenixscout.scan.PrelimValuation.Result pv) {
+        StringBuilder s = new StringBuilder("现在买入（初步）：");
+        java.util.List<String> parts = new java.util.ArrayList<>();
+        for (var sc : pv.scenarios()) {
+            parts.add(sc.label() + " 12月" + String.format(Locale.ROOT, "%.1fx", sc.multipleAt().get(12))
+                    + " 36月" + String.format(Locale.ROOT, "%.1fx", sc.multipleAt().get(36))
+                    + "（5倍" + (sc.monthsTo().get(5) == null ? "36月内不到" : "约" + sc.monthsTo().get(5) + "月") + "）");
+        }
+        s.append(String.join("｜", parts));
+        s.append(String.format(Locale.ROOT, "；当前市值/年化收入 %.1f 倍，同类中位 %.1f 倍", pv.currentMultiple(), pv.peerMultiples().get("median")));
         return s.toString();
     }
 
@@ -172,9 +214,16 @@ public class ReportWriter {
         }
         if (o.pathA().size() > top.size()) s.append("\n…其余见报告");
         s.append("\n\n路径B 收入连增 ").append(o.pathB().size()).append(" 个");
-        o.pathB().stream().limit(5).forEach(r -> s.append("\n· ").append(r.protocol()).append("（").append(r.coinId())
-                .append("）收入季增 ").append(pct(r.revenueGrowth())).append("｜币价90天 ").append(pct(r.price90()))
-                .append(r.priceLagging() ? "｜价格未反映✓" : ""));
+        o.pathB().stream().limit(5).forEach(r -> {
+            s.append("\n· ").append(r.protocol()).append("（").append(r.coinId())
+                    .append("）收入季增 ").append(pct(r.revenueGrowth())).append("｜币价90天 ").append(pct(r.price90()))
+                    .append(r.priceLagging() ? "｜价格未反映✓" : "");
+            var pv = o.prelim() == null ? null : o.prelim().get(r.coinId());
+            if (pv != null) s.append("\n  ").append(prelimLine(pv));
+        });
+        if (o.prelim() != null && !o.prelim().isEmpty()) {
+            s.append("\n  （预期收益为初步情景推算：同类协议估值倍数 × 最近季度收入，未计代币解锁，偏乐观；不是预测或承诺。核实后的推算随 A 级推送）");
+        }
         s.append("\n\n新币观察池 ").append(o.newPool().size()).append(" 个");
         if (!o.added().isEmpty() || !o.dropped().isEmpty()) {
             s.append("\n变化：新增 ").append(o.added().size()).append("，移出 ").append(o.dropped().size());

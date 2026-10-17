@@ -58,7 +58,7 @@ public class DailyScanService {
     public record Outcome(LocalDate scanDay, String status, PathA.Benchmarks benchmarks, BenchmarkInfo benchInfo,
                           List<CandidateA> pathA, List<PathB.Result> pathB, List<NewCoin> newPool,
                           List<String> added, List<String> dropped, Quality quality, Path reportFile,
-                          List<String> aGrades) { }
+                          List<String> aGrades, Map<String, PrelimValuation.Result> prelim) { }
 
     public record BenchmarkInfo(int aTotal, int aComputable, int aNoCurrentData, int bTotal, int bComputable,
                                 LocalDate baseDate, LocalDate midDate, Double breadthTop100Long) { }
@@ -217,8 +217,10 @@ public class DailyScanService {
 
         // 4b. 路径 B 协议（两次批量请求拿全部协议收入和代币映射）
         List<DefiLlamaClient.ProtocolRevenue> protos = new ArrayList<>();
+        List<DefiLlamaClient.ProtocolRevenue> allProtos = new ArrayList<>();
         try {
             for (var p : llama.revenueOverview()) {
+                allProtos.add(p);
                 if (p.geckoId() == null || !byId.containsKey(p.geckoId()) || excluded.contains(p.geckoId())) continue;
                 if (p.total30d() == null || p.total60dto30d() == null || p.total30d() < 30_000) continue;
                 if (p.total30d() <= p.total60dto30d()) continue;
@@ -364,6 +366,35 @@ public class DailyScanService {
         pathB.sort(Comparator.comparing(PathB.Result::priceLagging).reversed()
                 .thenComparing(r -> -nz(r.revenueGrowth())));
 
+        // 8b. 路径 B 初步情景推算：同类协议“流通市值/年化收入”倍数 + 最近季度收入（研究层核实前的参考）
+        Map<String, PrelimValuation.Result> prelim = new LinkedHashMap<>();
+        {
+            Map<String, double[]> revByCoin = new HashMap<>();      // [年化收入, 最大单协议收入]
+            Map<String, String> catByCoin = new HashMap<>();
+            for (var p : allProtos) {
+                if (p.geckoId() == null || p.total30d() == null || p.total30d() <= 0 || excluded.contains(p.geckoId())) continue;
+                double annual = p.total30d() * 365.0 / 30.0;
+                double[] v = revByCoin.computeIfAbsent(p.geckoId(), k -> new double[2]);
+                v[0] += annual;
+                if (annual > v[1]) {
+                    v[1] = annual;
+                    catByCoin.put(p.geckoId(), p.category());
+                }
+            }
+            List<PrelimValuation.Peer> peers = new ArrayList<>();
+            revByCoin.forEach((id, v) -> {
+                MarketCoin c = byId.get(id);
+                if (c != null && c.marketCap() != null && c.marketCap() > 0) peers.add(new PrelimValuation.Peer(catByCoin.get(id), c.marketCap(), v[0]));
+            });
+            for (PathB.Result r : pathB) {
+                MarketCoin c = byId.get(r.coinId());
+                if (c == null || c.price() == null || c.circulating() == null || c.marketCap() == null) continue;
+                var pv = PrelimValuation.compute(r.coinId(), catByCoin.get(r.coinId()), r, c.price(), c.circulating(), c.marketCap(),
+                        peers);
+                if (pv != null) prelim.put(r.coinId(), pv);
+            }
+        }
+
         // 9. 新币观察池（历史不足 90 天，不参与路径 A 排名，不伪造历史）
         List<NewCoin> newPool = new ArrayList<>();
         for (String id : newIds) {
@@ -383,9 +414,9 @@ public class DailyScanService {
                 withLatest, supplyKnown, protoByCoin.size(), snap.message(), exclFresh, problems);
         String status = problems.isEmpty() ? "ok" : "partial";
         List<String> aGrades = currentAGrades(byId);
-        Outcome o = new Outcome(day, status, bm, bi, pathA, pathB, newPool, added, dropped, q, null, aGrades);
+        Outcome o = new Outcome(day, status, bm, bi, pathA, pathB, newPool, added, dropped, q, null, aGrades, prelim);
         Path file = reports.write(o);
-        o = new Outcome(day, status, bm, bi, pathA, pathB, newPool, added, dropped, q, file, aGrades);
+        o = new Outcome(day, status, bm, bi, pathA, pathB, newPool, added, dropped, q, file, aGrades, prelim);
         finishRun(day, status, om.writeValueAsString(q), ReportWriter.oneLine(o));
         boolean sent = notifier.send(reports.telegramSummary(o));
         jdbc.update("INSERT INTO notification(kind, scan_day, sent_at, ok) VALUES ('daily', ?, ?, ?)",
