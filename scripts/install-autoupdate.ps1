@@ -1,0 +1,41 @@
+﻿<#
+一次性安装（普通用户权限即可，不需要管理员）：注册两个计划任务。
+  PhoenixScout-Service     运行服务本身（scripts\run-service.cmd），不限运行时长
+  PhoenixScout-AutoUpdate  每 3 分钟运行 scripts\auto-update.ps1：自动更新
+  PhoenixScout-Watchdog    每 2 分钟运行 scripts\watchdog.ps1：服务停止或卡死时拉起并发 Telegram
+重复运行会覆盖旧任务。卸载：Unregister-ScheduledTask PhoenixScout-Service,PhoenixScout-AutoUpdate,PhoenixScout-Watchdog
+#>
+$ErrorActionPreference = 'Stop'
+$AppDir = Split-Path -Parent $PSScriptRoot
+$user = "$env:USERDOMAIN\$env:USERNAME"
+$principal = New-ScheduledTaskPrincipal -UserId $user -LogonType Interactive -RunLevel Limited
+
+# 用隐藏窗口的 PowerShell 启动，桌面上不出现命令行窗口，避免被误关
+$svcAction = New-ScheduledTaskAction -Execute 'powershell.exe' `
+    -Argument "-NoProfile -NonInteractive -ExecutionPolicy Bypass -WindowStyle Hidden -Command `"& '$AppDir\scripts\run-service.cmd'`"" `
+    -WorkingDirectory $AppDir
+$svcSettings = New-ScheduledTaskSettingsSet -ExecutionTimeLimit ([TimeSpan]::Zero) -MultipleInstances IgnoreNew `
+    -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
+$svcTrigger = New-ScheduledTaskTrigger -AtLogOn -User $user
+Register-ScheduledTask -TaskName 'PhoenixScout-Service' -Action $svcAction -Trigger $svcTrigger -Principal $principal `
+    -Settings $svcSettings -Description 'PhoenixScout shadow trading service' -Force | Out-Null
+
+$updAction = New-ScheduledTaskAction -Execute 'powershell.exe' `
+    -Argument "-NoProfile -NonInteractive -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$AppDir\scripts\auto-update.ps1`"" `
+    -WorkingDirectory $AppDir
+$updTrigger = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(1) -RepetitionInterval (New-TimeSpan -Minutes 3)
+$updSettings = New-ScheduledTaskSettingsSet -ExecutionTimeLimit (New-TimeSpan -Hours 1) -MultipleInstances IgnoreNew `
+    -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
+Register-ScheduledTask -TaskName 'PhoenixScout-AutoUpdate' -Action $updAction -Trigger $updTrigger -Principal $principal `
+    -Settings $updSettings -Description 'PhoenixScout watchdog and auto update from GitHub main' -Force | Out-Null
+
+$wdAction = New-ScheduledTaskAction -Execute 'powershell.exe' `
+    -Argument "-NoProfile -NonInteractive -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$AppDir\scripts\watchdog.ps1`"" `
+    -WorkingDirectory $AppDir
+$wdTrigger = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(1) -RepetitionInterval (New-TimeSpan -Minutes 2)
+$wdSettings = New-ScheduledTaskSettingsSet -ExecutionTimeLimit (New-TimeSpan -Minutes 10) -MultipleInstances IgnoreNew `
+    -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
+Register-ScheduledTask -TaskName 'PhoenixScout-Watchdog' -Action $wdAction -Trigger $wdTrigger -Principal $principal `
+    -Settings $wdSettings -Description 'PhoenixScout watchdog: restart when stopped or hung, Telegram alerts' -Force | Out-Null
+
+Write-Output 'Installed: PhoenixScout-Service, PhoenixScout-AutoUpdate, PhoenixScout-Watchdog'

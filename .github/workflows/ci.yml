@@ -20,19 +20,30 @@ jobs:
     runs-on: ${{ matrix.os }}
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '21'
           cache: maven
       - name: Test (Windows)
         if: runner.os == 'Windows'
-        shell: cmd
-        run: mvnw.cmd -B clean test
+        shell: bash
+        run: |
+          set -o pipefail
+          cmd //c "mvnw.cmd -B clean test" 2>&1 | tee build.log
       - name: Test (Linux)
         if: runner.os != 'Windows'
-        run: sh ./mvnw -B clean test
+        run: |
+          set -o pipefail
+          sh ./mvnw -B clean test 2>&1 | tee build.log
+      - name: 失败原因写进注解（日志下载受限时也能看到）
+        if: failure()
+        shell: bash
+        run: |
+          grep -E '\[ERROR\]|FAIL|Tests run:.*Fail|expected:|Exception' build.log | grep -v 'Help 1' | head -45 | while IFS= read -r line; do
+            echo "::error::${line//%/%25}"
+          done
       - name: Upload test reports
         if: failure()
         uses: actions/upload-artifact@v4
