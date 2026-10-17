@@ -35,5 +35,8 @@ class ApplicationContextTest {
         assertEquals(Boolean.FALSE, h.get("scanRunning"));
         var r = rest.postForEntity("/api/admin/shutdown", null, Map.class);
         assertEquals(403, r.getStatusCode().value(), "没有管理头不能停机");
+        String page = rest.getForObject("/", String.class);
+        assertTrue(page.contains("PhoenixScout 状态"), page);
+        assertTrue(page.contains("模拟仓"));
     }
 }

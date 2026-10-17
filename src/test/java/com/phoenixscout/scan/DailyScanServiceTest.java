@@ -155,6 +155,7 @@ class DailyScanServiceTest {
                 new DefiLlamaClient("http://ll", llHttp, cache), prices, db.jdbc,
                 new SnapshotService(dir.resolve("data/snapshot")), new TelegramNotifier(props.telegram()),
                 new ReportWriter(dir.resolve("data/reports")), clock);
+        svc.setSimLedger(new com.phoenixscout.sim.SimLedger(db.jdbc));
 
         var o = svc.runToday();
         assertNotNull(o);
@@ -172,7 +173,14 @@ class DailyScanServiceTest {
         String md = Files.readString(o.reportFile());
         assertTrue(md.contains("hero"));
         assertTrue(md.contains("今日 A 级：无符合条件的项目"));
-        assertTrue(new ReportWriter(dir).telegramSummary(o).contains("路径A 超跌转强 1 个"));
+        assertTrue(new ReportWriter(dir).telegramSummary(o).contains("超跌转强 1 个"));
+        assertEquals(1, o.picks().size(), "推荐只有 hero");
+        assertEquals("hero", o.picks().get(0).coinId());
+        assertTrue(o.picks().get(0).ratio() > 1);
+        assertEquals(1, o.simEvents().size(), "模拟仓入场 hero");
+        assertEquals(1, o.simSummary().open());
+        assertTrue(Files.exists(dir.resolve("data/sim/ledger.csv")));
+        assertTrue(new ReportWriter(dir).telegramSummary(o).contains("今日推荐（盈亏比最高 1 个）"));
         assertEquals("ok", db.jdbc.queryForObject("SELECT status FROM scan_run WHERE scan_day = ?", String.class, DAY.toString()));
 
         // 同一天再跑：日线已是最新、行情和分类在缓存期内 → 不再请求第三方

@@ -95,6 +95,8 @@ public class AppConfig {
     @Bean
     DailyScanService dailyScanService(PsProperties p, CoinGeckoClient cg, DefiLlamaClient llama, PriceStore prices,
                                       JdbcTemplate jdbc, SnapshotService snaps, TelegramNotifier tg, ReportWriter rw, Clock clock) {
-        return new DailyScanService(p, cg, llama, prices, jdbc, snaps, tg, rw, clock);
+        var s = new DailyScanService(p, cg, llama, prices, jdbc, snaps, tg, rw, clock);
+        s.setSimLedger(new com.phoenixscout.sim.SimLedger(jdbc));
+        return s;
     }
 }

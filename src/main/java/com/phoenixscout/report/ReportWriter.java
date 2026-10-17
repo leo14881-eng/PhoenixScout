@@ -25,6 +25,10 @@ public class ReportWriter {
         this.dir = reportDir;
     }
 
+    public Path dir() {
+        return dir;
+    }
+
     public Path write(DailyScanService.Outcome o) {
         try {
             Files.createDirectories(dir);
@@ -103,6 +107,37 @@ public class ReportWriter {
                 .append("，今日无精确日线 ").append(bi.aNoCurrentData()).append("。基准 B（当前第 101–500 名山寨币，每 4 个取 1 个）：成分 ")
                 .append(bi.bTotal()).append("，可计算 ").append(bi.bComputable()).append("。两者分别报告，不混用。\n");
         s.append("前 100 名山寨币长期区间中位数（仅作市场广度参考）：").append(pct(bi.breadthTop100Long())).append("\n\n");
+
+        List<com.phoenixscout.scan.Pick> picks = o.picks() == null ? List.of() : o.picks();
+        s.append("## 今日推荐（盈亏比最高 ").append(picks.size()).append(" 个）\n\n");
+        s.append("排序：盈亏比 = 目标涨幅 ÷ 到防守价的跌幅（风险至少按 10% 计）。路径 A 目标 = 回到长期起点价、防守 = 近 30 天低点；")
+                .append("路径 B 目标 = 基准情景 12 个月价格、防守 = 保守情景 12 个月价格（至少 −10%）；当前市值/收入远低于同类的暂不推荐。\n\n");
+        if (!picks.isEmpty()) {
+            s.append("| # | 币 | 路径 | 现价 | 目标 | 防守 | 盈亏比 | 理由 |\n|---|---|---|---|---|---|---|---|\n");
+            for (int i = 0; i < picks.size(); i++) {
+                var k = picks.get(i);
+                s.append("| ").append(i + 1).append(" | ").append(k.name()).append(" | ").append(k.path()).append(" | ")
+                        .append(RiskReward.price(k.price())).append(" | ").append(RiskReward.price(k.takeProfit()))
+                        .append(String.format(Locale.ROOT, "（%+.0f%%）", k.upside() * 100)).append(" | ")
+                        .append(RiskReward.price(k.stopLoss())).append(String.format(Locale.ROOT, "（%+.0f%%）", -k.downside() * 100))
+                        .append(String.format(Locale.ROOT, " | %.1f | ", k.ratio())).append(k.reason()).append(" |\n");
+            }
+            s.append("\n");
+        }
+        if (o.simSummary() != null) {
+            var sm = o.simSummary();
+            s.append("## 模拟仓（只记账，不下真实订单）\n\n");
+            s.append("规则：每天从推荐里按盈亏比补满空位（最多 10 个、每个 1,000 美元，按当日收盘价成交）；收盘 ≥ 目标止盈，≤ 防守止损；")
+                    .append("涨超 50% 后防守上移到入场价；满 180 天平仓；买卖各计 0.3% 成本。明细：data/sim/ledger.csv\n\n");
+            for (var e : o.simEvents()) {
+                s.append("- ").append(e.kind()).append(" ").append(e.name()).append(" ").append(RiskReward.price(e.price()));
+                if (e.pnlUsd() != null) s.append(String.format(Locale.ROOT, "，盈亏 %+.0f 美元（%+.1f%%）", e.pnlUsd(), e.pnlPct() * 100));
+                if (e.note() != null) s.append("，").append(e.note());
+                s.append("\n");
+            }
+            s.append(String.format(Locale.ROOT, "\n持仓 %d 个（市值 %.0f 美元，浮动盈亏 %+.0f）；已平仓 %d 笔（盈 %d / 亏 %d），已实现 %+.0f 美元\n\n",
+                    sm.open(), sm.openValue(), sm.unrealized(), sm.closed(), sm.wins(), sm.losses(), sm.realized()));
+        }
 
         s.append("## 路径 A：长期严重超跌后转强（").append(o.pathA().size()).append(" 个，B 级待研究）\n\n");
         s.append("条件（V2.3.1）：滚动 30/90 天同时跑赢 BTC、ETH、基准 B（A2，必要条件）+ 长期跑输 BTC 和 ETH + 没有出现更低的低点。A1（长期跌幅 ≥65% 且跑输 BTC、ETH，近期领先最强基准 20 个百分点）为参考加分。\n\n");
@@ -197,50 +232,47 @@ public class ReportWriter {
         var q = o.quality();
         StringBuilder s = new StringBuilder();
         s.append("🔥 PhoenixScout 日报 ").append(o.scanDay()).append("\n");
-        s.append(o.aGrades().isEmpty() ? "今日 A 级：无符合条件的项目（候选均为 B 级待研究）\n\n"
-                : "当前 A 级：" + String.join("、", o.aGrades()) + "（理由见单独推送）\n\n");
+        s.append(o.aGrades().isEmpty() ? "A 级：无（候选均为 B 级待研究）\n"
+                : "当前 A 级：" + String.join("、", o.aGrades()) + "（理由见单独推送）\n");
         s.append("基准 30天/90天：BTC ").append(pct(b.btc30())).append("/").append(pct(b.btc90()))
                 .append("｜ETH ").append(pct(b.eth30())).append("/").append(pct(b.eth90()))
-                .append("｜山寨中位数B ").append(pct(b.benchB30())).append("/").append(pct(b.benchB90())).append("\n");
-        if (o.benchInfo().baseDate() != null) {
-            s.append("长期区间：BTC ").append(pct(b.btcLong())).append("｜ETH ").append(pct(b.ethLong()))
-                    .append("｜基准A ").append(pct(b.benchALong())).append("\n");
+                .append("｜山寨中位数 ").append(pct(b.benchB30())).append("/").append(pct(b.benchB90())).append("\n");
+        s.append("候选：超跌转强 ").append(o.pathA().size()).append(" 个，收入连增 ").append(o.pathB().size())
+                .append(" 个，新币 ").append(o.newPool().size()).append(" 个\n");
+
+        List<com.phoenixscout.scan.Pick> picks = o.picks() == null ? List.of() : o.picks();
+        s.append("\n📌 今日推荐（盈亏比最高 ").append(picks.size()).append(" 个）");
+        if (picks.isEmpty()) s.append("\n今日没有盈亏比合格的候选");
+        for (int i = 0; i < picks.size(); i++) {
+            var k = picks.get(i);
+            s.append("\n").append(i + 1).append(". ").append(k.name()).append(" [").append(k.path().equals("A") ? "超跌转强" : "收入连增").append("]")
+                    .append("\n   现价 ").append(RiskReward.price(k.price()))
+                    .append("｜目标 ").append(RiskReward.price(k.takeProfit())).append("（").append(String.format(Locale.ROOT, "%+.0f%%", k.upside() * 100)).append("）")
+                    .append("｜防守 ").append(RiskReward.price(k.stopLoss())).append("（").append(String.format(Locale.ROOT, "%+.0f%%", -k.downside() * 100)).append("）")
+                    .append(String.format(Locale.ROOT, "｜盈亏比 %.1f", k.ratio()))
+                    .append("\n   ").append(k.reason());
         }
-        s.append("\n路径A 超跌转强 ").append(o.pathA().size()).append(" 个");
-        List<DailyScanService.CandidateA> top = o.pathA().stream().limit(8).toList();
-        for (int i = 0; i < top.size(); i++) {
-            var c = top.get(i);
-            var r = c.result();
-            s.append("\n").append(i + 1).append(". ").append(name(c.coin())).append(" ").append(usd(c.coin().marketCap()))
-                    .append("｜长期 ").append(pct(r.rLong())).append("｜30天 ").append(pct(r.r30())).append(" 90天 ").append(pct(r.r90()))
-                    .append(r.a1Pass() ? "｜A1✓" : "").append(Boolean.TRUE.equals(r.higherLow()) ? "｜更高低点✓" : "")
-                    .append("\n   ").append(RiskReward.forPriceStructure(c.price(), c.basePrice(), c.baseLabel(), c.low30()));
+        if (!picks.isEmpty()) {
+            s.append("\n（目标/防守为情景或价格结构推算，不是预测或承诺；评级与买入由你决定）");
         }
-        if (!top.isEmpty()) s.append("\n（路径 A 的目标与防守位是价格结构参考，不是估值；研究层核实后给估值推算）");
-        if (o.pathA().size() > top.size()) s.append("\n…其余见报告");
-        s.append("\n\n路径B 收入连增 ").append(o.pathB().size()).append(" 个");
-        o.pathB().stream().limit(5).forEach(r -> {
-            s.append("\n· ").append(r.protocol()).append("（").append(r.coinId())
-                    .append("）收入季增 ").append(pct(r.revenueGrowth())).append("｜币价90天 ").append(pct(r.price90()))
-                    .append(r.priceLagging() ? "｜价格未反映✓" : "");
-            var pv = o.prelim() == null ? null : o.prelim().get(r.coinId());
-            if (pv != null) s.append("\n  ").append(prelimLine(pv));
-        });
-        if (o.prelim() != null && !o.prelim().isEmpty()) {
-            s.append("\n  （预期收益为初步情景推算：同类协议估值倍数 × 最近季度收入，未计代币解锁，偏乐观；不是预测或承诺。核实后的推算随 A 级推送）");
+
+        if (o.simSummary() != null) {
+            var sm = o.simSummary();
+            s.append("\n\n🧪 模拟仓（只记账，不下真实订单）");
+            for (var e : o.simEvents()) {
+                s.append("\n· ").append(e.kind()).append(" ").append(e.name()).append(" ").append(RiskReward.price(e.price()));
+                if (e.pnlUsd() != null) s.append(String.format(Locale.ROOT, "，盈亏 %+.0f 美元（%+.1f%%）", e.pnlUsd(), e.pnlPct() * 100));
+                if (e.note() != null) s.append("，").append(e.note());
+            }
+            if (o.simEvents().isEmpty()) s.append("\n· 今日无变动");
+            s.append(String.format(Locale.ROOT, "\n持仓 %d 个，浮动盈亏 %+.0f 美元｜已平仓 %d 笔（盈 %d / 亏 %d），已实现 %+.0f 美元",
+                    sm.open(), sm.unrealized(), sm.closed(), sm.wins(), sm.losses(), sm.realized()));
         }
-        s.append("\n\n新币观察池 ").append(o.newPool().size()).append(" 个");
-        if (!o.added().isEmpty() || !o.dropped().isEmpty()) {
-            s.append("\n变化：新增 ").append(o.added().size()).append("，移出 ").append(o.dropped().size());
-        }
+
         s.append("\n\n数据：行情 ").append(q.marketCoins()).append("/").append(q.universeTarget()).append("，精确日线 ")
-                .append(q.trackedWithLatest()).append("/").append(q.tracked()).append("，CoinGecko 成功 ").append(q.cgOk())
-                .append(" 失败 ").append(q.cgFailed()).append(" 限流 ").append(q.cgRateLimited());
-        if (!q.problems().isEmpty()) {
-            s.append("\n⚠️ ");
-            s.append(String.join("；", q.problems().stream().limit(4).toList()));
-        }
-        s.append("\n报告：data\\reports\\").append(o.scanDay()).append(".md");
+                .append(q.trackedWithLatest()).append("/").append(q.tracked());
+        if (!q.problems().isEmpty()) s.append("\n⚠️ ").append(String.join("；", q.problems().stream().limit(3).toList()));
+        s.append("\n完整报告：data\\reports\\").append(o.scanDay()).append(".md｜模拟仓明细：data\\sim\\ledger.csv");
         return s.toString();
     }
 }
