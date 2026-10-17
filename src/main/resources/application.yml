@@ -1,0 +1,56 @@
+spring:
+  application:
+    name: phoenixscout
+  config:
+    # 本机私密配置（Telegram Token 等），不进代码仓库
+    import: optional:file:${phoenixscout.local-config:./config/application-local.yml}
+  datasource:
+    url: jdbc:sqlite:${phoenixscout.data-dir:./data}/phoenixscout.db?journal_mode=WAL&busy_timeout=10000
+    driver-class-name: org.sqlite.JDBC
+    hikari:
+      maximum-pool-size: 1   # SQLite 单写者
+      connection-timeout: 600000
+  flyway:
+    enabled: true
+  task:
+    scheduling:
+      shutdown:
+        await-termination: true
+        await-termination-period: 60s
+  lifecycle:
+    timeout-per-shutdown-phase: 60s
+
+server:
+  port: 8090
+  address: 127.0.0.1   # 只在本机可访问
+  shutdown: graceful
+
+phoenixscout:
+  data-dir: ./data
+  zone: Asia/Ho_Chi_Minh
+  telegram:
+    bot-token: ${TELEGRAM_BOT_TOKEN:}
+    chat-id: ${TELEGRAM_CHAT_ID:}
+  coingecko:
+    base-url: https://api.coingecko.com/api/v3
+    min-interval-ms: 7000        # 无 key 公共接口；有 Demo key 时自动降到 2200
+    demo-key-file: ./config/coingecko-demo.key
+  defillama:
+    base-url: https://api.llama.fi
+    min-interval-ms: 1500
+  scan:
+    cron: "0 40 0 * * *"          # 每天 UTC 00:40（越南 07:40），等当天 00:00 日线点生成
+    cron-zone: UTC
+    universe-top-n: 2500
+    cap-min-usd: 30000000          # 优先研究 3,000 万–10 亿（不作绝对限制）
+    cap-max-usd: 1000000000
+    max-candidate-fetch: 150       # 每日精确日线补齐的候选上限（第三条第 5 款）
+    benchmark-size: 100
+    catch-up-on-start: true        # 启动时如果今天还没扫描成功就补跑
+
+logging:
+  file:
+    name: ./logs/phoenixscout.log
+  logback:
+    rollingpolicy:
+      max-history: 30

@@ -1,0 +1,9 @@
+# 快照与归档按字节校验 SHA-256，禁止换行符转换
+data/** -text
+*.sha256 -text
+*.json -text
+*.gz binary
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+*.sh text eol=lf
+mvnw text eol=lf
