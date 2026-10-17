@@ -165,7 +165,8 @@ class DailyScanServiceTest {
         assertEquals(1, o.pathA().size(), "只有 hero 满足超跌转强");
         assertEquals("hero", o.pathA().get(0).coin().id());
         assertTrue(o.pathA().get(0).result().a1Pass());
-        assertEquals(100, o.benchInfo().aTotal(), "tether 被排除，基准 A 取前 100 个山寨");
+        assertEquals(6, o.benchInfo().aTotal(), "tether 被排除，基准 A 取第 101–500 名山寨（每 4 个取 1 个）");
+        assertNotNull(o.benchInfo().breadthTop100Long());
         assertEquals(o.quality().tracked(), o.quality().trackedWithLatest(), "增量补齐后全部有今日日线");
         assertTrue(Files.exists(o.reportFile()));
         String md = Files.readString(o.reportFile());

@@ -37,7 +37,7 @@ public final class ChecklistEvaluator {
         LABELS.put("no_security_issue", "6 无未解决的重大安全/治理问题");
         LABELS.put("valuation_5x", "7 合理的5倍以上估值情景");
         LABELS.put("data_consistent", "8 数据来源可靠、无重大矛盾");
-        LABELS.put("supply_growth", "9 未来12个月供应增长≤50%");
+        LABELS.put("supply_growth", "9 未来12个月供应增长≤25%且流通量≥总量50%");
     }
 
     /**
@@ -77,9 +77,14 @@ public final class ChecklistEvaluator {
             }
             if (it.key().equals("supply_growth")) {
                 JsonNode g = n.get("supply_growth_12m_pct");
+                boolean strong = !n.path("strong_evidence").asText("").isBlank();
                 if (g == null || !g.isNumber()) out.set(i, fail(it, "未给出未来12个月供应增长数值"));
-                else if (g.asDouble() > 50 && n.path("strong_evidence").asText("").isBlank()) {
-                    out.set(i, fail(it, "供应增长 " + g.asDouble() + "% 超过 50% 且没有需求抵消的强证据"));
+                else if (g.asDouble() > 25 && !strong) {
+                    out.set(i, fail(it, "供应增长 " + g.asDouble() + "% 超过 25% 且没有需求抵消的强证据"));
+                } else if (inputs != null && inputs.totalSupply() != null && inputs.totalSupply() > 0
+                        && inputs.circulating() / inputs.totalSupply() < 0.5 && !strong) {
+                    out.set(i, fail(it, String.format(java.util.Locale.ROOT, "流通量只占总量 %.0f%%（要求 ≥50%%），且没有强证据",
+                            inputs.circulating() / inputs.totalSupply() * 100)));
                 }
             }
         }

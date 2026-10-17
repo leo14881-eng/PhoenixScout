@@ -61,7 +61,7 @@ public class DailyScanService {
                           List<String> aGrades) { }
 
     public record BenchmarkInfo(int aTotal, int aComputable, int aNoCurrentData, int bTotal, int bComputable,
-                                LocalDate baseDate, LocalDate midDate) { }
+                                LocalDate baseDate, LocalDate midDate, Double breadthTop100Long) { }
 
     public record CandidateA(MarketCoin coin, PathA.Result result, boolean inPriorityRange) { }
 
@@ -202,16 +202,18 @@ public class DailyScanService {
 
         // 4. 跟踪集合
         Map<String, LocalDate> latestDays = prices.latestDays();
-        List<String> benchA = new ArrayList<>();
+        // V2.3.1：基准取同市值区间（第 101–500 名的山寨币），每隔 4 个取 1 个，约 100 个成分，控制请求量
+        List<String> histAlts = new ArrayList<>();
         if (snap.available()) {
             for (String id : snap.snapshot().historicalTopIds()) {
                 var c = snap.snapshot().coins().get(id);
                 if (MAJORS.contains(id) || excluded.contains(id) || (c != null && !c.excludedCategories().isEmpty())) continue;
-                benchA.add(id);
-                if (benchA.size() >= sc.benchmarkSize()) break;
+                histAlts.add(id);
             }
         }
-        List<String> benchB = alts.stream().limit(sc.benchmarkSize()).map(MarketCoin::id).toList();
+        List<String> benchA = bandSample(histAlts);
+        List<String> breadthTop = histAlts.stream().limit(sc.benchmarkSize()).toList();
+        List<String> benchB = bandSample(alts.stream().map(MarketCoin::id).toList());
 
         // 4b. 路径 B 协议（两次批量请求拿全部协议收入和代币映射）
         List<DefiLlamaClient.ProtocolRevenue> protos = new ArrayList<>();
@@ -285,6 +287,7 @@ public class DailyScanService {
         }
 
         // 6. 基准
+        Double breadthTopLong = null;
         PathA.Benchmarks bm;
         BenchmarkInfo bi;
         {
@@ -312,6 +315,9 @@ public class DailyScanService {
             }
             // 成分缺失过多（可计算不足一半）就不给基准，避免用少数幸存样本冒充完整中位数
             Double medALong = aLong.size() * 2 >= benchA.size() && !benchA.isEmpty() ? Returns.median(aLong).orElse(null) : null;
+            List<Double> topLong = new ArrayList<>();
+            for (String id : breadthTop) Returns.ret(snapPrice(s, id, s.baseDate()), snapPrice(s, id, s.midDate())).ifPresent(topLong::add);
+            breadthTopLong = Returns.median(topLong).orElse(null);
             Double medARecent = aRecent.size() * 2 >= benchA.size() && !benchA.isEmpty() ? Returns.median(aRecent).orElse(null) : null;
             Double medB30 = b30.size() * 2 >= benchB.size() && !benchB.isEmpty() ? Returns.median(b30).orElse(null) : null;
             Double medB90 = b90.size() * 2 >= benchB.size() && !benchB.isEmpty() ? Returns.median(b90).orElse(null) : null;
@@ -324,7 +330,7 @@ public class DailyScanService {
                     Returns.rolling(bh, day, 180).orElse(null), Returns.rolling(eh, day, 180).orElse(null),
                     Returns.rolling(bh, day, 365).orElse(null), Returns.rolling(eh, day, 365).orElse(null));
             bi = new BenchmarkInfo(benchA.size(), Math.min(aLong.size(), aRecent.size()), aNoData, benchB.size(),
-                    Math.min(b30.size(), b90.size()), s == null ? null : s.baseDate(), s == null ? null : s.midDate());
+                    Math.min(b30.size(), b90.size()), s == null ? null : s.baseDate(), s == null ? null : s.midDate(), breadthTopLong);
         }
 
         // 7. 路径 A
@@ -429,6 +435,13 @@ public class DailyScanService {
                 "SELECT coin_id || ':' || path FROM candidate_state WHERE scan_day = ? AND path IN ('A','B')", String.class, prev.get().toString()));
         now.stream().filter(x -> !before.contains(x)).sorted().forEach(added::add);
         before.stream().filter(x -> !now.contains(x)).sorted().forEach(dropped::add);
+    }
+
+    /** 第 101–500 名（下标 100–499）每隔 4 个取 1 个。 */
+    static List<String> bandSample(List<String> ranked) {
+        List<String> out = new ArrayList<>();
+        for (int i = 100; i < Math.min(500, ranked.size()); i += 4) out.add(ranked.get(i));
+        return out;
     }
 
     static Double snapPrice(SnapshotService.Snapshot s, String id, LocalDate d) {

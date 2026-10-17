@@ -99,12 +99,13 @@ public class ReportWriter {
         s.append("| 滚动 90 天 | ").append(pct(b.btc90())).append(" | ").append(pct(b.eth90())).append(" | 基准B ").append(pct(b.benchB90())).append(" |\n");
         s.append("| 滚动 180 天 | ").append(pct(b.btc180())).append(" | ").append(pct(b.eth180())).append(" | — |\n");
         s.append("| 滚动 365 天 | ").append(pct(b.btc365())).append(" | ").append(pct(b.eth365())).append(" | — |\n\n");
-        s.append("基准 A（历史固定成分）：成分 ").append(bi.aTotal()).append("，可计算 ").append(bi.aComputable())
-                .append("，今日无精确日线 ").append(bi.aNoCurrentData()).append("。基准 B（当前前 100 山寨）：成分 ")
-                .append(bi.bTotal()).append("，可计算 ").append(bi.bComputable()).append("。两者分别报告，不混用。\n\n");
+        s.append("基准 A（2025-10-31 第 101–500 名山寨币，每 4 个取 1 个）：成分 ").append(bi.aTotal()).append("，可计算 ").append(bi.aComputable())
+                .append("，今日无精确日线 ").append(bi.aNoCurrentData()).append("。基准 B（当前第 101–500 名山寨币，每 4 个取 1 个）：成分 ")
+                .append(bi.bTotal()).append("，可计算 ").append(bi.bComputable()).append("。两者分别报告，不混用。\n");
+        s.append("前 100 名山寨币长期区间中位数（仅作市场广度参考）：").append(pct(bi.breadthTop100Long())).append("\n\n");
 
         s.append("## 路径 A：长期严重超跌后转强（").append(o.pathA().size()).append(" 个，B 级待研究）\n\n");
-        s.append("条件：滚动 30/90 天同时跑赢 BTC、ETH、基准 B（A2，主要依据），且长期跑输 BTC 和 ETH。A1 为固定区间参考，分开列示。\n\n");
+        s.append("条件（V2.3.1）：滚动 30/90 天同时跑赢 BTC、ETH、基准 B（A2，必要条件）+ 长期跑输 BTC 和 ETH + 没有出现更低的低点。A1（长期跌幅 ≥65% 且跑输 BTC、ETH，近期领先最强基准 20 个百分点）为参考加分。\n\n");
         if (o.pathA().isEmpty()) s.append("今日无。\n\n");
         else {
             s.append("| 币 | 市值 | FDV | 长期 | 近期 | 30天 | 90天 | 180天 | 365天 | A1 | 跌幅65–90% | 更高低点 | 上涨集中度 | 量能比 |\n");

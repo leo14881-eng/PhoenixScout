@@ -101,9 +101,16 @@ class ResearchServiceTest {
     }
 
     @Test
+    void lowCirculatingRatioFailsWithoutEvidence() throws Exception {
+        var om = new com.fasterxml.jackson.databind.ObjectMapper();
+        var res = ChecklistEvaluator.evaluate(om.readTree(research(true).replace("\"total_supply\":2e8", "\"total_supply\":5e8")), "A", 1.0);
+        assertTrue(res.failed().contains("supply_growth"), "流通量只占 20%");
+    }
+
+    @Test
     void highSupplyGrowthWithoutEvidenceFails() throws Exception {
         var om = new com.fasterxml.jackson.databind.ObjectMapper();
-        var res = ChecklistEvaluator.evaluate(om.readTree(research(true).replace("\"supply_growth_12m_pct\":10", "\"supply_growth_12m_pct\":80")), "A", 1.0);
+        var res = ChecklistEvaluator.evaluate(om.readTree(research(true).replace("\"supply_growth_12m_pct\":10", "\"supply_growth_12m_pct\":30")), "A", 1.0);
         assertTrue(res.failed().contains("supply_growth"));
     }
 }

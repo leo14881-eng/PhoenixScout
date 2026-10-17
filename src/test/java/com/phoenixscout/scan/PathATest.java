@@ -41,6 +41,27 @@ class PathATest {
     }
 
     @Test
+    void lowerLowIsBearRallyNotCandidate() {
+        var h = path(10, 2, 5);
+        var d = LATEST.minusDays(25);
+        h.put(d, new DailyPoint(d, 1.0, 1e6, 1000.0));          // 近 30 天跌破前低
+        h.put(LATEST, new DailyPoint(LATEST, 6.0, 6e6, 1000.0));
+        var r = PathA.evaluate("x", h, LATEST, 10.0, 2.0, bm());
+        assertEquals(Boolean.TRUE, r.a2Pass());
+        assertEquals(Boolean.FALSE, r.higherLow());
+        assertFalse(r.candidate(), "更低的低点视为熊市反弹");
+    }
+
+    @Test
+    void a1LongIsSingleStandard() {
+        // 跌 66%：跑输 BTC(-40%)/ETH(-50%) 且 ≥65% → 满足（旧规则要求低于 -70% 会被排除）
+        var r = PathA.evaluate("x", path(10, 3.4, 8), LATEST, 10.0, 3.4, bm());
+        assertEquals(Boolean.TRUE, r.a1LongOk());
+        var r2 = PathA.evaluate("x", path(10, 4, 8), LATEST, 10.0, 4.0, bm());
+        assertEquals(Boolean.FALSE, r2.a1LongOk(), "跌 60% 不满足 65%");
+    }
+
+    @Test
     void weakCoinIsNotCandidate() {
         var h = path(10, 2, 1.9);
         var r = PathA.evaluate("x", h, LATEST, 10.0, 2.0, bm());

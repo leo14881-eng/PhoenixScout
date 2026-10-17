@@ -13,7 +13,8 @@ import java.util.Optional;
  * <ul>
  *   <li>A1 固定区间（参考）：长期 = 快照基准日→中间日；近期 = 中间日→最新完整 UTC 日线。</li>
  *   <li>A2 滚动窗口（主要依据）：30/90 天同时跑赢 BTC、ETH、基准 B；180/365 天只观察。</li>
- *   <li>进入研究队列：A2 通过，且长期跑输 BTC 和 ETH（“超跌”）。A1 全部满足的额外标记。</li>
+ *   <li>A1 长期条件（V2.3.1 单一标准）：长期区间跌幅 ≥ 65% 且同时跑输 BTC、ETH。</li>
+ *   <li>进入研究队列：A2 通过 + 长期跑输 BTC 和 ETH + 没有出现更低的低点。A1 为参考加分。</li>
  *   <li>A3 反弹质量只计算指标供研究层和报告使用，不单独淘汰。</li>
  * </ul>
  */
@@ -55,7 +56,7 @@ public final class PathA {
         // A1
         Boolean a1Long = null;
         Double worse = minOf(b.btcLong(), b.ethLong());
-        if (rLong != null && worse != null) a1Long = rLong < worse - MARGIN;
+        if (rLong != null && worse != null) a1Long = rLong <= -0.65 && rLong < worse;
         Boolean a1Recent = null;
         Double best = maxAll(b.btcRecent(), b.ethRecent(), b.benchARecent());
         if (rRecent != null && best != null) a1Recent = rRecent > best + MARGIN;
@@ -82,7 +83,7 @@ public final class PathA {
             if (rLong == null) notes.add("不在快照或快照价格缺失，长期弱势用 365 天滚动收益判断");
         }
         boolean drop = rLong != null && rLong <= -0.65 && rLong >= -0.90;
-        boolean candidate = Boolean.TRUE.equals(a2) && longWeak;
+        if (rLong != null && rLong < -0.90) notes.add("长期跌幅超过 90%，归零风险高");
 
         // A3 指标
         Double conc = Returns.top3Concentration(h, latest.minusDays(90), latest).orElse(null);
@@ -94,6 +95,9 @@ public final class PathA {
         var v30 = Returns.avgVolume(h, latest.minusDays(29), latest);
         var v60 = Returns.avgVolume(h, latest.minusDays(90), latest.minusDays(30));
         if (v30.isPresent() && v60.isPresent() && v60.get() > 0) volRatio = v30.get() / v60.get();
+        // V2.3.1：出现更低的低点视为熊市反弹，不进入研究；无法判断（数据不足）不淘汰
+        boolean candidate = Boolean.TRUE.equals(a2) && longWeak && !Boolean.FALSE.equals(higherLow);
+        if (Boolean.TRUE.equals(a2) && longWeak && Boolean.FALSE.equals(higherLow)) notes.add("近 30 天出现更低的低点，视为熊市反弹");
 
         return new Result(coinId, rLong, rRecent, r30, r90, r180, r365, a1Long, a1Recent, a1Pass, a2, longWeak,
                 candidate, drop, conc, higherLow, volRatio, notes);
