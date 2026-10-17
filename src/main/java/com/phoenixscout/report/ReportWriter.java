@@ -139,7 +139,8 @@ public class ReportWriter {
         if (o.prelim() != null && !o.prelim().isEmpty()) {
             s.append("### 路径 B 初步情景推算（现在买入的预期收益与时间）\n\n");
             s.append("口径：年化收入 = 最近 91 天协议收入 × 365/91；估值倍数 = 同类协议“流通市值/年化收入”的 p25/中位数/p75；")
-                    .append("收入增速 保守 0、基准 = 两季度年化增速（封顶 100%）、乐观 = 基准×1.5（封顶 150%）；流通量按当前值，**未计解锁，偏乐观**。")
+                    .append("只用年化收入 ≥100 万美元、倍数 0.5–300 的同类样本；估值倍数从当前值起 36 个月逐步趋向目标（保守只压缩不扩张）；")
+                    .append("收入增速 保守 0、基准 = 两季度年化增速的一半（封顶 50%）、乐观 = 两季度年化增速（封顶 100%）；公链类不做；流通量按当前值，**未计解锁，偏乐观**。")
                     .append("这是研究层核实前的参考，不是预测或承诺。\n\n");
             s.append("| 代币 | 年化收入 | 当前市值/收入 | 同类倍数 p25/中位/p75（样本） | 情景 | 6月 | 12月 | 24月 | 36月 | 达到 3/5/10 倍 |\n|---|---|---|---|---|---|---|---|---|---|\n");
             for (var pv : o.prelim().values()) {
@@ -186,6 +187,7 @@ public class ReportWriter {
         }
         s.append(String.join("｜", parts));
         s.append(String.format(Locale.ROOT, "；当前市值/年化收入 %.1f 倍，同类中位 %.1f 倍", pv.currentMultiple(), pv.peerMultiples().get("median")));
+        if (pv.currentMultiple() < pv.peerMultiples().get("p25") / 3) s.append("；⚠️ 远低于同类，收入可能并不归代币持有人，需研究核实");
         return s.toString();
     }
 

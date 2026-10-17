@@ -27,11 +27,11 @@ class ScenarioCalculatorTest {
         var s = ScenarioCalculator.scenarios(in());
         assertEquals(3, s.size());
         var cons = s.get(0);
-        // 收入不增长、倍数 5：12 个月 = 1e7*5/1.1e8 = 0.4545
-        assertEquals(0.4545, cons.multipleAt().get(12), 1e-3);
+        // 当前倍数 10，保守目标 min(10,5)=5；12 个月倍数 10-5/3=8.33，收入不变：1e7*8.333/1.1e8 = 0.7576
+        assertEquals(0.7576, cons.multipleAt().get(12), 1e-3);
         assertNull(cons.monthsTo().get(3), "保守情景 36 个月内达不到 3 倍");
         var opt = s.get(2);
-        // 乐观：36 个月收入 8e7 × 20 = 16 亿 / 1.2 亿 = 13.3x
+        // 乐观：36 个月收入 8e7 × 20（倍数已到目标）= 16 亿 / 1.2 亿 = 13.3x
         assertEquals(13.33, opt.multipleAt().get(36), 0.01);
         assertNotNull(opt.monthsTo().get(10));
         assertTrue(ScenarioCalculator.fiveXPlausible(s));

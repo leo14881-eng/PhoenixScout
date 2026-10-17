@@ -9,6 +9,8 @@ import java.util.TreeMap;
 /**
  * 第十八条（5–20 倍估值）与第十八条之二（现在买入的预期收益与时间）的计算。纯函数。
  * 口径：估值倍数 = 流通市值 / 年化收入；未来价格 = 预期市值 / 届时流通量（计入解锁稀释与销毁）。
+ * 估值倍数不会一夜重估：从当前倍数 m0 起，36 个月内线性趋向情景目标倍数——
+ * 保守 = min(m0, 同类 p25)（只可能压缩）；基准 = 同类中位数；乐观 = max(m0, 同类 p75)。
  * 结果是情景推算，不是预测或承诺；不包含牛熊周期等整体行情因素。
  */
 public final class ScenarioCalculator {
@@ -35,8 +37,14 @@ public final class ScenarioCalculator {
         String[][] defs = {{"conservative", "保守", "p25"}, {"base", "基准", "median"}, {"optimistic", "乐观", "p75"}};
         for (String[] d : defs) {
             Double g = in.growth().get(d[0]);
-            Double m = in.multiples().get(d[2]);
-            if (g == null || m == null) continue;
+            Double peer = in.multiples().get(d[2]);
+            if (g == null || peer == null) continue;
+            double m0 = currentMultiple(in);
+            double m = switch (d[0]) {
+                case "conservative" -> Math.min(m0, peer);
+                case "optimistic" -> Math.max(m0, peer);
+                default -> peer;
+            };
             Map<Integer, Double> at = new LinkedHashMap<>();
             for (int h : HORIZONS) at.put(h, priceMultiple(in, g, m, h));
             Map<Integer, Integer> to = new LinkedHashMap<>();
@@ -55,8 +63,15 @@ public final class ScenarioCalculator {
         return out;
     }
 
-    static double priceMultiple(Inputs in, double growth, double multiple, int month) {
+    /** 当前流通市值 / 年化收入。 */
+    public static double currentMultiple(Inputs in) {
+        return in.price() * in.circulating() / in.annualRevenue();
+    }
+
+    static double priceMultiple(Inputs in, double growth, double targetMultiple, int month) {
         double revenue = in.annualRevenue() * Math.pow(1 + growth, month / 12.0);
+        double m0 = currentMultiple(in);
+        double multiple = m0 + (targetMultiple - m0) * Math.min(month, 36) / 36.0;
         double mcap = revenue * multiple;
         double price = mcap / supplyAt(in, month);
         return price / in.price();

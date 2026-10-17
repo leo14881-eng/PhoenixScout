@@ -358,7 +358,11 @@ public class DailyScanService {
                 var rev = llama.dailyRevenue(e.getValue().slug());
                 PathB.Result r = PathB.evaluate(e.getKey(), e.getValue().name(), rev, day.minusDays(1),
                         Returns.rolling(hist.get(e.getKey()), day, 90).orElse(null));
-                if (r.pass()) pathB.add(r);
+                // 净值型代币（基金份额等，90 天价格波动不到 5%）不是我们要找的标的
+                var lo = Returns.minPrice(hist.get(e.getKey()), day.minusDays(90), day);
+                var hi = maxPrice(hist.get(e.getKey()), day.minusDays(90), day);
+                boolean navLike = lo.isPresent() && hi != null && hi / lo.get() < 1.05;
+                if (r.pass() && !navLike) pathB.add(r);
             } catch (ApiException ex) {
                 problems.add("协议 " + e.getValue().name() + " 收入明细获取失败");
             }
@@ -466,6 +470,15 @@ public class DailyScanService {
                 "SELECT coin_id || ':' || path FROM candidate_state WHERE scan_day = ? AND path IN ('A','B')", String.class, prev.get().toString()));
         now.stream().filter(x -> !before.contains(x)).sorted().forEach(added::add);
         before.stream().filter(x -> !now.contains(x)).sorted().forEach(dropped::add);
+    }
+
+    static Double maxPrice(NavigableMap<LocalDate, DailyPoint> h, LocalDate from, LocalDate to) {
+        if (h == null) return null;
+        Double m = null;
+        for (var p : h.subMap(from, true, to, true).values()) {
+            if (p.price() != null) m = m == null ? p.price() : Math.max(m, p.price());
+        }
+        return m;
     }
 
     /** 第 101–500 名（下标 100–499）每隔 4 个取 1 个。 */
