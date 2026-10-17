@@ -131,6 +131,29 @@ public class ScanScheduler {
         }
     }
 
+    /**
+     * 本机命令文件（每分钟检查一次 data/commands/）：scan.request → 立即重跑今天的扫描；research.request → 立即处理研究结果。
+     * 方便远程维护时不需要操作桌面。处理后删除命令文件。
+     */
+    @Scheduled(fixedDelayString = "PT1M", initialDelayString = "PT1M")
+    public void commands() {
+        java.nio.file.Path dir = dataDir.resolve("commands");
+        try {
+            java.nio.file.Path scanReq = dir.resolve("scan.request");
+            if (java.nio.file.Files.deleteIfExists(scanReq)) {
+                log.info("收到命令：重跑今天的扫描");
+                scan.runToday();
+            }
+            java.nio.file.Path resReq = dir.resolve("research.request");
+            if (java.nio.file.Files.deleteIfExists(resReq)) {
+                log.info("收到命令：处理研究结果");
+                research.ingest();
+            }
+        } catch (Exception e) {
+            log.warn("处理命令文件出错：{}", e.getMessage());
+        }
+    }
+
     @Scheduled(cron = "${phoenixscout.scan.cron}", zone = "${phoenixscout.scan.cron-zone}")
     public void daily() {
         scan.runToday();
