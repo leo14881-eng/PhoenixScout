@@ -97,7 +97,7 @@ public class SimReview {
 
     @SuppressWarnings("unchecked")
     public String weeklyText(SimLedger ledger) {
-        StringBuilder s = new StringBuilder("📊 PhoenixScout 模拟台账周复盘（只记账，不下真实订单）\n");
+        StringBuilder s = new StringBuilder("📊 模拟台账周复盘（只记账，不下真实订单）\n");
         for (String book : List.of(SimLedger.TRACK, SimLedger.PORTFOLIO)) {
             var st = stats(book);
             var sm = ledger.summary(book);

@@ -14,11 +14,12 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Telegram 推送。长消息按行切成多条（单条上限 4096）；token 不写日志。 */
+/** Telegram 推送。每条消息开头带项目名【PhoenixScout】；长消息按行切成多条（单条上限 4096，分条时标 1/3 这样的序号）；token 不写日志。 */
 public class TelegramNotifier {
 
     private static final Logger log = LoggerFactory.getLogger(TelegramNotifier.class);
     static final int LIMIT = 3900;
+    static final String TAG = "【PhoenixScout】";
 
     private final PsProperties.Telegram cfg;
     private final HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(15)).build();
@@ -38,10 +39,20 @@ public class TelegramNotifier {
             return false;
         }
         boolean all = true;
-        for (String part : split(text)) {
+        for (String part : withTag(text)) {
             all &= sendOne(part);
         }
         return all;
+    }
+
+    /** 切分后给每条加项目名；多条时加序号。 */
+    static List<String> withTag(String text) {
+        List<String> parts = split(text);
+        List<String> out = new ArrayList<>();
+        for (int i = 0; i < parts.size(); i++) {
+            out.add(TAG + (parts.size() > 1 ? "（" + (i + 1) + "/" + parts.size() + "）" : "") + "\n" + parts.get(i));
+        }
+        return out;
     }
 
     private boolean sendOne(String part) {

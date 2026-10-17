@@ -158,7 +158,7 @@ public class DailyScanService {
             lastStatus = "failed";
             lastError = e.getClass().getSimpleName() + ": " + e.getMessage();
             finishRun(scanDay, "failed", null, lastError);
-            notifier.send("⚠️ PhoenixScout " + scanDay + " 扫描出错：" + lastError + "\n没有生成候选，明天会再跑；不会用旧数据冒充今天的结果。");
+            notifier.send("⚠️ " + scanDay + " 扫描出错：" + lastError + "\n没有生成候选，明天会再跑；不会用旧数据冒充今天的结果。");
             return null;
         } finally {
             lastFinish = Instant.now(clock);

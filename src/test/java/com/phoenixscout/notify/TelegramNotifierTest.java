@@ -19,6 +19,18 @@ class TelegramNotifierTest {
     }
 
     @Test
+    void everyMessageStartsWithProjectName() {
+        var one = TelegramNotifier.withTag("你好");
+        assertEquals(java.util.List.of("【PhoenixScout】\n你好"), one);
+        var many = TelegramNotifier.withTag("行\n".repeat(3000));
+        assertTrue(many.size() > 1);
+        for (int i = 0; i < many.size(); i++) {
+            assertTrue(many.get(i).startsWith("【PhoenixScout】（" + (i + 1) + "/" + many.size() + "）\n"), many.get(i).substring(0, 30));
+            assertTrue(many.get(i).length() <= 4096);
+        }
+    }
+
+    @Test
     void unconfiguredDoesNotSend() {
         var n = new TelegramNotifier(new PsProperties.Telegram("", ""));
         assertFalse(n.configured());

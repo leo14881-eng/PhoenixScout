@@ -74,7 +74,7 @@ public class ScanScheduler {
                     && com.phoenixscout.snapshot.P0ArchiveService.windowOpen(LocalDate.now(ZoneOffset.UTC))) {
                 startP0();
             } else if (!s.available()) {
-                tg.send("⚠️ PhoenixScout 启动检查：" + s.message() + "。基准 A 与路径 A1 会停止计算，其余照常。");
+                tg.send("⚠️ 启动检查：" + s.message() + "。基准 A 与路径 A1 会停止计算，其余照常。");
             }
             cache.purgeOlderThan(Duration.ofDays(30));
         } catch (Exception e) {
@@ -107,7 +107,7 @@ public class ScanScheduler {
                 Thread.currentThread().interrupt();
             } catch (Exception e) {
                 log.error("P0 归档出错", e);
-                tg.send("⚠️ PhoenixScout 历史快照归档出错：" + e.getMessage() + "。服务重启后会从断点续跑。");
+                tg.send("⚠️ 历史快照归档出错：" + e.getMessage() + "。服务重启后会从断点续跑。");
             }
         }, "ps-p0-archive");
         t.setDaemon(true);

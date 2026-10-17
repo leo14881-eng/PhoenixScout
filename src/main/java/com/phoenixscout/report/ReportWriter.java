@@ -235,7 +235,7 @@ public class ReportWriter {
         var b = o.benchmarks();
         var q = o.quality();
         StringBuilder s = new StringBuilder();
-        s.append("🔥 PhoenixScout 日报 ").append(o.scanDay()).append("\n");
+        s.append("🔥 日报 ").append(o.scanDay()).append("\n");
         s.append(o.aGrades().isEmpty() ? "A 级：无（候选均为 B 级待研究）\n"
                 : "当前 A 级：" + String.join("、", o.aGrades()) + "（理由见单独推送）\n");
         s.append("基准 30天/90天：BTC ").append(pct(b.btc30())).append("/").append(pct(b.btc90()))

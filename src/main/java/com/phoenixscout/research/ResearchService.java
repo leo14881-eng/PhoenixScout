@@ -93,7 +93,7 @@ public class ResearchService {
         } catch (Exception e) {
             log.warn("研究文件 {} 无法处理：{}", f.getFileName(), e.getMessage());
             jdbc.update("INSERT OR REPLACE INTO kv(k, v) VALUES (?, ?)", marker, "invalid " + Instant.now(clock));
-            tg.send("⚠️ PhoenixScout 研究文件格式不对，已跳过：" + f.getFileName() + "（" + e.getMessage() + "）");
+            tg.send("⚠️ 研究文件格式不对，已跳过：" + f.getFileName() + "（" + e.getMessage() + "）");
             return false;
         }
     }
