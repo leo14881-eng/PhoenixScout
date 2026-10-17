@@ -17,3 +17,16 @@ python3 scripts/p0/build_snapshot.py   # 生成只读 snapshot_v1 + SHA-256 + �
 - 快照：`data/snapshot/snapshot_v1.json`（只读，带校验值，绝不覆盖）
 
 数据源全部为免费接口：CoinGecko（api.coingecko.com，无 key）、DefiLlama（api.llama.fi）。
+
+## 部署（Windows，本机）
+
+一次性安装（普通用户权限）：运行 `scripts\install-autoupdate.cmd`，注册三个计划任务：
+
+- `PhoenixScout-Service`：登录后运行服务（端口 8090，只监听本机）
+- `PhoenixScout-Watchdog`：每 2 分钟检查，服务停止或卡住自动拉起，Telegram 告知
+- `PhoenixScout-AutoUpdate`：每 3 分钟检查 GitHub main，Windows CI 通过且本机构建测试通过才更新，失败自动回滚；
+  每天确认接电源时不睡眠、合上盖子不睡眠
+
+私密配置 `config\application-local.yml`（Telegram）不进仓库；可选 `config\coingecko-demo.key`（CoinGecko 免费 Demo key）。
+
+开发端发布：`scripts/ship.sh`（推 staging → Windows+Linux CI 全绿 → 合并 main）。
