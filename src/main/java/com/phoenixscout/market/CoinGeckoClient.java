@@ -35,7 +35,7 @@ public class CoinGeckoClient {
 
     private final String baseUrl;
     private final RateLimitedHttp http;
-    private final Map<String, String> headers = new HashMap<>();
+    private final Map<String, String> headers = new java.util.concurrent.ConcurrentHashMap<>();
     private final ObjectMapper om = new ObjectMapper();
     private final ApiCache cache;
 
@@ -43,16 +43,34 @@ public class CoinGeckoClient {
         this.baseUrl = baseUrl;
         this.http = http;
         this.cache = cache == null ? ApiCache.NONE : cache;
+        this.demoKeyFile = demoKeyFile;
+        this.publicIntervalMs = http.minIntervalMs();
+        refreshKey(true);
+    }
+
+    private final Path demoKeyFile;
+    private final long publicIntervalMs;
+    private long keyCheckedAt;
+
+    /** 每分钟检查一次 key 文件：放进去就自动提速，删掉就退回公共接口，不需要重启。 */
+    synchronized void refreshKey(boolean force) {
+        long now = System.currentTimeMillis();
+        if (!force && now - keyCheckedAt < 60_000) return;
+        keyCheckedAt = now;
+        String key = null;
         if (demoKeyFile != null && Files.isRegularFile(demoKeyFile)) {
             try {
-                String key = Files.readString(demoKeyFile, StandardCharsets.UTF_8).trim();
-                if (!key.isEmpty()) {
-                    headers.put("x-cg-demo-api-key", key);
-                    http.setMinIntervalMs(Math.min(http.minIntervalMs(), 2200));
-                }
+                key = Files.readString(demoKeyFile, StandardCharsets.UTF_8).trim();
             } catch (IOException ignored) {
-                // 没有 key 就用公共接口
+                // 读不到就用公共接口
             }
+        }
+        if (key != null && !key.isEmpty()) {
+            headers.put("x-cg-demo-api-key", key);
+            http.setMinIntervalMs(Math.min(publicIntervalMs, 2200));
+        } else {
+            headers.remove("x-cg-demo-api-key");
+            http.setMinIntervalMs(publicIntervalMs);
         }
     }
 
@@ -69,6 +87,7 @@ public class CoinGeckoClient {
      * 新取到的也写进缓存，扫描可复用。
      */
     public RateLimitedHttp.Response rawGet(String pathAndQuery) throws InterruptedException {
+        refreshKey(false);
         String key = "cg:" + pathAndQuery;
         var hit = cache.getWithTime(key, Duration.ofDays(2));
         if (hit.isPresent()) {
@@ -80,6 +99,7 @@ public class CoinGeckoClient {
     }
 
     private JsonNode getJson(String pathAndQuery, Duration ttl) throws ApiException, InterruptedException {
+        refreshKey(false);
         String key = "cg:" + pathAndQuery;
         var cached = cache.get(key, ttl);
         if (cached.isPresent()) {

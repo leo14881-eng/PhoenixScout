@@ -85,5 +85,9 @@ class CoinGeckoClientTest {
         assertEquals(2200, http.minIntervalMs());
         c.marketsPage(1, null);
         assertEquals("KEY123", seen[0]);
+        Files.delete(key);
+        c.refreshKey(true);
+        assertFalse(c.usingDemoKey(), "删掉 key 文件后退回公共接口");
+        assertEquals(7000, http.minIntervalMs());
     }
 }
