@@ -42,10 +42,12 @@ public class AppConfig {
     }
 
     @Bean
-    CoinGeckoClient coinGeckoClient(PsProperties p, ApiCache cache) {
+    CoinGeckoClient coinGeckoClient(PsProperties p, ApiCache cache, JdbcTemplate jdbc) {
         var cfg = p.coingecko();
-        return new CoinGeckoClient(cfg.baseUrl(), new RateLimitedHttp("coingecko", cfg.minIntervalMs()),
+        var c = new CoinGeckoClient(cfg.baseUrl(), new RateLimitedHttp("coingecko", cfg.minIntervalMs()),
                 cfg.demoKeyFile() == null ? null : Path.of(cfg.demoKeyFile()), cache);
+        c.setUsageMeter(new com.phoenixscout.store.KvUsageMeter(jdbc));
+        return c;
     }
 
     @Bean

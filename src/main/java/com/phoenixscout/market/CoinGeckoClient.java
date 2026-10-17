@@ -48,6 +48,38 @@ public class CoinGeckoClient {
         refreshKey(true);
     }
 
+    /** Demo key 每月额度（官方 10,000 次）；本月用到上限就改用公共接口，不会超额。 */
+    public static final int MONTHLY_KEY_BUDGET = 9_000;
+
+    /** 每月 key 调用次数计数（SQLite 持久化，重启不丢）。 */
+    public interface UsageMeter {
+        int used(String month);
+
+        void add(String month);
+    }
+
+    private UsageMeter meter;
+
+    public void setUsageMeter(UsageMeter meter) {
+        this.meter = meter;
+    }
+
+    private RateLimitedHttp.Response send(String pathAndQuery) throws InterruptedException {
+        String month = java.time.YearMonth.now(java.time.ZoneOffset.UTC).toString();
+        boolean withKey = headers.containsKey("x-cg-demo-api-key") && (meter == null || meter.used(month) < MONTHLY_KEY_BUDGET);
+        if (!withKey && headers.containsKey("x-cg-demo-api-key")) {
+            http.setMinIntervalMs(publicIntervalMs);   // 本月额度用完：按公共接口限速
+            return http.get(baseUrl + pathAndQuery, Map.of());
+        }
+        RateLimitedHttp.Response r = http.get(baseUrl + pathAndQuery, headers);
+        if (withKey && meter != null) meter.add(month);
+        return r;
+    }
+
+    public int keyUsedThisMonth() {
+        return meter == null ? 0 : meter.used(java.time.YearMonth.now(java.time.ZoneOffset.UTC).toString());
+    }
+
     private final Path demoKeyFile;
     private final long publicIntervalMs;
     private long keyCheckedAt;
@@ -93,7 +125,7 @@ public class CoinGeckoClient {
         if (hit.isPresent()) {
             return new RateLimitedHttp.Response(200, hit.get().getKey(), baseUrl + pathAndQuery, hit.get().getValue());
         }
-        RateLimitedHttp.Response r = http.get(baseUrl + pathAndQuery, headers);
+        RateLimitedHttp.Response r = send(pathAndQuery);
         if (r != null && r.ok()) cache.put(key, r.body());
         return r;
     }
@@ -111,7 +143,7 @@ public class CoinGeckoClient {
         }
         var neg = cache.negative(key, TTL_NEGATIVE);
         if (neg.isPresent()) throw new ApiException("CoinGecko " + pathAndQuery + " -> " + neg.get() + "（缓存）", neg.get());
-        RateLimitedHttp.Response r = http.get(baseUrl + pathAndQuery, headers);
+        RateLimitedHttp.Response r = send(pathAndQuery);
         if (r == null || !r.ok()) {
             int st = r == null ? -1 : r.status();
             if (st == 404) cache.putNegative(key, st);

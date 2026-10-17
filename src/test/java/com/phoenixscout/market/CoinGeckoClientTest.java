@@ -72,6 +72,29 @@ class CoinGeckoClientTest {
     }
 
     @Test
+    void keyBudgetFallsBackToPublic(@TempDir Path dir) throws Exception {
+        Path key = dir.resolve("k");
+        Files.writeString(key, "KEY");
+        var db = new TestDb(dir);
+        var meter = new com.phoenixscout.store.KvUsageMeter(db.jdbc);
+        String month = java.time.YearMonth.now(java.time.ZoneOffset.UTC).toString();
+        java.util.List<String> keys = new java.util.ArrayList<>();
+        var http = new RateLimitedHttp("t", 7000, 2, (u, h) -> {
+            keys.add(h.get("x-cg-demo-api-key"));
+            return new RateLimitedHttp.Response(200, "[]", u, Instant.now());
+        }, ms -> { });
+        var c = new CoinGeckoClient("http://x", http, key, null);
+        c.setUsageMeter(meter);
+        c.marketsPage(1, null);
+        assertEquals("KEY", keys.get(0));
+        assertEquals(1, meter.used(month));
+        db.jdbc.update("UPDATE kv SET v = ? WHERE k = ?", String.valueOf(CoinGeckoClient.MONTHLY_KEY_BUDGET), "cg-key-usage:" + month);
+        c.marketsPage(2, null);
+        assertNull(keys.get(1), "额度用完后不再带 key");
+        assertEquals(7000, http.minIntervalMs());
+    }
+
+    @Test
     void demoKeyIsSentAndSpeedsUp(@TempDir Path dir) throws Exception {
         Path key = dir.resolve("k");
         Files.writeString(key, "KEY123\n");
