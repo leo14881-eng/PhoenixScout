@@ -28,9 +28,12 @@ public class StatusPageController {
     private final JdbcTemplate jdbc;
     private final CoinGeckoClient cg;
     private final Path dataDir;
+    private final com.phoenixscout.sim.LiveSimService live;
     private final Instant started = Instant.now();
 
-    public StatusPageController(DailyScanService scan, ScanScheduler scheduler, JdbcTemplate jdbc, CoinGeckoClient cg, Path dataDir) {
+    public StatusPageController(DailyScanService scan, ScanScheduler scheduler, JdbcTemplate jdbc, CoinGeckoClient cg, Path dataDir,
+                                com.phoenixscout.sim.LiveSimService live) {
+        this.live = live;
         this.scan = scan;
         this.scheduler = scheduler;
         this.jdbc = jdbc;
@@ -60,16 +63,6 @@ public class StatusPageController {
         String ok = stuck ? "<b class=bad>卡住</b>" : "<b class=ok>正常运行</b>";
 
         List<Map<String, Object>> runs = jdbc.queryForList("SELECT scan_day, status, summary, finished_at FROM scan_run ORDER BY scan_day DESC LIMIT 5");
-        List<Map<String, Object>> pos = jdbc.queryForList("SELECT * FROM sim_position ORDER BY status DESC, id DESC LIMIT 60");
-        Map<String, Object> sum = jdbc.queryForMap("SELECT COUNT(*) n, COALESCE(SUM(pnl_usd),0) s, COALESCE(SUM(CASE WHEN pnl_usd>0 THEN 1 ELSE 0 END),0) w"
-                + " FROM sim_position WHERE status='closed'");
-        double unreal = 0;
-        int open = 0;
-        for (var p : pos) {
-            if (!"open".equals(p.get("status"))) continue;
-            open++;
-            unreal += ((Number) p.get("qty")).doubleValue() * ((Number) p.get("last_price")).doubleValue() * 0.997 - 1000;
-        }
         boolean snap = Files.exists(dataDir.resolve("snapshot").resolve("snapshot_v1.json"));
         List<String> research = jdbc.queryForList("SELECT coin_id || ' → ' || grade || '（' || substr(graded_at,1,16) || '）' FROM research_grade ORDER BY id DESC LIMIT 5", String.class);
 
@@ -97,20 +90,41 @@ public class StatusPageController {
         }
         h.append("</table>");
 
-        h.append(String.format(Locale.ROOT, "<h2>模拟仓（只记账）：持仓 %d 个，浮动 %+.0f 美元｜已平仓 %s 笔，盈 %s，已实现 %s 美元</h2>",
-                open, unreal, sum.get("n"), sum.get("w"), money(sum.get("s"))));
-        h.append("<table><tr><th>币</th><th>路径</th><th>入场日</th><th>入场价</th><th>金额</th><th>目标</th><th>防守</th><th>最新价</th><th>状态</th><th>盈亏</th><th>入场原因</th></tr>");
-        for (var p : pos) {
-            boolean isOpen = "open".equals(p.get("status"));
-            Object pnl = isOpen ? ((Number) p.get("qty")).doubleValue() * ((Number) p.get("last_price")).doubleValue() * 0.997 - 1000 : p.get("pnl_usd");
+        @SuppressWarnings("unchecked")
+        Map<String, Object> sim = live.snapshot();
+        @SuppressWarnings("unchecked")
+        Map<String, Object> tot = (Map<String, Object>) sim.get("totals");
+        h.append("<h2>模拟仓（只记账，实时盈亏）</h2><p>")
+                .append(String.format(Locale.ROOT, "本金 %s｜实时权益 <b>%s</b>（收益 %s%%）｜持仓 %s 个，投入 %s，浮动 <b>%s</b>｜已平仓 %s 笔，胜率 %s%%，平均 %sR，已实现 %s｜现金 %s",
+                        tot.get("startEquity"), tot.get("equityLive"), tot.get("totalReturnPct"), tot.get("openPositions"), tot.get("invested"),
+                        money(tot.get("unrealizedUsd")), tot.get("closedTrades"), tot.get("winRatePct") == null ? "—" : tot.get("winRatePct"),
+                        tot.get("avgR") == null ? "—" : tot.get("avgR"), money(tot.get("realizedUsd")), tot.get("cash")));
+        if (sim.get("warning") != null) h.append("<br><span class=bad>").append(esc(sim.get("warning"))).append("</span>");
+        h.append("</p><table><tr><th>币</th><th>路径</th><th>入场日</th><th>入场价</th><th>金额</th><th>风险</th><th>现价</th><th>盈亏</th><th>R</th>"
+                + "<th>目标（距离）</th><th>防守（距离）</th><th>入场盈亏比 / 当前</th><th>入场原因</th></tr>");
+        for (Object o : (List<?>) sim.get("open")) {
+            Map<?, ?> p = (Map<?, ?>) o;
+            double pnl = ((Number) p.get("pnlUsd")).doubleValue();
             h.append("<tr><td>").append(esc(p.get("name"))).append("</td><td>").append(esc(p.get("path"))).append("</td><td>")
-                    .append(esc(p.get("opened_day"))).append("</td><td>").append(esc(p.get("entry_price"))).append("</td><td>")
-                    .append(esc(p.get("amount_usd"))).append("</td><td>").append(esc(p.get("take_profit"))).append("</td><td>")
-                    .append(esc(p.get("stop_loss"))).append("</td><td>").append(esc(p.get("last_price"))).append("</td><td>")
-                    .append(isOpen ? "持有" : esc(p.get("exit_reason")) + " " + esc(p.get("closed_day"))).append("</td><td>")
-                    .append(money(pnl)).append("</td><td>").append(esc(p.get("reason"))).append("</td></tr>");
+                    .append(esc(p.get("openedDay"))).append("</td><td>").append(esc(com.phoenixscout.report.RiskReward.price(((Number) p.get("entryPrice")).doubleValue())))
+                    .append("</td><td>").append(esc(p.get("amountUsd"))).append("</td><td>").append(esc(p.get("riskUsd"))).append("</td><td>")
+                    .append(esc(com.phoenixscout.report.RiskReward.price(((Number) p.get("price")).doubleValue()))).append("<br><span class=muted>")
+                    .append(esc(p.get("priceSource"))).append("</span></td><td class=").append(pnl >= 0 ? "ok" : "bad").append(">")
+                    .append(money(pnl)).append("（").append(esc(p.get("pnlPct"))).append("%）</td><td>").append(esc(p.get("rMultiple"))).append("</td><td>")
+                    .append(esc(com.phoenixscout.report.RiskReward.price(((Number) p.get("takeProfit")).doubleValue()))).append("（").append(esc(p.get("toTakeProfitPct"))).append("%）</td><td>")
+                    .append(esc(com.phoenixscout.report.RiskReward.price(((Number) p.get("stopLoss")).doubleValue()))).append("（").append(esc(p.get("toStopLossPct"))).append("%）</td><td>")
+                    .append(esc(p.get("entryRatio"))).append(" / ").append(esc(p.get("ratioNow"))).append("</td><td>").append(esc(p.get("reason"))).append("</td></tr>");
         }
-        h.append("</table><p class=muted>数据每 60 秒刷新。完整日报在 data\\reports，模拟仓明细在 data\\sim\\ledger.csv。</p></body></html>");
+        h.append("</table><h2>已平仓</h2><table><tr><th>币</th><th>入场日</th><th>平仓日</th><th>入场价</th><th>平仓价</th><th>金额</th><th>原因</th><th>盈亏</th><th>R</th><th>入场盈亏比</th></tr>");
+        for (Object o : (List<?>) sim.get("closed")) {
+            Map<?, ?> p = (Map<?, ?>) o;
+            h.append("<tr><td>").append(esc(p.get("name"))).append("</td><td>").append(esc(p.get("openedDay"))).append("</td><td>")
+                    .append(esc(p.get("closedDay"))).append("</td><td>").append(esc(p.get("entryPrice"))).append("</td><td>")
+                    .append(esc(p.get("exitPrice"))).append("</td><td>").append(esc(p.get("amountUsd"))).append("</td><td>")
+                    .append(esc(p.get("exitReason"))).append("</td><td>").append(money(p.get("pnlUsd"))).append("（").append(esc(p.get("pnlPct")))
+                    .append("%）</td><td>").append(esc(p.get("rMultiple"))).append("</td><td>").append(esc(p.get("entryRatio"))).append("</td></tr>");
+        }
+        h.append("</table><p class=muted>页面每 60 秒刷新；实时价 2 分钟缓存。JSON 接口：<a href=/api/sim>/api/sim</a>（模拟仓）、<a href=/api/health>/api/health</a>（服务）。完整日报在 data\\reports，模拟仓明细在 data\\sim\\ledger.csv。</p></body></html>");
         return h.toString();
     }
 }

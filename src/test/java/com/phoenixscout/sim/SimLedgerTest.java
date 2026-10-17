@@ -48,8 +48,9 @@ class SimLedgerTest {
         var ev2 = sim.run(D0.plusDays(2), hist, List.of());
         var win = ev2.stream().filter(e -> e.coinId().equals("win")).findFirst().orElseThrow();
         assertEquals("止盈", win.kind());
-        // 1000×0.997/1 × 2.1 × 0.997 − 1000 = 1087.7
-        assertEquals(1087.7, win.pnlUsd(), 0.5);
+        // 风险 = 10000×1% = 100，跌幅 20% → 金额 500；500×0.997×2.1×0.997 − 500 = 543.9，R = 5.44
+        assertEquals(543.9, win.pnlUsd(), 0.5);
+        assertTrue(win.note().contains("+5.4R"), win.note());
         assertTrue(ev2.stream().anyMatch(e -> e.coinId().equals("be") && e.kind().equals("保本止损")));
 
         var s = sim.summary();
@@ -59,6 +60,20 @@ class SimLedgerTest {
         Path csv = dir.resolve("sim/ledger.csv");
         sim.exportCsv(csv);
         assertTrue(Files.readString(csv).contains("测试原因"));
+    }
+
+    @Test
+    void sizingByRiskAndCaps() {
+        var a = SimLedger.size(10_000, 10_000, 5, 0.20);
+        assertEquals(500, a.amount(), 1e-6);
+        assertEquals(100, a.risk(), 1e-6);
+        var b = SimLedger.size(10_000, 10_000, 25, 0.10);    // 风险 150，金额 1500
+        assertEquals(1500, b.amount(), 1e-6);
+        var c = SimLedger.size(10_000, 10_000, 12, 0.02);    // 跌幅很小会超 20% 上限
+        assertEquals(2000, c.amount(), 1e-6);
+        assertTrue(c.note().contains("20%"));
+        var d = SimLedger.size(10_000, 300, 5, 0.10);        // 现金不足
+        assertEquals(300, d.amount(), 1e-6);
     }
 
     @Test
