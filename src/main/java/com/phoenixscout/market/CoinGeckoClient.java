@@ -64,9 +64,19 @@ public class CoinGeckoClient {
         return http;
     }
 
-    /** 原样请求（不走缓存），供 P0 归档保存接口原始返回值。 */
+    /**
+     * 原样请求，供 P0 归档保存接口原始返回值。同一请求 2 天内已被每日扫描取过时直接复用（保留原始请求时间），
+     * 新取到的也写进缓存，扫描可复用。
+     */
     public RateLimitedHttp.Response rawGet(String pathAndQuery) throws InterruptedException {
-        return http.get(baseUrl + pathAndQuery, headers);
+        String key = "cg:" + pathAndQuery;
+        var hit = cache.getWithTime(key, Duration.ofDays(2));
+        if (hit.isPresent()) {
+            return new RateLimitedHttp.Response(200, hit.get().getKey(), baseUrl + pathAndQuery, hit.get().getValue());
+        }
+        RateLimitedHttp.Response r = http.get(baseUrl + pathAndQuery, headers);
+        if (r != null && r.ok()) cache.put(key, r.body());
+        return r;
     }
 
     private JsonNode getJson(String pathAndQuery, Duration ttl) throws ApiException, InterruptedException {

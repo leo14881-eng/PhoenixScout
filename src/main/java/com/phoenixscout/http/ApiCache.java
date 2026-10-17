@@ -15,6 +15,11 @@ public interface ApiCache {
 
     void putNegative(String key, int status);
 
+    /** 带获取时间的缓存读取（P0 归档复用每日扫描已取过的同一请求时，需要记录原始请求时间）。 */
+    default Optional<java.util.Map.Entry<String, java.time.Instant>> getWithTime(String key, Duration ttl) {
+        return Optional.empty();
+    }
+
     ApiCache NONE = new ApiCache() {
         public Optional<String> get(String key, Duration ttl) { return Optional.empty(); }
         public void put(String key, String body) { }

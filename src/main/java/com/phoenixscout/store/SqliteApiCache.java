@@ -47,6 +47,13 @@ public class SqliteApiCache implements ApiCache {
     }
 
     @Override
+    public synchronized Optional<Map.Entry<String, java.time.Instant>> getWithTime(String key, Duration ttl) {
+        if (get(key, ttl).isEmpty()) return Optional.empty();
+        Entry e = memory.get(key);
+        return e == null ? Optional.empty() : Optional.of(Map.entry(e.body, java.time.Instant.ofEpochMilli(e.fetchedAt)));
+    }
+
+    @Override
     public synchronized void put(String key, String body) {
         long now = System.currentTimeMillis();
         memory.put(key, new Entry(body, now));

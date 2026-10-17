@@ -53,6 +53,25 @@ class CoinGeckoClientTest {
     }
 
     @Test
+    void archiveReusesScanResponseWithOriginalTime(@TempDir Path dir) throws Exception {
+        var db = new TestDb(dir);
+        int[] calls = {0};
+        var http = new RateLimitedHttp("t", 0, 2, (u, h) -> {
+            calls[0]++;
+            return new RateLimitedHttp.Response(200, chartJson(), u, Instant.now());
+        }, ms -> { });
+        var c = new CoinGeckoClient("http://x", http, null, new SqliteApiCache(db.jdbc));
+        c.marketChart("abc", 365);
+        var r = c.rawGet("/coins/abc/market_chart?vs_currency=usd&days=365&interval=daily");
+        assertEquals(1, calls[0], "归档复用扫描已取过的同一请求");
+        assertTrue(r.ok());
+        assertTrue(r.requestedAt().isBefore(Instant.now().plusSeconds(1)));
+        c.rawGet("/coins/zzz/market_chart?vs_currency=usd&days=365&interval=daily");
+        c.marketChart("zzz", 365);
+        assertEquals(2, calls[0], "扫描也复用归档新取的结果");
+    }
+
+    @Test
     void demoKeyIsSentAndSpeedsUp(@TempDir Path dir) throws Exception {
         Path key = dir.resolve("k");
         Files.writeString(key, "KEY123\n");

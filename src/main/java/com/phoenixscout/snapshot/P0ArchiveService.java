@@ -48,6 +48,7 @@ public class P0ArchiveService {
     private final Path raw;
     private final Path snapDir;
     private final CoinGeckoClient cg;
+    private com.phoenixscout.store.PriceStore prices;
     private final int topN;
     private final ObjectMapper om = new ObjectMapper();
     private volatile String state = "idle";
@@ -57,6 +58,11 @@ public class P0ArchiveService {
         this.snapDir = dataDir.resolve("snapshot");
         this.cg = cg;
         this.topN = topN;
+    }
+
+    /** 归档时同步写入本地日线库，每日扫描可直接用，不必再请求。 */
+    public void setPriceStore(com.phoenixscout.store.PriceStore prices) {
+        this.prices = prices;
     }
 
     public String state() {
@@ -149,6 +155,14 @@ public class P0ArchiveService {
             if (r.ok()) {
                 saveWrapped(f, r);
                 done++;
+                if (prices != null) {
+                    try {
+                        var pts = com.phoenixscout.market.CoinGeckoClientParser.parse(om.readTree(r.body()));
+                        prices.saveDaily(c[0], pts.values(), "p0-archive", r.requestedAt());
+                    } catch (Exception e) {
+                        log.debug("写入日线库失败 {}：{}", c[0], e.getMessage());
+                    }
+                }
             } else {
                 ObjectNode fail = om.createObjectNode();
                 fail.put("id", c[0]);
