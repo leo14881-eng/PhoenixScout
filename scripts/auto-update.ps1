@@ -304,6 +304,9 @@ try {
         exit 1
     }
 
+    # 每日扫描进行中：先不构建也不换版本，3 分钟后再看（避免反复构建）
+    if (-not (Test-QuietNow)) { Write-Log "每日扫描进行中，$short 稍后再装"; exit 0 }
+
     # ---------- 3. 构建（含全部测试） ----------
     Invoke-Git @('checkout', '--quiet', '--force', $latest) | Out-Null
     $newJar = Join-Path $SrcDir 'target\phoenixscout.jar'
@@ -320,8 +323,8 @@ try {
     # ---------- 4. 等扫描空档 → 平滑停机 → 替换 → 启动 → 等启动检查完成（期间守护任务不干预） ----------
     # 标记里写本进程 PID：更新程序中途被结束时，守护任务发现这个进程不在了就立刻接手，不用等 30 分钟
     Set-Content $Updating "$PID $((Get-Date).ToString('o'))"
-    if (-not (Test-QuietNow)) { Write-Log "每日扫描进行中，$short 稍后再装"; exit 0 }
     Set-Content $Updating "$PID $((Get-Date).ToString('o'))"
+    if (-not (Test-QuietNow)) { Write-Log "构建期间扫描开始了，$short 稍后再装"; exit 0 }
     if (-not (Stop-PhoenixScout)) {
         Report-StopDenied "新版本 $short 已构建好"
         exit 1
