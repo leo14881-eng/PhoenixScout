@@ -7,3 +7,4 @@ data/** -text
 *.ps1 text eol=crlf
 *.sh text eol=lf
 mvnw text eol=lf
+*.vbs text eol=crlf
