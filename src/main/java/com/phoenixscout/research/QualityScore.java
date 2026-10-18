@@ -28,8 +28,11 @@ public final class QualityScore {
 
     public record Result(int score, Map<String, Boolean> items, List<String> missing, boolean researched, boolean selfReported,
                          boolean excluded, String cap) {
+        /** 研究前显示“未评分”，避免和“已研究但不合格”混淆；括号里是能自动判断的 4 项结果。 */
         public String label() {
-            return score + "/5" + (researched ? "" : "（待研究）");
+            if (researched) return score + "/5";
+            long auto = items.entrySet().stream().filter(e -> !e.getKey().equals(LABELS[0]) && e.getValue()).count();
+            return "未评分（待研究；自动可查的 4 项满足 " + auto + " 项）";
         }
     }
 

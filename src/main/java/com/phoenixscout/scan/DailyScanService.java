@@ -62,7 +62,7 @@ public class DailyScanService {
                           List<Pick> picks, List<com.phoenixscout.sim.SimLedger.Event> simEvents,
                           com.phoenixscout.sim.SimLedger.Summary simSummary,
                           List<Rec> aList, List<Rec> bList, List<Eliminated> eliminated, int excludedByQuality,
-                          int pathATotalBeforeCap, Map<String, Object> backtest, List<Rec> pathAWatch) { }
+                          int pathATotalBeforeCap, Map<String, Object> backtest, List<Rec> pathAWatch, List<Rec> pathBNotListed) { }
 
     /** V2.6：路径 A 回测没有证据表明有效，降级为观察，不进入推荐；观察名单最多显示 5 个。 */
     public static final int MAX_A_WATCH = 5;
@@ -78,7 +78,17 @@ public class DailyScanService {
                       Double r30, Double r90, Double excess30, Double excess90, Double strength,
                       com.phoenixscout.research.QualityScore.Result quality, com.phoenixscout.research.UnlockRisk.Result unlock,
                       Valuation.Target target, StrategyBacktest.Ev ev, double stop, double downside, Double refPrice,
-                      List<String> risks, String reason, boolean excluded) { }
+                      List<String> risks, String reason, boolean excluded, Double avgVolume30, Double revenueGrowth,
+                      Double price90, Double revenueAnnual, Double holdersRevenueAnnual, String gate) {
+        /** 收入增速 − 币价 90 天涨幅（越大越说明币价没跟上业务）。 */
+        public Double lagGap() {
+            return revenueGrowth == null || price90 == null ? null : revenueGrowth - price90;
+        }
+    }
+
+    /** 推荐门槛（V2.6 修正，2026-10-18）：所有路径的流动性下限，以及 2,500 美元仓位不超过日均成交额 1%。 */
+    public static final double MIN_AVG_VOLUME = 2_000_000;
+    public static final double POSITION_USD = 2_500, MAX_POSITION_OF_VOLUME = 0.01;
 
     public record Eliminated(String coinId, String name, String grade, String reason) { }
 
@@ -486,7 +496,7 @@ public class DailyScanService {
             var h = hist.get(id);
             Double px = Returns.price(h, day).orElse(null);
             if (mc == null || px == null) continue;
-            Double r30, r90, ex30, ex90, strength, ref = null;
+            Double r30, r90, ex30, ex90, strength, ref = null, revGrowth = null, p90 = null;
             String reason;
             if (path.equals("A")) {
                 CandidateA c = (CandidateA) e.getValue()[1];
@@ -498,14 +508,17 @@ public class DailyScanService {
                         r.volumeRatio() == null ? 0 : r.volumeRatio());
             } else {
                 PathB.Result b = (PathB.Result) e.getValue()[1];
+                revGrowth = b.revenueGrowth();
+                p90 = b.price90();
                 r30 = Returns.rolling(h, day, 30).orElse(null);
                 r90 = Returns.rolling(h, day, 90).orElse(null);
                 Double best30 = PathA.maxAll(bm.btc30(), bm.eth30(), bm.benchB30()), best90 = PathA.maxAll(bm.btc90(), bm.eth90(), bm.benchB90());
                 ex30 = r30 == null || best30 == null ? null : r30 - best30;
                 ex90 = r90 == null || best90 == null ? null : r90 - best90;
                 strength = ex30 == null || ex90 == null ? null : ex30 + ex90;
-                reason = String.format(java.util.Locale.ROOT, "收入连增：%s 季增 %s，币价 90 天 %s%s", b.protocol(),
-                        ReportWriter.pct(b.revenueGrowth()), ReportWriter.pct(b.price90()), b.priceLagging() ? "，价格未反映" : "");
+                reason = String.format(java.util.Locale.ROOT, "收入连增：%s 最近季度收入 %s，币价 90 天 %s（收入增速比币价涨幅高 %s 个百分点）",
+                        b.protocol(), ReportWriter.pct(b.revenueGrowth()), ReportWriter.pct(b.price90()),
+                        b.revenueGrowth() == null || b.price90() == null ? "缺失" : pp(b.revenueGrowth() - b.price90()));
             }
             List<String> exchanges;
             try {
@@ -532,7 +545,8 @@ public class DailyScanService {
             if (!target.available()) risks.add(target.reason());
             else if (target.upside() <= 0) risks.add("现价已高于估值目标");
             if (quality.selfReported()) risks.add("市值为项目自报");
-            Returns.avgVolume(h, day.minusDays(29), day).ifPresent(v -> { if (v < 5e6) risks.add("流动性偏低：30 天日均成交额 " + ReportWriter.usd(v)); });
+            Double vol30 = Returns.avgVolume(h, day.minusDays(29), day).orElse(null);
+            if (vol30 != null && vol30 < 5e6) risks.add("流动性偏低：30 天日均成交额 " + ReportWriter.usd(vol30));
             if (path.equals("A")) {
                 var r = ((CandidateA) e.getValue()[1]).result();
                 if (r.rLong() != null && r.rLong() < -0.90) risks.add("长期跌幅超过 90%，归零风险高");
@@ -540,22 +554,33 @@ public class DailyScanService {
             boolean gradeA = researchA.contains(id) && "A".equals(quality.cap()) && !unlock.blocksA() && target.available()
                     && target.upside() > 0;
             String grade = gradeA ? "A" : "B";
-            if (quality.excluded()) whyNot.put(id, "质量分 " + quality.score() + "/5（已研究，≤1 分排除）");
+            // 推荐门槛：按顺序取第一个不满足的原因；null = 可以进入推荐
+            String gate = null;
+            if (path.equals("A")) gate = "路径 A 已降级为观察，不进入推荐";
+            else if (quality.excluded()) gate = "质量分 " + quality.score() + "/5（已研究，≤1 分排除）";
+            else if (vol30 == null || vol30 < MIN_AVG_VOLUME) gate = "流动性不足：30 天日均成交额 " + ReportWriter.usd(vol30) + "（< 200 万美元）";
+            else if (POSITION_USD > vol30 * MAX_POSITION_OF_VOLUME) gate = "2,500 美元仓位超过日均成交额的 1%";
+            else if (revGrowth == null || p90 == null) gate = "收入增速或币价 90 天涨幅缺失，无法确认价格未反映";
+            else if (revGrowth <= p90) gate = "币价已领先业务（季度收入 " + ReportWriter.pct(revGrowth) + " ≤ 币价 90 天 " + ReportWriter.pct(p90) + "）";
+            else if (target.available() && target.upside() <= 0) gate = "现价已高于估值目标";
+            else if (!target.available() && unlock.circRatio() != null && unlock.circRatio() < 0.30) gate = "无法估值且流通率 <30%，移到观察";
+            if (gate != null) whyNot.put(id, gate);
             String name = mc.name() + "（" + mc.symbol().toUpperCase(java.util.Locale.ROOT) + "）";
+            Double hAnnual = holders.containsKey(id) ? holders.get(id) * 365 / 30 : null;
             recs.add(new Rec(id, name, path, grade, px, mc.marketCap(), mc.fdv(), r30, r90, ex30, ex90, strength, quality, unlock,
-                    target, ev, stop, down, ref, risks, reason, quality.excluded()));
+                    target, ev, stop, down, ref, risks, reason, quality.excluded(), vol30, revGrowth, p90,
+                    rev == null ? null : rev[0], hAnnual, gate));
         }
         if (exchangeFailed > 0) problems.add("CoinGecko 交易所数据 " + exchangeFailed + " 个获取失败，质量分第 4 项按“无”计");
-        // 期望值优先；没有期望值的（路径 B 目前都没有）按估值目标涨幅，再按相对强度；无法估值的排在后面
+        // 排序：期望值优先；期望值样本不足期间按 质量分 → 流动性 → 收入增速与币价涨幅的差距（越大越靠前）
         Comparator<Rec> byEv = Comparator.comparing((Rec r) -> r.ev() == null || r.ev().ev() == null ? Double.NEGATIVE_INFINITY : r.ev().ev())
-                .reversed().thenComparing(r -> r.target().available() ? -r.target().upside() : Double.MAX_VALUE)
-                .thenComparing(r -> -nz(r.strength()));
-        // 现价已高于估值目标的不推荐（与“按估值找低估”的目的矛盾）
-        java.util.function.Predicate<Rec> overvalued = r -> r.target().available() && r.target().upside() <= 0;
-        // 推荐只来自路径 B（有真实收入、有估值依据）；路径 A 只做观察
-        List<Rec> aList = recs.stream().filter(r -> r.path().equals("B") && r.grade().equals("A") && !r.excluded()).sorted(byEv).limit(MAX_A_GRADE).toList();
-        List<Rec> bList = recs.stream().filter(r -> r.path().equals("B") && r.grade().equals("B") && !r.excluded() && !overvalued.test(r))
-                .sorted(byEv).limit(MAX_B_WATCH).toList();
+                .reversed().thenComparing(r -> -r.quality().score())
+                .thenComparing(r -> -nz(r.avgVolume30()))
+                .thenComparing(r -> r.lagGap() == null ? Double.MAX_VALUE : -r.lagGap());
+        // 推荐只来自路径 B 且通过全部门槛；路径 A 只做观察
+        List<Rec> aList = recs.stream().filter(r -> r.gate() == null && r.grade().equals("A")).sorted(byEv).limit(MAX_A_GRADE).toList();
+        List<Rec> bList = recs.stream().filter(r -> r.gate() == null && r.grade().equals("B")).sorted(byEv).limit(MAX_B_WATCH).toList();
+        List<Rec> bNotListed = recs.stream().filter(r -> r.path().equals("B") && r.gate() != null).toList();
         List<Rec> aWatch = recs.stream().filter(r -> r.path().equals("A") && !r.excluded())
                 .sorted(Comparator.comparing((Rec r) -> -nz(r.strength()))).limit(MAX_A_WATCH).toList();
         int excludedCnt = (int) recs.stream().filter(Rec::excluded).count();
@@ -564,8 +589,7 @@ public class DailyScanService {
         bList.forEach(r -> listed.add(r.coinId()));
         for (Rec r : recs) {
             if (listed.contains(r.coinId()) || r.excluded()) continue;
-            whyNot.put(r.coinId(), r.path().equals("A") ? "路径 A 已降级为观察，不进入推荐"
-                    : overvalued.test(r) ? "现价已高于估值目标" : "排名靠后（期望值/估值空间不及今日入选的币）");
+            whyNot.putIfAbsent(r.coinId(), "排名靠后（质量分/流动性/价格滞后程度不及今日入选的币）");
         }
         List<Eliminated> eliminated = eliminated(day, listed, whyNot, pathAAll);
         saveRecs(day, aList, bList);
@@ -603,10 +627,10 @@ public class DailyScanService {
         String status = problems.isEmpty() ? "ok" : "partial";
         List<String> aGrades = currentAGrades(byId);
         Outcome o = new Outcome(day, status, bm, bi, pathA, pathB, newPool, added, dropped, q, null, aGrades, prelim,
-                picks, simEvents, simSummary, aList, bList, eliminated, excludedCnt, pathATotal, btInfo, aWatch);
+                picks, simEvents, simSummary, aList, bList, eliminated, excludedCnt, pathATotal, btInfo, aWatch, bNotListed);
         Path file = reports.write(o);
         o = new Outcome(day, status, bm, bi, pathA, pathB, newPool, added, dropped, q, file, aGrades, prelim,
-                picks, simEvents, simSummary, aList, bList, eliminated, excludedCnt, pathATotal, btInfo, aWatch);
+                picks, simEvents, simSummary, aList, bList, eliminated, excludedCnt, pathATotal, btInfo, aWatch, bNotListed);
         finishRun(day, status, om.writeValueAsString(q), ReportWriter.oneLine(o));
         boolean sent = notifier.send(reports.telegramSummary(o));
         // 每周日（越南时间）推送模拟台账复盘

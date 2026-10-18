@@ -42,7 +42,13 @@ class V26RulesTest {
         assertFalse(none.available());
         assertTrue(none.reason().contains("无法估值"));
         assertFalse(Valuation.target(0.25, 10e6, "Chain", ps, 2e8, null, 4e8, null).available(), "公链不按收入估值");
-        assertNull(Valuation.peers("Dexs", peers("Dexs", 5, 20)), "同类不足 8 个且全部协议也不足 → 无法估值");
+        assertTrue(Valuation.peers("Dexs", peers("Dexs", 5, 20)).group().startsWith("同赛道"), "同赛道 5 个就用同赛道中位数");
+        assertNull(Valuation.peers("Dexs", peers("Dexs", 4, 20)), "同赛道不足 5 个且全部协议不足 8 个 → 无法估值");
+        List<Valuation.Peer> mixed = new ArrayList<>(peers("Dexs", 3, 20));
+        mixed.addAll(peers("Lending", 6, 5));
+        var fb = Valuation.peers("Dexs", mixed);
+        assertTrue(fb.group().contains("全部协议") && fb.group().contains("只有 3 个"), fb.group());
+        assertEquals(5, fb.median(), 1e-9);
     }
 
     @Test
