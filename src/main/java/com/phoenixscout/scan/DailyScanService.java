@@ -62,7 +62,10 @@ public class DailyScanService {
                           List<Pick> picks, List<com.phoenixscout.sim.SimLedger.Event> simEvents,
                           com.phoenixscout.sim.SimLedger.Summary simSummary,
                           List<Rec> aList, List<Rec> bList, List<Eliminated> eliminated, int excludedByQuality,
-                          int pathATotalBeforeCap, Map<String, Object> backtest) { }
+                          int pathATotalBeforeCap, Map<String, Object> backtest, List<Rec> pathAWatch) { }
+
+    /** V2.6：路径 A 回测没有证据表明有效，降级为观察，不进入推荐；观察名单最多显示 5 个。 */
+    public static final int MAX_A_WATCH = 5;
 
     /** V2.6 推荐：A 级最多 3 个，B 级观察最多 5 个；路径 A 入选超过 30 个时按相对强度只保留前 20。 */
     public static final int MAX_A_GRADE = 3;
@@ -545,13 +548,19 @@ public class DailyScanService {
         if (exchangeFailed > 0) problems.add("CoinGecko 交易所数据 " + exchangeFailed + " 个获取失败，质量分第 4 项按“无”计");
         Comparator<Rec> byEv = Comparator.comparing((Rec r) -> r.ev() == null || r.ev().ev() == null ? Double.NEGATIVE_INFINITY : r.ev().ev())
                 .reversed().thenComparing(r -> -nz(r.strength()));
-        List<Rec> aList = recs.stream().filter(r -> r.grade().equals("A") && !r.excluded()).sorted(byEv).limit(MAX_A_GRADE).toList();
-        List<Rec> bList = recs.stream().filter(r -> r.grade().equals("B") && !r.excluded()).sorted(byEv).limit(MAX_B_WATCH).toList();
+        // 推荐只来自路径 B（有真实收入、有估值依据）；路径 A 只做观察
+        List<Rec> aList = recs.stream().filter(r -> r.path().equals("B") && r.grade().equals("A") && !r.excluded()).sorted(byEv).limit(MAX_A_GRADE).toList();
+        List<Rec> bList = recs.stream().filter(r -> r.path().equals("B") && r.grade().equals("B") && !r.excluded()).sorted(byEv).limit(MAX_B_WATCH).toList();
+        List<Rec> aWatch = recs.stream().filter(r -> r.path().equals("A") && !r.excluded())
+                .sorted(Comparator.comparing((Rec r) -> -nz(r.strength()))).limit(MAX_A_WATCH).toList();
         int excludedCnt = (int) recs.stream().filter(Rec::excluded).count();
         Set<String> listed = new HashSet<>();
         aList.forEach(r -> listed.add(r.coinId()));
         bList.forEach(r -> listed.add(r.coinId()));
-        for (Rec r : recs) if (!listed.contains(r.coinId()) && !r.excluded()) whyNot.put(r.coinId(), "排名靠后（期望值/相对强度不及今日入选的币）");
+        for (Rec r : recs) {
+            if (listed.contains(r.coinId()) || r.excluded()) continue;
+            whyNot.put(r.coinId(), r.path().equals("A") ? "路径 A 已降级为观察，不进入推荐" : "排名靠后（期望值/相对强度不及今日入选的币）");
+        }
         List<Eliminated> eliminated = eliminated(day, listed, whyNot, pathAAll);
         saveRecs(day, aList, bList);
 
@@ -588,10 +597,10 @@ public class DailyScanService {
         String status = problems.isEmpty() ? "ok" : "partial";
         List<String> aGrades = currentAGrades(byId);
         Outcome o = new Outcome(day, status, bm, bi, pathA, pathB, newPool, added, dropped, q, null, aGrades, prelim,
-                picks, simEvents, simSummary, aList, bList, eliminated, excludedCnt, pathATotal, btInfo);
+                picks, simEvents, simSummary, aList, bList, eliminated, excludedCnt, pathATotal, btInfo, aWatch);
         Path file = reports.write(o);
         o = new Outcome(day, status, bm, bi, pathA, pathB, newPool, added, dropped, q, file, aGrades, prelim,
-                picks, simEvents, simSummary, aList, bList, eliminated, excludedCnt, pathATotal, btInfo);
+                picks, simEvents, simSummary, aList, bList, eliminated, excludedCnt, pathATotal, btInfo, aWatch);
         finishRun(day, status, om.writeValueAsString(q), ReportWriter.oneLine(o));
         boolean sent = notifier.send(reports.telegramSummary(o));
         // 每周日（越南时间）推送模拟台账复盘

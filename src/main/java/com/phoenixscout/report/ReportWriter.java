@@ -121,7 +121,10 @@ public class ReportWriter {
         if (o.bList().isEmpty()) s.append("无\n\n");
         for (int i = 0; i < o.bList().size(); i++) s.append(recBlock(i + 1, o.bList().get(i), true)).append("\n");
         if (o.excludedByQuality() > 0) s.append("另有 ").append(o.excludedByQuality()).append(" 个候选研究后质量分 ≤1，已排除。\n\n");
-        s.append("### 【今日淘汰】\n\n");
+        s.append("### 【路径A观察】（回测没有证据表明有效，不进入推荐）\n\n");
+        if (o.pathAWatch().isEmpty()) s.append("无\n\n");
+        for (int i = 0; i < o.pathAWatch().size(); i++) s.append(watchLine(i + 1, o.pathAWatch().get(i))).append("\n");
+        s.append("\n### 【今日淘汰】\n\n");
         if (o.eliminated().isEmpty()) s.append("无\n\n");
         for (var e : o.eliminated()) s.append("- ").append(e.name()).append("（昨日 ").append(e.grade()).append(" 级）：").append(e.reason()).append("\n");
         s.append("\n");
@@ -243,7 +246,7 @@ public class ReportWriter {
         s.append("基准 30天/90天：BTC ").append(pct(b.btc30())).append("/").append(pct(b.btc90()))
                 .append("｜ETH ").append(pct(b.eth30())).append("/").append(pct(b.eth90()))
                 .append("｜山寨中位数 ").append(pct(b.benchB30())).append("/").append(pct(b.benchB90())).append("\n");
-        s.append("候选：超跌转强 ").append(o.pathATotalBeforeCap()).append(" 个，收入连增 ").append(o.pathB().size()).append(" 个\n");
+        s.append("候选：收入连增 ").append(o.pathB().size()).append(" 个（推荐来源）｜超跌转强 ").append(o.pathATotalBeforeCap()).append(" 个（只观察）\n");
 
         s.append("\n【A级】");
         if (o.aList().isEmpty()) s.append("无");
@@ -251,6 +254,9 @@ public class ReportWriter {
         s.append("\n\n【B级观察】");
         if (o.bList().isEmpty()) s.append("无");
         for (int i = 0; i < o.bList().size(); i++) s.append("\n").append(recBlock(i + 1, o.bList().get(i), false));
+        s.append("\n\n【路径A观察】（信号未验证有效，不进入推荐）");
+        if (o.pathAWatch().isEmpty()) s.append("无");
+        for (int i = 0; i < o.pathAWatch().size(); i++) s.append("\n").append(watchLine(i + 1, o.pathAWatch().get(i)));
         s.append("\n\n【今日淘汰】");
         if (o.eliminated().isEmpty()) s.append("无");
         for (var e : o.eliminated()) s.append("\n· ").append(e.name()).append("：").append(e.reason());
@@ -317,6 +323,12 @@ public class ReportWriter {
 
     static String ppt(Double v) {
         return v == null ? "缺失" : String.format(Locale.ROOT, "%+.0f 个百分点", v * 100);
+    }
+
+    /** 路径 A 观察：一行。 */
+    static String watchLine(int i, DailyScanService.Rec r) {
+        return i + ". " + r.name() + " 现价 " + RiskReward.price(r.price()) + "｜30天 " + pct(r.r30()) + "（超额 " + ppt(r.excess30())
+                + "）｜90天 " + pct(r.r90()) + "（超额 " + ppt(r.excess90()) + "）｜质量分 " + r.quality().label();
     }
 
     /** 一个推荐币的展示块（日报与 Telegram 共用）。 */
