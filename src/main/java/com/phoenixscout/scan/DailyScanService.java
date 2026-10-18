@@ -60,9 +60,27 @@ public class DailyScanService {
                           List<String> added, List<String> dropped, Quality quality, Path reportFile,
                           List<String> aGrades, Map<String, PrelimValuation.Result> prelim,
                           List<Pick> picks, List<com.phoenixscout.sim.SimLedger.Event> simEvents,
-                          com.phoenixscout.sim.SimLedger.Summary simSummary) { }
+                          com.phoenixscout.sim.SimLedger.Summary simSummary,
+                          List<Rec> aList, List<Rec> bList, List<Eliminated> eliminated, int excludedByQuality,
+                          int pathATotalBeforeCap, Map<String, Object> backtest, List<Rec> pathAWatch) { }
 
-    public static final int MAX_PICKS = 10;
+    /** V2.6：路径 A 回测没有证据表明有效，降级为观察，不进入推荐；观察名单最多显示 5 个。 */
+    public static final int MAX_A_WATCH = 5;
+
+    /** V2.6 推荐：A 级最多 3 个，B 级观察最多 5 个；路径 A 入选超过 30 个时按相对强度只保留前 20。 */
+    public static final int MAX_A_GRADE = 3;
+    public static final int MAX_B_WATCH = 5;
+    public static final int A_CROWDED = 30;
+    public static final int MAX_A_KEEP_WHEN_CROWDED = 20;
+
+    /** 一个候选的完整评估（日报每个币显示的内容）。 */
+    public record Rec(String coinId, String name, String path, String grade, double price, Double marketCap, Double fdv,
+                      Double r30, Double r90, Double excess30, Double excess90, Double strength,
+                      com.phoenixscout.research.QualityScore.Result quality, com.phoenixscout.research.UnlockRisk.Result unlock,
+                      Valuation.Target target, StrategyBacktest.Ev ev, double stop, double downside, Double refPrice,
+                      List<String> risks, String reason, boolean excluded) { }
+
+    public record Eliminated(String coinId, String name, String grade, String reason) { }
 
     public record BenchmarkInfo(int aTotal, int aComputable, int aNoCurrentData, int bTotal, int bComputable,
                                 LocalDate baseDate, LocalDate midDate, Double breadthTop100Long) { }
@@ -349,11 +367,13 @@ public class DailyScanService {
 
         // 7. 路径 A
         List<CandidateA> pathA = new ArrayList<>();
+        Map<String, PathA.Result> pathAAll = new HashMap<>();
         for (String id : preIds) {
             var s = snap.available() ? snap.snapshot() : null;
             Double base = s == null ? null : snapPrice(s, id, s.baseDate());
             Double mid = s == null ? null : snapPrice(s, id, s.midDate());
             PathA.Result r = PathA.evaluate(id, hist.getOrDefault(id, new TreeMap<>()), day, base, mid, bm);
+            pathAAll.put(id, r);
             if (r.candidate()) {
                 MarketCoin c = byId.get(id);
                 boolean inRange = c.marketCap() != null && c.marketCap() >= sc.capMinUsd() && c.marketCap() <= sc.capMaxUsd();
@@ -368,8 +388,10 @@ public class DailyScanService {
                         Returns.minPrice(hh, day.minusDays(29), day).orElse(null)));
             }
         }
-        pathA.sort(Comparator.comparing((CandidateA c) -> c.result().a1Pass()).reversed()
-                .thenComparing(c -> -nz(c.result().r90())));
+        // V2.6：按相对强度（30 天 + 90 天超额）排序；超过 30 个只保留前 20
+        pathA.sort(Comparator.comparing((CandidateA c) -> -nz(c.result().strength())));
+        int pathATotal = pathA.size();
+        if (pathA.size() > A_CROWDED) pathA = new ArrayList<>(pathA.subList(0, MAX_A_KEEP_WHEN_CROWDED));
 
         // 8. 路径 B
         List<PathB.Result> pathB = new ArrayList<>();
@@ -392,9 +414,10 @@ public class DailyScanService {
 
         // 8b. 路径 B 初步情景推算：同类协议“流通市值/年化收入”倍数 + 最近季度收入（研究层核实前的参考）
         Map<String, PrelimValuation.Result> prelim = new LinkedHashMap<>();
+        Map<String, double[]> revByCoin = new HashMap<>();      // [年化收入, 最大单协议收入]
+        Map<String, String> catByCoin = new HashMap<>();
+        List<Valuation.Peer> valPeers = new ArrayList<>();
         {
-            Map<String, double[]> revByCoin = new HashMap<>();      // [年化收入, 最大单协议收入]
-            Map<String, String> catByCoin = new HashMap<>();
             for (var p : allProtos) {
                 if (p.geckoId() == null || p.total30d() == null || p.total30d() <= 0 || excluded.contains(p.geckoId())) continue;
                 double annual = p.total30d() * 365.0 / 30.0;
@@ -408,7 +431,10 @@ public class DailyScanService {
             List<PrelimValuation.Peer> peers = new ArrayList<>();
             revByCoin.forEach((id, v) -> {
                 MarketCoin c = byId.get(id);
-                if (c != null && c.marketCap() != null && c.marketCap() > 0) peers.add(new PrelimValuation.Peer(catByCoin.get(id), c.marketCap(), v[0]));
+                if (c != null && c.marketCap() != null && c.marketCap() > 0) {
+                    peers.add(new PrelimValuation.Peer(catByCoin.get(id), c.marketCap(), v[0]));
+                    valPeers.add(new Valuation.Peer(catByCoin.get(id), c.marketCap(), v[0]));
+                }
             });
             for (PathB.Result r : pathB) {
                 MarketCoin c = byId.get(r.coinId());
@@ -427,45 +453,123 @@ public class DailyScanService {
             if (first == null || first.isAfter(day.minusDays(90))) newPool.add(new NewCoin(byId.get(id), first));
         }
 
-        // 9b. 今日推荐：盈亏比最高的 10 个（长线口径 V2.5），并驱动模拟台账
+        // 9b. V2.6 推荐：质量分、解锁、估值目标、期望值 → A 级（最多 3）/ B 级观察（最多 5）
+        Map<String, Object> btInfo = new LinkedHashMap<>();
+        BtData bt = backtestData(day, excluded, benchA, btInfo, problems);
+        Map<String, Double> holders = Map.of();
+        Set<String> audited = Set.of();
+        try {
+            holders = llama.holdersRevenue30dByCoin();
+            audited = llama.auditedCoins();
+        } catch (ApiException e) {
+            problems.add("DefiLlama 持币人收入/审计数据获取失败，质量分第 3、5 项只看研究层");
+        }
+        Set<String> candIds = new LinkedHashSet<>();
+        pathA.forEach(c -> candIds.add(c.coin().id()));
+        pathB.forEach(r -> candIds.add(r.coinId()));
+        Map<String, com.fasterxml.jackson.databind.JsonNode> raw =
+                com.phoenixscout.research.ResearchService.latestRaw(jdbc, candIds, Instant.now(clock));
+        Set<String> researchA = new HashSet<>(jdbc.queryForList("SELECT g.coin_id FROM research_grade g JOIN (SELECT coin_id, MAX(id) mid"
+                + " FROM research_grade GROUP BY coin_id) l ON g.id = l.mid WHERE g.grade = 'A' AND g.graded_at >= ?", String.class,
+                Instant.now(clock).minus(14, ChronoUnit.DAYS).toString()));
+        Map<String, Valuation.PeerStats> peerCache = new HashMap<>();
+        int exchangeFailed = 0;
+        List<Rec> recs = new ArrayList<>();
+        Map<String, String> whyNot = new HashMap<>();
+        Map<String, Object[]> sources = new LinkedHashMap<>();   // coin -> [path, CandidateA|PathB.Result]
+        for (CandidateA c : pathA) sources.put(c.coin().id(), new Object[]{"A", c});
+        for (PathB.Result r : pathB) sources.putIfAbsent(r.coinId(), new Object[]{"B", r});
+        for (var e : sources.entrySet()) {
+            String id = e.getKey();
+            String path = (String) e.getValue()[0];
+            MarketCoin mc = byId.get(id);
+            var h = hist.get(id);
+            Double px = Returns.price(h, day).orElse(null);
+            if (mc == null || px == null) continue;
+            Double r30, r90, ex30, ex90, strength, ref = null;
+            String reason;
+            if (path.equals("A")) {
+                CandidateA c = (CandidateA) e.getValue()[1];
+                var r = c.result();
+                r30 = r.r30(); r90 = r.r90(); ex30 = r.excess30(); ex90 = r.excess90(); strength = r.strength();
+                ref = c.basePrice();
+                reason = String.format(java.util.Locale.ROOT, "超跌转强：长期 %s；30天 %s、90天 %s，比最强基准高 %s/%s 个百分点；量能 %.1f 倍，站上 90 日均线",
+                        ReportWriter.pct(r.rLong()), ReportWriter.pct(r.r30()), ReportWriter.pct(r.r90()), pp(ex30), pp(ex90),
+                        r.volumeRatio() == null ? 0 : r.volumeRatio());
+            } else {
+                PathB.Result b = (PathB.Result) e.getValue()[1];
+                r30 = Returns.rolling(h, day, 30).orElse(null);
+                r90 = Returns.rolling(h, day, 90).orElse(null);
+                Double best30 = PathA.maxAll(bm.btc30(), bm.eth30(), bm.benchB30()), best90 = PathA.maxAll(bm.btc90(), bm.eth90(), bm.benchB90());
+                ex30 = r30 == null || best30 == null ? null : r30 - best30;
+                ex90 = r90 == null || best90 == null ? null : r90 - best90;
+                strength = ex30 == null || ex90 == null ? null : ex30 + ex90;
+                reason = String.format(java.util.Locale.ROOT, "收入连增：%s 季增 %s，币价 90 天 %s%s", b.protocol(),
+                        ReportWriter.pct(b.revenueGrowth()), ReportWriter.pct(b.price90()), b.priceLagging() ? "，价格未反映" : "");
+            }
+            List<String> exchanges;
+            try {
+                exchanges = cg.majorSpotExchanges(id);
+            } catch (ApiException ex) {
+                exchanges = null;
+                exchangeFailed++;
+            }
+            double[] rev = revByCoin.get(id);
+            var quality = com.phoenixscout.research.QualityScore.evaluate(new com.phoenixscout.research.QualityScore.Auto(
+                    rev != null && rev[0] > 0, holders.getOrDefault(id, 0.0) > 0, exchanges, audited.contains(id)), raw.get(id));
+            var unlock = com.phoenixscout.research.UnlockRisk.evaluate(mc.circulating(), mc.totalSupply(), raw.get(id));
+            String cat = catByCoin.get(id);
+            Valuation.PeerStats ps = peerCache.computeIfAbsent(cat == null ? "" : cat, k -> Valuation.peers(cat, valPeers));
+            var target = Valuation.target(px, rev == null ? null : rev[0], cat, ps, mc.circulating(), unlock.supply12m(),
+                    mc.totalSupply(), mc.maxSupply());
+            Double low90 = Returns.minPrice(h, day.minusDays(89), day).orElse(null);
+            double stop = Pick.stopFor(px, low90), down = 1 - stop / px;
+            StrategyBacktest.Ev ev;
+            if (path.equals("B")) ev = new StrategyBacktest.Ev(null, null, null, null, "样本不足（路径 B 没有可回测的历史收入数据）");
+            else if (target.available() && target.upside() <= 0) ev = new StrategyBacktest.Ev(null, null, null, null, "现价已高于估值目标");
+            else ev = StrategyBacktest.expectedValue(bt.episodes(), bt.hist(), day, target.available() ? target.upside() : null, down);
+            List<String> risks = new ArrayList<>(unlock.flags());
+            if (!target.available()) risks.add(target.reason());
+            else if (target.upside() <= 0) risks.add("现价已高于估值目标");
+            if (quality.selfReported()) risks.add("市值为项目自报");
+            Returns.avgVolume(h, day.minusDays(29), day).ifPresent(v -> { if (v < 5e6) risks.add("流动性偏低：30 天日均成交额 " + ReportWriter.usd(v)); });
+            if (path.equals("A")) {
+                var r = ((CandidateA) e.getValue()[1]).result();
+                if (r.rLong() != null && r.rLong() < -0.90) risks.add("长期跌幅超过 90%，归零风险高");
+            }
+            boolean gradeA = researchA.contains(id) && "A".equals(quality.cap()) && !unlock.blocksA() && target.available()
+                    && target.upside() > 0;
+            String grade = gradeA ? "A" : "B";
+            if (quality.excluded()) whyNot.put(id, "质量分 " + quality.score() + "/5（已研究，≤1 分排除）");
+            String name = mc.name() + "（" + mc.symbol().toUpperCase(java.util.Locale.ROOT) + "）";
+            recs.add(new Rec(id, name, path, grade, px, mc.marketCap(), mc.fdv(), r30, r90, ex30, ex90, strength, quality, unlock,
+                    target, ev, stop, down, ref, risks, reason, quality.excluded()));
+        }
+        if (exchangeFailed > 0) problems.add("CoinGecko 交易所数据 " + exchangeFailed + " 个获取失败，质量分第 4 项按“无”计");
+        Comparator<Rec> byEv = Comparator.comparing((Rec r) -> r.ev() == null || r.ev().ev() == null ? Double.NEGATIVE_INFINITY : r.ev().ev())
+                .reversed().thenComparing(r -> -nz(r.strength()));
+        // 推荐只来自路径 B（有真实收入、有估值依据）；路径 A 只做观察
+        List<Rec> aList = recs.stream().filter(r -> r.path().equals("B") && r.grade().equals("A") && !r.excluded()).sorted(byEv).limit(MAX_A_GRADE).toList();
+        List<Rec> bList = recs.stream().filter(r -> r.path().equals("B") && r.grade().equals("B") && !r.excluded()).sorted(byEv).limit(MAX_B_WATCH).toList();
+        List<Rec> aWatch = recs.stream().filter(r -> r.path().equals("A") && !r.excluded())
+                .sorted(Comparator.comparing((Rec r) -> -nz(r.strength()))).limit(MAX_A_WATCH).toList();
+        int excludedCnt = (int) recs.stream().filter(Rec::excluded).count();
+        Set<String> listed = new HashSet<>();
+        aList.forEach(r -> listed.add(r.coinId()));
+        bList.forEach(r -> listed.add(r.coinId()));
+        for (Rec r : recs) {
+            if (listed.contains(r.coinId()) || r.excluded()) continue;
+            whyNot.put(r.coinId(), r.path().equals("A") ? "路径 A 已降级为观察，不进入推荐" : "排名靠后（期望值/相对强度不及今日入选的币）");
+        }
+        List<Eliminated> eliminated = eliminated(day, listed, whyNot, pathAAll);
+        saveRecs(day, aList, bList);
+
         List<Pick> picks = new ArrayList<>();
-        for (CandidateA c : pathA) {
-            if (c.price() == null || c.basePrice() == null) continue;
-            double up = c.basePrice() / c.price() - 1;
-            if (up <= 0.10) continue;
-            Double low90 = Returns.minPrice(hist.get(c.coin().id()), day.minusDays(89), day).orElse(null);
-            double sl = Pick.stopFor(c.price(), low90);
-            double down = 1 - sl / c.price();
-            var r = c.result();
-            String reason = String.format(java.util.Locale.ROOT, "超跌转强：长期 %s，30天 %s，90天 %s%s%s；第一目标回到%s，之后回撤 40%%止盈",
-                    com.phoenixscout.report.ReportWriter.pct(r.rLong()), com.phoenixscout.report.ReportWriter.pct(r.r30()),
-                    com.phoenixscout.report.ReportWriter.pct(r.r90()), r.a1Pass() ? "，A1✓" : "",
-                    Boolean.TRUE.equals(r.higherLow()) ? "，更高低点✓" : "", c.baseLabel());
-            picks.add(new Pick(c.coin().id(), c.coin().name() + "（" + c.coin().symbol().toUpperCase(java.util.Locale.ROOT) + "）", "A",
-                    c.price(), c.basePrice(), null, sl, up / down, up, down, reason));
+        for (Rec r : java.util.stream.Stream.concat(aList.stream(), bList.stream()).toList()) {
+            picks.add(new Pick(r.coinId(), r.name(), r.path(), r.grade(), r.quality().score(), r.quality().researched(), r.price(),
+                    r.target().available() && r.target().upside() > 0 ? r.target().targetPrice() : null, null, r.stop(),
+                    r.ev() == null ? null : r.ev().ev(), r.target().available() ? r.target().upside() : null, r.downside(), r.reason()));
         }
-        for (PathB.Result b : pathB) {
-            var pv = prelim.get(b.coinId());
-            Double px = Returns.price(hist.get(b.coinId()), day).orElse(null);
-            if (pv == null || px == null) continue;
-            if (pv.currentMultiple() < pv.peerMultiples().get("p25") / 3) continue;   // 收入可能不归代币，先不推荐
-            com.phoenixscout.research.ScenarioCalculator.Scenario base = null;
-            for (var scn : pv.scenarios()) if (scn.name().equals("base")) base = scn;
-            if (base == null) continue;
-            double b12 = base.multipleAt().get(12), b36 = base.multipleAt().get(36);
-            if (b12 <= 1.10) continue;
-            Double low90 = Returns.minPrice(hist.get(b.coinId()), day.minusDays(89), day).orElse(null);
-            double sl = Pick.stopFor(px, low90);
-            double up = b12 - 1, down = 1 - sl / px;
-            MarketCoin mc = byId.get(b.coinId());
-            String reason = String.format(java.util.Locale.ROOT, "收入连增：季增 %s，币价90天 %s%s；第一目标=基准12个月价，长期目标=基准36个月价",
-                    com.phoenixscout.report.ReportWriter.pct(b.revenueGrowth()), com.phoenixscout.report.ReportWriter.pct(b.price90()),
-                    b.priceLagging() ? "，价格未反映✓" : "");
-            picks.add(new Pick(b.coinId(), mc == null ? b.protocol() : mc.name() + "（" + mc.symbol().toUpperCase(java.util.Locale.ROOT) + "）",
-                    "B", px, px * b12, b36 > b12 ? px * b36 : null, sl, up / down, up, down, reason));
-        }
-        picks.sort(Comparator.comparingDouble(Pick::ratio).reversed());
-        if (picks.size() > MAX_PICKS) picks = new ArrayList<>(picks.subList(0, MAX_PICKS));
         List<com.phoenixscout.sim.SimLedger.Event> simEvents = List.of();
         com.phoenixscout.sim.SimLedger.Summary simSummary = null;
         if (sim != null) {
@@ -493,10 +597,10 @@ public class DailyScanService {
         String status = problems.isEmpty() ? "ok" : "partial";
         List<String> aGrades = currentAGrades(byId);
         Outcome o = new Outcome(day, status, bm, bi, pathA, pathB, newPool, added, dropped, q, null, aGrades, prelim,
-                picks, simEvents, simSummary);
+                picks, simEvents, simSummary, aList, bList, eliminated, excludedCnt, pathATotal, btInfo, aWatch);
         Path file = reports.write(o);
         o = new Outcome(day, status, bm, bi, pathA, pathB, newPool, added, dropped, q, file, aGrades, prelim,
-                picks, simEvents, simSummary);
+                picks, simEvents, simSummary, aList, bList, eliminated, excludedCnt, pathATotal, btInfo, aWatch);
         finishRun(day, status, om.writeValueAsString(q), ReportWriter.oneLine(o));
         boolean sent = notifier.send(reports.telegramSummary(o));
         // 每周日（越南时间）推送模拟台账复盘
@@ -505,8 +609,93 @@ public class DailyScanService {
         }
         jdbc.update("INSERT INTO notification(kind, scan_day, sent_at, ok) VALUES ('daily', ?, ?, ?)",
                 day.toString(), Instant.now(clock).toString(), sent ? 1 : 0);
-        log.info("扫描完成 {}：路径A {} 个，路径B {} 个，新币 {} 个，状态 {}", day, pathA.size(), pathB.size(), newPool.size(), status);
+        log.info("扫描完成 {}：路径A {} 个，路径B {} 个，A级 {} 个，B级观察 {} 个，状态 {}", day, pathATotal, pathB.size(), aList.size(), bList.size(), status);
         return o;
+    }
+
+    static String pp(Double v) {
+        return v == null ? "缺失" : String.format(java.util.Locale.ROOT, "%+.0f", v * 100);
+    }
+
+    /** 每周回测结果与期望值样本。 */
+    record BtData(List<StrategyBacktest.Signal> episodes, Map<String, ? extends NavigableMap<LocalDate, DailyPoint>> hist) { }
+
+    /**
+     * 每周日（或 7 天内没有回测结果时）用本地全部日线重跑一次路径 A 策略回测，保存样本；平时读取最近一次的样本。
+     * 期望值的概率只来自这些样本。
+     */
+    BtData backtestData(LocalDate day, Set<String> excluded, List<String> benchA, Map<String, Object> info, List<String> problems) {
+        try {
+            List<Map<String, Object>> last = jdbc.queryForList("SELECT run_day, json FROM bt_run ORDER BY run_day DESC LIMIT 1");
+            boolean stale = last.isEmpty() || LocalDate.parse((String) last.get(0).get("run_day")).isBefore(day.minusDays(6))
+                    || (day.getDayOfWeek() == java.time.DayOfWeek.SUNDAY && !day.toString().equals(last.get(0).get("run_day")));
+            if (stale) {
+                List<String> all = jdbc.queryForList("SELECT DISTINCT coin_id FROM price_daily", String.class);
+                Map<String, TreeMap<LocalDate, DailyPoint>> h = prices.histories(all);
+                LocalDate first = h.values().stream().filter(m -> !m.isEmpty()).map(TreeMap::firstKey).min(LocalDate::compareTo).orElse(day);
+                LocalDate from = first.plusDays(120);
+                var sig = StrategyBacktest.signals(h, excluded, benchA, from, day);
+                var rep = StrategyBacktest.report(sig, h, from, day, day);
+                Map<String, Object> m = StrategyBacktest.toMap(rep);
+                jdbc.update("INSERT OR REPLACE INTO bt_run(run_day, finished_at, json) VALUES (?,?,?)", day.toString(),
+                        Instant.now(clock).toString(), om.writeValueAsString(m));
+                jdbc.update("DELETE FROM bt_episode WHERE run_day <> ?", day.toString());
+                jdbc.batchUpdate("INSERT OR REPLACE INTO bt_episode(run_day, coin_id, day, entry) VALUES (?,?,?,?)",
+                        sig.episodes().stream().map(e -> new Object[]{day.toString(), e.coinId(), e.day().toString(), e.price()}).toList());
+                info.putAll(m);
+                info.put("runDay", day.toString());
+                Map<String, NavigableMap<LocalDate, DailyPoint>> keep = new HashMap<>();
+                for (var e : sig.episodes()) keep.put(e.coinId(), h.get(e.coinId()));
+                return new BtData(sig.episodes(), keep);
+            }
+            String runDay = (String) last.get(0).get("run_day");
+            info.putAll(om.readValue((String) last.get(0).get("json"), Map.class));
+            info.put("runDay", runDay);
+            List<StrategyBacktest.Signal> eps = new ArrayList<>();
+            for (var r : jdbc.queryForList("SELECT coin_id, day, entry FROM bt_episode WHERE run_day = ?", runDay)) {
+                eps.add(new StrategyBacktest.Signal((String) r.get("coin_id"), LocalDate.parse((String) r.get("day")),
+                        ((Number) r.get("entry")).doubleValue(), 0));
+            }
+            Set<String> ids = new HashSet<>();
+            eps.forEach(e -> ids.add(e.coinId()));
+            return new BtData(eps, prices.histories(ids));
+        } catch (Exception e) {
+            log.warn("策略回测失败", e);
+            problems.add("策略回测失败：" + e.getMessage() + "；期望值今日不输出");
+            info.put("verdict", "回测失败，策略尚未验证有效");
+            info.put("validated", false);
+            return new BtData(List.of(), Map.of());
+        }
+    }
+
+    private void saveRecs(LocalDate day, List<Rec> a, List<Rec> b) {
+        jdbc.update("DELETE FROM rec_daily WHERE scan_day = ?", day.toString());
+        List<Object[]> rows = new ArrayList<>();
+        int i = 0;
+        for (Rec r : a) rows.add(new Object[]{day.toString(), r.coinId(), r.name(), "A", ++i});
+        for (Rec r : b) rows.add(new Object[]{day.toString(), r.coinId(), r.name(), "B", ++i});
+        if (!rows.isEmpty()) jdbc.batchUpdate("INSERT INTO rec_daily(scan_day, coin_id, name, grade, rank) VALUES (?,?,?,?,?)", rows);
+    }
+
+    /** 上一次推荐（A + B 观察）里今天不在名单上的币和原因。 */
+    private List<Eliminated> eliminated(LocalDate day, Set<String> listed, Map<String, String> whyNot, Map<String, PathA.Result> pathAAll) {
+        List<String> prev = jdbc.queryForList("SELECT MAX(scan_day) FROM rec_daily WHERE scan_day < ?", String.class, day.toString());
+        if (prev.isEmpty() || prev.get(0) == null) return List.of();
+        List<Eliminated> out = new ArrayList<>();
+        for (var r : jdbc.queryForList("SELECT coin_id, name, grade FROM rec_daily WHERE scan_day = ? ORDER BY rank", prev.get(0))) {
+            String id = (String) r.get("coin_id");
+            if (listed.contains(id)) continue;
+            String why = whyNot.get(id);
+            if (why == null) {
+                PathA.Result a = pathAAll.get(id);
+                why = a != null && a.candidate() ? "路径 A 入选超过 30 个，按相对强度未进前 20"
+                        : a != null && !a.notes().isEmpty() ? "不再满足路径 A：" + String.join("；", a.notes())
+                        : a != null ? "不再满足路径 A（30/90 天超额不足 20 个百分点或长期不再弱于 BTC/ETH）"
+                        : "不再满足筛选条件（今日未进入预筛或收入不再连增）";
+            }
+            out.add(new Eliminated(id, (String) r.get("name"), (String) r.get("grade"), why));
+        }
+        return out;
     }
 
     /** 研究层评为 A 且 14 天内仍有效的币（每个币取最新一次评级）。 */

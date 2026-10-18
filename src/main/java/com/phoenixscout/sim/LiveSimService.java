@@ -49,7 +49,8 @@ public class LiveSimService {
                 if (!book.equals(p.get("book"))) continue;
                 String coin = (String) p.get("coin_id");
                 double entry = d(p.get("entry_price")), amount = d(p.get("amount_usd")), qty = d(p.get("qty")), qty0 = d(p.get("qty_initial"));
-                double risk = d(p.get("risk_usd")), tp1 = d(p.get("tp1")), stop = d(p.get("stop_loss")), realized = d(p.get("realized_usd"));
+                double risk = d(p.get("risk_usd")), stop = d(p.get("stop_loss")), realized = d(p.get("realized_usd"));
+                Double tp1 = p.get("tp1") == null ? null : d(p.get("tp1"));
                 var lp = live.get(coin);
                 double px = lp != null ? lp.price() : d(p.get("last_price"));
                 double val = qty * px * (1 - SimLedger.COST_RATE);
@@ -59,6 +60,8 @@ public class LiveSimService {
                 m.put("coin", coin);
                 m.put("name", p.get("name"));
                 m.put("path", p.get("path"));
+                m.put("grade", p.get("grade"));
+                m.put("quality", p.get("quality"));
                 m.put("openedDay", p.get("opened_day"));
                 m.put("entryPrice", entry);
                 m.put("amountUsd", r(amount));
@@ -70,13 +73,10 @@ public class LiveSimService {
                 m.put("rMultiple", risk > 0 ? r(pnl / risk) : null);
                 m.put("halfSold", ((Number) p.get("tp1_done")).intValue() == 1);
                 m.put("tp1", tp1);
-                m.put("tp2", p.get("tp2"));
                 m.put("stopLoss", stop);
-                m.put("toTp1Pct", r((tp1 / px - 1) * 100));
+                m.put("toTp1Pct", tp1 == null ? null : r((tp1 / px - 1) * 100));
                 m.put("toStopPct", r((stop / px - 1) * 100));
-                m.put("entryRatio", r(d(p.get("ratio"))));
-                double down = 1 - stop / px;
-                m.put("ratioNow", down > 0 && tp1 > px ? r((tp1 / px - 1) / down) : null);
+                m.put("entryEv", p.get("ev") == null ? null : r(d(p.get("ev")) * 100));
                 m.put("reason", p.get("reason"));
                 m.put("sizeNote", p.get("size_note"));
                 rows.add(m);
@@ -104,8 +104,8 @@ public class LiveSimService {
             b.put("positions", rows);
             out.put(book.equals(SimLedger.PORTFOLIO) ? "portfolio" : "track", b);
         }
-        out.put("recentClosed", jdbc.queryForList("SELECT book, name, path, opened_day, closed_day, entry_price, exit_price, amount_usd, exit_reason,"
-                + " round(pnl_usd,2) pnl_usd, round(pnl_pct*100,1) pnl_pct, round(r_multiple,2) r_multiple, ratio, reason FROM sim_trade"
+        out.put("recentClosed", jdbc.queryForList("SELECT book, name, path, grade, opened_day, closed_day, entry_price, exit_price, amount_usd, exit_reason,"
+                + " round(pnl_usd,2) pnl_usd, round(pnl_pct*100,1) pnl_pct, round(r_multiple,2) r_multiple, round(ev*100,1) ev_pct, reason FROM sim_trade"
                 + " WHERE status='closed' ORDER BY closed_day DESC, id DESC LIMIT 50"));
         return out;
     }

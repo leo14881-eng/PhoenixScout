@@ -56,6 +56,11 @@ class DailyScanServiceTest {
         return mid + (end - mid) * (k - MID) / (double) (365 - MID);
     }
 
+    /** 成交额：最近 30 天 400 万美元，之前 250 万（量能比 1.6，满足 V2.6 放量与 200 万美元下限）。 */
+    static double vol(int k) {
+        return k > 335 ? 4e6 : 2.5e6;
+    }
+
     static List<String> ids() {
         List<String> ids = new ArrayList<>(List.of("bitcoin", "ethereum", "tether"));
         for (int i = 0; i < ALTS; i++) ids.add("alt" + i);
@@ -90,7 +95,7 @@ class DailyScanServiceTest {
             String sep = p.isEmpty() ? "" : ",";
             p.append(sep).append('[').append(ts).append(',').append(price(id, k)).append(']');
             c.append(sep).append('[').append(ts).append(',').append(price(id, k) * 1e6).append(']');
-            v.append(sep).append('[').append(ts).append(',').append(1000 + k).append(']');
+            v.append(sep).append('[').append(ts).append(',').append(vol(k)).append(']');
         }
         long now = DAY.toEpochDay() * 86_400_000L + 3_600_000L;
         p.append(",[").append(now).append(",999]");
@@ -125,7 +130,7 @@ class DailyScanServiceTest {
             List<DailyPoint> pts = new ArrayList<>();
             for (int k = 0; k <= 363; k++) {
                 LocalDate d = START.plusDays(k);
-                pts.add(new DailyPoint(d, price(id, k), price(id, k) * 1e6, 1000.0 + k));
+                pts.add(new DailyPoint(d, price(id, k), price(id, k) * 1e6, vol(k)));
             }
             prices.saveDaily(id, pts, "p0-archive", Instant.now());
         }
@@ -173,14 +178,28 @@ class DailyScanServiceTest {
         String md = Files.readString(o.reportFile());
         assertTrue(md.contains("hero"));
         assertTrue(md.contains("今日 A 级：无符合条件的项目"));
-        assertTrue(new ReportWriter(dir).telegramSummary(o).contains("超跌转强 1 个"));
-        assertEquals(1, o.picks().size(), "推荐只有 hero");
-        assertEquals("hero", o.picks().get(0).coinId());
-        assertTrue(o.picks().get(0).ratio() > 1);
-        assertEquals(1, o.simEvents().size(), "模拟仓入场 hero");
-        assertEquals(1, o.simSummary().open());
+        assertTrue(new ReportWriter(dir).telegramSummary(o).contains("超跌转强 1 个（只观察）"));
+        assertTrue(o.picks().isEmpty(), "路径 A 降级为观察，不进入推荐");
+        assertTrue(o.aList().isEmpty());
+        assertTrue(o.bList().isEmpty());
+        assertEquals(1, o.pathAWatch().size());
+        var w = o.pathAWatch().get(0);
+        assertEquals("hero", w.coinId());
+        assertEquals("B", w.grade(), "没有研究、无法估值 → 最高 B 级");
+        assertFalse(w.target().available(), "没有收入 → 无法估值，不用历史价格当目标");
+        assertFalse(w.ev().available(), "回测样本不足 30 个 → 不输出期望值");
+        assertFalse(w.quality().researched());
+        assertTrue(o.simEvents().isEmpty());
+        assertEquals(0, o.simSummary().open());
+        assertEquals(0, db.jdbc.queryForObject("SELECT COUNT(*) FROM sim_trade", Integer.class), "观察名单不记台账");
         assertTrue(Files.exists(dir.resolve("data/sim/ledger.csv")));
-        assertTrue(new ReportWriter(dir).telegramSummary(o).contains("今日推荐（盈亏比最高 1 个）"));
+        String tg = new ReportWriter(dir).telegramSummary(o);
+        assertTrue(tg.contains("【A级】无"), tg);
+        assertTrue(tg.contains("【B级观察】"));
+        assertTrue(tg.contains("【路径A观察】"));
+        assertTrue(tg.contains("hero"));
+        assertTrue(tg.contains("策略尚未验证有效，仅供观察"), "回测没有证明有效时顶部必须提示");
+        assertEquals(1, db.jdbc.queryForObject("SELECT COUNT(*) FROM bt_run", Integer.class), "首次扫描跑一次策略回测");
         assertEquals("ok", db.jdbc.queryForObject("SELECT status FROM scan_run WHERE scan_day = ?", String.class, DAY.toString()));
 
         // 同一天再跑：日线已是最新、行情和分类在缓存期内 → 不再请求第三方

@@ -14,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 /** 日报（Markdown + JSON）与 Telegram 摘要。缺失的数一律写“缺失”，不写 0。 */
 public class ReportWriter {
@@ -108,29 +109,31 @@ public class ReportWriter {
                 .append(bi.bTotal()).append("，可计算 ").append(bi.bComputable()).append("。两者分别报告，不混用。\n");
         s.append("前 100 名山寨币长期区间中位数（仅作市场广度参考）：").append(pct(bi.breadthTop100Long())).append("\n\n");
 
-        List<com.phoenixscout.scan.Pick> picks = o.picks() == null ? List.of() : o.picks();
-        s.append("## 今日推荐（盈亏比最高 ").append(picks.size()).append(" 个）\n\n");
-        s.append("长线口径（V2.5）：盈亏比 = 第一目标涨幅 ÷ 到防守价的跌幅；防守价 = 入场价 −35% 与近 90 天最低价中更低者。")
-                .append("路径 A 第一目标 = 回到长期起点价，之后剩余一半从最高收盘回撤 40% 止盈；路径 B 第一目标 = 基准 12 个月价、长期目标 = 基准 36 个月价；")
-                .append("当前市值/收入远低于同类的暂不推荐。\n\n");
-        if (!picks.isEmpty()) {
-            s.append("| # | 币 | 路径 | 现价 | 第一目标 | 长期目标 | 防守 | 盈亏比 | 理由 |\n|---|---|---|---|---|---|---|---|---|\n");
-            for (int i = 0; i < picks.size(); i++) {
-                var k = picks.get(i);
-                s.append("| ").append(i + 1).append(" | ").append(k.name()).append(" | ").append(k.path()).append(" | ")
-                        .append(RiskReward.price(k.price())).append(" | ").append(RiskReward.price(k.takeProfit()))
-                        .append(String.format(Locale.ROOT, "（%+.0f%%）", k.upside() * 100)).append(" | ")
-                        .append(k.longTarget() == null ? "回撤 40% 止盈" : RiskReward.price(k.longTarget())).append(" | ")
-                        .append(RiskReward.price(k.stopLoss())).append(String.format(Locale.ROOT, "（%+.0f%%）", -k.downside() * 100))
-                        .append(String.format(Locale.ROOT, " | %.1f | ", k.ratio())).append(k.reason()).append(" |\n");
-            }
-            s.append("\n");
-        }
+        s.append("## 今日推荐（V2.6）\n\n");
+        s.append(banner(o)).append("\n\n");
+        s.append("排序依据：期望值 = P(90 天内先到估值目标) × 目标涨幅 − P(先到防守价) × 防守跌幅，P 为历史回测的统计估计（样本 <30 个不输出）。")
+                .append("估值目标 = 年化协议收入 × 同类市值/收入中位数 ÷ 未来 12 个月流通量（没有解锁计划时按总量，保守）；没有收入的项目“无法估值”，最高 B 级。")
+                .append("防守价 = 现价 −35% 与近 90 天最低价中更低者。历史价格只作参考。\n\n");
+        s.append("### 【A级】（最多 3 个）\n\n");
+        if (o.aList().isEmpty()) s.append("无\n\n");
+        for (int i = 0; i < o.aList().size(); i++) s.append(recBlock(i + 1, o.aList().get(i), true)).append("\n");
+        s.append("### 【B级观察】（最多 5 个，按期望值排序）\n\n");
+        if (o.bList().isEmpty()) s.append("无\n\n");
+        for (int i = 0; i < o.bList().size(); i++) s.append(recBlock(i + 1, o.bList().get(i), true)).append("\n");
+        if (o.excludedByQuality() > 0) s.append("另有 ").append(o.excludedByQuality()).append(" 个候选研究后质量分 ≤1，已排除。\n\n");
+        s.append("### 【路径A观察】（回测没有证据表明有效，不进入推荐）\n\n");
+        if (o.pathAWatch().isEmpty()) s.append("无\n\n");
+        for (int i = 0; i < o.pathAWatch().size(); i++) s.append(watchLine(i + 1, o.pathAWatch().get(i))).append("\n");
+        s.append("\n### 【今日淘汰】\n\n");
+        if (o.eliminated().isEmpty()) s.append("无\n\n");
+        for (var e : o.eliminated()) s.append("- ").append(e.name()).append("（昨日 ").append(e.grade()).append(" 级）：").append(e.reason()).append("\n");
+        s.append("\n");
+        s.append(backtestSection(o)).append("\n");
         if (o.simSummary() != null) {
             var sm = o.simSummary();
             s.append("## 模拟组合（只记账，不下真实订单）\n\n");
-            s.append("规则（V2.5 长线）：本金 1 万美元，按盈亏比补满空位（最多 10 个），每笔风险 = 权益 1%（盈亏比高的放大），金额 = 风险 ÷ 跌幅；")
-                    .append("到第一目标卖一半并保本，剩余到长期目标或从最高收盘回撤 40% 卖出；收盘跌破防守价止损；翻倍后保本；最长 3 年；")
+            s.append("规则（V2.6）：高倍币总预算 5,000 美元，最多 2 个，等额；只买 A 级或期望值 >0 的 B 级；首次建仓后，空出的位置只在季度复核（每季度第一次扫描）时补。")
+                    .append("到估值目标卖一半并保本，剩余从最高收盘回撤 40% 卖出（无法估值的持仓翻倍后启用）；收盘跌破防守价止损；最长 3 年；")
                     .append("研究层判定逻辑失效即卖出；买卖各计 0.3% 成本。另有“选币台账”每个推荐等额记一笔，用来检验选得准不准。明细：data/sim/ledger.csv\n\n");
             for (var e : o.simEvents()) {
                 if (!com.phoenixscout.sim.SimLedger.PORTFOLIO.equals(e.book())) continue;
@@ -143,24 +146,27 @@ public class ReportWriter {
                     sm.equity() + sm.unrealized(), sm.cash(), sm.open(), sm.invested(), sm.unrealized(), sm.closed(), sm.wins(), sm.losses(), sm.realized()));
         }
 
-        s.append("## 路径 A：长期严重超跌后转强（").append(o.pathA().size()).append(" 个，B 级待研究）\n\n");
-        s.append("条件（V2.3.1）：滚动 30/90 天同时跑赢 BTC、ETH、基准 B（A2，必要条件）+ 长期跑输 BTC 和 ETH + 没有出现更低的低点。A1（长期跌幅 ≥65% 且跑输 BTC、ETH，近期领先最强基准 20 个百分点）为参考加分。\n\n");
+        s.append("## 路径 A：长期严重超跌后转强（入选 ").append(o.pathATotalBeforeCap()).append(" 个")
+                .append(o.pathATotalBeforeCap() > o.pathA().size() ? "，超过 30 个只保留相对强度前 20" : "").append("）\n\n");
+        s.append("条件（V2.6）：30 天、90 天收益都 ≥ max(BTC, ETH, 基准 B) + 20 个百分点；长期跑输 BTC 和 ETH；没有更低的低点；")
+                .append("最大单日涨幅 < 30 天涨幅的 50%；近 30 天日均成交额 ≥ 之前 90 天的 1.3 倍且 ≥ 200 万美元；站上 90 日均线且均线走平或向上。\n\n");
         if (o.pathA().isEmpty()) s.append("今日无。\n\n");
         else {
-            s.append("| 币 | 市值 | FDV | 长期 | 近期 | 30天 | 90天 | 180天 | 365天 | A1 | 跌幅65–90% | 更高低点 | 上涨集中度 | 量能比 | 现价 / 目标 / 防守位 / 盈亏比 |\n");
-            s.append("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n");
+            s.append("| 币 | 市值 | FDV | 长期 | 30天（超额） | 90天（超额） | 180天 | 365天 | A1 | 最大单日占比 | 量能比 | 30天日均成交额 | 2025-10-31 价（仅参考） |\n");
+            s.append("|---|---|---|---|---|---|---|---|---|---|---|---|---|\n");
             for (var c : o.pathA()) {
                 PathA.Result r = c.result();
                 s.append("| ").append(name(c.coin())).append(c.inPriorityRange() ? "" : " ⓘ").append(" | ").append(usd(c.coin().marketCap()))
-                        .append(" | ").append(usd(c.coin().fdv())).append(" | ").append(pct(r.rLong())).append(" | ").append(pct(r.rRecent()))
-                        .append(" | ").append(pct(r.r30())).append(" | ").append(pct(r.r90())).append(" | ").append(pct(r.r180()))
-                        .append(" | ").append(pct(r.r365())).append(" | ").append(r.a1Pass() ? "✓" : "✗").append(" | ")
-                        .append(r.drop65to90() ? "✓" : "✗").append(" | ").append(mark(r.higherLow())).append(" | ")
-                        .append(r.top3Concentration() == null ? "缺失" : String.format(Locale.ROOT, "%.0f%%", r.top3Concentration() * 100))
+                        .append(" | ").append(usd(c.coin().fdv())).append(" | ").append(pct(r.rLong()))
+                        .append(" | ").append(pct(r.r30())).append("（").append(ppt(r.excess30())).append("）")
+                        .append(" | ").append(pct(r.r90())).append("（").append(ppt(r.excess90())).append("）")
+                        .append(" | ").append(pct(r.r180())).append(" | ").append(pct(r.r365())).append(" | ").append(r.a1Pass() ? "✓" : "✗")
+                        .append(" | ").append(r.maxDayShare() == null ? "缺失" : String.format(Locale.ROOT, "%.0f%%", r.maxDayShare() * 100))
                         .append(" | ").append(r.volumeRatio() == null ? "缺失" : String.format(Locale.ROOT, "%.2f", r.volumeRatio()))
-                        .append(" | ").append(RiskReward.forPriceStructure(c.price(), c.basePrice(), c.baseLabel(), c.low30())).append(" |\n");
+                        .append(" | ").append(usd(r.avgVolume30()))
+                        .append(" | ").append(c.basePrice() == null ? "缺失" : RiskReward.price(c.basePrice())).append(" |\n");
             }
-            s.append("\nⓘ = 市值不在优先区间（3,000 万–10 亿美元）。上涨集中度 = 90 天里最好 3 天的贡献占比，越高越集中。量能比 = 近 30 天均量 / 之前 60 天均量。\n\n");
+            s.append("\nⓘ = 市值不在优先区间（3,000 万–10 亿美元）。超额 = 比 BTC、ETH、基准 B 中最强者高出的百分点。量能比 = 近 30 天日均成交额 / 之前 90 天日均。成交额为 CoinGecko total_volume。\n\n");
         }
 
         s.append("## 路径 B：收入连续两季增长（").append(o.pathB().size()).append(" 个，B 级待研究）\n\n");
@@ -236,35 +242,29 @@ public class ReportWriter {
         var q = o.quality();
         StringBuilder s = new StringBuilder();
         s.append("🔥 日报 ").append(o.scanDay()).append("\n");
-        s.append(o.aGrades().isEmpty() ? "A 级：无（候选均为 B 级待研究）\n"
-                : "当前 A 级：" + String.join("、", o.aGrades()) + "（理由见单独推送）\n");
+        s.append(banner(o)).append("\n");
         s.append("基准 30天/90天：BTC ").append(pct(b.btc30())).append("/").append(pct(b.btc90()))
                 .append("｜ETH ").append(pct(b.eth30())).append("/").append(pct(b.eth90()))
                 .append("｜山寨中位数 ").append(pct(b.benchB30())).append("/").append(pct(b.benchB90())).append("\n");
-        s.append("候选：超跌转强 ").append(o.pathA().size()).append(" 个，收入连增 ").append(o.pathB().size())
-                .append(" 个，新币 ").append(o.newPool().size()).append(" 个\n");
+        s.append("候选：收入连增 ").append(o.pathB().size()).append(" 个（推荐来源）｜超跌转强 ").append(o.pathATotalBeforeCap()).append(" 个（只观察）\n");
 
-        List<com.phoenixscout.scan.Pick> picks = o.picks() == null ? List.of() : o.picks();
-        s.append("\n📌 今日推荐（盈亏比最高 ").append(picks.size()).append(" 个）");
-        if (picks.isEmpty()) s.append("\n今日没有盈亏比合格的候选");
-        for (int i = 0; i < picks.size(); i++) {
-            var k = picks.get(i);
-            s.append("\n").append(i + 1).append(". ").append(k.name()).append(" [").append(k.path().equals("A") ? "超跌转强" : "收入连增").append("]")
-                    .append("\n   现价 ").append(RiskReward.price(k.price()))
-                    .append("｜第一目标 ").append(RiskReward.price(k.takeProfit())).append("（").append(String.format(Locale.ROOT, "%+.0f%%", k.upside() * 100)).append("）")
-                    .append(k.longTarget() == null ? "" : "｜长期目标 " + RiskReward.price(k.longTarget())
-                            + String.format(Locale.ROOT, "（%+.0f%%）", (k.longTarget() / k.price() - 1) * 100))
-                    .append("｜防守 ").append(RiskReward.price(k.stopLoss())).append("（").append(String.format(Locale.ROOT, "%+.0f%%", -k.downside() * 100)).append("）")
-                    .append(String.format(Locale.ROOT, "｜盈亏比 %.1f", k.ratio()))
-                    .append("\n   ").append(k.reason());
-        }
-        if (!picks.isEmpty()) {
-            s.append("\n（目标/防守为情景或价格结构推算，不是预测或承诺；评级与买入由你决定）");
-        }
+        s.append("\n【A级】");
+        if (o.aList().isEmpty()) s.append("无");
+        for (int i = 0; i < o.aList().size(); i++) s.append("\n").append(recBlock(i + 1, o.aList().get(i), false));
+        s.append("\n\n【B级观察】");
+        if (o.bList().isEmpty()) s.append("无");
+        for (int i = 0; i < o.bList().size(); i++) s.append("\n").append(recBlock(i + 1, o.bList().get(i), false));
+        s.append("\n\n【路径A观察】（信号未验证有效，不进入推荐）");
+        if (o.pathAWatch().isEmpty()) s.append("无");
+        for (int i = 0; i < o.pathAWatch().size(); i++) s.append("\n").append(watchLine(i + 1, o.pathAWatch().get(i)));
+        s.append("\n\n【今日淘汰】");
+        if (o.eliminated().isEmpty()) s.append("无");
+        for (var e : o.eliminated()) s.append("\n· ").append(e.name()).append("：").append(e.reason());
+        s.append("\n（估值、期望值为推算和统计估计，不是预测或承诺；买不买由你决定）");
 
         if (o.simSummary() != null) {
             var sm = o.simSummary();
-            s.append("\n\n🧪 模拟组合（只记账，不下真实订单）");
+            s.append("\n\n🧪 模拟组合（5,000 美元、最多 2 个，只记账）");
             int shown = 0;
             for (var e : o.simEvents()) {
                 if (!com.phoenixscout.sim.SimLedger.PORTFOLIO.equals(e.book())) continue;
@@ -283,7 +283,82 @@ public class ReportWriter {
         s.append("\n\n数据：行情 ").append(q.marketCoins()).append("/").append(q.universeTarget()).append("，精确日线 ")
                 .append(q.trackedWithLatest()).append("/").append(q.tracked());
         if (!q.problems().isEmpty()) s.append("\n⚠️ ").append(String.join("；", q.problems().stream().limit(3).toList()));
-        s.append("\n完整报告：data\\reports\\").append(o.scanDay()).append(".md｜台账明细：data\\sim\\ledger.csv");
+        s.append("\n完整报告：data\\reports\\").append(o.scanDay()).append(".md");
+        return s.toString();
+    }
+
+    /** 顶部提示：回测没有证明有效时必须显示。 */
+    static String banner(DailyScanService.Outcome o) {
+        Map<String, Object> bt = o.backtest();
+        boolean ok = bt != null && Boolean.TRUE.equals(bt.get("validated"));
+        String verdict = bt == null || bt.get("verdict") == null ? "回测未完成" : String.valueOf(bt.get("verdict"));
+        return ok ? "✅ 策略回测：" + verdict + "（" + bt.get("runDay") + "）" : "⚠️ 策略尚未验证有效，仅供观察（" + verdict + "）";
+    }
+
+    @SuppressWarnings("unchecked")
+    static String backtestSection(DailyScanService.Outcome o) {
+        Map<String, Object> bt = o.backtest();
+        StringBuilder s = new StringBuilder("## 策略回测（每周日更新）\n\n");
+        if (bt == null || bt.get("horizons") == null) return s.append("暂无回测结果。\n").toString();
+        s.append("区间 ").append(bt.get("from")).append(" → ").append(bt.get("to")).append("（").append(bt.get("runDay")).append(" 运行），")
+                .append("有入选的天数 ").append(bt.get("signalDays")).append("，样本 ").append(bt.get("episodes"))
+                .append(" 个（同一币 30 天内重复入选只算一次），归零或数据中断 ")
+                .append(String.format(Locale.ROOT, "%.1f%%", ((Number) bt.get("collapsedPct")).doubleValue())).append("。结论：").append(bt.get("verdict")).append("\n\n");
+        s.append("| 入场后 | 样本 | 平均收益 | 胜率 | 相对 BTC | 相对 ETH | 相对山寨中位数 | 平均最大回撤 |\n|---|---|---|---|---|---|---|---|\n");
+        for (Object x : (List<Object>) bt.get("horizons")) {
+            Map<String, Object> h = (Map<String, Object>) x;
+            s.append("| ").append(h.get("days")).append(" 天 | ").append(h.get("n")).append(" | ").append(pct(d(h.get("avgReturn"))))
+                    .append(" | ").append(String.format(Locale.ROOT, "%.0f%%", d(h.get("winRate")) * 100)).append(" | ")
+                    .append(pct(d(h.get("excessBtc")))).append(" | ").append(pct(d(h.get("excessEth")))).append(" | ")
+                    .append(pct(d(h.get("excessAlt")))).append(" | ").append(pct(d(h.get("avgMaxDrawdown")))).append(" |\n");
+        }
+        s.append("\n偏差：币池只含本地有日线的币（2026-10 归档时仍在前 2,500 名的币 + 每天跟踪的币），死币不在内，结果偏乐观。")
+                .append("“质量分 ≥4 与其他”的对比没有历史质量分可用，从上线起在选币台账里累计（见每周复盘）。\n");
+        return s.toString();
+    }
+
+    static Double d(Object o) {
+        return o == null ? null : ((Number) o).doubleValue();
+    }
+
+    static String ppt(Double v) {
+        return v == null ? "缺失" : String.format(Locale.ROOT, "%+.0f 个百分点", v * 100);
+    }
+
+    /** 路径 A 观察：一行。 */
+    static String watchLine(int i, DailyScanService.Rec r) {
+        return i + ". " + r.name() + " 现价 " + RiskReward.price(r.price()) + "｜30天 " + pct(r.r30()) + "（超额 " + ppt(r.excess30())
+                + "）｜90天 " + pct(r.r90()) + "（超额 " + ppt(r.excess90()) + "）｜质量分 " + r.quality().label();
+    }
+
+    /** 一个推荐币的展示块（日报与 Telegram 共用）。 */
+    static String recBlock(int i, DailyScanService.Rec r, boolean md) {
+        String nl = md ? "\n   - " : "\n   ";
+        StringBuilder s = new StringBuilder();
+        s.append(md ? i + ". **" + r.name() + "**" : i + ". " + r.name()).append(" [").append(r.path().equals("A") ? "超跌转强" : "收入连增").append("]");
+        var u = r.unlock();
+        s.append(nl).append("现价 ").append(RiskReward.price(r.price())).append("｜流通市值 ").append(usd(r.marketCap()))
+                .append("｜FDV ").append(usd(r.fdv())).append("｜流通率 ")
+                .append(u.circRatio() == null ? "缺失" : String.format(Locale.ROOT, "%.0f%%", u.circRatio() * 100));
+        s.append(nl).append("30天 ").append(pct(r.r30())).append("（超额 ").append(ppt(r.excess30())).append("）｜90天 ")
+                .append(pct(r.r90())).append("（超额 ").append(ppt(r.excess90())).append("）");
+        var q = r.quality();
+        s.append(nl).append("质量分 ").append(q.label());
+        if (!q.missing().isEmpty()) s.append("，缺：").append(String.join("、", q.missing()));
+        var t = r.target();
+        if (t.available()) {
+            s.append(nl).append("估值目标 ").append(RiskReward.price(t.targetPrice())).append(String.format(Locale.ROOT, "（%+.0f%%）", t.upside() * 100))
+                    .append("：").append(t.method()).append("，按").append(t.supplyBasis());
+        } else {
+            s.append(nl).append("估值目标：无法估值（").append(t.reason()).append("）");
+        }
+        var ev = r.ev();
+        s.append(nl).append("期望值 ").append(ev != null && ev.available() ? String.format(Locale.ROOT, "%+.0f%%（%s）", ev.ev() * 100, ev.note())
+                : ev == null ? "缺失" : ev.note());
+        s.append(nl).append("防守 ").append(RiskReward.price(r.stop())).append(String.format(Locale.ROOT, "（%+.0f%%）", -r.downside() * 100))
+                .append("｜解锁：").append(u.summary());
+        if (!r.risks().isEmpty()) s.append(nl).append("风险：").append(String.join("；", r.risks()));
+        s.append(nl).append("理由：").append(r.reason());
         return s.toString();
     }
 }
