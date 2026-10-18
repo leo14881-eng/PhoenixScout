@@ -247,6 +247,7 @@ function Set-NoSleep {
 #   status         服务器上服务状态、版本、最近日志
 #   migrate-fresh  迁移到服务器、从零开始：平滑停掉本机服务并停用，只上传配置和研究文件（本机数据原样保留），
 #                  启动服务器上的服务，等它完成一次每日扫描才算成功；任何一步失败都恢复本机运行
+#   upload-config  只上传本机 config 目录（application-local.yml、coingecko-demo.key）到服务器并重启服务器上的服务，不碰数据
 #   fallback       切回本机：停用服务器上的服务，启用并启动本机服务
 # 迁移成功后（app\server-active.txt 存在），每次运行顺带同步：本机新写的研究文件 → 服务器；服务器的日报和候选 → 本机 data\reports
 # （每天 10:20 的研究任务只能读写本机文件夹，靠这个同步和服务器配合）。
@@ -259,6 +260,7 @@ $ServerScripts = @{
     install  = 'bash /tmp/ps-boot/linux/install.sh'
     status   = "bash $ServerHome/scripts/linux/status.sh"
     'migrate-fresh' = "bash $ServerHome/scripts/linux/migrate-in.sh"
+    'upload-config' = "bash $ServerHome/scripts/linux/reload-config.sh"
     fallback = "mkdir -p $ServerHome/app && touch $ServerHome/app/disabled.flag && systemctl stop phoenixscout.service && echo '服务器上的服务已停止并停用'"
 }
 
@@ -395,6 +397,14 @@ function Invoke-ServerRequest {
             if (Start-PhoenixScout) { Write-ServerLog '迁移没有完成，本机服务已恢复运行' }
             Send-Telegram '⚠️ PhoenixScout 迁移到服务器没有完成，已恢复由电脑运行'
         }
+    } elseif ($action -eq 'upload-config') {
+        $cfg = @(Join-Path $AppDir 'config\application-local.yml')
+        $keyFile = Join-Path $AppDir 'config\coingecko-demo.key'
+        if (Test-Path $keyFile) { $cfg += $keyFile }
+        $ok = (Invoke-ServerSsh $c "mkdir -p $ServerHome/config") -eq 0
+        if ($ok) { $ok = (Send-ServerFiles $c $cfg "$ServerHome/config") -eq 0 }
+        Write-ServerLog "上传配置：$(if ($ok) { '成功' } else { '失败' })"
+        if ($ok) { Write-ServerLog "退出码 $(Invoke-ServerSsh $c $ServerScripts[$action])" }
     } elseif ($action -eq 'fallback') {
         Invoke-ServerSsh $c $ServerScripts.fallback | Out-Null
         Remove-Item $Disabled, $ServerActive -ErrorAction SilentlyContinue
