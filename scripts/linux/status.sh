@@ -13,5 +13,9 @@ echo "--- auto-update.log"
 tail -n 8 "$LOG_FILE" 2>/dev/null
 echo "--- 最近的扫描（scan_run）"
 sqlite3 -readonly "$APP_DIR/data/phoenixscout.db" "SELECT scan_day, started_at, finished_at, status FROM scan_run ORDER BY scan_day DESC LIMIT 5;" 2>&1 | head -n 5
+echo "--- 快照 / 历史归档"
+ls -la "$APP_DIR/data/snapshot" 2>&1 | tail -n 4
+ls "$APP_DIR/data/raw/p0-archive/history" 2>/dev/null | wc -l | awk '{print "已归档币种文件 "$1}'
+grep -E '快照|P0|归档|启动检查' "$APP_DIR/logs/phoenixscout.log" 2>/dev/null | tail -n 6 | cut -c1-220
 echo "--- phoenixscout.log 最近警告"
 grep -E 'WARN|ERROR' "$APP_DIR/logs/phoenixscout.log" 2>/dev/null | tail -n 8 | cut -c1-220
