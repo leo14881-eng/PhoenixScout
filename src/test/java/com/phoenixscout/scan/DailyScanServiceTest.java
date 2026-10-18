@@ -152,7 +152,7 @@ class DailyScanServiceTest {
         var llHttp = new RateLimitedHttp("ll", 0, 2, (u, h) -> new RateLimitedHttp.Response(200,
                 u.contains("/protocols") ? "[]" : "{\"protocols\":[]}", u, Instant.now()), ms -> { });
 
-        var props = new PsProperties(dir.resolve("data").toString(), "Asia/Ho_Chi_Minh", new PsProperties.Telegram("", ""),
+        var props = new PsProperties(dir.resolve("data").toString(), "Asia/Ho_Chi_Minh", new PsProperties.Telegram("", "", false),
                 new PsProperties.Coingecko("http://cg", 0, null), new PsProperties.Defillama("http://ll", 0),
                 new PsProperties.Scan("0 40 0 * * *", "UTC", 2500, 3e7, 1e9, 150, 100, false));
         var clock = Clock.fixed(DAY.atTime(0, 45).toInstant(ZoneOffset.UTC), ZoneOffset.UTC);

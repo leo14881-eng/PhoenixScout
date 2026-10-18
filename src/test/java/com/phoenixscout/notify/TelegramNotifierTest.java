@@ -32,7 +32,7 @@ class TelegramNotifierTest {
 
     @Test
     void unconfiguredDoesNotSend() {
-        var n = new TelegramNotifier(new PsProperties.Telegram("", ""));
+        var n = new TelegramNotifier(new PsProperties.Telegram("", "", false));
         assertFalse(n.configured());
         assertFalse(n.send("hi"));
     }

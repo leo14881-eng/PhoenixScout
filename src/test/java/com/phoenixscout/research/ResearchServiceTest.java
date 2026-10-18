@@ -42,7 +42,7 @@ class ResearchServiceTest {
         final List<String> sent = new ArrayList<>();
 
         Capture() {
-            super(new PsProperties.Telegram("x", "y"));
+            super(new PsProperties.Telegram("x", "y", false));
         }
 
         @Override

@@ -11,10 +11,6 @@ public record PsProperties(String dataDir, String zone, Telegram telegram, Coing
      *                        和别的项目共用机器人时必须保持关闭，换成本项目单独的机器人后再打开。
      */
     public record Telegram(String botToken, String chatId, Boolean commandsEnabled) {
-        public Telegram(String botToken, String chatId) {
-            this(botToken, chatId, false);
-        }
-
         public boolean configured() {
             return botToken != null && !botToken.isBlank() && chatId != null && !chatId.isBlank();
         }
