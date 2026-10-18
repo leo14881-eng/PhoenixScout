@@ -71,17 +71,9 @@ public class DefiLlamaClient {
 
     /** 两次批量请求：全部协议收入 + 全部协议的 CoinGecko id 映射。 */
     public List<ProtocolRevenue> revenueOverview() throws ApiException, InterruptedException {
-        JsonNode protocols = get("/protocols", TTL_PROTOCOLS);
         Map<String, String> geckoBySlug = new HashMap<>();
         Map<String, String> geckoByParent = new HashMap<>();
-        for (JsonNode p : protocols) {
-            String gid = text(p.get("gecko_id"));
-            if (gid == null) continue;
-            String slug = text(p.get("slug"));
-            if (slug != null) geckoBySlug.put(slug, gid);
-            String parent = text(p.get("parentProtocol"));
-            if (parent != null) geckoByParent.putIfAbsent(parent, gid);
-        }
+        geckoMaps(geckoBySlug, geckoByParent);
         JsonNode ov = get("/overview/fees?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true"
                 + "&dataType=dailyRevenue", TTL_OVERVIEW);
         List<ProtocolRevenue> out = new ArrayList<>();
@@ -120,8 +112,11 @@ public class DefiLlamaClient {
     /** 有第三方审计记录的代币（/protocols 的 audits 数量 &gt; 0 或有 audit_links），复用 7 天缓存，不额外请求。 */
     public java.util.Set<String> auditedCoins() throws ApiException, InterruptedException {
         java.util.Set<String> out = new java.util.HashSet<>();
+        Map<String, String> parents = parentGeckoIds();
         for (JsonNode p : get("/protocols", TTL_PROTOCOLS)) {
             String gid = text(p.get("gecko_id"));
+            String parent = text(p.get("parentProtocol"));
+            if (gid == null && parent != null) gid = parents.get(parent);   // 子协议的代币记在母协议上（如 Fluid Lending → instadapp）
             if (gid == null) continue;
             JsonNode a = p.get("audits");
             boolean audited = a != null && !a.isNull() && a.asText("0").matches("[1-9]\\d*");
@@ -132,6 +127,11 @@ public class DefiLlamaClient {
         return out;
     }
 
+    /**
+     * 协议 slug → CoinGecko id，以及母协议 id → CoinGecko id。
+     * 母协议自己的 gecko_id（/lite/protocols2 的 parentProtocols）优先：很多子协议（如 Fluid Lending、Fluid DEX）
+     * 在 /protocols 里没有 gecko_id，代币只记在母协议上；以前漏读母协议，导致这类项目的收入、审计对不上代币（2026-10-18 发现）。
+     */
     private void geckoMaps(Map<String, String> geckoBySlug, Map<String, String> geckoByParent) throws ApiException, InterruptedException {
         for (JsonNode p : get("/protocols", TTL_PROTOCOLS)) {
             String gid = text(p.get("gecko_id"));
@@ -141,6 +141,25 @@ public class DefiLlamaClient {
             String parent = text(p.get("parentProtocol"));
             if (parent != null) geckoByParent.putIfAbsent(parent, gid);
         }
+        geckoByParent.putAll(parentGeckoIds());
+    }
+
+    /** 母协议 id（如 parent#fluid）→ CoinGecko id。一次请求，7 天缓存；获取失败返回空表（退回只用子协议的映射）。 */
+    public Map<String, String> parentGeckoIds() throws InterruptedException {
+        try {
+            return parseParentGeckoIds(get("/lite/protocols2", TTL_PROTOCOLS));
+        } catch (ApiException e) {
+            return Map.of();
+        }
+    }
+
+    static Map<String, String> parseParentGeckoIds(JsonNode j) {
+        Map<String, String> out = new HashMap<>();
+        for (JsonNode p : j.path("parentProtocols")) {
+            String id = text(p.get("id")), gid = text(p.get("gecko_id"));
+            if (id != null && gid != null) out.put(id, gid);
+        }
+        return out;
     }
 
     /** 单个协议逐日收入（UTC 日期 → 当日收入）。 */

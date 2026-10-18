@@ -62,7 +62,15 @@ public class DailyScanService {
                           List<Pick> picks, List<com.phoenixscout.sim.SimLedger.Event> simEvents,
                           com.phoenixscout.sim.SimLedger.Summary simSummary,
                           List<Rec> aList, List<Rec> bList, List<Eliminated> eliminated, int excludedByQuality,
-                          int pathATotalBeforeCap, Map<String, Object> backtest, List<Rec> pathAWatch, List<Rec> pathBNotListed) { }
+                          int pathATotalBeforeCap, Map<String, Object> backtest, List<Rec> pathAWatch, List<Rec> pathBNotListed,
+                          List<NearMiss> nearMiss) { }
+
+    /** 【接近入选】只差一个条件的路径 B 币（V2.6.1，用户要求 2026-10-18）：missing = 差的那个条件，detail = 关键数字。 */
+    public record NearMiss(String coinId, String name, String missing, String detail) { }
+
+    /** 接近入选的“接近”标准：流动性达到门槛的一半；收入增速比币价涨幅只低 10 个百分点以内；现价高于估值目标不超过 10%。 */
+    public static final double NEAR_VOLUME_RATIO = 0.5, NEAR_LAG_GAP = 0.10, NEAR_OVER_TARGET = 0.10;
+    public static final int MAX_NEAR_MISS = 8;
 
     /** V2.6：路径 A 回测没有证据表明有效，降级为观察，不进入推荐；观察名单最多显示 5 个。 */
     public static final int MAX_A_WATCH = 5;
@@ -86,8 +94,11 @@ public class DailyScanService {
         }
     }
 
-    /** 推荐门槛（V2.6 修正，2026-10-18）：所有路径的流动性下限，以及 2,500 美元仓位不超过日均成交额 1%。 */
-    public static final double MIN_AVG_VOLUME = 2_000_000;
+    /**
+     * 推荐门槛（V2.6 修正，2026-10-18）：所有路径的流动性下限，以及 2,500 美元仓位不超过日均成交额 1%，两条同时满足。
+     * V2.6.1（用户 2026-10-18 第二次审阅）：下限由 200 万改为 50 万美元，避免把市值 3000 万–3 亿的早期项目全部挡在外面。
+     */
+    public static final double MIN_AVG_VOLUME = 500_000;
     public static final double POSITION_USD = 2_500, MAX_POSITION_OF_VOLUME = 0.01;
 
     public record Eliminated(String coinId, String name, String grade, String reason) { }
@@ -405,6 +416,7 @@ public class DailyScanService {
 
         // 8. 路径 B
         List<PathB.Result> pathB = new ArrayList<>();
+        List<NearMiss> nearMiss = new ArrayList<>();      // 先放“只差收入连增”的，后面在推荐门槛处补上“只差一个门槛”的
         for (var e : protoByCoin.entrySet()) {
             try {
                 var rev = llama.dailyRevenue(e.getValue().slug());
@@ -415,6 +427,7 @@ public class DailyScanService {
                 var hi = maxPrice(hist.get(e.getKey()), day.minusDays(90), day);
                 boolean navLike = lo.isPresent() && hi != null && hi / lo.get() < 1.05;
                 if (r.pass() && !navLike) pathB.add(r);
+                else if (!navLike) nearRevenue(r, byId.get(e.getKey()), hist.get(e.getKey()), day, nearMiss);
             } catch (ApiException ex) {
                 problems.add("协议 " + e.getValue().name() + " 收入明细获取失败");
             }
@@ -555,16 +568,33 @@ public class DailyScanService {
                     && target.upside() > 0;
             String grade = gradeA ? "A" : "B";
             // 推荐门槛：按顺序取第一个不满足的原因；null = 可以进入推荐
-            String gate = null;
-            if (path.equals("A")) gate = "路径 A 已降级为观察，不进入推荐";
-            else if (quality.excluded()) gate = "质量分 " + quality.score() + "/5（已研究，≤1 分排除）";
-            else if (vol30 == null || vol30 < MIN_AVG_VOLUME) gate = "流动性不足：30 天日均成交额 " + ReportWriter.usd(vol30) + "（< 200 万美元）";
-            else if (POSITION_USD > vol30 * MAX_POSITION_OF_VOLUME) gate = "2,500 美元仓位超过日均成交额的 1%";
-            else if (revGrowth == null || p90 == null) gate = "收入增速或币价 90 天涨幅缺失，无法确认价格未反映";
-            else if (revGrowth <= p90) gate = "币价已领先业务（季度收入 " + ReportWriter.pct(revGrowth) + " ≤ 币价 90 天 " + ReportWriter.pct(p90) + "）";
-            else if (target.available() && target.upside() <= 0) gate = "现价已高于估值目标";
-            else if (!target.available() && unlock.circRatio() != null && unlock.circRatio() < 0.30) gate = "无法估值且流通率 <30%，移到观察";
+            // 逐条检查全部门槛（不再只取第一个），用于判断“只差一个条件”；gate 仍是第一个不满足的原因
+            List<String> fails = new ArrayList<>();
+            boolean allClose = true;
+            if (path.equals("A")) { fails.add("路径 A 已降级为观察，不进入推荐"); allClose = false; }
+            if (quality.excluded()) { fails.add("质量分 " + quality.score() + "/5（已研究，≤1 分排除）"); allClose = false; }
+            if (vol30 == null || vol30 < MIN_AVG_VOLUME) {
+                fails.add("流动性不足：30 天日均成交额 " + ReportWriter.usd(vol30) + "（< 50 万美元）");
+                if (vol30 == null || vol30 < MIN_AVG_VOLUME * NEAR_VOLUME_RATIO) allClose = false;
+            } else if (POSITION_USD > vol30 * MAX_POSITION_OF_VOLUME) { fails.add("2,500 美元仓位超过日均成交额的 1%"); allClose = false; }
+            if (revGrowth == null || p90 == null) { fails.add("收入增速或币价 90 天涨幅缺失，无法确认价格未反映"); allClose = false; }
+            else if (revGrowth <= p90) {
+                fails.add("币价已领先业务（季度收入 " + ReportWriter.pct(revGrowth) + " ≤ 币价 90 天 " + ReportWriter.pct(p90) + "）");
+                if (p90 - revGrowth > NEAR_LAG_GAP) allClose = false;
+            }
+            if (target.available() && target.upside() <= 0) {
+                fails.add("现价已高于估值目标");
+                if (target.upside() < -NEAR_OVER_TARGET / (1 + NEAR_OVER_TARGET)) allClose = false;   // 现价比目标高 10% 以内才算接近
+            }
+            if (!target.available() && unlock.circRatio() != null && unlock.circRatio() < 0.30) { fails.add("无法估值且流通率 <30%，移到观察"); allClose = false; }
+            String gate = fails.isEmpty() ? null : fails.get(0);
             if (gate != null) whyNot.put(id, gate);
+            if (path.equals("B") && fails.size() == 1 && allClose) {
+                nearMiss.add(new NearMiss(id, mc.name() + "（" + mc.symbol().toUpperCase(java.util.Locale.ROOT) + "）", gate,
+                        "收入增速 − 币价 90 天涨幅 = " + (revGrowth == null || p90 == null ? "缺失" : pp(revGrowth - p90) + " 个百分点")
+                                + "；30 天日均成交额 " + ReportWriter.usd(vol30)
+                                + (target.available() ? "；估值目标 " + String.format(java.util.Locale.ROOT, "%+.0f%%", target.upside() * 100) : "；无法估值")));
+            }
             String name = mc.name() + "（" + mc.symbol().toUpperCase(java.util.Locale.ROOT) + "）";
             Double hAnnual = holders.containsKey(id) ? holders.get(id) * 365 / 30 : null;
             recs.add(new Rec(id, name, path, grade, px, mc.marketCap(), mc.fdv(), r30, r90, ex30, ex90, strength, quality, unlock,
@@ -620,6 +650,10 @@ public class DailyScanService {
         saveCandidates(day, pathA, pathB, newPool);
         compareWithPrevious(day, added, dropped);
 
+        // 接近入选：先列“只差一个推荐门槛”的，再列“只差收入连增”的；已进入名单的不重复
+        List<NearMiss> nearView = nearMiss.stream().filter(n -> !listed.contains(n.coinId()))
+                .sorted(Comparator.comparing((NearMiss n) -> n.missing().startsWith("只差收入连增") ? 1 : 0))
+                .limit(MAX_NEAR_MISS).toList();
         int supplyKnown = (int) market.stream().filter(c -> c.circulating() != null && c.totalSupply() != null).count();
         Quality q = new Quality(cg.http().okCount(), cg.http().failedCount(), cg.http().rateLimitedCount(),
                 llama.http().okCount(), llama.http().failedCount(), market.size(), sc.universeTopN(), tracked.size(),
@@ -627,10 +661,10 @@ public class DailyScanService {
         String status = problems.isEmpty() ? "ok" : "partial";
         List<String> aGrades = currentAGrades(byId);
         Outcome o = new Outcome(day, status, bm, bi, pathA, pathB, newPool, added, dropped, q, null, aGrades, prelim,
-                picks, simEvents, simSummary, aList, bList, eliminated, excludedCnt, pathATotal, btInfo, aWatch, bNotListed);
+                picks, simEvents, simSummary, aList, bList, eliminated, excludedCnt, pathATotal, btInfo, aWatch, bNotListed, nearView);
         Path file = reports.write(o);
         o = new Outcome(day, status, bm, bi, pathA, pathB, newPool, added, dropped, q, file, aGrades, prelim,
-                picks, simEvents, simSummary, aList, bList, eliminated, excludedCnt, pathATotal, btInfo, aWatch, bNotListed);
+                picks, simEvents, simSummary, aList, bList, eliminated, excludedCnt, pathATotal, btInfo, aWatch, bNotListed, nearView);
         finishRun(day, status, om.writeValueAsString(q), ReportWriter.oneLine(o));
         boolean sent = notifier.send(reports.telegramSummary(o));
         // 每周日（越南时间）推送模拟台账复盘
@@ -822,5 +856,22 @@ public class DailyScanService {
 
     private static double nz(Double d) {
         return d == null ? 0 : d;
+    }
+
+    /**
+     * “只差收入连增”：最近一个季度收入增长、但前一个季度没有增长（连增只满足一半），
+     * 同时最近季度收入增速高于币价 90 天涨幅、30 天日均成交额达到推荐门槛。
+     */
+    static void nearRevenue(PathB.Result r, MarketCoin mc, NavigableMap<LocalDate, DailyPoint> h, LocalDate day, List<NearMiss> out) {
+        if (mc == null || h == null || r.q0() == null || r.q1() == null || r.q2() == null || r.q1() <= 0 || r.q2() <= 0) return;
+        if (!(r.q0() > r.q1()) || r.q1() > r.q2()) return;
+        Double growth = r.revenueGrowth(), p90 = r.price90();
+        if (growth == null || p90 == null || growth <= p90) return;
+        Double vol30 = Returns.avgVolume(h, day.minusDays(29), day).orElse(null);
+        if (vol30 == null || vol30 < MIN_AVG_VOLUME) return;
+        out.add(new NearMiss(r.coinId(), mc.name() + "（" + mc.symbol().toUpperCase(java.util.Locale.ROOT) + "）",
+                "只差收入连增：前一季度收入 " + ReportWriter.pct(r.q1() / r.q2() - 1) + "（没有增长）",
+                "最近季度收入 " + ReportWriter.pct(growth) + "，币价 90 天 " + ReportWriter.pct(p90)
+                        + "；30 天日均成交额 " + ReportWriter.usd(vol30)));
     }
 }

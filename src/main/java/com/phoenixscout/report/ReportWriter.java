@@ -118,7 +118,7 @@ public class ReportWriter {
         if (o.aList().isEmpty()) s.append("无\n\n");
         for (int i = 0; i < o.aList().size(); i++) s.append(recBlock(i + 1, o.aList().get(i), true)).append("\n");
         s.append("### 【B级观察】（最多 5 个；按期望值排序，样本不足期间按 质量分 → 流动性 → 收入增速与币价涨幅的差距）\n\n");
-        s.append("门槛：30 天日均成交额 ≥ 200 万美元且 2,500 美元仓位不超过日均成交额 1%；最近季度收入增速 > 币价 90 天涨幅；现价低于估值目标；无法估值且流通率 <30% 的移到观察。\n\n");
+        s.append("门槛：30 天日均成交额 ≥ 50 万美元且 2,500 美元仓位不超过日均成交额 1%；最近季度收入增速 > 币价 90 天涨幅；现价低于估值目标；无法估值且流通率 <30% 的移到观察。\n\n");
         if (o.bList().isEmpty()) s.append("无\n\n");
         for (int i = 0; i < o.bList().size(); i++) s.append(recBlock(i + 1, o.bList().get(i), true)).append("\n");
         if (o.excludedByQuality() > 0) s.append("另有 ").append(o.excludedByQuality()).append(" 个候选研究后质量分 ≤1，已排除。\n\n");
@@ -128,6 +128,11 @@ public class ReportWriter {
         s.append("\n### 【未入选的收入连增候选】\n\n");
         if (o.pathBNotListed().isEmpty()) s.append("无\n");
         for (var r : o.pathBNotListed()) s.append("- ").append(r.name()).append("：").append(r.gate()).append("\n");
+        s.append("\n### 【接近入选】（只差一个条件，方便持续跟踪；不是推荐）\n\n");
+        s.append("接近 = 流动性达到门槛一半以上、收入增速比币价涨幅只低 10 个百分点以内、现价高于估值目标不超过 10%，")
+                .append("或最近季度收入增长但前一季度没有增长（只差收入连增）。\n\n");
+        if (o.nearMiss().isEmpty()) s.append("无\n");
+        for (var n : o.nearMiss()) s.append("- ").append(n.name()).append("：差「").append(n.missing()).append("」；").append(n.detail()).append("\n");
         s.append("\n### 【今日淘汰】\n\n");
         if (o.eliminated().isEmpty()) s.append("无\n\n");
         for (var e : o.eliminated()) s.append("- ").append(e.name()).append("（昨日 ").append(e.grade()).append(" 级）：").append(e.reason()).append("\n");
@@ -265,6 +270,10 @@ public class ReportWriter {
             s.append("\n\n【未入选的收入连增】");
             for (var r : o.pathBNotListed()) s.append("\n· ").append(r.name()).append("：").append(r.gate());
         }
+        if (!o.nearMiss().isEmpty()) {
+            s.append("\n\n【接近入选】（只差一个条件，跟踪用，不是推荐）");
+            for (var n : o.nearMiss()) s.append("\n· ").append(n.name()).append("：差「").append(n.missing()).append("」；").append(n.detail());
+        }
         s.append("\n\n【今日淘汰】");
         if (o.eliminated().isEmpty()) s.append("无");
         for (var e : o.eliminated()) s.append("\n· ").append(e.name()).append("：").append(e.reason());
@@ -336,7 +345,8 @@ public class ReportWriter {
     /** 路径 A 观察：一行。 */
     static String watchLine(int i, DailyScanService.Rec r) {
         return i + ". " + r.name() + " 现价 " + RiskReward.price(r.price()) + "｜30天 " + pct(r.r30()) + "（超额 " + ppt(r.excess30())
-                + "）｜90天 " + pct(r.r90()) + "（超额 " + ppt(r.excess90()) + "）｜质量分 " + r.quality().label();
+                + "）｜90天 " + pct(r.r90()) + "（超额 " + ppt(r.excess90()) + "）｜质量分 " + r.quality().label()
+                + "\n   " + r.quality().detail();
     }
 
     /** 一个推荐币的展示块（日报与 Telegram 共用）。 */
@@ -351,8 +361,7 @@ public class ReportWriter {
         s.append(nl).append("30天 ").append(pct(r.r30())).append("（超额 ").append(ppt(r.excess30())).append("）｜90天 ")
                 .append(pct(r.r90())).append("（超额 ").append(ppt(r.excess90())).append("）");
         var q = r.quality();
-        s.append(nl).append("质量分 ").append(q.label());
-        if (!q.missing().isEmpty()) s.append(q.researched() ? "，缺：" : "，暂缺：").append(String.join("、", q.missing()));
+        s.append(nl).append("质量分 ").append(q.label()).append("：").append(q.detail());
         s.append(nl).append("流动性：30 天日均成交额 ").append(usd(r.avgVolume30()));
         if (r.revenueAnnual() != null) {
             s.append(nl).append("收入口径：协议收入（DefiLlama dailyRevenue，不是总手续费）年化 ").append(usd(r.revenueAnnual()))

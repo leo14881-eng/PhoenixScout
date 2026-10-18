@@ -27,12 +27,28 @@ public final class QualityScore {
     public record Auto(boolean hasRevenue, boolean holdersRevenue, List<String> majorExchanges, boolean audited) { }
 
     public record Result(int score, Map<String, Boolean> items, List<String> missing, boolean researched, boolean selfReported,
-                         boolean excluded, String cap) {
+                         boolean excluded, String cap, List<String> exchanges) {
         /** 研究前显示“未评分”，避免和“已研究但不合格”混淆；括号里是能自动判断的 4 项结果。 */
         public String label() {
             if (researched) return score + "/5";
             long auto = items.entrySet().stream().filter(e -> !e.getKey().equals(LABELS[0]) && e.getValue()).count();
             return "未评分（待研究；自动可查的 4 项满足 " + auto + " 项）";
+        }
+
+        /** 逐项显示满足/不满足（V2.6.1，用户要求一眼看出是哪一项没过）。团队背景只能由研究层核实，没研究过显示“待研究”。 */
+        public String detail() {
+            List<String> parts = new ArrayList<>();
+            for (var e : items.entrySet()) {
+                String k = e.getKey();
+                String v;
+                if (k.equals(LABELS[0]) && !researched) v = "待研究";
+                else if (k.equals(LABELS[3]) && exchanges == null) v = "✗（交易所数据获取失败）";
+                else if (k.equals(LABELS[3]) && e.getValue()) v = "✓（" + String.join("、", exchanges) + "）";
+                else v = e.getValue() ? "✓" : "✗";
+                parts.add(k + " " + v);
+            }
+            if (selfReported) parts.add("市值为自报（扣 1 分）");
+            return String.join("｜", parts);
         }
     }
 
@@ -57,7 +73,8 @@ public final class QualityScore {
         boolean researched = research != null;
         boolean excluded = researched && score <= 1;
         String cap = excluded ? "排除" : score >= 4 && researched ? "A" : "B";
-        return new Result(score, m, missing, researched, selfReported, excluded, cap);
+        return new Result(score, m, missing, researched, selfReported, excluded, cap,
+                auto.majorExchanges() == null ? null : List.copyOf(auto.majorExchanges()));
     }
 
     static boolean ok(JsonNode items, String key) {
