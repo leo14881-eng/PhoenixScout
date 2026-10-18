@@ -201,6 +201,8 @@ class DailyScanServiceTest {
         assertTrue(tg.contains("策略尚未验证有效，仅供观察"), "回测没有证明有效时顶部必须提示");
         assertEquals(1, db.jdbc.queryForObject("SELECT COUNT(*) FROM bt_run", Integer.class), "首次扫描跑一次策略回测");
         assertEquals("ok", db.jdbc.queryForObject("SELECT status FROM scan_run WHERE scan_day = ?", String.class, DAY.toString()));
+        assertEquals(0, db.jdbc.queryForObject("SELECT COUNT(*) FROM notification WHERE kind = 'rec'", Integer.class), "没有 A/B 级就不推送");
+        assertTrue(svc.weeklyText(DAY).contains("本周没有币满足 A 级或 B 级条件"));
 
         // 同一天再跑：日线已是最新、行情和分类在缓存期内 → 不再请求第三方
         int before = cgCalls.get();

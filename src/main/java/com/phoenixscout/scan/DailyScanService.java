@@ -679,16 +679,50 @@ public class DailyScanService {
         o = new Outcome(day, status, bm, bi, pathA, pathB, newPool, added, dropped, q, file, aGrades, prelim,
                 picks, simEvents, simSummary, aList, bList, eliminated, excludedCnt, pathATotal, btInfo, aWatch, bNotListed, nearView);
         finishRun(day, status, om.writeValueAsString(q), ReportWriter.oneLine(o));
-        boolean sent = notifier.send(reports.telegramSummary(o));
-        if (file != null) notifier.sendDocument(file, " " + day + " 完整日报（含接近入选、未入选原因、候选清单）");
-        // 每周日（越南时间）推送模拟台账复盘
-        if (sim != null && day.getDayOfWeek() == java.time.DayOfWeek.SUNDAY) {
-            notifier.send(new com.phoenixscout.sim.SimReview(jdbc).weeklyText(sim));
+        // 只在有新的 A/B 级币（7 天内没提醒过）或模拟组合有买卖时推送；其余日子不推日报
+        List<String> fresh = newAlerts(day, aList, bList);
+        boolean portfolioMoved = simEvents.stream().anyMatch(e -> com.phoenixscout.sim.SimLedger.PORTFOLIO.equals(e.book()));
+        boolean sent = false;
+        if (!fresh.isEmpty() || portfolioMoved) {
+            String head = !fresh.isEmpty() ? "🔔 有币满足条件：" + String.join("、", fresh) + "\n" : "🔔 模拟组合有买卖\n";
+            sent = notifier.send(head + reports.telegramSummary(o));
+            if (file != null) notifier.sendDocument(file, " " + day + " 完整日报（含接近入选、未入选原因、候选清单）");
+            String now = Instant.now(clock).toString();
+            for (Rec r : java.util.stream.Stream.concat(aList.stream(), bList.stream()).toList()) {
+                if (fresh.contains(r.name())) jdbc.update("INSERT INTO notification(kind, coin_id, scan_day, sent_at, ok) VALUES ('rec', ?, ?, ?, ?)",
+                        r.coinId(), day.toString(), now, sent ? 1 : 0);
+            }
         }
+        // 每周日一条：本周情况 + 服务正常 + 模拟台账复盘（有记录时）
+        if (day.getDayOfWeek() == java.time.DayOfWeek.SUNDAY) notifier.send(weeklyText(day));
         jdbc.update("INSERT INTO notification(kind, scan_day, sent_at, ok) VALUES ('daily', ?, ?, ?)",
                 day.toString(), Instant.now(clock).toString(), sent ? 1 : 0);
         log.info("扫描完成 {}：路径A {} 个，路径B {} 个，A级 {} 个，B级观察 {} 个，状态 {}", day, pathATotal, pathB.size(), aList.size(), bList.size(), status);
         return o;
+    }
+
+    /** 本次 A/B 名单里 7 天内没有成功提醒过的币。 */
+    private List<String> newAlerts(LocalDate day, List<Rec> a, List<Rec> b) {
+        Set<String> recent = new HashSet<>(jdbc.queryForList("SELECT coin_id FROM notification WHERE kind = 'rec' AND ok = 1 AND scan_day >= ?",
+                String.class, day.minusDays(6).toString()));
+        List<String> out = new ArrayList<>();
+        for (Rec r : java.util.stream.Stream.concat(a.stream(), b.stream()).toList()) if (!recent.contains(r.coinId())) out.add(r.name());
+        return out;
+    }
+
+    /** 周日汇总：本周扫描是否正常、A/B 级出现次数、模拟台账复盘。 */
+    String weeklyText(LocalDate day) {
+        String from = day.minusDays(6).toString();
+        Integer ok = jdbc.queryForObject("SELECT COUNT(*) FROM scan_run WHERE scan_day >= ? AND status IN ('ok','partial')", Integer.class, from);
+        Integer failed = jdbc.queryForObject("SELECT COUNT(*) FROM scan_run WHERE scan_day >= ? AND status = 'failed'", Integer.class, from);
+        List<String> recs = jdbc.queryForList("SELECT DISTINCT name FROM rec_daily WHERE scan_day >= ?", String.class, from);
+        StringBuilder s = new StringBuilder("📅 每周汇总（").append(from).append(" → ").append(day).append("）\n");
+        s.append("扫描 ").append(ok).append(" 次正常").append(failed != null && failed > 0 ? "，" + failed + " 次失败" : "").append("，服务运行中\n");
+        s.append(recs.isEmpty() ? "本周没有币满足 A 级或 B 级条件，所以没有提醒。" : "本周出现过的 A/B 级：" + String.join("、", recs));
+        s.append("\n状态页：http://127.0.0.1:8100/");
+        Integer trades = jdbc.queryForObject("SELECT COUNT(*) FROM sim_trade", Integer.class);
+        if (sim != null && trades != null && trades > 0) s.append("\n\n").append(new com.phoenixscout.sim.SimReview(jdbc).weeklyText(sim));
+        return s.toString();
     }
 
     static String pp(Double v) {
