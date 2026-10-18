@@ -96,6 +96,53 @@ public class DefiLlamaClient {
         return out;
     }
 
+    /**
+     * 持币人收入（dailyHoldersRevenue：回购、销毁、分给质押者的部分），按代币汇总最近 30 天。一次批量请求，12 小时缓存。
+     * 用于质量分“价值捕获”：&gt; 0 才算有可验证的价值捕获。
+     */
+    public Map<String, Double> holdersRevenue30dByCoin() throws ApiException, InterruptedException {
+        Map<String, String> geckoBySlug = new HashMap<>(), geckoByParent = new HashMap<>();
+        geckoMaps(geckoBySlug, geckoByParent);
+        JsonNode ov = get("/overview/fees?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true"
+                + "&dataType=dailyHoldersRevenue", TTL_OVERVIEW);
+        Map<String, Double> out = new HashMap<>();
+        for (JsonNode p : ov.path("protocols")) {
+            String slug = text(p.get("slug"));
+            String parent = text(p.get("parentProtocol"));
+            String gid = slug == null ? null : geckoBySlug.get(slug);
+            if (gid == null && parent != null) gid = geckoByParent.get(parent);
+            Double v = num(p.get("total30d"));
+            if (gid != null && v != null) out.merge(gid, v, Double::sum);
+        }
+        return out;
+    }
+
+    /** 有第三方审计记录的代币（/protocols 的 audits 数量 &gt; 0 或有 audit_links），复用 7 天缓存，不额外请求。 */
+    public java.util.Set<String> auditedCoins() throws ApiException, InterruptedException {
+        java.util.Set<String> out = new java.util.HashSet<>();
+        for (JsonNode p : get("/protocols", TTL_PROTOCOLS)) {
+            String gid = text(p.get("gecko_id"));
+            if (gid == null) continue;
+            JsonNode a = p.get("audits");
+            boolean audited = a != null && !a.isNull() && a.asText("0").matches("[1-9]\\d*");
+            JsonNode links = p.get("audit_links");
+            if (links != null && links.isArray() && !links.isEmpty()) audited = true;
+            if (audited) out.add(gid);
+        }
+        return out;
+    }
+
+    private void geckoMaps(Map<String, String> geckoBySlug, Map<String, String> geckoByParent) throws ApiException, InterruptedException {
+        for (JsonNode p : get("/protocols", TTL_PROTOCOLS)) {
+            String gid = text(p.get("gecko_id"));
+            if (gid == null) continue;
+            String slug = text(p.get("slug"));
+            if (slug != null) geckoBySlug.put(slug, gid);
+            String parent = text(p.get("parentProtocol"));
+            if (parent != null) geckoByParent.putIfAbsent(parent, gid);
+        }
+    }
+
     /** 单个协议逐日收入（UTC 日期 → 当日收入）。 */
     public TreeMap<LocalDate, Double> dailyRevenue(String slug) throws ApiException, InterruptedException {
         JsonNode j = get("/summary/fees/" + slug + "?dataType=dailyRevenue", TTL_SUMMARY);

@@ -32,6 +32,9 @@ public class SimReview {
         Map<String, double[]> byPath = new LinkedHashMap<>();   // path -> [n, sumR]
         Map<Integer, List<double[]>> hz = new LinkedHashMap<>();
         for (int n : SimLedger.HORIZONS) hz.put(n, new ArrayList<>());
+        Map<String, List<double[]>> byQ = new LinkedHashMap<>();   // 质量分 ≥4 / <4 / 未研究：入场后 90 天 [币, BTC]
+        byQ.put("质量分≥4", new ArrayList<>());
+        byQ.put("质量分<4", new ArrayList<>());
         for (var t : all) {
             if (((Number) t.get("tp1_done")).intValue() == 1) tp1++;
             if ("closed".equals(t.get("status"))) {
@@ -54,6 +57,10 @@ public class SimReview {
                     double btc = o.path("btc").isNumber() ? o.get("btc").asDouble() : Double.NaN;
                     double alt = o.path("alt").isNumber() ? o.get("alt").asDouble() : Double.NaN;
                     hz.get(n).add(new double[]{coin, btc, alt});
+                    if (n == 90) {
+                        int q = t.get("quality") == null ? -1 : ((Number) t.get("quality")).intValue();
+                        byQ.get(q >= 4 ? "质量分≥4" : "质量分<4").add(new double[]{coin, btc});
+                    }
                 }
             } catch (Exception ignored) {
                 // 跳过损坏记录
@@ -84,6 +91,16 @@ public class SimReview {
             hm.put(n + "天", o);
         });
         m.put("horizons", hm);
+        Map<String, Object> qm = new LinkedHashMap<>();
+        byQ.forEach((k, list) -> {
+            Map<String, Object> o = new LinkedHashMap<>();
+            o.put("n", list.size());
+            o.put("avgReturn90Pct", list.isEmpty() ? null : r1(list.stream().mapToDouble(x -> x[0]).average().orElse(0) * 100));
+            long withBtc = list.stream().filter(x -> !Double.isNaN(x[1])).count();
+            o.put("beatBtcPct", withBtc == 0 ? null : r1(list.stream().filter(x -> !Double.isNaN(x[1]) && x[0] > x[1]).count() * 100.0 / withBtc));
+            qm.put(k, o);
+        });
+        m.put("byQuality90d", qm);
         // 权益曲线最大回撤
         double peak = 0, mdd = 0;
         for (Double e : jdbc.queryForList("SELECT equity FROM sim_equity WHERE book=? ORDER BY day", Double.class, book)) {
@@ -102,7 +119,7 @@ public class SimReview {
             var st = stats(book);
             var sm = ledger.summary(book);
             s.append("\n").append(book.equals(SimLedger.TRACK) ? "【选币台账：选得准不准】" : "【模拟组合：照着投能不能稳定赚】").append("\n");
-            s.append(String.format(Locale.ROOT, "记录 %s 笔，已平仓 %s 笔；第一目标命中 %s%%，止损 %s%%，平均 %sR",
+            s.append(String.format(Locale.ROOT, "记录 %s 笔，已平仓 %s 笔；估值目标命中 %s%%，止损 %s%%，平均 %sR",
                     st.get("trades"), st.get("closed"), nz(st.get("tp1HitPct")), nz(st.get("stopPctOfClosed")), nz(st.get("avgR"))));
             if (book.equals(SimLedger.PORTFOLIO)) {
                 s.append(String.format(Locale.ROOT, "\n权益 %.0f 美元（%+.1f%%），最大回撤 %s%%，持仓 %d 个",
@@ -112,6 +129,11 @@ public class SimReview {
             var hm = (Map<String, Map<String, Object>>) st.get("horizons");
             hm.forEach((k, o) -> s.append(String.format(Locale.ROOT, "\n入场后%s：%s 笔，平均 %s%%，跑赢 BTC %s%%，相对山寨中位数 %s%%",
                     k, o.get("n"), o.get("avgReturnPct"), nz(o.get("beatBtcPct")), nz(o.get("excessVsAltPct")))));
+            if (book.equals(SimLedger.TRACK)) {
+                var qm = (Map<String, Map<String, Object>>) st.get("byQuality90d");
+                qm.forEach((k, o) -> s.append(String.format(Locale.ROOT, "\n%s：入场后 90 天 %s 笔，平均 %s%%，跑赢 BTC %s%%",
+                        k, o.get("n"), nz(o.get("avgReturn90Pct")), nz(o.get("beatBtcPct")))));
+            }
             if (!Boolean.TRUE.equals(st.get("sampleEnough"))) s.append("\n（已平仓不足 30 笔，结论不可靠）");
             s.append("\n");
         }

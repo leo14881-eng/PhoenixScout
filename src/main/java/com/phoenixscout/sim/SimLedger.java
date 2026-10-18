@@ -23,18 +23,19 @@ import java.util.NavigableMap;
 import java.util.Set;
 
 /**
- * 长线模拟台账（V2.5，只记账，不下任何真实订单）。两本账：
+ * 长线模拟台账（V2.6，只记账，不下任何真实订单）。两本账：
  * <ul>
- *   <li><b>track（选币准确度）</b>：每个新进入推荐的币都记一笔，等额 1,000 美元，不受持仓数量限制——用来看选得准不准。</li>
- *   <li><b>portfolio（模拟组合）</b>：本金 10,000 美元，最多 10 个，按风险定仓——用来看照着投能不能稳定赚。
- *       每笔风险 = 当前权益 × 1%（盈亏比 ≥20 ×1.5，≥10 ×1.25）；金额 = 风险 ÷ 到防守价的跌幅；单笔 ≤ 权益 20%，≤ 可用现金。</li>
+ *   <li><b>track（选币准确度）</b>：每个新进入推荐（A 级 + B 级观察）的币都记一笔，等额 1,000 美元——用来看选得准不准。</li>
+ *   <li><b>portfolio（模拟组合）</b>：与用户的真实规则一致——高倍币总预算 5,000 美元，最多 2 个，每个 2,500 美元（受可用现金限制）。
+ *       只买 A 级，或期望值 &gt; 0 的 B 级（A 优先，再按期望值）；首次建仓不限日期，之后空出来的位置只在每季度第一次扫描（季度复核）时补。
+ *       止损、逻辑失效、止盈是风险控制，每天照常执行。</li>
  * </ul>
  * 出场规则（两本账相同，只按每日 00:00 UTC 收盘价判断，缺价不动作）：
  * <ol>
  *   <li>研究层判定逻辑失效（评级 C）→ 全部卖出。</li>
  *   <li>收盘 ≤ 防守价 → 全部卖出（防守价已上移到入场价时记为“保本止损”）。</li>
- *   <li>收盘 ≥ 第一目标 → 卖一半，防守价上移到入场价。</li>
- *   <li>卖过一半后：收盘 ≥ 长期目标 → 卖剩余；或收盘从持有期最高收盘回撤 40% → 卖剩余（回撤止盈）。</li>
+ *   <li>收盘 ≥ 估值目标 → 卖一半，防守价上移到入场价。无法估值（没有目标）的持仓不做这一步。</li>
+ *   <li>卖过一半后（无目标的持仓：收盘曾达到入场价 2 倍后）：收盘从持有期最高收盘回撤 40% → 卖剩余（回撤止盈）。</li>
  *   <li>收盘 ≥ 入场价 2 倍 → 防守价上移到入场价。</li>
  *   <li>持有满 3 年 → 平仓。</li>
  * </ol>
@@ -44,11 +45,9 @@ public class SimLedger {
 
     public static final String TRACK = "track";
     public static final String PORTFOLIO = "portfolio";
-    public static final int MAX_OPEN = 10;
-    public static final double START_EQUITY = 10_000;
+    public static final int MAX_OPEN = 2;
+    public static final double START_EQUITY = 5_000;
     public static final double TRACK_AMOUNT = 1_000;
-    public static final double RISK_PCT = 0.01;
-    public static final double MAX_POSITION_PCT = 0.20;
     public static final double MIN_AMOUNT = 100;
     public static final double COST_RATE = 0.003;
     public static final double TRAIL = 0.40;
@@ -116,7 +115,8 @@ public class SimLedger {
         LocalDate last = LocalDate.parse((String) t.get("last_day"));
         double entry = num(t.get("entry_price")), amount = num(t.get("amount_usd")), risk = num(t.get("risk_usd"));
         double qty0 = num(t.get("qty_initial")), qty = num(t.get("qty"));
-        double tp1 = num(t.get("tp1")), stop = num(t.get("stop_loss"));
+        Double tp1 = t.get("tp1") == null ? null : num(t.get("tp1"));
+        double stop = num(t.get("stop_loss"));
         Double tp2 = t.get("tp2") == null ? null : num(t.get("tp2"));
         boolean tp1Done = num(t.get("tp1_done")) == 1;
         double realized = num(t.get("realized_usd")), peak = num(t.get("peak_close")), min = num(t.get("min_close"));
@@ -147,7 +147,8 @@ public class SimLedger {
                 exitPx = px;
                 break;
             }
-            if (!tp1Done && px >= tp1) {
+            boolean trailing = tp1Done || (tp1 == null && peak >= entry * 2);
+            if (!tp1Done && tp1 != null && px >= tp1) {
                 double sell = qty / 2;
                 double part = sell * px * (1 - COST_RATE) - amount * (sell / qty0);
                 realized += part;
@@ -159,7 +160,7 @@ public class SimLedger {
                 exit = "长期目标止盈";
                 exitPx = px;
                 break;
-            } else if (tp1Done && px <= peak * (1 - TRAIL)) {
+            } else if (trailing && px <= peak * (1 - TRAIL)) {
                 exit = "回撤止盈";
                 exitPx = px;
                 break;
@@ -221,36 +222,63 @@ public class SimLedger {
         // 选币台账：每个新进入推荐的币都记一笔（已有未平仓的不重复记）
         for (Pick k : picks) {
             if (hasOpen(TRACK, k.coinId())) continue;
-            double down = 1 - k.stopLoss() / k.price();
-            insert(TRACK, day, k, TRACK_AMOUNT, TRACK_AMOUNT * down, "等额 1,000 美元（检验选币准确度）");
+            insert(TRACK, day, k, TRACK_AMOUNT, TRACK_AMOUNT * k.downside(), "等额 1,000 美元（检验选币准确度）");
         }
-        // 模拟组合：按盈亏比顺序补满空位，按风险定仓
+        // 模拟组合：A 级优先，再按期望值；只买 A 级或期望值 > 0 的 B 级
+        List<Pick> eligible = new ArrayList<>();
+        for (Pick k : picks) if ("A".equals(k.grade()) || (k.ev() != null && k.ev() > 0)) eligible.add(k);
+        eligible.sort(java.util.Comparator.comparing((Pick k) -> !"A".equals(k.grade()))
+                .thenComparing(k -> k.ev() == null ? Double.NEGATIVE_INFINITY : -k.ev()));
         int open = countOpen(PORTFOLIO);
-        for (Pick k : picks) {
+        if (open >= MAX_OPEN) return;
+        boolean everBought = countAll(PORTFOLIO) > 0;
+        String qKey = quarterKey(day);
+        boolean reviewDue = kv(qKey) == null;
+        if (everBought && !reviewDue) return;          // 季度中途空出来的位置等季度复核再补
+        boolean bought = false;
+        for (Pick k : eligible) {
             if (open >= MAX_OPEN) break;
             if (hasOpen(PORTFOLIO, k.coinId())) continue;
             Summary s = summary(PORTFOLIO);
-            Sizing sz = size(s.equity(), s.cash(), k.ratio(), 1 - k.stopLoss() / k.price());
+            Sizing sz = size(s.equity(), s.cash(), MAX_OPEN - open, k.downside());
             if (sz.amount() < MIN_AMOUNT) {
                 ev.add(new Event(PORTFOLIO, "跳过", k.coinId(), k.name(), k.price(), null, null, "可用现金不足，未建仓"));
                 continue;
             }
             insert(PORTFOLIO, day, k, sz.amount(), sz.risk(), sz.note());
             ev.add(new Event(PORTFOLIO, "入场", k.coinId(), k.name(), k.price(), null, null,
-                    String.format(Locale.ROOT, "金额 $%.0f（%s），第一目标 %s%s，防守 %s，盈亏比 %.1f", sz.amount(), sz.note(),
-                            fmt(k.takeProfit()), k.longTarget() == null ? "" : "，长期目标 " + fmt(k.longTarget()),
-                            fmt(k.stopLoss()), k.ratio())));
+                    String.format(Locale.ROOT, "%s级，金额 $%.0f（%s），估值目标 %s，防守 %s，期望值 %s%s", k.grade(), sz.amount(), sz.note(),
+                            k.takeProfit() == null ? "无法估值" : fmt(k.takeProfit()), fmt(k.stopLoss()),
+                            k.ev() == null ? "样本不足" : String.format(Locale.ROOT, "%+.0f%%", k.ev() * 100),
+                            everBought ? "（季度复核补仓）" : "（首次建仓）")));
             open++;
+            bought = true;
         }
+        if (bought || everBought) setKv(qKey, day.toString());
+    }
+
+    /** 季度键：2026-Q4。每季度第一次扫描是季度复核日。 */
+    static String quarterKey(LocalDate day) {
+        return "sim:review:" + day.getYear() + "-Q" + ((day.getMonthValue() - 1) / 3 + 1);
+    }
+
+    private String kv(String k) {
+        List<String> v = jdbc.queryForList("SELECT v FROM kv WHERE k = ?", String.class, k);
+        return v.isEmpty() ? null : v.get(0);
+    }
+
+    private void setKv(String k, String v) {
+        jdbc.update("INSERT OR REPLACE INTO kv(k, v) VALUES (?, ?)", k, v);
     }
 
     private void insert(String book, LocalDate day, Pick k, double amount, double risk, String note) {
         double qty = amount * (1 - COST_RATE) / k.price();
-        jdbc.update("INSERT INTO sim_trade(book, coin_id, name, path, opened_day, entry_price, amount_usd, qty_initial, qty, risk_usd, ratio,"
-                        + " tp1, tp2, stop_loss, reason, size_note, status, peak_close, min_close, last_price, last_day)"
-                        + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'open',?,?,?,?)",
-                book, k.coinId(), k.name(), k.path(), day.toString(), k.price(), amount, qty, qty, risk, k.ratio(),
-                k.takeProfit(), k.longTarget(), k.stopLoss(), k.reason(), note, k.price(), k.price(), k.price(), day.toString());
+        jdbc.update("INSERT INTO sim_trade(book, coin_id, name, path, grade, quality, researched, opened_day, entry_price, amount_usd,"
+                        + " qty_initial, qty, risk_usd, ev, tp1, tp2, stop_loss, reason, size_note, status, peak_close, min_close, last_price, last_day)"
+                        + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'open',?,?,?,?)",
+                book, k.coinId(), k.name(), k.path(), k.grade(), k.quality(), k.researched() ? 1 : 0, day.toString(), k.price(), amount,
+                qty, qty, risk, k.ev(), k.takeProfit(), k.longTarget(), k.stopLoss(), k.reason(), note,
+                k.price(), k.price(), k.price(), day.toString());
     }
 
     private boolean hasOpen(String book, String coin) {
@@ -263,16 +291,15 @@ public class SimLedger {
         return n == null ? 0 : n;
     }
 
-    /** 按风险定仓位：风险金额 = 权益 × 1% × 盈亏比系数；金额 = 风险 ÷ 跌幅，受单笔 20% 和可用现金限制。 */
-    public static Sizing size(double equity, double cash, double ratio, double downside) {
-        double factor = ratio >= 20 ? 1.5 : ratio >= 10 ? 1.25 : 1.0;
-        double risk = equity * RISK_PCT * factor;
-        double amount = risk / Math.max(downside, 0.01);
-        String note = String.format(Locale.ROOT, "风险 %.0f 美元 = 权益 1%%×%.2f，跌到防守 %.0f%%", risk, factor, downside * 100);
-        if (amount > equity * MAX_POSITION_PCT) {
-            amount = equity * MAX_POSITION_PCT;
-            note += "，受单笔 20% 上限";
-        }
+    private int countAll(String book) {
+        Integer n = jdbc.queryForObject("SELECT COUNT(*) FROM sim_trade WHERE book=?", Integer.class, book);
+        return n == null ? 0 : n;
+    }
+
+    /** 等额分配：金额 = 当前权益 ÷ 剩余可用位置数（受可用现金限制），风险 = 金额 × 到防守价的跌幅。 */
+    public static Sizing size(double equity, double cash, int slotsLeft, double downside) {
+        double amount = equity / Math.max(1, slotsLeft);
+        String note = String.format(Locale.ROOT, "总预算 %.0f 美元最多 %d 个，等额分配", START_EQUITY, MAX_OPEN);
         if (amount > cash) {
             amount = Math.max(0, cash);
             note += "，受可用现金限制";
@@ -301,10 +328,10 @@ public class SimLedger {
 
     public void exportCsv(Path file) throws IOException {
         Files.createDirectories(file.getParent());
-        String[] cols = {"id", "book", "name", "path", "opened_day", "entry_price", "amount_usd", "risk_usd", "ratio", "tp1", "tp2", "stop_loss",
+        String[] cols = {"id", "book", "name", "path", "grade", "quality", "opened_day", "entry_price", "amount_usd", "risk_usd", "ev", "tp1", "stop_loss",
                 "reason", "size_note", "status", "tp1_done", "last_price", "last_day", "peak_close", "min_close", "closed_day", "exit_price",
                 "exit_reason", "pnl_usd", "pnl_pct", "r_multiple", "horizons"};
-        StringBuilder s = new StringBuilder("﻿编号,账本,币,路径,入场日,入场价,入场金额,风险金额,入场盈亏比,第一目标,长期目标,防守价,入场原因,仓位说明,"
+        StringBuilder s = new StringBuilder("﻿编号,账本,币,路径,评级,质量分,入场日,入场价,入场金额,风险金额,入场期望值,估值目标,防守价,入场原因,仓位说明,"
                 + "状态,已卖一半,最新价,最新日,持有期最高收盘,持有期最低收盘,平仓日,平仓价,平仓原因,盈亏金额,盈亏比例,R倍数,观察期收益\n");
         for (Map<String, Object> p : jdbc.queryForList("SELECT * FROM sim_trade ORDER BY id")) {
             List<String> v = new ArrayList<>();

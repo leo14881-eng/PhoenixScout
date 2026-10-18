@@ -69,6 +69,8 @@ public class ResearchService {
             JsonNode r = om.readTree(f.toFile());
             String coin = r.path("coin_id").asText("");
             if (coin.isBlank()) throw new IOException("缺少 coin_id");
+            jdbc.update("INSERT OR REPLACE INTO research_raw(coin_id, research_file, researched_at, json) VALUES (?,?,?,?)",
+                    coin, f.getFileName().toString(), r.path("researched_at").asText(Instant.now(clock).toString()), om.writeValueAsString(r));
             Map<String, Object> mkt = market(coin);
             Double price = mkt == null ? null : (Double) mkt.get("price");
             String path = candidatePath(coin);
@@ -96,6 +98,27 @@ public class ResearchService {
             tg.send("⚠️ 研究文件格式不对，已跳过：" + f.getFileName() + "（" + e.getMessage() + "）");
             return false;
         }
+    }
+
+    /** 研究结果有效期（V2.6 质量分、解锁数据只用 30 天内的研究）。 */
+    public static final int RAW_VALID_DAYS = 30;
+
+    /** 每个币最新一份 30 天内的研究原文。 */
+    public static Map<String, JsonNode> latestRaw(JdbcTemplate jdbc, java.util.Collection<String> coins, Instant now) {
+        Map<String, JsonNode> out = new java.util.HashMap<>();
+        if (coins.isEmpty()) return out;
+        ObjectMapper om = new ObjectMapper();
+        String since = now.minus(RAW_VALID_DAYS, ChronoUnit.DAYS).toString();
+        for (var row : jdbc.queryForList("SELECT coin_id, json FROM research_raw WHERE researched_at >= ? ORDER BY researched_at", since)) {
+            String c = (String) row.get("coin_id");
+            if (!coins.contains(c)) continue;
+            try {
+                out.put(c, om.readTree((String) row.get("json")));
+            } catch (IOException ignored) {
+                // 损坏的记录跳过
+            }
+        }
+        return out;
     }
 
     private void send(String kind, String coin, String text) {

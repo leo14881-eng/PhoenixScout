@@ -216,6 +216,36 @@ public class CoinGeckoClient {
         return ids;
     }
 
+    public static final Duration TTL_TICKERS = Duration.ofDays(7);
+    /** CoinGecko 交易所 id → 显示名（V2.6 质量分第 4 项的主流交易所）。gdax = Coinbase Exchange，okex = OKX。 */
+    public static final Map<String, String> MAJOR_EXCHANGES = new java.util.LinkedHashMap<>();
+
+    static {
+        MAJOR_EXCHANGES.put("binance", "Binance");
+        MAJOR_EXCHANGES.put("gdax", "Coinbase");
+        MAJOR_EXCHANGES.put("okex", "OKX");
+        MAJOR_EXCHANGES.put("bybit_spot", "Bybit");
+        MAJOR_EXCHANGES.put("kraken", "Kraken");
+        MAJOR_EXCHANGES.put("upbit", "Upbit");
+    }
+
+    /** 该币在主流交易所的现货交易对（/coins/{id}/tickers 只含现货；排除过期和异常报价）。7 天缓存，每币 1 次请求。 */
+    public List<String> majorSpotExchanges(String id) throws ApiException, InterruptedException {
+        JsonNode j = getJson("/coins/" + id + "/tickers?exchange_ids=" + String.join(",", MAJOR_EXCHANGES.keySet())
+                + "&include_exchange_logo=false&depth=false", TTL_TICKERS);
+        return parseMajorExchanges(j);
+    }
+
+    static List<String> parseMajorExchanges(JsonNode j) {
+        java.util.LinkedHashSet<String> out = new java.util.LinkedHashSet<>();
+        for (JsonNode t : j.path("tickers")) {
+            if (t.path("is_stale").asBoolean(false) || t.path("is_anomaly").asBoolean(false)) continue;
+            String ex = t.path("market").path("identifier").asText("");
+            if (MAJOR_EXCHANGES.containsKey(ex)) out.add(MAJOR_EXCHANGES.get(ex));
+        }
+        return new ArrayList<>(out);
+    }
+
     /** 只返回精确落在 UTC 00:00 的点；最后一个非整点（当前价）丢弃。 */
     public TreeMap<LocalDate, DailyPoint> marketChart(String id, int days) throws ApiException, InterruptedException {
         JsonNode j = getJson("/coins/" + id + "/market_chart?vs_currency=usd&days=" + days + "&interval=daily", TTL_CHART);
