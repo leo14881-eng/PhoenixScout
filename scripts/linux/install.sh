@@ -141,7 +141,7 @@ echo "OK   仓库地址 $url"
 echo "== 5/6 克隆并构建（含全部测试，约 5～10 分钟）"
 install -d -o "$RUN_USER" -g "$RUN_USER" "$SRC_DIR"
 if [ ! -d "$SRC_DIR/.git" ]; then
-    rmdir "$SRC_DIR"
+    # 目录已由 root 建好并交给运行用户（运行用户不能在 /opt 下新建目录）；git 可以克隆进空目录
     git_as_user clone --quiet --branch "$BRANCH" "$url" "$SRC_DIR"
 else
     git_src remote set-url origin "$url"
