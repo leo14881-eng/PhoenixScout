@@ -546,11 +546,16 @@ public class DailyScanService {
                     target, ev, stop, down, ref, risks, reason, quality.excluded()));
         }
         if (exchangeFailed > 0) problems.add("CoinGecko 交易所数据 " + exchangeFailed + " 个获取失败，质量分第 4 项按“无”计");
+        // 期望值优先；没有期望值的（路径 B 目前都没有）按估值目标涨幅，再按相对强度；无法估值的排在后面
         Comparator<Rec> byEv = Comparator.comparing((Rec r) -> r.ev() == null || r.ev().ev() == null ? Double.NEGATIVE_INFINITY : r.ev().ev())
-                .reversed().thenComparing(r -> -nz(r.strength()));
+                .reversed().thenComparing(r -> r.target().available() ? -r.target().upside() : Double.MAX_VALUE)
+                .thenComparing(r -> -nz(r.strength()));
+        // 现价已高于估值目标的不推荐（与“按估值找低估”的目的矛盾）
+        java.util.function.Predicate<Rec> overvalued = r -> r.target().available() && r.target().upside() <= 0;
         // 推荐只来自路径 B（有真实收入、有估值依据）；路径 A 只做观察
         List<Rec> aList = recs.stream().filter(r -> r.path().equals("B") && r.grade().equals("A") && !r.excluded()).sorted(byEv).limit(MAX_A_GRADE).toList();
-        List<Rec> bList = recs.stream().filter(r -> r.path().equals("B") && r.grade().equals("B") && !r.excluded()).sorted(byEv).limit(MAX_B_WATCH).toList();
+        List<Rec> bList = recs.stream().filter(r -> r.path().equals("B") && r.grade().equals("B") && !r.excluded() && !overvalued.test(r))
+                .sorted(byEv).limit(MAX_B_WATCH).toList();
         List<Rec> aWatch = recs.stream().filter(r -> r.path().equals("A") && !r.excluded())
                 .sorted(Comparator.comparing((Rec r) -> -nz(r.strength()))).limit(MAX_A_WATCH).toList();
         int excludedCnt = (int) recs.stream().filter(Rec::excluded).count();
@@ -559,7 +564,8 @@ public class DailyScanService {
         bList.forEach(r -> listed.add(r.coinId()));
         for (Rec r : recs) {
             if (listed.contains(r.coinId()) || r.excluded()) continue;
-            whyNot.put(r.coinId(), r.path().equals("A") ? "路径 A 已降级为观察，不进入推荐" : "排名靠后（期望值/相对强度不及今日入选的币）");
+            whyNot.put(r.coinId(), r.path().equals("A") ? "路径 A 已降级为观察，不进入推荐"
+                    : overvalued.test(r) ? "现价已高于估值目标" : "排名靠后（期望值/估值空间不及今日入选的币）");
         }
         List<Eliminated> eliminated = eliminated(day, listed, whyNot, pathAAll);
         saveRecs(day, aList, bList);

@@ -117,7 +117,7 @@ public class ReportWriter {
         s.append("### 【A级】（最多 3 个）\n\n");
         if (o.aList().isEmpty()) s.append("无\n\n");
         for (int i = 0; i < o.aList().size(); i++) s.append(recBlock(i + 1, o.aList().get(i), true)).append("\n");
-        s.append("### 【B级观察】（最多 5 个，按期望值排序）\n\n");
+        s.append("### 【B级观察】（最多 5 个，按期望值排序；没有期望值时按估值空间；现价已高于估值目标的不列入）\n\n");
         if (o.bList().isEmpty()) s.append("无\n\n");
         for (int i = 0; i < o.bList().size(); i++) s.append(recBlock(i + 1, o.bList().get(i), true)).append("\n");
         if (o.excludedByQuality() > 0) s.append("另有 ").append(o.excludedByQuality()).append(" 个候选研究后质量分 ≤1，已排除。\n\n");
@@ -322,7 +322,7 @@ public class ReportWriter {
     }
 
     static String ppt(Double v) {
-        return v == null ? "缺失" : String.format(Locale.ROOT, "%+.0f 个百分点", v * 100);
+        return v == null ? "缺失" : String.format(Locale.ROOT, "%+.0f 个百分点", v * 100).replace("-0 ", "0 ").replace("+0 ", "0 ");
     }
 
     /** 路径 A 观察：一行。 */
