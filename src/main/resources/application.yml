@@ -31,6 +31,7 @@ phoenixscout:
   telegram:
     bot-token: ${TELEGRAM_BOT_TOKEN:}
     chat-id: ${TELEGRAM_CHAT_ID:}
+    commands-enabled: false        # 查询命令（/ps_help 等）。和别的项目共用机器人时保持 false；本项目单独的机器人才能改 true
   coingecko:
     base-url: https://api.coingecko.com/api/v3
     min-interval-ms: 7000        # 无 key 公共接口；有 Demo key 时自动降到 2200

@@ -32,6 +32,8 @@ $Health  = Join-Path $Bin 'health-failures.txt'
 $Denied  = Join-Path $Bin 'stop-denied.txt'
 $MonFailed = Join-Path $Bin 'startup-failed-commit.txt'
 $Updating = Join-Path $Bin 'updating.flag'
+# 迁移到云服务器后本机停用：守护、开机启动、自动更新都不再拉起本机服务（自动更新只同步文件、维护服务器）
+$Disabled = Join-Path $Bin 'disabled.flag'
 $LogFile = Join-Path $AppDir 'logs\auto-update.log'
 
 New-Item -ItemType Directory -Force -Path $Bin, (Join-Path $AppDir 'logs') | Out-Null
@@ -235,6 +237,174 @@ function Set-NoSleep {
     }
 }
 
+# ---------- 服务器桥：本机通过 SSH 维护云服务器（用户 2026-10-18 同意；只执行下面固定的维护动作，不开放任意命令） ----------
+# 服务器上还跑着 TrendPilot，这里只碰 /opt/phoenixscout 和 phoenixscout.service。
+# 登录密钥用 TrendPilot 已在服务器上登记的 root 密钥（只引用路径，不复制、不输出）；服务器 IP 在 app\server-ip.txt。
+# app\server.request 写一个动作名，执行后删除请求文件，输出写 logs\server.log：
+#   check          检查服务器能否访问 CoinGecko / DefiLlama / Telegram / GitHub
+#   repo           检查服务器能否读取仓库（公开 → HTTPS；私有 → 生成只读 deploy key 并在日志里给出公钥）
+#   install        在服务器上安装或重装（上传本机 scripts\linux 执行 install.sh）
+#   status         服务器上服务状态、版本、最近日志
+#   migrate-fresh  迁移到服务器、从零开始：平滑停掉本机服务并停用，只上传配置和研究文件（本机数据原样保留），
+#                  启动服务器上的服务，等它完成一次每日扫描才算成功；任何一步失败都恢复本机运行
+#   fallback       切回本机：停用服务器上的服务，启用并启动本机服务
+# 迁移成功后（app\server-active.txt 存在），每次运行顺带同步：本机新写的研究文件 → 服务器；服务器的日报和候选 → 本机 data\reports
+# （每天 10:20 的研究任务只能读写本机文件夹，靠这个同步和服务器配合）。
+$ServerActive = Join-Path $Bin 'server-active.txt'
+$ServerKey = 'D:\SOFT\java\TrendPilot\ssh\id_ed25519'
+$ServerHome = '/opt/phoenixscout'
+$ServerScripts = @{
+    check    = 'bash /tmp/ps-boot/linux/install.sh --check'
+    repo     = 'bash /tmp/ps-boot/linux/install.sh --repo'
+    install  = 'bash /tmp/ps-boot/linux/install.sh'
+    status   = "bash $ServerHome/scripts/linux/status.sh"
+    'migrate-fresh' = "bash $ServerHome/scripts/linux/migrate-in.sh"
+    fallback = "mkdir -p $ServerHome/app && touch $ServerHome/app/disabled.flag && systemctl stop phoenixscout.service && echo '服务器上的服务已停止并停用'"
+}
+
+function Write-ServerLog($msg) {
+    Add-Content -Path (Join-Path $AppDir 'logs\server.log') -Value ('{0} {1}' -f (Get-Date -Format 'yyyy-MM-dd HH:mm:ss'), $msg) -Encoding UTF8
+}
+
+# 运行 ssh / scp（最多 50 分钟），标准输出和错误按 UTF-8 追加到 logs\server.log（$quiet 时只在失败时写），返回退出码
+function Invoke-ServerTool($exe, $argLine, $stdinText, [switch]$quiet) {
+    $tmpIn = Join-Path $Bin 'server-in.tmp'; $tmpOut = Join-Path $Bin 'server-out.tmp'; $tmpErr = Join-Path $Bin 'server-err.tmp'
+    $p = @{ FilePath = $exe; ArgumentList = $argLine; NoNewWindow = $true; PassThru = $true
+        RedirectStandardOutput = $tmpOut; RedirectStandardError = $tmpErr }
+    if ($stdinText) {
+        [IO.File]::WriteAllText($tmpIn, $stdinText + "`n", (New-Object Text.UTF8Encoding $false))
+        $p.RedirectStandardInput = $tmpIn
+    }
+    $proc = Start-Process @p
+    $null = $proc.Handle   # Windows PowerShell 5.1：不先取 Handle，进程退出后 ExitCode 读出来是空的
+    if (-not $proc.WaitForExit(50 * 60 * 1000)) { try { $proc.Kill() } catch { }; Write-ServerLog '超过 50 分钟，已中止' }
+    $code = $proc.ExitCode
+    foreach ($f in $tmpOut, $tmpErr) {
+        if (Test-Path $f) {
+            $text = [IO.File]::ReadAllText($f, [Text.Encoding]::UTF8).TrimEnd()
+            if ($text -and (-not $quiet -or $code -ne 0)) { Add-Content -Path (Join-Path $AppDir 'logs\server.log') -Value $text -Encoding UTF8 }
+        }
+    }
+    Remove-Item $tmpIn, $tmpOut, $tmpErr -ErrorAction SilentlyContinue
+    return $code
+}
+
+# 连接参数；条件不具备返回 $null（原因写 server.log）
+function Get-ServerConn {
+    $ip = Read-Text (Join-Path $Bin 'server-ip.txt')
+    if ($ip -notmatch '^\d{1,3}(\.\d{1,3}){3}$') { Write-ServerLog "服务器 IP 无效：$ip"; return $null }
+    $ssh = Join-Path $env:WINDIR 'System32\OpenSSH\ssh.exe'
+    $scp = Join-Path $env:WINDIR 'System32\OpenSSH\scp.exe'
+    if (-not (Test-Path $ServerKey) -or -not (Test-Path $ssh)) { Write-ServerLog '无法执行：登录密钥或系统自带的 ssh 不存在'; return $null }
+    $sshDir = Join-Path $AppDir 'ssh'
+    New-Item -ItemType Directory -Force -Path $sshDir | Out-Null
+    $opts = "-i `"$ServerKey`" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o `"UserKnownHostsFile=$(Join-Path $sshDir 'known_hosts')`" -o ConnectTimeout=20 -o ServerAliveInterval=30"
+    return @{ Ip = $ip; Ssh = $ssh; Scp = $scp; Opts = $opts }
+}
+
+function Invoke-ServerSsh($c, $script, [switch]$quiet) {
+    return Invoke-ServerTool $c.Ssh "$($c.Opts) root@$($c.Ip) bash -s" $script -quiet:$quiet
+}
+
+# 上传本机文件到服务器目录（一次一批）
+function Send-ServerFiles($c, [string[]]$files, $remoteDir, [switch]$quiet) {
+    if ($files.Count -eq 0) { return 0 }
+    $list = ($files | ForEach-Object { "`"$_`"" }) -join ' '
+    return Invoke-ServerTool $c.Scp "$($c.Opts) -q $list root@$($c.Ip):$remoteDir/" $null -quiet:$quiet
+}
+
+# 本机研究文件里比上次同步新的（全部为 $all）
+function Get-NewResearch([switch]$all) {
+    $dir = Join-Path $AppDir 'data\research'
+    if (-not (Test-Path $dir)) { return @() }
+    $mark = Join-Path $Bin 'research-synced.txt'
+    $since = [datetime]::MinValue
+    if (-not $all -and (Test-Path $mark)) { $since = (Get-Item $mark).LastWriteTime }
+    return @(Get-ChildItem $dir -Filter '*.json' | Where-Object { $_.LastWriteTime -gt $since } | ForEach-Object { $_.FullName })
+}
+
+function Sync-Server {
+    if (-not (Test-Path $ServerActive) -or -not (Test-Path $Disabled)) { return }
+    $c = Get-ServerConn
+    if (-not $c) { return }
+    # 研究文件 → 服务器（服务每 10 分钟读取；同名同大小的文件服务器不会重复处理）
+    $mark = Join-Path $Bin 'research-synced.txt'
+    $started = Get-Date
+    $new = Get-NewResearch
+    if ($new.Count -gt 0) {
+        if ((Send-ServerFiles $c $new "$ServerHome/data/research" -quiet) -eq 0) {
+            Set-Content $mark $started.ToString('o'); (Get-Item $mark).LastWriteTime = $started
+            Write-ServerLog "已上传研究文件 $($new.Count) 个"
+        } else {
+            Write-ServerLog '上传研究文件失败，下次再试'
+        }
+    }
+    # 服务器的日报和候选 → 本机 data\reports（每 10 分钟一次）
+    $rmark = Join-Path $Bin 'reports-synced.txt'
+    if (-not (Test-Path $rmark) -or (Get-Item $rmark).LastWriteTime -lt (Get-Date).AddMinutes(-10)) {
+        $code = Invoke-ServerTool $c.Scp "$($c.Opts) -q -r root@$($c.Ip):$ServerHome/data/reports `"$(Join-Path $AppDir 'data')`"" $null -quiet
+        if ($code -eq 0) { Set-Content $rmark (Get-Date).ToString('o') } else { Write-ServerLog "下载服务器日报失败（退出码 $code）" }
+    }
+}
+
+function Invoke-ServerRequest {
+    $ErrorActionPreference = 'Continue'
+    $request = Join-Path $Bin 'server.request'
+    if (-not (Test-Path $request)) { return }
+    $action = (Read-Text $request).ToLower()
+    Remove-Item $request -Force -ErrorAction SilentlyContinue
+    if (-not $ServerScripts.ContainsKey($action)) { Write-ServerLog "未知动作：$action"; return }
+    $c = Get-ServerConn
+    if (-not $c) { return }
+    Write-ServerLog "== $action"
+    if ($action -in 'check', 'repo', 'install') {
+        # 私有仓库时服务器还拉不到代码：先把本机的 scripts\linux 传上去执行
+        $ok = (Invoke-ServerSsh $c 'rm -rf /tmp/ps-boot && mkdir -p /tmp/ps-boot') -eq 0
+        if ($ok) { $ok = (Invoke-ServerTool $c.Scp "$($c.Opts) -q -r `"$(Join-Path $AppDir 'scripts\linux')`" root@$($c.Ip):/tmp/ps-boot/" $null) -eq 0 }
+        if (-not $ok) { Write-ServerLog '上传安装脚本失败'; return }
+        $code = Invoke-ServerSsh $c ("sed -i 's/\r$//' /tmp/ps-boot/linux/*.sh && " + $ServerScripts[$action])
+        Write-ServerLog "退出码 $code"
+    } elseif ($action -eq 'migrate-fresh') {
+        # 先平滑停掉本机（数据库写完整）并停用，再传配置和研究文件；任何一步失败都恢复本机运行
+        Set-Content $Disabled (Get-Date).ToString('o')
+        if (-not (Stop-PhoenixScout)) {
+            Remove-Item $Disabled -ErrorAction SilentlyContinue
+            Write-ServerLog '本机服务停不下来，取消迁移'
+            return
+        }
+        Write-ServerLog '本机服务已停止并停用'
+        $ok = (Invoke-ServerSsh $c "test -f $ServerHome/app/phoenixscout.jar && mkdir -p $ServerHome/config $ServerHome/data/research && rm -f $ServerHome/data/phoenixscout.db*") -eq 0
+        if (-not $ok) { Write-ServerLog '服务器上还没有安装好（先执行 install）' }
+        $cfg = @(Join-Path $AppDir 'config\application-local.yml')
+        $keyFile = Join-Path $AppDir 'config\coingecko-demo.key'
+        if (Test-Path $keyFile) { $cfg += $keyFile }
+        if ($ok) { $ok = (Send-ServerFiles $c $cfg "$ServerHome/config") -eq 0; Write-ServerLog "上传配置：$(if ($ok) { '成功' } else { '失败' })" }
+        $research = Get-NewResearch -all
+        if ($ok -and $research.Count -gt 0) {
+            $ok = (Send-ServerFiles $c $research "$ServerHome/data/research") -eq 0
+            Write-ServerLog "上传研究文件 $($research.Count) 个：$(if ($ok) { '成功' } else { '失败' })"
+        }
+        if ($ok) { $ok = (Invoke-ServerSsh $c $ServerScripts[$action]) -eq 0 }
+        if ($ok) {
+            Set-Content $ServerActive (Get-Date).ToString('o')
+            $m = Join-Path $Bin 'research-synced.txt'; Set-Content $m (Get-Date).ToString('o')
+            Write-ServerLog '迁移完成'
+            Send-Telegram '✅ PhoenixScout 已迁移到云服务器运行，数据从零开始（旧数据原样保留在电脑上）。电脑上的服务已停用，只保留自动更新和研究文件同步。'
+        } else {
+            Remove-Item $Disabled, $ServerActive -ErrorAction SilentlyContinue
+            if (Start-PhoenixScout) { Write-ServerLog '迁移没有完成，本机服务已恢复运行' }
+            Send-Telegram '⚠️ PhoenixScout 迁移到服务器没有完成，已恢复由电脑运行'
+        }
+    } elseif ($action -eq 'fallback') {
+        Invoke-ServerSsh $c $ServerScripts.fallback | Out-Null
+        Remove-Item $Disabled, $ServerActive -ErrorAction SilentlyContinue
+        if (Start-PhoenixScout) { Write-ServerLog '本机服务已启动'; Send-Telegram '✅ PhoenixScout 已切回电脑运行' }
+    } else {
+        $code = Invoke-ServerSsh $c $ServerScripts[$action]
+        Write-ServerLog "退出码 $code"
+    }
+}
+
 # 防止两次运行重叠（构建可能超过 3 分钟）
 $mutex = New-Object System.Threading.Mutex($false, 'Local\PhoenixScoutAutoUpdate')
 if (-not $mutex.WaitOne(0)) { exit 0 }
@@ -258,6 +428,8 @@ try {
     }
 
     try { Set-NoSleep } catch { Write-Log "设置不睡眠出错：$($_.Exception.Message)" }
+    try { Invoke-ServerRequest } catch { Write-Log "服务器请求执行出错：$($_.Exception.Message)" }
+    try { Sync-Server } catch { Write-Log "服务器同步出错：$($_.Exception.Message)" }
 
     # ---------- 2. 检查新提交 ----------
     if (-not (Test-Path (Join-Path $SrcDir '.git'))) {
@@ -273,6 +445,15 @@ try {
     $subject = Invoke-Git @('log', '-1', '--format=%s', $latest)
     Write-Log "发现新提交 ${short}：$subject"
 
+    # ---------- 2a. 本机已停用（服务在云服务器上跑）：只同步文件（含服务器脚本），不构建、不启动 ----------
+    if (Test-Path $Disabled) {
+        Invoke-Git @('checkout', '--quiet', '--force', $latest) | Out-Null
+        & robocopy.exe $SrcDir $AppDir /E /NFL /NDL /NJH /NJS /NP /XD .git .mvn data logs target app ssh /XF application-local.yml | Out-Null
+        Set-Content $Version $latest
+        Write-Log "本机已停用，只同步文件到 $short（服务器自行更新）"
+        exit 0
+    }
+
     # ---------- 2b. 只改文档：复制文件，不构建、不重启 ----------
     $current = Read-Text $Version
     if ($current -and (Test-Path $Jar)) {
@@ -281,7 +462,7 @@ try {
         $docsOnly = $changed.Count -gt 0 -and -not ($changed | Where-Object { $_ -notmatch '^docs/' -and $_ -notmatch '\.md$' })
         if ($docsOnly) {
             Invoke-Git @('checkout', '--quiet', '--force', $latest) | Out-Null
-            & robocopy.exe $SrcDir $AppDir /E /NFL /NDL /NJH /NJS /NP /XD .git .mvn data logs target app /XF application-local.yml | Out-Null
+            & robocopy.exe $SrcDir $AppDir /E /NFL /NDL /NJH /NJS /NP /XD .git .mvn data logs target app ssh /XF application-local.yml | Out-Null
             Set-Content $Version $latest
             Write-Log "只更新文档 $short（未重启）"
             Send-Telegram "📄 PhoenixScout 文档已更新到 $short（只改文档，服务没有重启）`n$subject"
@@ -331,7 +512,7 @@ try {
     }
     if (Test-Path $Jar) { Copy-Item $Jar $PrevJar -Force }
     Copy-Item $newJar $Jar -Force
-    & robocopy.exe $SrcDir $AppDir /E /NFL /NDL /NJH /NJS /NP /XD .git .mvn data logs target app /XF application-local.yml | Out-Null
+    & robocopy.exe $SrcDir $AppDir /E /NFL /NDL /NJH /NJS /NP /XD .git .mvn data logs target app ssh /XF application-local.yml | Out-Null
 
     $startedUtc = (Get-Date).ToUniversalTime()
     $started = Start-PhoenixScout

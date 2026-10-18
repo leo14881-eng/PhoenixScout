@@ -2,6 +2,8 @@
 rem Run by scheduled task PhoenixScout-Service (normal user). Keeps running until the service exits.
 setlocal
 cd /d "%~dp0.."
+rem Disabled while the cloud server runs the service (app\disabled.flag)
+if exist app\disabled.flag exit /b 0
 call "%~dp0..\tools-env.cmd"
 if not exist app mkdir app
 if not exist logs mkdir logs

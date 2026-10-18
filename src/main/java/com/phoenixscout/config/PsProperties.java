@@ -6,9 +6,21 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public record PsProperties(String dataDir, String zone, Telegram telegram, Coingecko coingecko,
                            Defillama defillama, Scan scan) {
 
-    public record Telegram(String botToken, String chatId) {
+    /**
+     * @param commandsEnabled 是否用 getUpdates 接收查询命令（/ps_holdings 等）。默认关：一个机器人只能有一个程序收消息，
+     *                        和别的项目共用机器人时必须保持关闭，换成本项目单独的机器人后再打开。
+     */
+    public record Telegram(String botToken, String chatId, Boolean commandsEnabled) {
+        public Telegram(String botToken, String chatId) {
+            this(botToken, chatId, false);
+        }
+
         public boolean configured() {
             return botToken != null && !botToken.isBlank() && chatId != null && !chatId.isBlank();
+        }
+
+        public boolean commandsOn() {
+            return configured() && Boolean.TRUE.equals(commandsEnabled);
         }
     }
 
