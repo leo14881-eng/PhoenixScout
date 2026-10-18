@@ -141,7 +141,12 @@ public class TelegramCommands {
             return switch (cmd) {
                 case "/holdings" -> holdingsText(sim.snapshot());
                 case "/pnl" -> pnlText(sim.snapshot());
-                case "/today" -> todayText();
+                case "/today" -> {
+                    // 先发名单，再把完整日报作为文件发出
+                    notifier.send(todayText());
+                    sendReport();
+                    yield null;
+                }
                 case "/status" -> statusText();
                 case "/help", "/start" -> helpText();
                 default -> "不认识的指令。\n" + helpText();
@@ -220,8 +225,17 @@ public class TelegramCommands {
         StringBuilder s = new StringBuilder("📊 ").append(day).append(" 名单（状态 ").append(run.get(0).get("status")).append("）\n");
         appendGrade(s, recs, "A", "【A级】");
         appendGrade(s, recs, "B", "【B级观察】");
-        s.append("\n完整日报（含接近入选、淘汰原因）：data/reports/").append(day).append(".md");
+        s.append(java.nio.file.Files.isRegularFile(reportFile(day)) ? "\n完整日报（含接近入选、未入选原因）见下一条附件" : "\n（完整日报文件还没生成）");
         return s.toString();
+    }
+
+    static java.nio.file.Path reportFile(String day) {
+        return java.nio.file.Path.of("data", "reports", day + ".md");
+    }
+
+    void sendReport() {
+        List<String> d = jdbc.queryForList("SELECT scan_day FROM scan_run ORDER BY scan_day DESC LIMIT 1", String.class);
+        if (!d.isEmpty()) notifier.sendDocument(reportFile(d.get(0)), " " + d.get(0) + " 完整日报");
     }
 
     static void appendGrade(StringBuilder s, List<Map<String, Object>> recs, String grade, String title) {

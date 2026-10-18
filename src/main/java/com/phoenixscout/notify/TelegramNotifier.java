@@ -79,6 +79,47 @@ public class TelegramNotifier {
         return false;
     }
 
+    /**
+     * 发送文件（例如完整日报 .md），Telegram 里点开即可查看。说明文字带项目名。失败只记日志，返回 false。
+     */
+    public boolean sendDocument(java.nio.file.Path file, String caption) {
+        if (!configured() || file == null || !java.nio.file.Files.isRegularFile(file)) return false;
+        try {
+            String boundary = "----PhoenixScout" + System.nanoTime();
+            var out = new java.io.ByteArrayOutputStream();
+            String cap = TAG + (caption == null ? "" : caption);
+            if (cap.length() > 1000) cap = cap.substring(0, 1000);
+            writePart(out, boundary, "chat_id", null, cfg.chatId().getBytes(StandardCharsets.UTF_8));
+            writePart(out, boundary, "caption", null, cap.getBytes(StandardCharsets.UTF_8));
+            writePart(out, boundary, "document", file.getFileName().toString(), java.nio.file.Files.readAllBytes(file));
+            out.write(("--" + boundary + "--\r\n").getBytes(StandardCharsets.UTF_8));
+            HttpRequest req = HttpRequest.newBuilder(URI.create("https://api.telegram.org/bot" + cfg.botToken() + "/sendDocument"))
+                    .timeout(Duration.ofSeconds(60)).header("Content-Type", "multipart/form-data; boundary=" + boundary)
+                    .POST(HttpRequest.BodyPublishers.ofByteArray(out.toByteArray())).build();
+            for (int attempt = 1; attempt <= 3; attempt++) {
+                HttpResponse<String> r = client.send(req, HttpResponse.BodyHandlers.ofString());
+                if (r.statusCode() == 200) return true;
+                log.warn("Telegram 发送文件失败 HTTP {}", r.statusCode());
+                if (r.statusCode() != 429 && r.statusCode() < 500) return false;
+                Thread.sleep(5000L * attempt);
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        } catch (Exception e) {
+            log.warn("Telegram 发送文件异常：{}", e.getClass().getSimpleName());
+        }
+        return false;
+    }
+
+    private static void writePart(java.io.ByteArrayOutputStream out, String boundary, String name, String filename, byte[] data)
+            throws java.io.IOException {
+        String head = "--" + boundary + "\r\nContent-Disposition: form-data; name=\"" + name + "\""
+                + (filename == null ? "" : "; filename=\"" + filename + "\"\r\nContent-Type: text/markdown; charset=utf-8") + "\r\n\r\n";
+        out.write(head.getBytes(StandardCharsets.UTF_8));
+        out.write(data);
+        out.write("\r\n".getBytes(StandardCharsets.UTF_8));
+    }
+
     static List<String> split(String text) {
         List<String> out = new ArrayList<>();
         StringBuilder cur = new StringBuilder();

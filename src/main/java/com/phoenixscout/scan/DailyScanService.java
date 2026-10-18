@@ -679,6 +679,7 @@ public class DailyScanService {
                 picks, simEvents, simSummary, aList, bList, eliminated, excludedCnt, pathATotal, btInfo, aWatch, bNotListed, nearView);
         finishRun(day, status, om.writeValueAsString(q), ReportWriter.oneLine(o));
         boolean sent = notifier.send(reports.telegramSummary(o));
+        if (file != null) notifier.sendDocument(file, " " + day + " 完整日报（含接近入选、未入选原因、候选清单）");
         // 每周日（越南时间）推送模拟台账复盘
         if (sim != null && day.getDayOfWeek() == java.time.DayOfWeek.SUNDAY) {
             notifier.send(new com.phoenixscout.sim.SimReview(jdbc).weeklyText(sim));

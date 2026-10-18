@@ -300,7 +300,7 @@ public class ReportWriter {
         s.append("\n\n数据：行情 ").append(q.marketCoins()).append("/").append(q.universeTarget()).append("，精确日线 ")
                 .append(q.trackedWithLatest()).append("/").append(q.tracked());
         if (!q.problems().isEmpty()) s.append("\n⚠️ ").append(String.join("；", q.problems().stream().limit(3).toList()));
-        s.append("\n完整报告：data\\reports\\").append(o.scanDay()).append(".md");
+        s.append("\n完整日报（含接近入选、淘汰原因）见下一条附件");
         return s.toString();
     }
 
