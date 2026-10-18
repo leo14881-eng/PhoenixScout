@@ -364,9 +364,10 @@ public class ReportWriter {
         s.append(nl).append("质量分 ").append(q.label()).append("：").append(q.detail());
         s.append(nl).append("流动性：30 天日均成交额 ").append(usd(r.avgVolume30()));
         if (r.revenueAnnual() != null) {
-            s.append(nl).append("收入口径：协议收入（DefiLlama dailyRevenue，不是总手续费）年化 ").append(usd(r.revenueAnnual()))
+            s.append(nl).append("收入口径：协议收入（DefiLlama dailyRevenue，不是总手续费；同一项目各链各版本合并）年化 ").append(usd(r.revenueAnnual()))
                     .append("；持币人收入年化 ").append(r.holdersRevenueAnnual() == null ? "无数据" : usd(r.holdersRevenueAnnual()))
                     .append("；估值用协议收入");
+            if (r.revenueBasis() != null) s.append(nl).append("年化收入取保守值：").append(r.revenueBasis().text());
         }
         var t = r.target();
         if (t.available()) {

@@ -70,6 +70,8 @@ public class DailyScanService {
 
     /** 接近入选的“接近”标准：流动性达到门槛的一半；收入增速比币价涨幅只低 10 个百分点以内；现价高于估值目标不超过 10%。 */
     public static final double NEAR_VOLUME_RATIO = 0.5, NEAR_LAG_GAP = 0.10, NEAR_OVER_TARGET = 0.10;
+    /** “只差收入连增”时前一季度最多允许下滑 20%（V2.6.2）。 */
+    public static final double NEAR_PRIOR_DROP = 0.20;
     public static final int MAX_NEAR_MISS = 8;
 
     /** V2.6：路径 A 回测没有证据表明有效，降级为观察，不进入推荐；观察名单最多显示 5 个。 */
@@ -87,7 +89,8 @@ public class DailyScanService {
                       com.phoenixscout.research.QualityScore.Result quality, com.phoenixscout.research.UnlockRisk.Result unlock,
                       Valuation.Target target, StrategyBacktest.Ev ev, double stop, double downside, Double refPrice,
                       List<String> risks, String reason, boolean excluded, Double avgVolume30, Double revenueGrowth,
-                      Double price90, Double revenueAnnual, Double holdersRevenueAnnual, String gate) {
+                      Double price90, Double revenueAnnual, Double holdersRevenueAnnual, String gate,
+                      RevenueBasis.Annual revenueBasis) {
         /** 收入增速 − 币价 90 天涨幅（越大越说明币价没跟上业务）。 */
         public Double lagGap() {
             return revenueGrowth == null || price90 == null ? null : revenueGrowth - price90;
@@ -266,23 +269,24 @@ public class DailyScanService {
         List<String> benchB = bandSample(alts.stream().map(MarketCoin::id).toList());
 
         // 4b. 路径 B 协议（两次批量请求拿全部协议收入和代币映射）
-        List<DefiLlamaClient.ProtocolRevenue> protos = new ArrayList<>();
         List<DefiLlamaClient.ProtocolRevenue> allProtos = new ArrayList<>();
         try {
-            for (var p : llama.revenueOverview()) {
-                allProtos.add(p);
-                if (p.geckoId() == null || !byId.containsKey(p.geckoId()) || excluded.contains(p.geckoId())) continue;
-                if (p.total30d() == null || p.total60dto30d() == null || p.total30d() < 30_000) continue;
-                if (p.total30d() <= p.total60dto30d()) continue;
-                protos.add(p);
-            }
+            allProtos.addAll(llama.revenueOverview());
         } catch (ApiException e) {
             problems.add("DefiLlama 收入概览获取失败（" + e.status() + "），路径 B 今日未运行");
         }
-        protos.sort(Comparator.comparing(DefiLlamaClient.ProtocolRevenue::total30d).reversed());
-        Map<String, DefiLlamaClient.ProtocolRevenue> protoByCoin = new LinkedHashMap<>();
-        for (var p : protos) {
-            protoByCoin.putIfAbsent(p.geckoId(), p);   // 同一代币多个协议取收入最大的
+        // V2.6.2：同一代币的全部协议（同一母协议的各链、各版本）合并成一个项目再筛选，不再挑单个子协议
+        Map<String, RevenueBasis.CoinRevenue> revenueByCoin = RevenueBasis.byCoin(allProtos);
+        List<RevenueBasis.CoinRevenue> growing = new ArrayList<>();
+        for (var cr : revenueByCoin.values()) {
+            if (!byId.containsKey(cr.coinId()) || excluded.contains(cr.coinId())) continue;
+            if (cr.sum60to30() == null || cr.sum30() < 30_000 || cr.sum30() <= cr.sum60to30()) continue;
+            growing.add(cr);
+        }
+        growing.sort(Comparator.comparingDouble(RevenueBasis.CoinRevenue::sum30).reversed());
+        Map<String, RevenueBasis.CoinRevenue> protoByCoin = new LinkedHashMap<>();
+        for (var cr : growing) {
+            protoByCoin.put(cr.coinId(), cr);
             if (protoByCoin.size() >= 40) break;
         }
 
@@ -417,19 +421,23 @@ public class DailyScanService {
         // 8. 路径 B
         List<PathB.Result> pathB = new ArrayList<>();
         List<NearMiss> nearMiss = new ArrayList<>();      // 先放“只差收入连增”的，后面在推荐门槛处补上“只差一个门槛”的
+        Map<String, RevenueBasis.Annual> annualFromDaily = new HashMap<>();
         for (var e : protoByCoin.entrySet()) {
+            MarketCoin pmc = byId.get(e.getKey());
+            String pname = pmc == null ? e.getKey() : pmc.name();
             try {
-                var rev = llama.dailyRevenue(e.getValue().slug());
-                PathB.Result r = PathB.evaluate(e.getKey(), e.getValue().name(), rev, day.minusDays(1),
+                var rev = mergedDailyRevenue(e.getValue());
+                annualFromDaily.put(e.getKey(), RevenueBasis.fromDaily(rev, day.minusDays(1)));
+                PathB.Result r = PathB.evaluate(e.getKey(), pname, rev, day.minusDays(1),
                         Returns.rolling(hist.get(e.getKey()), day, 90).orElse(null));
                 // 净值型代币（基金份额等，90 天价格波动不到 5%）不是我们要找的标的
                 var lo = Returns.minPrice(hist.get(e.getKey()), day.minusDays(90), day);
                 var hi = maxPrice(hist.get(e.getKey()), day.minusDays(90), day);
                 boolean navLike = lo.isPresent() && hi != null && hi / lo.get() < 1.05;
                 if (r.pass() && !navLike) pathB.add(r);
-                else if (!navLike) nearRevenue(r, byId.get(e.getKey()), hist.get(e.getKey()), day, nearMiss);
+                else if (!navLike) nearRevenue(r, pmc, hist.get(e.getKey()), day, e.getValue().category(), nearMiss);
             } catch (ApiException ex) {
-                problems.add("协议 " + e.getValue().name() + " 收入明细获取失败");
+                problems.add("项目 " + pname + " 收入明细获取失败");
             }
         }
         pathB.sort(Comparator.comparing(PathB.Result::priceLagging).reversed()
@@ -437,19 +445,20 @@ public class DailyScanService {
 
         // 8b. 路径 B 初步情景推算：同类协议“流通市值/年化收入”倍数 + 最近季度收入（研究层核实前的参考）
         Map<String, PrelimValuation.Result> prelim = new LinkedHashMap<>();
-        Map<String, double[]> revByCoin = new HashMap<>();      // [年化收入, 最大单协议收入]
+        // 年化收入（V2.6.2 保守口径）= min(近30天×12, 近90天×4, 近12个月实际)；有逐日数据的用逐日数据（含近90天），
+        // 其余用概览（只有近30天和近1年）。同一口径用于估值目标和可比倍数。
+        Map<String, double[]> revByCoin = new HashMap<>();      // [年化收入]
+        Map<String, RevenueBasis.Annual> annualByCoin = new HashMap<>();
         Map<String, String> catByCoin = new HashMap<>();
         List<Valuation.Peer> valPeers = new ArrayList<>();
         {
-            for (var p : allProtos) {
-                if (p.geckoId() == null || p.total30d() == null || p.total30d() <= 0 || excluded.contains(p.geckoId())) continue;
-                double annual = p.total30d() * 365.0 / 30.0;
-                double[] v = revByCoin.computeIfAbsent(p.geckoId(), k -> new double[2]);
-                v[0] += annual;
-                if (annual > v[1]) {
-                    v[1] = annual;
-                    catByCoin.put(p.geckoId(), p.category());
-                }
+            for (var cr : revenueByCoin.values()) {
+                if (excluded.contains(cr.coinId()) || cr.sum30() <= 0) continue;
+                RevenueBasis.Annual a = annualFromDaily.getOrDefault(cr.coinId(), RevenueBasis.of(cr.sum30(), null, cr.sum1y()));
+                if (a.used() == null || a.used() <= 0) continue;
+                annualByCoin.put(cr.coinId(), a);
+                revByCoin.put(cr.coinId(), new double[]{a.used()});
+                catByCoin.put(cr.coinId(), cr.category());
             }
             List<PrelimValuation.Peer> peers = new ArrayList<>();
             revByCoin.forEach((id, v) -> {
@@ -559,7 +568,10 @@ public class DailyScanService {
             else if (target.upside() <= 0) risks.add("现价已高于估值目标");
             if (quality.selfReported()) risks.add("市值为项目自报");
             Double vol30 = Returns.avgVolume(h, day.minusDays(29), day).orElse(null);
-            if (vol30 != null && vol30 < 5e6) risks.add("流动性偏低：30 天日均成交额 " + ReportWriter.usd(vol30));
+            if (vol30 != null && vol30 >= MIN_AVG_VOLUME && vol30 < 2 * MIN_AVG_VOLUME)
+                risks.add("流动性接近门槛：30 天日均成交额 " + ReportWriter.usd(vol30) + "（门槛 50 万美元）");
+            RevenueBasis.Annual ann = annualByCoin.get(id);
+            if (ann != null && ann.spike()) risks.add("近期收入异常偏高，可能不可持续（近30天×12 超过近12个月实际的 2 倍）");
             if (path.equals("A")) {
                 var r = ((CandidateA) e.getValue()[1]).result();
                 if (r.rLong() != null && r.rLong() < -0.90) risks.add("长期跌幅超过 90%，归零风险高");
@@ -589,7 +601,7 @@ public class DailyScanService {
             if (!target.available() && unlock.circRatio() != null && unlock.circRatio() < 0.30) { fails.add("无法估值且流通率 <30%，移到观察"); allClose = false; }
             String gate = fails.isEmpty() ? null : fails.get(0);
             if (gate != null) whyNot.put(id, gate);
-            if (path.equals("B") && fails.size() == 1 && allClose) {
+            if (path.equals("B") && fails.size() == 1 && allClose && !"Chain".equalsIgnoreCase(cat)) {
                 nearMiss.add(new NearMiss(id, mc.name() + "（" + mc.symbol().toUpperCase(java.util.Locale.ROOT) + "）", gate,
                         "收入增速 − 币价 90 天涨幅 = " + (revGrowth == null || p90 == null ? "缺失" : pp(revGrowth - p90) + " 个百分点")
                                 + "；30 天日均成交额 " + ReportWriter.usd(vol30)
@@ -599,7 +611,7 @@ public class DailyScanService {
             Double hAnnual = holders.containsKey(id) ? holders.get(id) * 365 / 30 : null;
             recs.add(new Rec(id, name, path, grade, px, mc.marketCap(), mc.fdv(), r30, r90, ex30, ex90, strength, quality, unlock,
                     target, ev, stop, down, ref, risks, reason, quality.excluded(), vol30, revGrowth, p90,
-                    rev == null ? null : rev[0], hAnnual, gate));
+                    rev == null ? null : rev[0], hAnnual, gate, annualByCoin.get(id)));
         }
         if (exchangeFailed > 0) problems.add("CoinGecko 交易所数据 " + exchangeFailed + " 个获取失败，质量分第 4 项按“无”计");
         // 排序：期望值优先；期望值样本不足期间按 质量分 → 流动性 → 收入增速与币价涨幅的差距（越大越靠前）
@@ -859,19 +871,38 @@ public class DailyScanService {
     }
 
     /**
-     * “只差收入连增”：最近一个季度收入增长、但前一个季度没有增长（连增只满足一半），
+     * “只差收入连增”：最近一个季度收入增长、但前一个季度没有增长（连增只满足一半）。V2.6.2 收紧：
+     * 前一季度跌幅不超过 20%，且最近季度收入高于两个季度前（真增长，不是从低位反弹，如 BONK 前季 −81%、本季 +1086% 不算）；
+     * 公链（DefiLlama category = Chain）不按协议收入估值，不列入；
      * 同时最近季度收入增速高于币价 90 天涨幅、30 天日均成交额达到推荐门槛。
      */
-    static void nearRevenue(PathB.Result r, MarketCoin mc, NavigableMap<LocalDate, DailyPoint> h, LocalDate day, List<NearMiss> out) {
+    static void nearRevenue(PathB.Result r, MarketCoin mc, NavigableMap<LocalDate, DailyPoint> h, LocalDate day, String category,
+                            List<NearMiss> out) {
         if (mc == null || h == null || r.q0() == null || r.q1() == null || r.q2() == null || r.q1() <= 0 || r.q2() <= 0) return;
+        if ("Chain".equalsIgnoreCase(category)) return;
         if (!(r.q0() > r.q1()) || r.q1() > r.q2()) return;
+        if (r.q1() < r.q2() * (1 - NEAR_PRIOR_DROP) || r.q0() <= r.q2()) return;
         Double growth = r.revenueGrowth(), p90 = r.price90();
         if (growth == null || p90 == null || growth <= p90) return;
         Double vol30 = Returns.avgVolume(h, day.minusDays(29), day).orElse(null);
         if (vol30 == null || vol30 < MIN_AVG_VOLUME) return;
         out.add(new NearMiss(r.coinId(), mc.name() + "（" + mc.symbol().toUpperCase(java.util.Locale.ROOT) + "）",
                 "只差收入连增：前一季度收入 " + ReportWriter.pct(r.q1() / r.q2() - 1) + "（没有增长）",
-                "最近季度收入 " + ReportWriter.pct(growth) + "，币价 90 天 " + ReportWriter.pct(p90)
-                        + "；30 天日均成交额 " + ReportWriter.usd(vol30)));
+                "最近季度收入 " + ReportWriter.pct(growth) + "（比两个季度前 " + ReportWriter.pct(r.q0() / r.q2() - 1) + "），币价 90 天 "
+                        + ReportWriter.pct(p90) + "；30 天日均成交额 " + ReportWriter.usd(vol30)));
+    }
+
+    /** 一个代币全部项目的逐日协议收入相加。项目有母协议时取母协议合并明细；母协议取不到时逐个子协议相加。 */
+    TreeMap<LocalDate, Double> mergedDailyRevenue(RevenueBasis.CoinRevenue cr) throws ApiException, InterruptedException {
+        List<NavigableMap<LocalDate, Double>> parts = new ArrayList<>();
+        for (var e : cr.children().entrySet()) {
+            try {
+                parts.add(llama.dailyRevenue(e.getKey()));
+            } catch (ApiException ex) {
+                if (e.getValue().size() == 1 && e.getValue().get(0).equals(e.getKey())) throw ex;
+                for (String child : e.getValue()) parts.add(llama.dailyRevenue(child));
+            }
+        }
+        return RevenueBasis.merge(parts);
     }
 }

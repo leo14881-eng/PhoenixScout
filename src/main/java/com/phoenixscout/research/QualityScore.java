@@ -27,7 +27,7 @@ public final class QualityScore {
     public record Auto(boolean hasRevenue, boolean holdersRevenue, List<String> majorExchanges, boolean audited) { }
 
     public record Result(int score, Map<String, Boolean> items, List<String> missing, boolean researched, boolean selfReported,
-                         boolean excluded, String cap, List<String> exchanges) {
+                         boolean excluded, String cap, List<String> exchanges, boolean auditUnknown) {
         /** 研究前显示“未评分”，避免和“已研究但不合格”混淆；括号里是能自动判断的 4 项结果。 */
         public String label() {
             if (researched) return score + "/5";
@@ -44,6 +44,7 @@ public final class QualityScore {
                 if (k.equals(LABELS[0]) && !researched) v = "待研究";
                 else if (k.equals(LABELS[3]) && exchanges == null) v = "✗（交易所数据获取失败）";
                 else if (k.equals(LABELS[3]) && e.getValue()) v = "✓（" + String.join("、", exchanges) + "）";
+                else if (k.equals(LABELS[4]) && !e.getValue() && auditUnknown) v = "未知（DefiLlama 无审计记录，待研究层核实）";
                 else v = e.getValue() ? "✓" : "✗";
                 parts.add(k + " " + v);
             }
@@ -73,8 +74,11 @@ public final class QualityScore {
         boolean researched = research != null;
         boolean excluded = researched && score <= 1;
         String cap = excluded ? "排除" : score >= 4 && researched ? "A" : "B";
+        // DefiLlama 没有审计记录不等于没审计过（如 Starknet）：研究层也没给出 ok=false 时显示“未知”，不显示 ✗；不计分
+        boolean auditUnknown = !m.get(LABELS[4]) && (items == null || items.path("audit").path("ok").isMissingNode()
+                || items.path("audit").path("ok").isNull());
         return new Result(score, m, missing, researched, selfReported, excluded, cap,
-                auto.majorExchanges() == null ? null : List.copyOf(auto.majorExchanges()));
+                auto.majorExchanges() == null ? null : List.copyOf(auto.majorExchanges()), auditUnknown);
     }
 
     static boolean ok(JsonNode items, String key) {

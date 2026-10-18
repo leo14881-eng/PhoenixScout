@@ -22,7 +22,7 @@ class V261RulesTest {
         assertTrue(d.contains("团队背景 待研究"), d);
         assertTrue(d.contains("使用/收入数据 ✗"), d);
         assertTrue(d.contains("主流交易所现货 ✓（Binance、Coinbase）"), d);
-        assertTrue(d.contains("第三方审计 ✗"), d);
+        assertTrue(d.contains("第三方审计 未知"), d);   // V2.6.2：DefiLlama 没有记录显示“未知”
         var failed = QualityScore.evaluate(new QualityScore.Auto(true, false, null, true), null);
         assertTrue(failed.detail().contains("交易所数据获取失败"), failed.detail());
         assertTrue(failed.detail().contains("使用/收入数据 ✓"), failed.detail());
@@ -48,23 +48,23 @@ class V261RulesTest {
         List<DailyScanService.NearMiss> out = new ArrayList<>();
         // 最近季度 +20%，前一季度 −10%（只差收入连增），币价 90 天 +5%，日均 100 万 → 列入
         var r = new PathB.Result("x", "X", 120.0, 100.0, 111.0, 0.20, 0.05, false, false, List.of());
-        DailyScanService.nearRevenue(r, mc, hist(day, 1e6), day, out);
+        DailyScanService.nearRevenue(r, mc, hist(day, 1e6), day, "Dexs", out);
         assertEquals(1, out.size());
         assertTrue(out.get(0).missing().startsWith("只差收入连增"), out.get(0).missing());
         // 流动性不足 → 不列
         out.clear();
-        DailyScanService.nearRevenue(r, mc, hist(day, 1e5), day, out);
+        DailyScanService.nearRevenue(r, mc, hist(day, 1e5), day, "Dexs", out);
         assertTrue(out.isEmpty());
         // 币价涨得比收入快 → 不列（差了两个条件）
         DailyScanService.nearRevenue(new PathB.Result("x", "X", 120.0, 100.0, 111.0, 0.20, 0.50, false, false, List.of()),
-                mc, hist(day, 1e6), day, out);
+                mc, hist(day, 1e6), day, "Dexs", out);
         assertTrue(out.isEmpty());
         // 最近季度也没增长 → 不列
         DailyScanService.nearRevenue(new PathB.Result("x", "X", 90.0, 100.0, 111.0, -0.10, -0.30, false, false, List.of()),
-                mc, hist(day, 1e6), day, out);
+                mc, hist(day, 1e6), day, "Dexs", out);
         assertTrue(out.isEmpty());
         // 没有价格历史 → 不列、不报错
-        DailyScanService.nearRevenue(r, mc, null, day, out);
+        DailyScanService.nearRevenue(r, mc, null, day, "Dexs", out);
         assertTrue(out.isEmpty());
     }
 }
