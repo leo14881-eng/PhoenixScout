@@ -57,9 +57,15 @@ public class DefiLlamaClient {
                 // 缓存损坏就重新请求
             }
         }
+        // 确定不存在的地址（400/404，例如没有合并收入接口的母协议）记 3 天，不再重复请求
+        var neg = cache.negative(key, TTL_SUMMARY);
+        if (neg.isPresent()) throw new ApiException("DefiLlama " + path + " -> " + neg.get() + "（缓存）", neg.get());
         RateLimitedHttp.Response r = http.get(baseUrl + path, Map.of());
-        if (r == null || !r.ok()) throw new ApiException("DefiLlama " + path + " -> " + (r == null ? -1 : r.status()),
-                r == null ? -1 : r.status());
+        if (r == null || !r.ok()) {
+            int st = r == null ? -1 : r.status();
+            if (st == 400 || st == 404) cache.putNegative(key, st);
+            throw new ApiException("DefiLlama " + path + " -> " + st, st);
+        }
         try {
             JsonNode n = om.readTree(r.body());
             cache.put(key, r.body());

@@ -211,6 +211,7 @@ public class DailyScanService {
     private Outcome doRun(LocalDate day) throws Exception {
         cg.http().resetCounters();
         llama.http().resetCounters();
+        llamaRecovered = 0;
         List<String> problems = new ArrayList<>();
         PsProperties.Scan sc = props.scan();
 
@@ -668,7 +669,7 @@ public class DailyScanService {
                 .limit(MAX_NEAR_MISS).toList();
         int supplyKnown = (int) market.stream().filter(c -> c.circulating() != null && c.totalSupply() != null).count();
         Quality q = new Quality(cg.http().okCount(), cg.http().failedCount(), cg.http().rateLimitedCount(),
-                llama.http().okCount(), llama.http().failedCount(), market.size(), sc.universeTopN(), tracked.size(),
+                llama.http().okCount(), Math.max(0, llama.http().failedCount() - llamaRecovered), market.size(), sc.universeTopN(), tracked.size(),
                 withLatest, supplyKnown, protoByCoin.size(), snap.message(), exclFresh, problems);
         String status = problems.isEmpty() ? "ok" : "partial";
         List<String> aGrades = currentAGrades(byId);
@@ -894,6 +895,9 @@ public class DailyScanService {
     }
 
     /** 一个代币全部项目的逐日协议收入相加。项目有母协议时取母协议合并明细；母协议取不到时逐个子协议相加。 */
+    /** 本次扫描里“母协议没有合并接口、已用子协议补齐”的次数：不算失败（数据是完整的）。 */
+    private int llamaRecovered;
+
     TreeMap<LocalDate, Double> mergedDailyRevenue(RevenueBasis.CoinRevenue cr) throws ApiException, InterruptedException {
         List<NavigableMap<LocalDate, Double>> parts = new ArrayList<>();
         for (var e : cr.children().entrySet()) {
@@ -902,6 +906,8 @@ public class DailyScanService {
             } catch (ApiException ex) {
                 if (e.getValue().size() == 1 && e.getValue().get(0).equals(e.getKey())) throw ex;
                 for (String child : e.getValue()) parts.add(llama.dailyRevenue(child));
+                if (!ex.getMessage().contains("（缓存）")) llamaRecovered++;
+                log.info("{} 没有合并收入接口（{}），已用 {} 个子协议补齐", e.getKey(), ex.status(), e.getValue().size());
             }
         }
         return RevenueBasis.merge(parts);
