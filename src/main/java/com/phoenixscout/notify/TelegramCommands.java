@@ -23,8 +23,9 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * Telegram 查询命令（只读，不做任何交易）：/ps_holdings 模拟持仓、/ps_pnl 模拟盈亏、/ps_today 今日名单、/ps_status 运行状态、/ps_help。
- * 命令用 ps_ 前缀，避免和 TrendPilot（/holdings /status /help）冲突。
+ * Telegram 查询命令（只读，不做任何交易）：/holdings 模拟持仓、/pnl 模拟盈亏、/today 今日名单、/status 运行状态、/help。
+ * PhoenixScout 用自己单独的机器人，命令不加前缀（用户 2026-10-18 要求短命令）；旧的 /ps_ 写法仍然认。
+ * 启动时把命令注册到机器人菜单（setMyCommands），输入 / 就能点选。
  * <p>
  * 用 getUpdates 长轮询收消息。一个机器人只能有一个程序收消息，所以默认关闭（phoenixscout.telegram.commands-enabled=false）；
  * 只有给本项目单独建了机器人才打开。只回应配置里的 chat-id；遇到 429 按 retry_after 等待；回复经 TelegramNotifier 发出（带项目名前缀）。
@@ -60,10 +61,26 @@ public class TelegramCommands {
             return;
         }
         running = true;
+        registerMenu();
         thread = new Thread(this::loop, "ps-telegram-commands");
         thread.setDaemon(true);
         thread.start();
         log.info("Telegram 查询命令已开启");
+    }
+
+    /** 把命令注册到机器人菜单（失败只记日志）。 */
+    void registerMenu() {
+        try {
+            String json = "{\"commands\":[{\"command\":\"holdings\",\"description\":\"模拟组合持仓\"},"
+                    + "{\"command\":\"pnl\",\"description\":\"模拟盈亏\"},{\"command\":\"today\",\"description\":\"今日名单\"},"
+                    + "{\"command\":\"status\",\"description\":\"运行状态\"},{\"command\":\"help\",\"description\":\"命令说明\"}]}";
+            HttpResponse<String> r = client.send(HttpRequest.newBuilder(URI.create("https://api.telegram.org/bot" + cfg.botToken() + "/setMyCommands"))
+                    .timeout(Duration.ofSeconds(20)).header("Content-Type", "application/json; charset=utf-8")
+                    .POST(HttpRequest.BodyPublishers.ofString(json)).build(), HttpResponse.BodyHandlers.ofString());
+            if (r.statusCode() != 200) log.warn("注册 Telegram 命令菜单失败 HTTP {}", r.statusCode());
+        } catch (Exception e) {
+            log.warn("注册 Telegram 命令菜单出错：{}", e.getClass().getSimpleName());
+        }
     }
 
     @PreDestroy
@@ -122,19 +139,19 @@ public class TelegramCommands {
         if (cmd == null) return null;
         try {
             return switch (cmd) {
-                case "/ps_holdings" -> holdingsText(sim.snapshot());
-                case "/ps_pnl" -> pnlText(sim.snapshot());
-                case "/ps_today" -> todayText();
-                case "/ps_status" -> statusText();
-                case "/ps_help", "/ps_start" -> helpText();
-                default -> null;
+                case "/holdings" -> holdingsText(sim.snapshot());
+                case "/pnl" -> pnlText(sim.snapshot());
+                case "/today" -> todayText();
+                case "/status" -> statusText();
+                case "/help", "/start" -> helpText();
+                default -> "不认识的指令。\n" + helpText();
             };
         } catch (Exception e) {
             return "查询失败：" + e.getClass().getSimpleName();
         }
     }
 
-    /** 取命令名（去掉 @机器人名 和参数，转小写）；不是 /ps_ 开头返回 null。 */
+    /** 取命令名（去掉 @机器人名、参数和旧的 ps_ 前缀，转小写）；不是 / 开头返回 null。 */
     static String command(String text) {
         if (text == null) return null;
         String t = text.trim();
@@ -143,17 +160,18 @@ public class TelegramCommands {
         int at = c.indexOf('@');
         if (at > 0) c = c.substring(0, at);
         c = c.toLowerCase(Locale.ROOT);
-        return c.startsWith("/ps_") ? c : null;
+        if (c.startsWith("/ps_")) c = "/" + c.substring(4);
+        return c.length() > 1 ? c : null;
     }
 
     static String helpText() {
         return """
                 查询命令（只读，系统不做真实交易）：
-                /ps_holdings 模拟组合当前持仓（实时价）
-                /ps_pnl 模拟盈亏（已实现、浮动、总收益）
-                /ps_today 今日 A 级 / B 级观察名单
-                /ps_status 运行状态（版本、最近一次扫描）
-                /ps_help 本说明""";
+                /holdings 模拟组合当前持仓（实时价）
+                /pnl 模拟盈亏（已实现、浮动、总收益）
+                /today 今日 A 级 / B 级观察名单
+                /status 运行状态（版本、最近一次扫描）
+                /help 本说明""";
     }
 
     @SuppressWarnings("unchecked")

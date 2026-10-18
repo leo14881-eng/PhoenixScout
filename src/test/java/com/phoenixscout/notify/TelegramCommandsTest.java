@@ -12,15 +12,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class TelegramCommandsTest {
 
     @Test
-    void onlyPsPrefixedCommands() {
-        assertEquals("/ps_holdings", TelegramCommands.command("/ps_holdings"));
-        assertEquals("/ps_pnl", TelegramCommands.command(" /PS_PNL@PhoenixScoutBot extra"));
-        assertNull(TelegramCommands.command("/holdings"), "TrendPilot 的命令不回应");
-        assertNull(TelegramCommands.command("/status"));
+    void shortCommandsAndOldPrefix() {
+        assertEquals("/holdings", TelegramCommands.command("/holdings"));
+        assertEquals("/pnl", TelegramCommands.command(" /PNL@PhoenixScoutBot extra"));
+        assertEquals("/holdings", TelegramCommands.command("/ps_holdings"), "旧的 ps_ 写法仍然认");
         assertNull(TelegramCommands.command("hello"));
+        assertNull(TelegramCommands.command("/"));
         assertNull(TelegramCommands.command(null));
-        assertTrue(TelegramCommands.helpText().contains("/ps_holdings"));
-        assertFalse(TelegramCommands.helpText().contains(" /holdings"));
+        assertTrue(TelegramCommands.helpText().contains("/holdings") && !TelegramCommands.helpText().contains("ps_"));
     }
 
     static Map<String, Object> snap(List<Map<String, Object>> positions) {

@@ -38,5 +38,5 @@ python3 scripts/p0/build_snapshot.py   # 生成只读 snapshot_v1 + SHA-256 + �
 - 安装与维护脚本：`scripts/linux/`（install.sh、auto-update.sh、migrate-in.sh、status.sh）。仓库公开时匿名拉取；私有时用只读 deploy key。
 - 电脑端只执行固定的维护动作：在 `app\server.request` 写 `check` / `repo` / `install` / `status` / `migrate-fresh` / `fallback`，结果在 `logs\server.log`。
   迁移后电脑上的服务停用（`app\disabled.flag`），守护、开机启动、自动更新都不再拉起它。
-- Telegram 查询命令 `/ps_holdings`（模拟持仓）、`/ps_pnl`（模拟盈亏）、`/ps_today`、`/ps_status`、`/ps_help`：
+- Telegram 查询命令 `/holdings`（模拟持仓）、`/pnl`（模拟盈亏）、`/today`、`/status`、`/help`：
   需要本项目单独的机器人，并在配置里设 `phoenixscout.telegram.commands-enabled: true`（一个机器人只能有一个程序接收消息）。
