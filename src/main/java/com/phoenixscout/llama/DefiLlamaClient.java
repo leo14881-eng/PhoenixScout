@@ -115,6 +115,20 @@ public class DefiLlamaClient {
         return out;
     }
 
+    /** 按 slug 汇总近 30 天 / 前 30 天的某类收入（dataType = dailyRevenue / dailyHoldersRevenue），重点观察用。复用 12 小时缓存。 */
+    public Map<String, double[]> bySlug(String dataType) throws ApiException, InterruptedException {
+        JsonNode ov = get("/overview/fees?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true"
+                + "&dataType=" + dataType, TTL_OVERVIEW);
+        Map<String, double[]> out = new HashMap<>();
+        for (JsonNode p : ov.path("protocols")) {
+            String slug = text(p.get("slug"));
+            if (slug == null) continue;
+            Double a = num(p.get("total30d")), b = num(p.get("total60dto30d"));
+            out.put(slug, new double[]{a == null ? Double.NaN : a, b == null ? Double.NaN : b});
+        }
+        return out;
+    }
+
     /** 有第三方审计记录的代币（/protocols 的 audits 数量 &gt; 0 或有 audit_links），复用 7 天缓存，不额外请求。 */
     public java.util.Set<String> auditedCoins() throws ApiException, InterruptedException {
         java.util.Set<String> out = new java.util.HashSet<>();

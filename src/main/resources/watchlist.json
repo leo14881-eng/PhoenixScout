@@ -1,0 +1,14 @@
+[
+  {
+    "coinId": "arbitrum",
+    "name": "Arbitrum（ARB）",
+    "added": "2026-10-20",
+    "reason": "渣打银行（Geoff Kendrick，2026-09-15）预测 2030 年 10 美元：Arbitrum 拿其他链（如 Robinhood Chain）净协议收入的 10%，押注资产代币化增长。当前持币人收入为 0，属于无法估值。",
+    "revenueSlugs": ["arbitrum", "arbitrum-nitro", "arbitrum-timeboost"],
+    "partnerShares": [{"slug": "robinhood-chain", "name": "Robinhood Chain", "share": 0.10}],
+    "signals": [
+      "分成收入连续增长：Arbitrum 相关收入 + 合作链收入 × 10%（估算）连续两个 30 天环比增长",
+      "持币人收入出现：DefiLlama 持币人收入 > 0（DAO 通过回购/分红等价值捕获）"
+    ]
+  }
+]

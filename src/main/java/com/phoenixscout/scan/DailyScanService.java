@@ -63,7 +63,7 @@ public class DailyScanService {
                           com.phoenixscout.sim.SimLedger.Summary simSummary,
                           List<Rec> aList, List<Rec> bList, List<Eliminated> eliminated, int excludedByQuality,
                           int pathATotalBeforeCap, Map<String, Object> backtest, List<Rec> pathAWatch, List<Rec> pathBNotListed,
-                          List<NearMiss> nearMiss) { }
+                          List<NearMiss> nearMiss, List<WatchList.Status> watch) { }
 
     /** 【接近入选】只差一个条件的路径 B 币（V2.6.1，用户要求 2026-10-18）：missing = 差的那个条件，detail = 关键数字。 */
     public record NearMiss(String coinId, String name, String missing, String detail) { }
@@ -324,6 +324,8 @@ public class DailyScanService {
         tracked.addAll(preIds);
         tracked.addAll(protoByCoin.keySet());
         tracked.addAll(newIds);
+        List<WatchList.Entry> watchEntries = WatchList.load();
+        watchEntries.forEach(w -> tracked.add(w.coinId()));   // 重点观察：每天补日线
         if (sim != null) tracked.addAll(sim.coinsNeedingHistory(day));   // 模拟台账：组合持仓每天、选币台账每 7 天、到期观察点
 
         // 5. 增量补齐精确日线（只补缺的天数）
@@ -668,16 +670,27 @@ public class DailyScanService {
                 .sorted(Comparator.comparing((NearMiss n) -> n.missing().startsWith("只差收入连增") ? 1 : 0))
                 .limit(MAX_NEAR_MISS).toList();
         int supplyKnown = (int) market.stream().filter(c -> c.circulating() != null && c.totalSupply() != null).count();
+        // 重点观察名单（不进入推荐、不记台账）
+        List<WatchList.Status> watch = new ArrayList<>();
+        if (!watchEntries.isEmpty()) {
+            try {
+                var revSlug = llama.bySlug("dailyRevenue");
+                var holdSlug = llama.bySlug("dailyHoldersRevenue");
+                for (var w : watchEntries) watch.add(WatchList.evaluate(jdbc, w, day, byId.get(w.coinId()), hist.get(w.coinId()), revSlug, holdSlug));
+            } catch (ApiException e) {
+                problems.add("重点观察：DefiLlama 收入获取失败，今日未更新");
+            }
+        }
         Quality q = new Quality(cg.http().okCount(), cg.http().failedCount(), cg.http().rateLimitedCount(),
                 llama.http().okCount(), Math.max(0, llama.http().failedCount() - llamaRecovered), market.size(), sc.universeTopN(), tracked.size(),
                 withLatest, supplyKnown, protoByCoin.size(), snap.message(), exclFresh, problems);
         String status = problems.isEmpty() ? "ok" : "partial";
         List<String> aGrades = currentAGrades(byId);
         Outcome o = new Outcome(day, status, bm, bi, pathA, pathB, newPool, added, dropped, q, null, aGrades, prelim,
-                picks, simEvents, simSummary, aList, bList, eliminated, excludedCnt, pathATotal, btInfo, aWatch, bNotListed, nearView);
+                picks, simEvents, simSummary, aList, bList, eliminated, excludedCnt, pathATotal, btInfo, aWatch, bNotListed, nearView, watch);
         Path file = reports.write(o);
         o = new Outcome(day, status, bm, bi, pathA, pathB, newPool, added, dropped, q, file, aGrades, prelim,
-                picks, simEvents, simSummary, aList, bList, eliminated, excludedCnt, pathATotal, btInfo, aWatch, bNotListed, nearView);
+                picks, simEvents, simSummary, aList, bList, eliminated, excludedCnt, pathATotal, btInfo, aWatch, bNotListed, nearView, watch);
         finishRun(day, status, om.writeValueAsString(q), ReportWriter.oneLine(o));
         // 只在有新的 A/B 级币（7 天内没提醒过）或模拟组合有买卖时推送；其余日子不推日报
         List<String> fresh = newAlerts(day, aList, bList);
@@ -692,6 +705,12 @@ public class DailyScanService {
                 if (fresh.contains(r.name())) jdbc.update("INSERT INTO notification(kind, coin_id, scan_day, sent_at, ok) VALUES ('rec', ?, ?, ?, ?)",
                         r.coinId(), day.toString(), now, sent ? 1 : 0);
             }
+        }
+        // 重点观察：信号由不满足变为满足时单独提醒
+        for (var w : watch) {
+            if (w.newlyTriggered().isEmpty()) continue;
+            notifier.send("🔭 重点观察提醒：" + w.entry().name() + " 满足 " + String.join("、", w.newlyTriggered()) + "\n" + WatchList.line(w)
+                    + "\n（只是观察信号变化，不是买入建议；是否转入正式评估由你决定）");
         }
         // 每周日一条：本周情况 + 服务正常 + 模拟台账复盘（有记录时）
         if (day.getDayOfWeek() == java.time.DayOfWeek.SUNDAY) notifier.send(weeklyText(day));
@@ -719,6 +738,15 @@ public class DailyScanService {
         StringBuilder s = new StringBuilder("📅 每周汇总（").append(from).append(" → ").append(day).append("）\n");
         s.append("扫描 ").append(ok).append(" 次正常").append(failed != null && failed > 0 ? "，" + failed + " 次失败" : "").append("，服务运行中\n");
         s.append(recs.isEmpty() ? "本周没有币满足 A 级或 B 级条件，所以没有提醒。" : "本周出现过的 A/B 级：" + String.join("、", recs));
+        for (var w : WatchList.load()) {
+            List<Map<String, Object>> m = jdbc.queryForList("SELECT * FROM watch_metric WHERE coin_id = ? ORDER BY day DESC LIMIT 1", w.coinId());
+            if (m.isEmpty()) continue;
+            var r = m.get(0);
+            s.append("\n🔭 重点观察 ").append(w.name()).append("：近 30 天收入 ").append(ReportWriter.usd(r.get("total30") == null ? null : ((Number) r.get("total30")).doubleValue()))
+                    .append("（前 30 天 ").append(ReportWriter.usd(r.get("total_prev30") == null ? null : ((Number) r.get("total_prev30")).doubleValue())).append("）")
+                    .append("，连续增长 ").append(r.get("revenue_growing") == null ? "待确认" : ((Number) r.get("revenue_growing")).intValue() == 1 ? "✓" : "✗")
+                    .append("，持币人收入 ").append(((Number) r.get("holders_positive")).intValue() == 1 ? "✓" : "✗");
+        }
         s.append("\n状态页：http://127.0.0.1:8100/");
         Integer trades = jdbc.queryForObject("SELECT COUNT(*) FROM sim_trade", Integer.class);
         if (sim != null && trades != null && trades > 0) s.append("\n\n").append(new com.phoenixscout.sim.SimReview(jdbc).weeklyText(sim));

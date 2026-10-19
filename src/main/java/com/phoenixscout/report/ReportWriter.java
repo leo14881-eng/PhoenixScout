@@ -133,6 +133,13 @@ public class ReportWriter {
                 .append("或最近季度收入增长但前一季度没有增长（只差收入连增）。\n\n");
         if (o.nearMiss().isEmpty()) s.append("无\n");
         for (var n : o.nearMiss()) s.append("- ").append(n.name()).append("：差「").append(n.missing()).append("」；").append(n.detail()).append("\n");
+        if (o.watch() != null && !o.watch().isEmpty()) {
+            s.append("\n### 【重点观察】（用户指定；不进入推荐、不记台账，信号变为满足时单独提醒）\n\n");
+            for (var w : o.watch()) {
+                s.append("- ").append(com.phoenixscout.scan.WatchList.line(w).replace("\n   ", "\n  - ")).append("\n");
+                s.append("  - 关注理由：").append(w.entry().reason()).append("\n");
+            }
+        }
         s.append("\n### 【今日淘汰】\n\n");
         if (o.eliminated().isEmpty()) s.append("无\n\n");
         for (var e : o.eliminated()) s.append("- ").append(e.name()).append("（昨日 ").append(e.grade()).append(" 级）：").append(e.reason()).append("\n");
@@ -273,6 +280,10 @@ public class ReportWriter {
         if (!o.nearMiss().isEmpty()) {
             s.append("\n\n【接近入选】（只差一个条件，跟踪用，不是推荐）");
             for (var n : o.nearMiss()) s.append("\n· ").append(n.name()).append("：差「").append(n.missing()).append("」；").append(n.detail());
+        }
+        if (o.watch() != null && !o.watch().isEmpty()) {
+            s.append("\n\n【重点观察】");
+            for (var w : o.watch()) s.append("\n· ").append(com.phoenixscout.scan.WatchList.line(w));
         }
         s.append("\n\n【今日淘汰】");
         if (o.eliminated().isEmpty()) s.append("无");
