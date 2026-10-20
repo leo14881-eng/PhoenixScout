@@ -205,6 +205,8 @@ public class DailyScanService {
         } finally {
             lastFinish = Instant.now(clock);
             running.set(false);
+            // 扫描时会把上千个币的日线读进内存（每周回测时是全部 2,500 个）；扫描完立即回收，配合 MaxHeapFreeRatio 把空闲内存还给系统
+            System.gc();
         }
     }
 

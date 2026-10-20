@@ -75,7 +75,9 @@ ConditionPathExists=!$BIN/disabled.flag
 [Service]
 User=$RUN_USER
 WorkingDirectory=$APP_DIR
-ExecStart=/usr/bin/java -Xmx$JAVA_XMX -XX:+UseSerialGC -jar $JAR
+# 内存：堆上限 $JAVA_XMX；扫描完把空闲堆还给系统（MaxHeapFreeRatio=30）；整个进程硬上限 950M，超了只重启本服务，不影响同机 TrendPilot
+ExecStart=/usr/bin/java -Xms64m -Xmx$JAVA_XMX -XX:+UseSerialGC -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=30 -XX:-ShrinkHeapInSteps -XX:MaxMetaspaceSize=160m -XX:ReservedCodeCacheSize=64m -XX:+ExitOnOutOfMemoryError -jar $JAR
+MemoryMax=950M
 Restart=always
 RestartSec=30
 TimeoutStopSec=120
