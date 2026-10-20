@@ -13,6 +13,11 @@ echo "--- auto-update.log"
 tail -n 8 "$LOG_FILE" 2>/dev/null
 echo "--- 最近的扫描（scan_run）"
 sqlite3 -readonly "$APP_DIR/data/phoenixscout.db" "SELECT scan_day, started_at, finished_at, status FROM scan_run ORDER BY scan_day DESC LIMIT 5;" 2>&1 | head -n 5
+echo "--- 本地日线与回测（回测样本少多半是日线覆盖不足）"
+sqlite3 -readonly "$APP_DIR/data/phoenixscout.db" "SELECT '日线：' || COUNT(DISTINCT coin_id) || ' 个币，' || COUNT(*) || ' 行，' || MIN(day) || ' → ' || MAX(day) FROM price_daily;" 2>&1 | head -n 1
+sqlite3 -readonly "$APP_DIR/data/phoenixscout.db" "SELECT '最近一天有日线的币：' || COUNT(*) FROM price_daily WHERE day = (SELECT MAX(day) FROM price_daily);" 2>&1 | head -n 1
+sqlite3 -readonly "$APP_DIR/data/phoenixscout.db" "SELECT '回测 ' || run_day || '：' || json_extract(json,'$.episodes') || ' 个样本，' || json_extract(json,'$.verdict') FROM bt_run ORDER BY run_day DESC LIMIT 1;" 2>&1 | head -n 1
+sqlite3 -readonly "$APP_DIR/data/phoenixscout.db" "SELECT '研究结果：' || COUNT(DISTINCT coin_id) || ' 个币，最近 ' || MAX(researched_at) FROM research_raw;" 2>&1 | head -n 1
 echo "--- 快照 / 历史归档"
 ls -la "$APP_DIR/data/snapshot" 2>&1 | tail -n 4
 ls "$APP_DIR/data/raw/p0-archive/history" 2>/dev/null | wc -l | awk '{print "已归档币种文件 "$1}'

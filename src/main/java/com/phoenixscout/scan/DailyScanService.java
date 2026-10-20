@@ -156,18 +156,41 @@ public class DailyScanService {
     }
 
     public Instant lastStart() {
+        loadLastRun();
         return lastStart;
     }
 
+    private volatile boolean lastLoaded;
+
+    /** 服务重启后内存里没有上次扫描的记录：从 scan_run 补上，避免状态页显示“从未扫描”。 */
+    private void loadLastRun() {
+        if (lastLoaded || lastStart != null) return;
+        lastLoaded = true;
+        try {
+            var rows = jdbc.queryForList("SELECT started_at, finished_at, status, summary FROM scan_run ORDER BY scan_day DESC LIMIT 1");
+            if (rows.isEmpty()) return;
+            var r = rows.get(0);
+            if (r.get("started_at") != null) lastStart = Instant.parse((String) r.get("started_at"));
+            if (r.get("finished_at") != null) lastFinish = Instant.parse((String) r.get("finished_at"));
+            if (r.get("status") != null) lastStatus = (String) r.get("status");
+            if ("failed".equals(lastStatus)) lastError = (String) r.get("summary");
+        } catch (Exception ignored) {
+            // 表还没建好（首次启动）时保持“从未扫描”
+        }
+    }
+
     public Instant lastFinish() {
+        loadLastRun();
         return lastFinish;
     }
 
     public String lastStatus() {
+        loadLastRun();
         return lastStatus;
     }
 
     public String lastError() {
+        loadLastRun();
         return lastError;
     }
 
