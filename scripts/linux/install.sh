@@ -78,6 +78,8 @@ WorkingDirectory=$APP_DIR
 # 内存：堆上限 $JAVA_XMX；扫描完把空闲堆还给系统（MaxHeapFreeRatio=30）；整个进程硬上限 950M，超了只重启本服务，不影响同机 TrendPilot
 ExecStart=/usr/bin/java -Xms64m -Xmx$JAVA_XMX -XX:+UseSerialGC -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=30 -XX:-ShrinkHeapInSteps -XX:MaxMetaspaceSize=160m -XX:ReservedCodeCacheSize=64m -XX:+ExitOnOutOfMemoryError -jar $JAR
 MemoryMax=950M
+# glibc 默认按 CPU 核数开多个内存池，Java 多线程时会多占几十到上百 MB，限制为 2 个
+Environment=MALLOC_ARENA_MAX=2
 Restart=always
 RestartSec=30
 TimeoutStopSec=120
