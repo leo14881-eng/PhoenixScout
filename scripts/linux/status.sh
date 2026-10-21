@@ -18,6 +18,8 @@ sqlite3 -readonly "$APP_DIR/data/phoenixscout.db" "SELECT '日线：' || COUNT(D
 sqlite3 -readonly "$APP_DIR/data/phoenixscout.db" "SELECT '最近一天有日线的币：' || COUNT(*) FROM price_daily WHERE day = (SELECT MAX(day) FROM price_daily);" 2>&1 | head -n 1
 sqlite3 -readonly "$APP_DIR/data/phoenixscout.db" "SELECT '回测 ' || run_day || '：' || json_extract(json,'$.episodes') || ' 个样本，' || json_extract(json,'$.verdict') FROM bt_run ORDER BY run_day DESC LIMIT 1;" 2>&1 | head -n 1
 sqlite3 -readonly "$APP_DIR/data/phoenixscout.db" "SELECT '研究结果：' || COUNT(DISTINCT coin_id) || ' 个币，最近 ' || MAX(researched_at) FROM research_raw;" 2>&1 | head -n 1
+sqlite3 -readonly "$APP_DIR/data/phoenixscout.db" "SELECT '研究评级为 A 的币（最新一次）：' || COALESCE(GROUP_CONCAT(coin_id, '、'), '无') FROM (SELECT g.coin_id FROM research_grade g JOIN (SELECT coin_id, MAX(id) mid FROM research_grade GROUP BY coin_id) l ON g.id = l.mid WHERE g.grade = 'A');" 2>&1 | head -n 1
+sqlite3 -readonly "$APP_DIR/data/phoenixscout.db" "SELECT '最近推送：' || GROUP_CONCAT(kind || ' ' || COALESCE(coin_id,'') || ' ' || substr(sent_at,1,16), '；') FROM (SELECT * FROM notification WHERE kind <> 'daily' ORDER BY id DESC LIMIT 5);" 2>&1 | head -n 1
 echo "--- 快照 / 历史归档"
 ls -la "$APP_DIR/data/snapshot" 2>&1 | tail -n 4
 ls "$APP_DIR/data/raw/p0-archive/history" 2>/dev/null | wc -l | awk '{print "已归档币种文件 "$1}'
