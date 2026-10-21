@@ -34,7 +34,11 @@ class ScenarioCalculatorTest {
         // 乐观：36 个月收入 8e7 × 20（倍数已到目标）= 16 亿 / 1.2 亿 = 13.3x
         assertEquals(13.33, opt.multipleAt().get(36), 0.01);
         assertNotNull(opt.monthsTo().get(10));
-        assertTrue(ScenarioCalculator.fiveXPlausible(s));
+        assertFalse(ScenarioCalculator.fiveXPlausible(s), "只有乐观情景到 5 倍不算合理的 5 倍情景（V2.6.5）");
+        // 当前只有 5 倍收入、同类中位 15 倍：基准情景 36 个月内可到 5 倍
+        var cheap = new ScenarioCalculator.Inputs(1.0, 1e8, 2e8, Map.of(12, 1.1e8, 36, 1.2e8), 2e7,
+                Map.of("conservative", 0.0, "base", 0.5, "optimistic", 1.0), Map.of("p25", 8.0, "median", 15.0, "p75", 25.0));
+        assertTrue(ScenarioCalculator.fiveXPlausible(ScenarioCalculator.scenarios(cheap)));
     }
 
     @Test

@@ -90,7 +90,9 @@ public final class ChecklistEvaluator {
         }
         List<String> failed = out.stream().filter(x -> !x.pass()).map(Item::key).toList();
         String hint = research.path("grade_hint").asText("");
-        String grade = failed.isEmpty() ? "A" : "C".equals(hint) ? "C" : "B";
+        // 研究层的判断只能让评级更严：研究认定 C（淘汰/仅观察）就是 C，认定 B 就最多 B（V2.6.5，NEAR 误评 A 后修正）
+        String grade = "C".equals(hint) ? "C" : failed.isEmpty() && !"B".equals(hint) ? "A" : "B";
+        if (failed.isEmpty() && !"A".equals(grade)) notes.add("9 项代码校验通过，但研究层判定为 " + hint + " 级，按更严的结论");
         return new Result(grade, out, failed, scen, targets, inputs, notes);
     }
 
@@ -144,9 +146,22 @@ public final class ChecklistEvaluator {
         if (sbm.isEmpty()) notes.add("缺少未来供应表，情景按当前流通量计算（会高估收益）");
         Map<String, Double> g = new HashMap<>();
         si.path("revenue_growth").fields().forEachRemaining(f -> { Double v = num(f.getValue()); if (v != null) g.put(f.getKey(), v); });
+        // 收入增速上限（与初步推算一致）：基准 ≤50%/年，乐观 ≤100%/年，保守不高于基准——避免把一个季度的环比增速当成每年复利
+        capGrowth(g, "base", 0.5, notes);
+        capGrowth(g, "optimistic", 1.0, notes);
+        if (g.containsKey("conservative") && g.containsKey("base") && g.get("conservative") > g.get("base")) g.put("conservative", g.get("base"));
         Map<String, Double> m = new HashMap<>();
         si.path("peer_multiples").fields().forEachRemaining(f -> { Double v = num(f.getValue()); if (v != null && v > 0) m.put(f.getKey(), v); });
         return new ScenarioCalculator.Inputs(price, circ, num(si.get("total_supply")), sbm, rev, g, m);
+    }
+
+    static void capGrowth(Map<String, Double> g, String k, double cap, List<String> notes) {
+        Double v = g.get(k);
+        if (v != null && v > cap) {
+            g.put(k, cap);
+            notes.add(String.format(java.util.Locale.ROOT, "研究给出的%s收入增速 %.0f%%/年超过上限，按 %.0f%% 计算",
+                    k.equals("base") ? "基准" : "乐观", v * 100, cap * 100));
+        }
     }
 
     static Double num(JsonNode n) {

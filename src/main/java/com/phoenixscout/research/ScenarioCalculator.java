@@ -105,7 +105,8 @@ public final class ScenarioCalculator {
     }
 
     /** 第十四条第 7 项：基准或乐观情景在 36 个月内能达到 5 倍。 */
+    /** “合理的 5 倍估值情景”（第十四条第 7 项，V2.6.5 收紧）：只看基准情景，36 个月内达到 5 倍；乐观情景只作参考，不能单独让这一项通过。 */
     public static boolean fiveXPlausible(List<Scenario> s) {
-        return s.stream().filter(x -> !x.name().equals("conservative")).anyMatch(x -> x.monthsTo().get(5) != null);
+        return s.stream().filter(x -> x.name().equals("base")).anyMatch(x -> x.monthsTo().get(5) != null);
     }
 }

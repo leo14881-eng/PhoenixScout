@@ -44,7 +44,42 @@ public class ResearchService {
         this.clock = clock;
     }
 
+    public static final String RULES_VERSION = "V2.6.5";
+
+    /**
+     * 评级规则变了（如 V2.6.5 收紧“合理的 5 倍情景”）时，用每个币最近一份研究原文按新规则重新评级一次，
+     * 只在结果和原评级不同时新增一条记录（不推送）。用 kv 记下已按哪个规则版本重评过。
+     */
+    synchronized int regradeIfRulesChanged() {
+        String key = "research:regraded";
+        List<String> done = jdbc.queryForList("SELECT v FROM kv WHERE k = ?", String.class, key);
+        if (!done.isEmpty() && RULES_VERSION.equals(done.get(0))) return 0;
+        int n = 0;
+        java.util.Set<String> seen = new java.util.HashSet<>();
+        for (var row : jdbc.queryForList("SELECT coin_id, research_file, json FROM research_raw ORDER BY coin_id, researched_at DESC, research_file DESC")) {
+            String coin = (String) row.get("coin_id");
+            if (!seen.add(coin)) continue;   // 每个币只看最新一份
+            try {
+                JsonNode r = om.readTree((String) row.get("json"));
+                Map<String, Object> mkt = market(coin);
+                ChecklistEvaluator.Result res = ChecklistEvaluator.evaluate(r, candidatePath(coin), mkt == null ? null : (Double) mkt.get("price"));
+                String prev = previousGrade(coin);
+                if (res.grade().equals(prev)) continue;
+                jdbc.update("INSERT INTO research_grade(coin_id, research_file, graded_at, grade, failed_items, detail) VALUES (?,?,?,?,?,?)",
+                        coin, row.get("research_file") + "（" + RULES_VERSION + " 重新评级）", Instant.now(clock).toString(), res.grade(),
+                        om.writeValueAsString(res.failed()), om.writeValueAsString(res));
+                log.info("规则 {} 重新评级 {}：{} → {}", RULES_VERSION, coin, prev, res.grade());
+                n++;
+            } catch (Exception e) {
+                log.warn("重新评级 {} 失败：{}", coin, e.getMessage());
+            }
+        }
+        jdbc.update("INSERT OR REPLACE INTO kv(k, v) VALUES (?, ?)", key, RULES_VERSION);
+        return n;
+    }
+
     public synchronized int ingest() {
+        regradeIfRulesChanged();
         if (!Files.isDirectory(dir)) return 0;
         int n = 0;
         try (Stream<Path> s = Files.list(dir)) {
@@ -80,13 +115,11 @@ public class ResearchService {
                     coin, f.getFileName().toString(), Instant.now(clock).toString(), res.grade(),
                     om.writeValueAsString(res.failed()), om.writeValueAsString(res));
             saveEvidence(coin, res);
+            // V2.6.5：研究 9 项通过只是 A 级的必要条件，不直接推送。下一次每日扫描还要过推荐门槛
+            // （流动性、币价没有领先业务、低于估值目标、质量分 ≥4、解锁数据），都过了才作为新 A 级推送。
             if ("A".equals(res.grade())) {
-                if (aSentToday() < MAX_A_PER_DAY && !"A".equals(prev)) {
-                    send("A", coin, aMessage(coin, r, res, mkt, path));
-                } else if ("A".equals(prev) && persistentA(coin)) {
-                    log.info("{} 持续 A 级", coin);
-                }
-            } else if ("A".equals(prev)) {
+                log.info("{} 研究 9 项通过，等待下次扫描核对推荐门槛", coin);
+            } else if ("A".equals(prev) && wasRecommendedA(coin)) {
                 send("downgrade", coin, downgradeMessage(coin, r, res, mkt));
             }
             jdbc.update("INSERT OR REPLACE INTO kv(k, v) VALUES (?, ?)", marker, Instant.now(clock).toString());
@@ -131,6 +164,13 @@ public class ResearchService {
         Integer n = jdbc.queryForObject("SELECT COUNT(*) FROM notification WHERE kind = 'A' AND scan_day = ?", Integer.class,
                 LocalDate.now(clock.withZone(ZoneOffset.UTC)).toString());
         return n == null ? 0 : n;
+    }
+
+    /** 14 天内是否真的作为 A 级出现在推荐名单里（只有推送过的 A 级才需要推送降级）。 */
+    boolean wasRecommendedA(String coin) {
+        Integer n = jdbc.queryForObject("SELECT COUNT(*) FROM rec_daily WHERE coin_id = ? AND grade = 'A' AND scan_day >= ?", Integer.class,
+                coin, LocalDate.now(clock.withZone(ZoneOffset.UTC)).minusDays(14).toString());
+        return n != null && n > 0;
     }
 
     String previousGrade(String coin) {
