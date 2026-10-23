@@ -70,6 +70,9 @@ public class DailyScanService {
 
     /** 接近入选的“接近”标准：流动性达到门槛的一半；收入增速比币价涨幅只低 10 个百分点以内；现价高于估值目标不超过 10%。 */
     public static final double NEAR_VOLUME_RATIO = 0.5, NEAR_LAG_GAP = 0.10, NEAR_OVER_TARGET = 0.10;
+    /** V2.6.6（用户确认 2026-10-23，SOSO 只有 +7% 空间却被推荐后补上）：估值空间、价值捕获、稀释三道门槛。 */
+    public static final double MIN_UPSIDE = 0.50, MIN_UPSIDE_TO_DOWNSIDE = 1.5, MAX_UNLOCK_12M_PCT = 50, BIG_UNLOCK_OF_CIRC = 0.01;
+    public static final int UNLOCK_SOON_DAYS = 7;
     /** “只差收入连增”时前一季度最多允许下滑 20%（V2.6.2）。 */
     public static final double NEAR_PRIOR_DROP = 0.20;
     public static final int MAX_NEAR_MISS = 8;
@@ -627,6 +630,24 @@ public class DailyScanService {
                 if (target.upside() < -NEAR_OVER_TARGET / (1 + NEAR_OVER_TARGET)) allClose = false;   // 现价比目标高 10% 以内才算接近
             }
             if (!target.available() && unlock.circRatio() != null && unlock.circRatio() < 0.30) { fails.add("无法估值且流通率 <30%，移到观察"); allClose = false; }
+            // V2.6.6 ① 估值空间：至少 +50%，或至少是防守跌幅的 1.5 倍
+            if (target.available() && target.upside() > 0 && target.upside() < MIN_UPSIDE && target.upside() < down * MIN_UPSIDE_TO_DOWNSIDE) {
+                fails.add(String.format(java.util.Locale.ROOT, "估值空间不足：目标只高 %.0f%%（要求 ≥50%% 或 ≥ 防守跌幅 %.0f%% 的 1.5 倍）",
+                        target.upside() * 100, down * 100));
+                if (target.upside() < 0.35) allClose = false;
+            }
+            // V2.6.6 ② 价值捕获：持币人收入为 0 且研究层也没核实到机制
+            if (!Boolean.TRUE.equals(quality.items().get(com.phoenixscout.research.QualityScore.LABELS[2]))) {
+                fails.add("没有可验证的价值捕获（持币人收入为 0，研究层也未核实到回购/销毁/分红）");
+                allClose = false;
+            }
+            // V2.6.6 ③ 稀释：12 个月解锁 > 当前流通量 50%，或 7 天内有大额解锁（≥ 流通量 1%）
+            if (unlock.unlock12mPct() != null && unlock.unlock12mPct() > MAX_UNLOCK_12M_PCT) {
+                fails.add(String.format(java.util.Locale.ROOT, "稀释过重：未来 12 个月解锁约为当前流通量的 %.0f%%（上限 50%%）", unlock.unlock12mPct()));
+                allClose = false;
+            }
+            String soon = unlockSoon(unlock, mc.circulating(), day);
+            if (soon != null) { fails.add(soon); allClose = false; }
             String gate = fails.isEmpty() ? null : fails.get(0);
             if (gate != null) whyNot.put(id, gate);
             if (path.equals("B") && fails.size() == 1 && allClose && !"Chain".equalsIgnoreCase(cat)) {
@@ -636,7 +657,7 @@ public class DailyScanService {
                                 + (target.available() ? "；估值目标 " + String.format(java.util.Locale.ROOT, "%+.0f%%", target.upside() * 100) : "；无法估值")));
             }
             String name = mc.name() + "（" + mc.symbol().toUpperCase(java.util.Locale.ROOT) + "）";
-            Double hAnnual = holders.containsKey(id) ? holders.get(id) * 365 / 30 : null;
+            Double hAnnual = holders.containsKey(id) ? holders.get(id) * 365 / 30 : null;   // 近 30 天 × 365/30，显示时与协议收入同一窗口对比
             recs.add(new Rec(id, name, path, grade, px, mc.marketCap(), mc.fdv(), r30, r90, ex30, ex90, strength, quality, unlock,
                     target, ev, stop, down, ref, risks, reason, quality.excluded(), vol30, revGrowth, p90,
                     rev == null ? null : rev[0], hAnnual, gate, annualByCoin.get(id)));
@@ -776,6 +797,20 @@ public class DailyScanService {
         Integer trades = jdbc.queryForObject("SELECT COUNT(*) FROM sim_trade", Integer.class);
         if (sim != null && trades != null && trades > 0) s.append("\n\n").append(new com.phoenixscout.sim.SimReview(jdbc).weeklyText(sim));
         return s.toString();
+    }
+
+    /** 7 天内有没有大额解锁（≥ 当前流通量 1%）；日期或数量缺失时不判定。 */
+    static String unlockSoon(com.phoenixscout.research.UnlockRisk.Result u, Double circulating, LocalDate day) {
+        if (u.nextUnlockDate() == null || u.nextUnlockAmount() == null || circulating == null || circulating <= 0) return null;
+        try {
+            LocalDate d = LocalDate.parse(u.nextUnlockDate().substring(0, 10));
+            if (d.isBefore(day) || d.isAfter(day.plusDays(UNLOCK_SOON_DAYS))) return null;
+            double share = u.nextUnlockAmount() / circulating;
+            if (share < BIG_UNLOCK_OF_CIRC) return null;
+            return String.format(java.util.Locale.ROOT, "%s 有大额解锁（约为流通量的 %.1f%%），7 天内不推荐", d, share * 100);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     static String pp(Double v) {
