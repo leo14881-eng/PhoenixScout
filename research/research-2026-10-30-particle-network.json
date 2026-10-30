@@ -1,0 +1,182 @@
+{
+  "coin_id": "particle-network",
+  "researched_at": "2026-10-30T15:25:00Z",
+  "grade_hint": "C",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "PARTI：BSC 和 Base 合约 0x59264f02d301281f3393e1385c0aefd446eb0f00；总量 10 亿（固定）；TGE 2025-03-25",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/particle-network?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://doc.particle.network/tokenomics/usdparti",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko：流通 233M（23.3%）、总量 / 最大 1B，市值 $11.6M、FDV $49.9M；Tokenomist 流通 233M，两者一致",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/particle-network?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://tokenomist.ai/particle-network",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": false,
+      "claim": "DefiLlama 没有收录 Particle Network 的手续费或收入，官方文档也没有披露收入数据，没有可核实的经济活动",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/protocols",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://doc.particle.network/tokenomics/usdparti",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": false,
+      "claim": "官方代币文档只写了 Universal Gas、结算、PoS 安全、治理等用途，写了“通缩经济”但没有说明机制，没有已执行的回购、销毁或手续费分成",
+      "sources": [
+        {
+          "url": "https://doc.particle.network/tokenomics/usdparti",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": 708978321,
+      "claim": "近 30 天总成交 $709M（日均约 $23.6M），现货在 Binance、Bithumb、OKX、Bybit 等；24 小时成交 $162.6M，是市值的 14 倍，近 30 天涨 131%，明显是投机性放量",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/particle-network/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/particle-network?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": true,
+      "claim": "DefiLlama 安全事件库没有 Particle Network（库里 2024-02 的 ParticleTrade 被攻击 $140K 是另一个以太坊项目）；网页搜索未找到 Particle Network 被盗事件",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/hacks",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": true,
+      "claim": "CoinGecko 与 Tokenomist 的流通量一致（233M），总量与官方文档一致",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/particle-network?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://tokenomist.ai/particle-network",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://doc.particle.network/tokenomics/usdparti",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "supply_growth_12m_pct": null,
+      "claim": "流通只占总量 23.3%（< 50%），剩余 767M 由团队（12.11%）、私募（24.39%）、社区增长（40%）等多年释放，稀释压力大",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/particle-network?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://doc.particle.network/tokenomics/usdparti",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "开发者文档列出 CertiK、OpenZeppelin（BTC 智能账户）、Salus Sec 的审计，但没有写各自范围和日期，没有找到覆盖 PARTI 代币合约的审计",
+      "sources": [
+        {
+          "url": "https://developers.particle.network/docs/security-audits",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "机构背景可核实：2024-06 官方公告累计融资 $25M，$15M 轮由 Spartan Group、Gumi Crypto 领投，SevenX、HashKey、Flow Traders 等参投，早期有 Animoca、LongHash 等；官方称有 30 多名全职员工（公告没写创始人名字）",
+      "sources": [
+        {
+          "url": "https://blog.particle.network/25-million-funding/",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": "2026-11-25",
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": false,
+      "claim": "Tokenomist：下一次解锁 2026-11-25（社区增长），数量没显示；官方文档只写了“多年释放”，没有给出具体比例",
+      "sources": [
+        {
+          "url": "https://tokenomist.ai/particle-network",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://doc.particle.network/tokenomics/usdparti",
+          "date": "2026-10-30"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.04971981,
+    "circulating_supply": 233000000,
+    "total_supply": 1000000000,
+    "supply_by_month": {},
+    "annual_revenue_usd": null,
+    "revenue_growth": {},
+    "peer_multiples": {},
+    "peers": [],
+    "metric": "无可核实收入，无法估值"
+  },
+  "risks": [
+    "没有可核实收入，也没有价值捕获",
+    "流通只占 23.3%，剩余 76.7% 待释放",
+    "2026-11-25 有社区增长解锁（数量不明）",
+    "30 天涨 131%、日成交是市值 14 倍，属于投机炒作，回落风险大"
+  ],
+  "unverified": [
+    "未来 12/36 个月解锁比例和 2026-11-25 的解锁数量",
+    "PARTI 代币合约审计",
+    "收入数据"
+  ],
+  "catalysts": [],
+  "summary_reason": "路径 A 观察币：近期大涨但没有收入和价值捕获，流通率只有 23%，按第十四条淘汰（C）"
+}

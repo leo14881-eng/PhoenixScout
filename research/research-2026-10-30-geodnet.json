@@ -1,0 +1,205 @@
+{
+  "coin_id": "geodnet",
+  "researched_at": "2026-10-30T15:25:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "GEOD：Polygon 合约 0xac0f66379a6d7801d7726d5a943356a172549adb，Solana 7JA5eZdCzztSfQbJvS8aVVxMFfd81Rs9VvwnocV1mKHu；最大供应 10 亿（固定，合约控制权已放弃，见 Blockworks 自报披露 2025-08-19）",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/geodnet?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/geodnet",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": null,
+      "claim": "CoinGecko：流通 745.3M、总量 928.8M（扣除已销毁）、最大 1B、市值 $180.9M、FDV $225.4M；但 DefiLlama 解锁页显示流通 447.2M（约 2026-06 的快照），两者相差约 40%，且分配比例与 Blockworks 披露不一致，未来 12 个月供应变化无法核实",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/geodnet?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://defillama.com/protocol/unlocks/geodnet",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/geodnet",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "DefiLlama：基站 RTK 接入费收入近 30 天 $909,249、前 30 天 $913,882；近 90 天 $2,745,433、前 90 天 $2,631,949（+4.3%）；近 365 天 $9,752,890",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/geodnet?dataType=dailyRevenue",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://defillama.com/protocol/geodnet",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "mechanism": "buyback",
+      "claim": "收入的 80% 在公开市场回购 GEOD 并销毁（DefiLlama 方法说明；官网 GEOD 页显示近一个月销毁约 845,000，单位未标明，推测为美元）；CoinGecko 总量 928.8M < 最大 1B，说明已累计销毁约 71M。DefiLlama 持币人收入近 30 天 $727,403。注意 Blockworks 披露写的是“订阅收入 50% 归基金会、其中 80% 回购”，口径不一致",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/geodnet?dataType=dailyHoldersRevenue",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://geodnet.com/geod",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/geodnet?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/geodnet",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": 74390808,
+      "claim": "CoinGecko 近 30 天总成交 $74.4M（日均约 $2.48M，含 DEX）；现货在 Coinbase、Upbit、Bithumb、MEXC、Gate 交易",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/geodnet/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/geodnet?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": true,
+      "claim": "DefiLlama 安全事件库没有 GEODNET 记录；网页搜索未找到 GEODNET 被盗或攻击事件（搜到的 GeoDB 被盗是另一个项目）",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/hacks",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "重大矛盾：流通量 CoinGecko 745.3M vs DefiLlama 解锁页 447.2M；分配比例 DefiLlama（私募 48.8%、挖矿 34.4%、生态 11.4%、内部 5.4%）vs Blockworks 自报（挖矿 35%、团队 25%、投资人 25%、生态 10%、营销 3%、公开发售 2%）；回购口径 80% 全部收入 vs 50%×80%",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/geodnet?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://defillama.com/protocol/unlocks/geodnet",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/geodnet",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": null,
+      "supply_growth_12m_pct": null,
+      "claim": "按 CoinGecko：尚未流通 183.5M = 流通量的 24.6%（就算 12 个月内全部释放，也是这个上限），流通/总量 80.2%；但流通量与 DefiLlama 冲突（按 447M 计流通/总量 < 50%），且没有找到官方的 12 个月释放表，无法认定",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/geodnet?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://defillama.com/protocol/unlocks/geodnet",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "DefiLlama 没有审计记录；本次没有找到 GEOD 合约的第三方审计报告",
+      "sources": [
+        {
+          "url": "https://defillama.com/protocol/geodnet",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "实名团队：Mike Horton（联合创始人兼 CEO，曾创办 Crossbow Technology，2011 年卖给 Moog）、Yudan Yi（GNSS 负责人，曾任职 Topcon、千寻）、David Chen（区块链负责人，曾任 MOAC CEO）；三轮私募 $1.5M / $5.1M / $8.125M（项目自报，Blockworks 不核实）",
+      "sources": [
+        {
+          "url": "https://blockworks.com/token-transparency/filing/geodnet",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": true,
+      "claim": "挖矿奖励每天发放；第 3 轮私募（2024-12）分 2 年解锁，预计到 2026-12 左右结束（自报）。DefiLlama 解锁页数据停在 2026-06（下一次显示 2026-06-03 挖矿 132,286 枚），12/36 个月合计没有显示；与 CoinGecko 流通量冲突",
+      "sources": [
+        {
+          "url": "https://defillama.com/protocol/unlocks/geodnet",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/geodnet",
+          "date": "2026-10-30"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.242704,
+    "circulating_supply": 745323399.6,
+    "total_supply": 928846063.6,
+    "supply_by_month": {},
+    "annual_revenue_usd": 9752890,
+    "revenue_growth": {
+      "conservative": 0.09,
+      "base": 0.18,
+      "optimistic": 0.27
+    },
+    "peer_multiples": {},
+    "peers": [],
+    "metric": "协议年化收入（DefiLlama revenue 口径，近 365 天实际）；增速按近两个 90 天环比 +4.3% 年化约 18%"
+  },
+  "risks": [
+    "币价领先业务：季度收入 +4.3%，币价 90 天 +27%，现价高于代码估值目标",
+    "流通量和分配比例各来源严重冲突，解锁节奏不明",
+    "第 3 轮私募预计 2026-12 前释放完，存在抛压",
+    "回购比例说法不一致（80% vs 50%×80%）"
+  ],
+  "unverified": [
+    "未来 12/36 个月解锁占流通比例和下一次大额解锁",
+    "真实流通量（CoinGecko 745M vs DefiLlama 447M）",
+    "合约第三方审计",
+    "同赛道可比估值倍数（没有找到有来源的 DePIN 可比倍数）",
+    "每月销毁的确切数量（官网只写 845,000，没标单位）"
+  ],
+  "catalysts": [],
+  "summary_reason": "收入真实且稳定（年化约 $9.8M，80% 用于回购销毁），但收入增长慢于币价，且流通量和解锁数据各来源冲突，暂时只能观察"
+}

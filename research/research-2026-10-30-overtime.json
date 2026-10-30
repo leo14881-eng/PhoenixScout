@@ -1,0 +1,188 @@
+{
+  "coin_id": "overtime",
+  "researched_at": "2026-10-30T15:25:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "OVER（原 THALES 1:1 迁移，2025-04 上线）：Ethereum 0x90ce5720c17587d28e4af120ae2d313b3bad1722，另有 Base / Arbitrum / Optimism 合约（Chainlink CCT 跨链）",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/overtime?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://decrypt.co/312981/overtime-launches-over-token-and-full-account-abstraction-ux",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko：流通 = 总量 53.98M，最大 69.42M（上线时 69.42M，之后通过回购销毁减少约 15.4M），市值 = FDV ≈ $10.06M",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/overtime?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://decrypt.co/312981/overtime-launches-over-token-and-full-account-abstraction-ux",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "DefiLlama：链上体育博彩和 Speed Markets 收入近 30 天 $345,506、前 30 天 $190,556；近 90 天 $761,981、前 90 天 $671,585；近 365 天 $2,706,847（博彩收入受赛果影响，可能为负）",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/overtime?dataType=dailyRevenue",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://defillama.com/protocol/overtime",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "mechanism": "buyback",
+      "claim": "SafeBoxBuyback 合约用 USDC 回购并销毁 OVER（已执行，DefiLlama 按链上合约支出统计）：持币人收入近 30 天 $69,932、近 365 天 $792,321；总量从 69.42M 降到 53.98M 可印证",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/overtime?dataType=dailyHoldersRevenue",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/overtime?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": false,
+      "spot_volume_30d_usd": 528437,
+      "claim": "近 30 天总成交只有 $528,437（日均约 $17,600），全部在 Uniswap、Aerodrome、Velodrome 等 DEX，没有中心化交易所现货，远低于日均 50 万美元门槛",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/overtime/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/overtime?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": true,
+      "claim": "DefiLlama 安全事件库没有 Overtime / Thales 记录",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/hacks",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": true,
+      "claim": "CoinGecko 供应量与上线公告的 69.42M 上限、DefiLlama 回购统计方向一致，没有发现重大矛盾",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/overtime?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/overtime?dataType=dailyHoldersRevenue",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": null,
+      "supply_growth_12m_pct": null,
+      "claim": "流通 = 总量（100%），上线以来总量净减少约 22%；但没有找到官方文档说明是否还有质押奖励等增发，12 个月增长率无法确认",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/overtime?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "audit": {
+      "ok": true,
+      "claim": "DefiLlama 列出 iosiro（AMM、Parlay、质押等合约）、Decurity（Speed Markets、流动性池）、CertiK 的审计",
+      "sources": [
+        {
+          "url": "https://defillama.com/protocol/overtime",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://github.com/decurity/audits/blob/master/ThalesMarket/thales-market-speedmarkets-audit-report-1.1.pdf",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "官方文档和上线公告都没有写团队成员实名，只有 Thales DAO 并入 Overtime 品牌（TIP-238）的说明",
+      "sources": [
+        {
+          "url": "https://docs.overtimemarkets.xyz/",
+          "date": "2026-10-30"
+        },
+        {
+          "url": "https://decrypt.co/312981/overtime-launches-over-token-and-full-account-abstraction-ux",
+          "date": "2026-10-30"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": null,
+      "conflict": false,
+      "claim": "CoinGecko 显示流通 = 总量，但没有找到官方解锁/金库持仓说明，不能确认已全部解锁",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/overtime?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-10-30"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.186368,
+    "circulating_supply": 53983062.1,
+    "total_supply": 53983062.1,
+    "supply_by_month": {},
+    "annual_revenue_usd": 2706847,
+    "revenue_growth": {
+      "conservative": 0.07,
+      "base": 0.13,
+      "optimistic": 0.2
+    },
+    "peer_multiples": {},
+    "peers": [],
+    "metric": "协议年化收入（DefiLlama revenue 口径，近 365 天实际）；增速按近两个 90 天环比 +13.5%，保守取一半"
+  },
+  "risks": [
+    "流动性极差：日均成交约 $1.8 万，只能在 DEX 交易",
+    "博彩收入受赛果影响，波动大，可能出现负收入",
+    "团队不实名",
+    "2026-07-21 起金库是唯一的做市方（OIP-265），赔付风险由金库承担"
+  ],
+  "unverified": [
+    "团队实名背景",
+    "是否还有增发（质押奖励等）及 12 个月供应变化",
+    "解锁/金库持仓",
+    "同赛道可比估值倍数"
+  ],
+  "catalysts": [],
+  "summary_reason": "收入真实、已执行回购销毁、供应在减少，但日均成交不到 2 万美元，流动性不达标"
+}
