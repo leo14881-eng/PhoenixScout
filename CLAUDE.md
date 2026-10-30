@@ -7,4 +7,5 @@
 - 数据纪律：缺失即缺失（不填零）、不用邻近日期冒充目标日期、所有价格带来源与请求时间、数据源冲突要记录。
 - 快照 `data/snapshot/snapshot_vN.json` 只读；校验失败时停止相关计算并报告，绝不重建覆盖；修正只能出新版本。
 - A 级只能由代码 checklist 判定：9 项硬性条件每项必须有数据字段或「来源 url + 日期」，否则上限 B。
+- 研究层定时任务不依赖用户电脑（用户 2026-10-30 要求）：只通过本仓库 `research-data` 分支读候选、写研究结果（服务器 `scripts/linux/relay.sh` 中转）。
 - 绝不读取或复制 `config/application-local.yml`（存放 Telegram token 等私密配置）。

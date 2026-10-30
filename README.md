@@ -35,7 +35,9 @@ python3 scripts/p0/build_snapshot.py   # 生成只读 snapshot_v1 + SHA-256 + �
 
 - 服务器：`/opt/phoenixscout`（运行）、`/opt/phoenixscout-src`（源码），用户 `phoenixscout`，`phoenixscout.service` 只监听 127.0.0.1:8100，JVM 上限 700M；
   `phoenixscout-update.timer` 每 3 分钟自动更新（main 有新提交 → 构建含测试 → 扫描空档换包 → 启动检查不过就回滚）并守护。同机的 TrendPilot 不受影响。
-- 安装与维护脚本：`scripts/linux/`（install.sh、auto-update.sh、migrate-in.sh、status.sh）。仓库公开时匿名拉取；私有时用只读 deploy key。
+- 安装与维护脚本：`scripts/linux/`（install.sh、auto-update.sh、relay.sh、migrate-in.sh、status.sh）。
+- 研究层中转（2026-10-30 起不依赖电脑）：`relay.sh` 把候选推到本仓库 `research-data` 分支、把 Claude 研究任务提交的研究文件拉回 `data/research/`。
+  上传要一把可写 deploy key（标题 phoenixscout-relay，勾选 Allow write access），首次运行自动生成并用 Telegram 发公钥。仓库公开时匿名拉取；私有时用只读 deploy key。
 - 电脑端只执行固定的维护动作：在 `app\server.request` 写 `check` / `repo` / `install` / `status` / `migrate-fresh` / `fallback`，结果在 `logs\server.log`。
   迁移后电脑上的服务停用（`app\disabled.flag`），守护、开机启动、自动更新都不再拉起它。
 - Telegram 查询命令 `/holdings`（模拟持仓）、`/pnl`（模拟盈亏）、`/today`、`/status`、`/help`：

@@ -130,4 +130,6 @@ update() {
 }
 
 watchdog
+# 研究层中转（research-data 分支，不经过用户电脑）；放在更新前面，更新可能要等很久
+if [ -f "$HERE/relay.sh" ]; then timeout 150 bash "$HERE/relay.sh" || log "中转超时或失败"; fi
 update
