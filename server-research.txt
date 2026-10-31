@@ -51,3 +51,5 @@ research-2026-10-29-venice-token.json
 research-2026-10-30-geodnet.json
 research-2026-10-30-overtime.json
 research-2026-10-30-particle-network.json
+research-2026-10-31-liquity.json
+research-2026-10-31-trust-wallet-token.json
