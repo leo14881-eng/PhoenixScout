@@ -1,0 +1,198 @@
+{
+  "coin_id": "trust-wallet-token",
+  "researched_at": "2026-10-31T03:40:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "TWT：BNB Chain BEP-20 合约 0x4B0F1812e5Df2A09796481Ff14017e6005508003（官方 litepaper 与 CoinGecko 一致），另有 BEP-2 TWT-8C2；总量 10 亿",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/trust-wallet-token?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-10-31"
+        },
+        {
+          "url": "https://trustwallet.com/id/blog/company/trust-wallet-token-twt-litepaper",
+          "date": "2026-10-31"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": false,
+      "claim": "CoinGecko：流通 416,649,900、总量 1,000,000,000，市值 ≈ $175.0M，FDV ≈ $420.0M；官方 litepaper 只说未流通部分用于增长、流动性、合作和团队激励，没有数量和释放时间，未来 12 个月供应变化不可核实",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/trust-wallet-token?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-10-31"
+        },
+        {
+          "url": "https://trustwallet.com/id/blog/company/trust-wallet-token-twt-litepaper",
+          "date": "2026-10-31"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "DefiLlama：Trust Wallet 钱包兑换/跨链手续费收入近 30 天 $542,019、近 90 天 $1,194,646、近 365 天 $4,680,860；Trust Wallet Perps（Hyperliquid builder code，2026-04-29 起）近 30 天 $1,582,327、近 90 天 $3,972,099、上线以来 $4,154,817。合计近 30 天约 $2.12M",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/trust-wallet-wallet?dataType=dailyRevenue",
+          "date": "2026-10-31"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/trust-wallet-perps?dataType=dailyRevenue",
+          "date": "2026-10-31"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": false,
+      "mechanism": null,
+      "claim": "DefiLlama 方法说明：Perps 收入“No fees distributed to TWT token holders”，持币人收入为 0；官方 litepaper 只有手续费折扣、锁仓会员（Trust Premium）等用途，免责声明写明持有 TWT 不享有收入或利润分成；唯一一次销毁是 2020-10-03 一次性销毁 889.99 亿枚（BEP-2 迁移），没有持续回购/销毁",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/trust-wallet-perps?dataType=dailyHoldersRevenue",
+          "date": "2026-10-31"
+        },
+        {
+          "url": "https://trustwallet.com/id/blog/company/trust-wallet-token-twt-litepaper",
+          "date": "2026-10-31"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": null,
+      "spot_volume_30d_usd": 192426112,
+      "claim": "CoinGecko 近 30 天总成交约 $192.4M（日均 $6.4M），但当日交易对中约八成来自 Biconomy.com（约 $6.0M）、Aivora、GroveX 等低可信度交易所；主流交易所 Binance 约 $0.49M、Bybit 约 $0.21M（24 小时快照），真实现货成交可能远低于总数，有刷量嫌疑，无法确认",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/trust-wallet-token/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-10-31"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/trust-wallet-token?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-10-31"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "事故 1：2025-12-24 Chrome 扩展 v2.68 被植入恶意代码（Chrome Web Store API 密钥泄露），约 $7M（DefiLlama 记 $8.5M）用户资产被盗；Trust Wallet 与 CZ 承诺全额赔付并开放理赔表单，但已打开的来源没有赔付完成的证据。代币合约本身没有安全事件记录",
+      "sources": [
+        {
+          "url": "https://www.theblock.co/news/ecosystems/2025-12-27-trust-wallet-launches-compensation-process-for-7-million-browser-extension-hack-victims-383801",
+          "date": "2026-10-31"
+        },
+        {
+          "url": "https://api.llama.fi/hacks",
+          "date": "2026-10-31"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "CoinGecko 成交量集中在低可信度交易所，与主流交易所成交差距很大；流通量 41.7% 由项目方口径决定，官方未给出未流通部分的明细",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/trust-wallet-token?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-10-31"
+        },
+        {
+          "url": "https://trustwallet.com/id/blog/company/trust-wallet-token-twt-litepaper",
+          "date": "2026-10-31"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "supply_growth_12m_pct": null,
+      "claim": "流通量只占总量 41.7%（<50%），未流通 583.35M 枚（约当前流通的 140%）没有公开释放计划；没有强证据证明需求增长能抵消稀释",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/trust-wallet-token?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-10-31"
+        },
+        {
+          "url": "https://trustwallet.com/id/blog/company/trust-wallet-token-twt-litepaper",
+          "date": "2026-10-31"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "DefiLlama 对 Trust Wallet Wallet / Perps 均为 0 份审计记录；未找到第三方审计报告",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/trust-wallet-wallet?dataType=dailyRevenue",
+          "date": "2026-10-31"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/trust-wallet-perps?dataType=dailyRevenue",
+          "date": "2026-10-31"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "Trust Wallet 由 Viktor Radchenko 于 2017 年创立，2018-07 被 Binance 收购（Binance 首个收购），2022 年起 CEO 为 Eowyn Chen（现任与否未从官方确认）；官方称用户超 2.2 亿",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Trust_Wallet",
+          "date": "2026-10-31"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": false,
+      "claim": "官方 litepaper（2026-07-17 更新）没有解锁时间表；未流通 583.35M 枚由项目方支配，可能随时释放，解锁数据缺失",
+      "sources": [
+        {
+          "url": "https://trustwallet.com/id/blog/company/trust-wallet-token-twt-litepaper",
+          "date": "2026-10-31"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/trust-wallet-token?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-10-31"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.420029,
+    "circulating_supply": 416649900,
+    "total_supply": 1000000000,
+    "supply_by_month": {},
+    "annual_revenue_usd": 8835677,
+    "revenue_growth": {
+      "conservative": 0.0,
+      "base": 0.5,
+      "optimistic": 0.75
+    },
+    "peer_multiples": {},
+    "peers": [],
+    "metric": "协议年化收入（DefiLlama revenue，钱包 + Perps 合并）：min(近30天×12=$25.5M, 近90天×4=$20.7M, 近365天=$8.84M)；Perps 不足 12 个月，近期增速受新业务上线影响，基准按上限 50%。注意：收入全部归公司，不归持币人"
+  },
+  "risks": [
+    "持币人拿不到任何收入：收入全部归 Trust Wallet（Binance 体系）公司，TWT 只有折扣/会员用途",
+    "流通率 41.7%，未流通 5.8 亿枚无公开释放计划，高稀释风险",
+    "成交量大部分来自低可信度交易所，疑似刷量",
+    "2025-12 浏览器扩展被盗约 $7M，赔付完成情况未核实",
+    "近 30 天收入的七成来自 Hyperliquid builder code（2026-04 上线），依赖外部平台"
+  ],
+  "unverified": [
+    "流动性：真实现货成交额",
+    "安全：2025-12 扩展被盗事件的赔付是否完成",
+    "审计：未找到第三方审计",
+    "解锁：未流通部分的释放计划",
+    "同赛道可比估值倍数"
+  ],
+  "catalysts": [],
+  "summary_reason": "钱包与 Perps 收入快速增长，但 TWT 没有任何价值捕获、流通率不到一半且无解锁计划，最多 B 级观察"
+}
