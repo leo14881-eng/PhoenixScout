@@ -1,0 +1,250 @@
+{
+  "coin_id": "ore",
+  "researched_at": "2026-11-01T08:10:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "ORE（Solana）合约 oreoU2P8bN6jkk3jbaiVxYnG1dCXcYxwhwyK9jSybcp（CoinGecko 注明由旧合约 oreoN2tQbHXVaZsr3pf66A48miqcBXCDJozganhEJgz 迁移）；最大供应 300 万枚（DefiLlama 代币权益页、Blockworks 透明度披露一致）；官网 ore.supply，DefiLlama 协议 ORE Protocol（gecko_id=ore）",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/ore/usd",
+          "date": "2026-11-01"
+        },
+        {
+          "url": "https://defillama.com/protocol/token-rights/ore-protocol",
+          "date": "2026-11-01"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/ore",
+          "date": "2026-11-01"
+        },
+        {
+          "url": "https://api.llama.fi/protocol/ore-protocol",
+          "date": "2026-11-01"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": null,
+      "claim": "CoinGecko（2026-11-01）：价格 $152.13、流通 = 总量 516,519、最大 300 万，市值 ≈ $78.6M，FDV 按总量计 ≈ $78.6M；按最大供应计 FDV 约 $456M。未来 12 个月供应变化无法核实：供应来自持续挖矿（DefiLlama 写约 1 枚/分钟，Blockworks 项目自披露写上限约 2 枚/分钟），扣除回购“埋藏”后的净增量没有官方或第三方数据；被埋藏的 ORE 在流通低于上限时可再次铸造",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/ore/usd",
+          "date": "2026-11-01"
+        },
+        {
+          "url": "https://defillama.com/protocol/token-rights/ore-protocol",
+          "date": "2026-11-01"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/ore",
+          "date": "2026-11-01"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "DefiLlama ORE Protocol（Gamified Mining）：收入近 30 天 $4.18M、前 30 天 $2.52M，近 90 天 $9.42M、前 90 天 $9.04M，近 365 天 $43.3M（数据自 2025-10-19 起，运营不足 13 个月）；收入 = 矿工每轮投入 SOL 的 10% 被协议收取。注意：活动本质是带补贴的挖矿/抽奖式玩法，依赖 ORE 价格与排放补贴；DefiLlama 代币页显示 2026 年 Q1、Q2 排放激励（$10.46M、$6.22M）高于收入（$9.16M、$5.47M），净收益为负",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/ore-protocol?dataType=dailyRevenue",
+          "date": "2026-11-01"
+        },
+        {
+          "url": "https://api.llama.fi/overview/fees?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true",
+          "date": "2026-11-01"
+        },
+        {
+          "url": "https://defillama.com/token/ore",
+          "date": "2026-11-01"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "mechanism": "buyback",
+      "claim": "已执行的回购：协议钱包 45db2FSR4mcXdSVVZbKbwojU6uYDpMyhpEi7cC8nHaWG 用收取的 SOL 在公开市场买入 ORE，90% 埋藏（移出流通）、10% 发给质押者；DefiLlama 持币人收入近 30 天 $4.14M、近 365 天 $42.9M（fee switch ON）。局限：埋藏不是永久销毁（流通低于上限时可再铸造），且回购金额低于同期挖矿排放价值，回购不足以造成净通缩",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/ore-protocol?dataType=dailyHoldersRevenue",
+          "date": "2026-11-01"
+        },
+        {
+          "url": "https://defillama.com/protocol/token-rights/ore-protocol",
+          "date": "2026-11-01"
+        },
+        {
+          "url": "https://defillama.com/token/ore",
+          "date": "2026-11-01"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/ore",
+          "date": "2026-11-01"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": false,
+      "claim": "无主流交易所现货：CoinGecko 24h 成交约 $1.45M，主要在 Meteora（ORE/WSOL 约 48%、ORE/USDC 约 7%）和 LBank ORE/USDT（约 34%）；DefiLlama 代币页 24h CEX $0.48M / DEX $0.91M；项目披露无做市商、无交易所上架协议。近 30 天中心化交易所真实现货成交额无法核实",
+      "spot_volume_30d_usd": null,
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/ore/usd",
+          "date": "2026-11-01"
+        },
+        {
+          "url": "https://defillama.com/token/ore",
+          "date": "2026-11-01"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/ore",
+          "date": "2026-11-01"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "未找到影响持币人资金的被盗事件；项目自披露“截至 2026-07-15 无影响持币人或协议资金的漏洞利用”（Blockworks 不核实答案）。2024 年 4 月曾因 Solana 拥堵主动暂停挖矿并推出 v2（无资金损失，仅见搜索结果，未打开）。治理风险：无 DAO/基金会，管理员密钥可更换管理员、收取 1% 管理费、执行埋藏/发放收益，协议参数“可通过未来升级修改”；无公开第三方审计",
+      "sources": [
+        {
+          "url": "https://blockworks.com/token-transparency/filing/ore",
+          "date": "2026-11-01"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "存在矛盾：①排放速率 DefiLlama 写约 1 枚/分钟，项目披露写上限约 2 枚/分钟；②DefiLlama 代币页流通 463,555、FDV $305.77M（按最大供应、数据日期不明）与 CoinGecko 流通 516,519、FDV=市值 $78.6M（按总量）口径不同；③CoinGecko 页面内 ORE/WSOL 成交额两处数字不一致",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/ore/usd",
+          "date": "2026-11-01"
+        },
+        {
+          "url": "https://defillama.com/token/ore",
+          "date": "2026-11-01"
+        },
+        {
+          "url": "https://defillama.com/protocol/token-rights/ore-protocol",
+          "date": "2026-11-01"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/ore",
+          "date": "2026-11-01"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "claim": "不满足：流通 516,519 仅为最大供应 300 万的约 17%；挖矿毛排放约 1 枚/分钟 ≈ 52.6 万枚/年，约为当前流通量的 102%（按项目披露的 2 枚/分钟则更高），净增量取决于回购埋藏数量，无可核实数据；且 DefiLlama 显示 2026 年上半年排放激励价值高于回购收入，说明净供应仍在增长。没有需求增长足以抵消稀释的强证据",
+      "supply_growth_12m_pct": null,
+      "sources": [
+        {
+          "url": "https://defillama.com/protocol/token-rights/ore-protocol",
+          "date": "2026-11-01"
+        },
+        {
+          "url": "https://defillama.com/token/ore",
+          "date": "2026-11-01"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/ore",
+          "date": "2026-11-01"
+        },
+        {
+          "url": "https://www.coingecko.com/en/coins/ore/usd",
+          "date": "2026-11-01"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "DefiLlama 协议记录 audits=0；Blockworks 项目披露未列出任何审计机构或日期；未找到公开第三方审计报告",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/protocol/ore-protocol",
+          "date": "2026-11-01"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/ore",
+          "date": "2026-11-01"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "开发公司 Regolith Labs（特拉华州 C 型公司），创始人兼 CEO 为匿名开发者 Hardhat Chad，运营负责人 Trey Buckingham、增长负责人 Thep B.（曾在 Step Finance）；Regolith Labs 完成 300 万美元种子轮，Foundation Capital 领投，Colosseum、Solana Ventures 等参投（投资人拿股权和未来 Regolith 代币认股权，未拿 ORE）。创始人未实名",
+      "sources": [
+        {
+          "url": "https://blockworks.com/token-transparency/filing/ore",
+          "date": "2026-11-01"
+        },
+        {
+          "url": "https://blockworks.com/news/lightspeed-newsletter-solana-ore-funding",
+          "date": "2026-11-01"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "无团队/投资人/金库分配：100% 来自挖矿，无锁仓、无悬崖、无解锁表（项目披露、DefiLlama 一致）。但新供应来自持续挖矿排放（毛排放约等于流通量的 100%/年），扣除埋藏后的净增量无法核实，因此未来 12/36 个月新增流通占比写 null，不按“已全部解锁、新增 0”处理",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": true,
+      "sources": [
+        {
+          "url": "https://blockworks.com/token-transparency/filing/ore",
+          "date": "2026-11-01"
+        },
+        {
+          "url": "https://defillama.com/protocol/token-rights/ore-protocol",
+          "date": "2026-11-01"
+        },
+        {
+          "url": "https://defillama.com/token/ore",
+          "date": "2026-11-01"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 152.13,
+    "circulating_supply": 516519,
+    "total_supply": 516519,
+    "supply_by_month": {},
+    "annual_revenue_usd": 37689940,
+    "revenue_growth": {
+      "conservative": 0.09,
+      "base": 0.18,
+      "optimistic": 0.27
+    },
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "协议年化收入（DefiLlama revenue 口径，保守取 min(近30天×12=$50.2M, 近90天×4=$37.7M, 近12个月实际=$43.3M)）；基准增速 = 近 90 天/前 90 天年化 ≈ 18%，保守取一半，乐观取 1.5 倍；同赛道 Gamified Mining 其他协议在 DefiLlama 无代币/市值数据，无可比倍数"
+  },
+  "risks": [
+    "持续挖矿排放：毛排放约为当前流通量的 100%/年，2026 年上半年排放价值高于回购，净供应在增长，流通仅占最大供应约 17%",
+    "埋藏不是永久销毁，流通低于 300 万上限时可再铸造",
+    "收入依赖矿工投入 SOL 的抽奖式玩法，2025-11 单月 $10.3M 后回落到每月 $1.7–4.3M，波动大",
+    "无主流交易所现货，成交集中在 Meteora DEX 和 LBank",
+    "无第三方审计；无 DAO，管理员密钥可修改参数和收取 1% 管理费",
+    "创始人匿名；币价 90 天 +129% 远快于收入增长（季度收入 +1.9%），币价已领先业务",
+    "协议收入 ≠ 持币人利润：回购被挖矿排放抵消后，持币人净收益为负（DefiLlama Q1/Q2 2026 earnings 为负）"
+  ],
+  "unverified": [
+    "未来 12/36 个月净供应增长（排放 − 埋藏）无数据",
+    "排放速率 1 枚/分钟（DefiLlama）与上限约 2 枚/分钟（项目披露）冲突",
+    "近 30 天中心化交易所现货成交额",
+    "第三方审计报告",
+    "安全情况仅有项目自披露（截至 2026-07-15）",
+    "同赛道可比估值倍数",
+    "累计埋藏数量与质押者实际收益"
+  ],
+  "catalysts": [],
+  "summary_reason": "ORE 有已执行的链上回购（近 365 天持币人收入约 $42.9M），但挖矿排放约为流通量 100%/年且超过回购、流通仅占上限 17%、无审计和主流交易所，维持 B 级观察"
+}
