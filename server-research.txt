@@ -54,3 +54,6 @@ research-2026-10-30-particle-network.json
 research-2026-10-31-liquity.json
 research-2026-10-31-trust-wallet-token.json
 research-2026-11-01-ore.json
+research-2026-11-02-chainflip.json
+research-2026-11-02-lido-dao.json
+research-2026-11-02-sun-token.json
