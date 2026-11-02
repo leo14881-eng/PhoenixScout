@@ -1,0 +1,196 @@
+{
+  "coin_id": "sun-token",
+  "researched_at": "2026-11-02T03:50:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "SUN：TRON 合约 TSSMHYeV2uE9qYH95DqyoCuNCzEL1NvU3S（旧合约 TKkeiboTkxXKJpbmVFbv4a8ov5rAfRDMf9 已升级），最大供应 19.901B",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/sun-token",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko：价格 $0.01531、流通 19.215B、总量/最大 19.901B，市值 $294.2M、FDV $304.7M；流通与总量差约 686M，与官方公布累计销毁 685.78M 几乎相同（可能是总量未扣销毁）",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/sun-token",
+          "date": "2026-11-02"
+        },
+        {
+          "url": "https://yellow.com/press-releases/SUN-Completes-52nd-Buyback-and-Burn",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "DefiLlama SUN（SunSwap V1—V4、SunPump）协议收入近 30 天 $180.7K、近 1 年 $1.07M；5—10 月：156.8K/143.8K/113.8K/190.6K/165.9K/180.6K；SunSwap V2 自 2026-05-01 起 1/6 手续费回购销毁 SUN",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/sun?dataType=dailyRevenue",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "mechanism": "buyback",
+      "claim": "已执行回购销毁：第 52 次于 2026-10-27 执行，约 7,232,977 SUN（覆盖 7-25 至 10-25）；累计销毁 685,780,165 SUN（SunSwap V2 388.0M、SunPump 285.9M、SunX 11.9M）。来源为项目方新闻稿，链上交易未逐笔核实",
+      "sources": [
+        {
+          "url": "https://yellow.com/press-releases/SUN-Completes-52nd-Buyback-and-Burn",
+          "date": "2026-11-02"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/sun?dataType=dailyRevenue",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": null,
+      "claim": "CoinGecko 24h 总成交 $10.29M；主要现货 HTX $0.98M、Binance $0.48M、Gate $0.26M、Bybit $0.12M，合约成交（Binance Futures $2.02M）不计；主流现货合计约 $2M/天，高于 50 万门槛；30 天现货总额未核实",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/sun-token",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": true,
+      "claim": "CertiK 页面未列出事故；搜索到的 Sunray Finance 被盗、Arbitrum 假 SUN 合约均非本项目；未发现 SunSwap/SunPump 未解决的重大安全事件（核实深度有限）",
+      "sources": [
+        {
+          "url": "https://skynet.certik.com/projects/sun-token",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": true,
+      "claim": "CoinGecko 统计表 19.901B 与其说明文字“20B”属四舍五入；新闻稿“累计 685.78M”与“up to 700M”说法不一致（取前者）；CertiK 同时写“有审计”和“未被 CertiK 审计”；均不影响核心数据",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/sun-token",
+          "date": "2026-11-02"
+        },
+        {
+          "url": "https://yellow.com/press-releases/SUN-Completes-52nd-Buyback-and-Burn",
+          "date": "2026-11-02"
+        },
+        {
+          "url": "https://skynet.certik.com/projects/sun-token",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": true,
+      "supply_growth_12m_pct": 3.57,
+      "claim": "流通/总量 96.6%；即使总量与流通差额全部释放，12 个月增长上限 = 0.686/19.215 ≈ 3.57%；且该差额很可能就是已销毁量，实际净供应在回购销毁下趋于下降",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/sun-token",
+          "date": "2026-11-02"
+        },
+        {
+          "url": "https://yellow.com/press-releases/SUN-Completes-52nd-Buyback-and-Burn",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "CertiK 页面自相矛盾（“Has CertiK Audit”与“not audited by CertiK”并存），未找到审计报告",
+      "sources": [
+        {
+          "url": "https://skynet.certik.com/projects/sun-token",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "MEXC 介绍为 TRON 生态“社会实验”，0 VC、无预挖；新闻稿署名 SUN Team Singapore；未找到实名团队页，CertiK 显示无 KYC",
+      "sources": [
+        {
+          "url": "https://www.mexc.com/price/SUN/tokenomics",
+          "date": "2026-11-02"
+        },
+        {
+          "url": "https://yellow.com/press-releases/SUN-Completes-52nd-Buyback-and-Burn",
+          "date": "2026-11-02"
+        },
+        {
+          "url": "https://skynet.certik.com/projects/sun-token",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "未找到官方解锁表；流通已占 96.6%，剩余差额可能为已销毁量",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": null,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/sun-token",
+          "date": "2026-11-02"
+        },
+        {
+          "url": "https://www.mexc.com/price/SUN/tokenomics",
+          "date": "2026-11-02"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.01531,
+    "circulating_supply": 19215000000,
+    "total_supply": 19901000000,
+    "supply_by_month": null,
+    "annual_revenue_usd": 1071025,
+    "revenue_growth": {
+      "conservative": 0.0,
+      "base": 0.1,
+      "optimistic": 0.15
+    },
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "协议年化收入（DefiLlama revenue 1y 口径 $1.07M）；8—10 月 537K 比 5—7 月 414K 环比 +29.6%，但全年基数极小；流通市值/年收入 ≈ 275 倍，同赛道倍数未核实"
+  },
+  "risks": [
+    "流通市值约为年收入 275 倍，估值远高于 DEX 同类，5 倍情景基本不成立",
+    "回购销毁规模小（第 52 次约 $11 万），主要靠项目方新闻稿",
+    "团队匿名/未 KYC，高度依附 TRON/孙宇晨生态",
+    "成交额中合约占比高，现货深度一般"
+  ],
+  "unverified": [
+    "第三方审计报告",
+    "团队实名",
+    "解锁/剩余供应归属",
+    "30 天真实现货成交额",
+    "回购销毁链上交易",
+    "同赛道估值倍数"
+  ],
+  "catalysts": [
+    {
+      "claim": "2026-10-27 第 52 次回购销毁",
+      "url": "https://yellow.com/press-releases/SUN-Completes-52nd-Buyback-and-Burn",
+      "date": "2026-11-02"
+    }
+  ],
+  "summary_reason": "收入近两季度回升且有持续回购销毁，供应几乎全部流通，但市值/收入约 275 倍、团队与审计未核实"
+}

@@ -1,0 +1,199 @@
+{
+  "coin_id": "chainflip",
+  "researched_at": "2026-11-02T03:50:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "FLIP：Ethereum 0x826180541412d574cf1336d22c0c0a287822678a；无最大供应（可增发，有回购销毁）",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/chainflip",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": false,
+      "claim": "三处说法不一：CoinGecko 流通=总量 87.252M；DefiLlama 流通 89.03M；官方 2026-02-19 页面总量 92.79M、流通 66.17M、累计排放 10.18M 大于销毁 7.31M。未来 12 个月供应变化取决于 FLIP 2.1（固定供应、取消增发）是否已激活，未核实",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/chainflip",
+          "date": "2026-11-02"
+        },
+        {
+          "url": "https://defillama.com/protocol/unlocks/chainflip",
+          "date": "2026-11-02"
+        },
+        {
+          "url": "https://chainflip.io/blog/what-is-flip-token-burns-staking-apy-2026",
+          "date": "2026-11-02"
+        },
+        {
+          "url": "https://chainflip.io/blog/introducing-flip-2-1-fixed-supply-revenue-backed-staking",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "DefiLlama 收入（用于回购销毁 FLIP 的网络费）近 30 天 $365.6K、近 1 年 $3.13M；5—10 月：297.9K/209.5K/186.7K/265.7K/310.8K/398.4K",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/chainflip?dataType=dailyRevenue",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "mechanism": "buyback",
+      "claim": "已执行回购销毁：网络费全部用于市场买入 FLIP 并销毁，截至 2026-02-19 累计销毁 7,313,472 FLIP；FLIP 2.1（2026-03 提出）计划改为买入后分给质押者并停止增发，激活状态未核实",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/chainflip?dataType=dailyRevenue",
+          "date": "2026-11-02"
+        },
+        {
+          "url": "https://chainflip.io/blog/what-is-flip-token-burns-staking-apy-2026",
+          "date": "2026-11-02"
+        },
+        {
+          "url": "https://chainflip.io/blog/introducing-flip-2-1-fixed-supply-revenue-backed-staking",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": false,
+      "spot_volume_30d_usd": null,
+      "claim": "CoinGecko 24h 成交仅 $166K（Gate $67K、Uniswap V3 $52K、Chainflip DEX $36K、KuCoin $9K），无 Binance/Coinbase/OKX 现货；低于 50 万美元日均门槛",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/chainflip",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": false,
+      "claim": "事故 1：2026-09-12 Tron 金库被利用（fetch 交易附带 memo 被误判为失败兑换而重复退款），损失 736,442.17 USDT；Tron 流动性提供者余额清零，官方称打算补偿但未给出资金来源和时间，Tron 线路仍下线——赔付无证据，未解决。事故 2：2025 年为阻止 Bybit 黑客资金紧急升级（非被盗）",
+      "sources": [
+        {
+          "url": "https://en.coin-turk.com/chainflip-to-relaunch-cross-chain-swaps-minus-tron-after-736442-usdt-exploit/",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "流通量三方矛盾（66.17M / 87.25M / 89.03M），DefiLlama 解锁页 12 个月排放口径（$27.1M 与 74,914 FLIP/天）对不上",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/chainflip",
+          "date": "2026-11-02"
+        },
+        {
+          "url": "https://defillama.com/protocol/unlocks/chainflip",
+          "date": "2026-11-02"
+        },
+        {
+          "url": "https://chainflip.io/blog/what-is-flip-token-burns-staking-apy-2026",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": null,
+      "supply_growth_12m_pct": null,
+      "claim": "无上限代币；2026-02 前净供应仍增长（排放 10.18M > 销毁 7.31M）；FLIP 2.1 若已激活则增发为零，激活与否未核实；DefiLlama 解锁页显示战略投资人 74,914 FLIP/天线性释放（约 27.3M/年，相当于当前流通 31%），口径存疑",
+      "sources": [
+        {
+          "url": "https://chainflip.io/blog/what-is-flip-token-burns-staking-apy-2026",
+          "date": "2026-11-02"
+        },
+        {
+          "url": "https://chainflip.io/blog/introducing-flip-2-1-fixed-supply-revenue-backed-staking",
+          "date": "2026-11-02"
+        },
+        {
+          "url": "https://defillama.com/protocol/unlocks/chainflip",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "本次未打开审计报告",
+      "sources": []
+    },
+    "team": {
+      "ok": null,
+      "claim": "官方页面提及 Chainflip Labs 持有治理密钥（3/6 安全委员会多签），未列创始人和投资机构",
+      "sources": [
+        {
+          "url": "https://chainflip.io/blog/what-is-flip-token-burns-staking-apy-2026",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "DefiLlama 解锁页：无下一次日期，列出线性 1 年释放、总额 $27.1M，与 74,914 FLIP/天不一致；与官方/CoinGecko 流通数据冲突",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": null,
+      "conflict": true,
+      "sources": [
+        {
+          "url": "https://defillama.com/protocol/unlocks/chainflip",
+          "date": "2026-11-02"
+        },
+        {
+          "url": "https://www.coingecko.com/en/coins/chainflip",
+          "date": "2026-11-02"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.306,
+    "circulating_supply": 87252000,
+    "total_supply": 87252000,
+    "supply_by_month": null,
+    "annual_revenue_usd": 3128767,
+    "revenue_growth": {
+      "conservative": 0.0,
+      "base": 0.3,
+      "optimistic": 0.45
+    },
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "协议年化收入（DefiLlama revenue 1y，用于回购销毁）；8—10 月 975K 比 5—7 月 694K 环比 +40%；供应口径冲突，同赛道倍数未核实"
+  },
+  "risks": [
+    "2026-09-12 Tron 金库被盗 73.6 万 USDT，补偿未落实、Tron 线路下线",
+    "现货流动性极低（日均约 $10—17 万），无主流交易所",
+    "供应数据三方矛盾，增发/解锁口径不清",
+    "FLIP 2.1 改为回购分配后不再销毁"
+  ],
+  "unverified": [
+    "FLIP 2.1 是否已激活（决定增发是否归零）",
+    "真实流通量",
+    "未来 12/36 个月解锁比例",
+    "审计报告",
+    "团队与投资机构",
+    "Tron 事件赔付"
+  ],
+  "catalysts": [
+    {
+      "claim": "FLIP 2.1：固定供应、收入支撑的质押收益（2026-03-24 提出）",
+      "url": "https://chainflip.io/blog/introducing-flip-2-1-fixed-supply-revenue-backed-staking",
+      "date": "2026-11-02"
+    }
+  ],
+  "summary_reason": "收入近两季度增长约 40% 且全部用于回购，但流动性不足、Tron 被盗未赔付、供应数据矛盾"
+}
