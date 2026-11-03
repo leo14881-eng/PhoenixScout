@@ -1,0 +1,208 @@
+{
+  "coin_id": "aria-ai",
+  "researched_at": "2026-11-03T03:55:00Z",
+  "grade_hint": "C",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "Aria.AI（ARIA），BNB Chain BEP-20，合约 0x5d3a12c42e5372b2cc3264ab3cdcf660a1555238（CoinGecko）；官网 playariagame.com，文档称是“AI 结合游戏设计的奇幻世界”；总量 10 亿。注意与 Aria（ARIAIP，ariaprotocol.xyz，Story 链 IP 项目）不是同一项目",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/aria-ai",
+          "date": "2026-11-03"
+        },
+        {
+          "url": "https://docs.playariagame.com/tokenomics/token-details.md",
+          "date": "2026-11-03"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": false,
+      "claim": "CoinGecko（2026-11-03）：价格 $0.1268，流通约 1.83 亿（页面另处 1.80 亿），市值约 $23.2M，FDV $126.85M。1.83 亿恰好等于官方文档的 TGE 释放量 18.3%，而 TGE 已过一年以上，按官方归属表流通量应明显更高；DropsTab 显示流通 4.40 亿（44%）。官方文档未给出 TGE 日期，无法把归属表换算成日历日期，流通市值和未来 12 个月供应变化都无法可靠核实",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/aria-ai",
+          "date": "2026-11-03"
+        },
+        {
+          "url": "https://docs.playariagame.com/tokenomics/allocation-and-vesting.md",
+          "date": "2026-11-03"
+        },
+        {
+          "url": "https://dropstab.com/coins/aria/vesting",
+          "date": "2026-11-03"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": null,
+      "claim": "未找到任何可核实的用户数、收入或付费数据：DefiLlama 无对应协议，官方文档只有简介。产品使用情况未能核实",
+      "sources": [
+        {
+          "url": "https://docs.playariagame.com/tokenomics/token-details.md",
+          "date": "2026-11-03"
+        },
+        {
+          "url": "https://www.coingecko.com/en/coins/aria-ai",
+          "date": "2026-11-03"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": false,
+      "mechanism": null,
+      "claim": "官方代币用途只有治理、游戏内资产消耗、AI 使用代币；未提及销毁、回购、手续费分配或质押真实收益，也未找到任何已执行的回购/销毁",
+      "sources": [
+        {
+          "url": "https://docs.playariagame.com/tokenomics/token-use-cases.md",
+          "date": "2026-11-03"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": null,
+      "claim": "现货主要在 PancakeSwap V3（约 28%）、Gate（约 25%）、Bitget（约 11%）、KuCoin（约 7%）；Binance/Bybit 只有永续合约（合约持仓约 $44.3M，高于市值），无 Binance/Coinbase/OKX/Bybit/Kraken/Upbit 现货。24h 成交约 $12.2M；服务器候选文件 30 天日均约 $5.2M（含 DEX），严格口径 CEX 现货 30 天成交额未核实",
+      "spot_volume_30d_usd": null,
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/aria-ai",
+          "date": "2026-11-03"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "未发现合约被盗事件；但 CoinGecko 新闻显示约 2026-04 Binance 上 ARIA/USDT 出现约 90% 闪崩并引发清算（“下跌 85.9%”），另有社交报告称 ARIA 为拉盘砸盘目标；合约持仓高于流通市值，存在市场操纵风险。未找到项目方说明",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/aria-ai",
+          "date": "2026-11-03"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "重大矛盾：流通量 CoinGecko 1.83 亿 vs DropsTab 4.40 亿（已解锁 45.22%）；CoinGecko 页面内价格、市值、成交额、流通量多处数值不一致；DropsTab 自身“44% 流通 vs 45.22% 已解锁”、下次解锁日期缺失；官方文档无 TGE 日期",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/aria-ai",
+          "date": "2026-11-03"
+        },
+        {
+          "url": "https://dropstab.com/coins/aria/vesting",
+          "date": "2026-11-03"
+        },
+        {
+          "url": "https://docs.playariagame.com/tokenomics/allocation-and-vesting.md",
+          "date": "2026-11-03"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "claim": "按 CoinGecko 流通 1.83 亿 / 总量 10 亿 = 18.3% < 50%；按 DropsTab 也只有 44% < 50%。官方归属表：社区与空投 51%（TGE 后 36 个月线性）、生态基金 9.7%（36 个月线性）、投资人 8.5%（12 个月锁定后 12 个月按季释放）、团队 15%（12 个月锁定后 36 个月线性），未来 12 个月仍有大量释放，无需求增长能抵消稀释的证据",
+      "supply_growth_12m_pct": null,
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/aria-ai",
+          "date": "2026-11-03"
+        },
+        {
+          "url": "https://docs.playariagame.com/tokenomics/allocation-and-vesting.md",
+          "date": "2026-11-03"
+        },
+        {
+          "url": "https://dropstab.com/coins/aria/vesting",
+          "date": "2026-11-03"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "官方文档无审计页面，未找到第三方审计报告",
+      "sources": [
+        {
+          "url": "https://docs.playariagame.com/llms.txt",
+          "date": "2026-11-03"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "官方文档无团队页，未找到实名团队；DropsTab 仅列 OKX Ventures 为投资方（未能在官方或 OKX 渠道核实）",
+      "sources": [
+        {
+          "url": "https://docs.playariagame.com/llms.txt",
+          "date": "2026-11-03"
+        },
+        {
+          "url": "https://dropstab.com/coins/aria/vesting",
+          "date": "2026-11-03"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "官方归属表见 allocation-and-vesting 页（TGE 释放 18.3%；其余 36—48 个月释放），但未给 TGE 日期；DropsTab 显示下一次解锁 3,660 万枚（总量 3.66%）但日期缺失，其“19 天后解锁”与倒计时 0 天互相矛盾。未来 12/36 个月解锁占流通比例因流通量口径冲突（1.83 亿 vs 4.40 亿）无法可靠计算；按官方表，2028 年前仍有大部分代币待释放",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": 36600000,
+      "fully_unlocked": false,
+      "conflict": true,
+      "sources": [
+        {
+          "url": "https://docs.playariagame.com/tokenomics/allocation-and-vesting.md",
+          "date": "2026-11-03"
+        },
+        {
+          "url": "https://dropstab.com/coins/aria/vesting",
+          "date": "2026-11-03"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": true,
+  "scenario_inputs": {
+    "price_usd": 0.1268,
+    "circulating_supply": 183000000,
+    "total_supply": 1000000000,
+    "supply_by_month": {
+      "12": null,
+      "24": null,
+      "36": 1000000000
+    },
+    "annual_revenue_usd": null,
+    "revenue_growth": {
+      "conservative": null,
+      "base": null,
+      "optimistic": null
+    },
+    "peer_multiples": {
+      "p25": null,
+      "median": null,
+      "p75": null
+    },
+    "peers": [],
+    "metric": "无收入或使用量数据，无法估值"
+  },
+  "risks": [
+    "近 30 天涨 228%、90 天涨 330%，24h 又涨 54%，属典型投机拉升；合约持仓（$44M）高于流通市值（$23M）",
+    "2026-04 曾在 Binance 出现约 90% 闪崩，社交报告称为拉盘砸盘目标",
+    "流通量口径冲突（CoinGecko 1.83 亿 vs DropsTab 4.40 亿），真实市值可能被低估 2 倍以上",
+    "流通仅 18—44%，团队/投资人/社区仍在持续解锁",
+    "无收入、无价值捕获、无实名团队、无审计"
+  ],
+  "unverified": [
+    "真实流通量与 TGE 日期",
+    "下一次解锁日期",
+    "产品用户数与收入",
+    "团队身份与投资方",
+    "第三方审计",
+    "严格口径 CEX 现货 30 天成交额",
+    "CoinGecko 流通量是否为项目自报（与 TGE 释放量完全相同，推测未更新）"
+  ],
+  "catalysts": [],
+  "summary_reason": "路径 A 强反弹但供应不透明（流通量两源相差 2 倍以上）、无收入无价值捕获、有闪崩/操纵记录，建议淘汰（C）"
+}

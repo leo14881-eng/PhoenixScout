@@ -1,0 +1,200 @@
+{
+  "coin_id": "beam-2",
+  "researched_at": "2026-11-03T03:50:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "Beam（BEAM，原 Merit Circle MC 按 1:100 转换）；合约 Ethereum/BNB Chain/Avalanche 0x62d0a8458ed7719fdaf978fe5929c6d342b0bfce，Base 0x2a66d51407b84b82b5aff3dec4d49f72cbcd322a；官网 onbeam.com；Beam 为基于 Avalanche 技术栈的游戏 L1。总量上限固定，无增发",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/beam-2",
+          "date": "2026-11-03"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/beam",
+          "date": "2026-11-03"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko（2026-11-03）：价格 $0.004818，市值 $242.1M，FDV $276.6M，流通 50.316B，总量/最大 57.486B（流通 87.5%）。Blockworks 透明度披露（2026-09-21）：总量 58.470B、流通 51.300B，差值 7.17B 为初始贡献者自愿锁仓（2023-02-24 起锁 4 年，即约 2027-02-24 到期）。两源总量差约 0.98B（可能为其后销毁，未核实）",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/beam-2",
+          "date": "2026-11-03"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/beam",
+          "date": "2026-11-03"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": false,
+      "claim": "DefiLlama Beam 链 TVL 仅约 $0.94M，页面无链手续费/收入数据；Blockworks 披露中没有收入数字。项目实际经济活动主要是游戏生态与 Node Token 销售（2024-12 Node Sale 约 $72M），相对 $242M 市值，可核实的链上付费需求极小",
+      "sources": [
+        {
+          "url": "https://defillama.com/chain/beam",
+          "date": "2026-11-03"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/beam",
+          "date": "2026-11-03"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": false,
+      "mechanism": "burn",
+      "claim": "机制：部分 gas/协议费、Node Token 铸造与二级交易费用于销毁，基金会历史上曾公开市场买入并销毁。但销毁已大幅放缓：2025Q3 销毁 5.72 亿枚、2025Q4 仅 4,034 万枚（约流通 0.08%）、2026Q1 无销毁，2026Q2 以后无数据。近期没有持续执行的回购/销毁可核实，故不认定有效价值捕获",
+      "sources": [
+        {
+          "url": "https://blockworks.com/token-transparency/filing/beam",
+          "date": "2026-11-03"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "claim": "主流交易所现货：Upbit BEAM/KRW（24h 约 $29.5M，占 29.5%）、Binance BEAM/USDT 与 BEAM/TRY、Bybit、Kraken（2024-04 上线）、Coinbase 现货（CoinGecko 新闻）。24h 成交 $94.97M；服务器候选文件中 CoinGecko 30 天日均成交额约 $34.9M，30 天合计约 $1.05B（含全部交易对，非严格 CEX 现货口径）",
+      "spot_volume_30d_usd": 1047200063,
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/beam-2",
+          "date": "2026-11-03"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/beam",
+          "date": "2026-11-03"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": true,
+      "claim": "两起事件均未涉及 Beam 协议资金：①2024-02 Ethereum 上某私人持有人地址被钓鱼盗走 1.8 亿+ BEAM（约 $5M），协议无赔付义务；②2026-04-09 BNB Chain 上 AethirOFTAdapter 跨链桥被利用（损失 ATH 代币，Aethir 称用户损失 < $9 万），BEAM 无损失，Node 奖励领取暂停后已恢复。未发现未解决的治理纠纷。注意 Beam 自身合约审计覆盖不全",
+      "sources": [
+        {
+          "url": "https://blockworks.com/token-transparency/filing/beam",
+          "date": "2026-11-03"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": null,
+      "claim": "供应数据存在小幅矛盾：CoinGecko 流通 50.316B/总量 57.486B vs Blockworks 51.300B/58.470B；Blockworks 一处写“解锁计划 2025 年结束、无未来解锁”，另一处写 7.17B 贡献者锁仓 4 年（2027-02 到期）；DefiLlama 链页面价格显示 $0.0015、市值 $76.8M，明显过期，与 CoinGecko $0.0048 不一致",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/beam-2",
+          "date": "2026-11-03"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/beam",
+          "date": "2026-11-03"
+        },
+        {
+          "url": "https://defillama.com/chain/beam",
+          "date": "2026-11-03"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": true,
+      "claim": "总量封顶、无增发；流通/总量 = 87.5% ≥ 50%。未来 12 个月可能新增流通的是 2027-02-24 到期的 7.17B 贡献者锁仓，约占当前流通 14.25%（≤25%），减去可能的销毁（近期接近 0）。另：基金会持有约 14.4% 总量（已计入流通）且每季度减持，存在抛压",
+      "supply_growth_12m_pct": 14.25,
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/beam-2",
+          "date": "2026-11-03"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/beam",
+          "date": "2026-11-03"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "Blockworks 披露仅提到 Quantstamp 审计 BEAM 代币及迁移合约（MIP-29）；同一披露的风险因素写明“Beam 自有合约未审计，审计覆盖不全”。未打开审计报告原文",
+      "sources": [
+        {
+          "url": "https://blockworks.com/token-transparency/filing/beam",
+          "date": "2026-11-03"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "实名团队：联合创始人兼 CEO Marco van den Heuvel、联合创始人兼 CFO Tommy Quite、联合创始人兼 Beam Ventures CSO Mark Borsten、COO Thale Sonnemans；2021-10 种子轮 $4.5M（DeFiance Capital、Mechanism Capital、DCG、Yield Guild Games 等）；基金会负责人未公开",
+      "sources": [
+        {
+          "url": "https://blockworks.com/token-transparency/filing/beam",
+          "date": "2026-11-03"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": true,
+      "claim": "Blockworks：团队/种子/社区归属计划已于 2025 年结束；剩余未流通的 7.17B 为初始贡献者自愿锁仓（多签 0x97173277FED329ee844BAfa44D7719ad372a7150），2023-02-24 起锁 4 年，推算 2027-02-24 到期，约占当前流通 14.25%。同一披露另称“无未来解锁”，说法不一致，标记 conflict",
+      "unlock_12m_pct": 14.25,
+      "unlock_36m_pct": 14.25,
+      "next_unlock_date": "2027-02-24",
+      "next_unlock_amount": 7170000000,
+      "fully_unlocked": false,
+      "conflict": true,
+      "sources": [
+        {
+          "url": "https://blockworks.com/token-transparency/filing/beam",
+          "date": "2026-11-03"
+        },
+        {
+          "url": "https://www.coingecko.com/en/coins/beam-2",
+          "date": "2026-11-03"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.004818,
+    "circulating_supply": 50315935307,
+    "total_supply": 57485935307,
+    "supply_by_month": {
+      "12": 57485935307,
+      "24": 57485935307,
+      "36": 57485935307
+    },
+    "annual_revenue_usd": null,
+    "revenue_growth": {
+      "conservative": null,
+      "base": null,
+      "optimistic": null
+    },
+    "peer_multiples": {
+      "p25": null,
+      "median": null,
+      "p75": null
+    },
+    "peers": [],
+    "metric": "无可用收入数据（DefiLlama 无 Beam 链手续费/收入），无法按市值/收入估值"
+  },
+  "risks": [
+    "近 30 天涨 110%、90 天涨 216%，属低位强反弹（路径 A），24h 又跌 12%，波动极大",
+    "无可核实的协议收入，链 TVL 不足 $1M，与 $242M 市值严重不匹配",
+    "销毁已基本停止（2026Q1 为 0），价值捕获名存实亡",
+    "基金会持有约 14.4% 总量并持续减持；2027-02-24 约 7.17B（流通 14%）贡献者锁仓到期",
+    "国库非 BEAM 资产从 $174.7M（2025-12）降至 $148.6M（2026-06），持续消耗",
+    "Upbit 韩元交易占约 30% 成交，价格易受韩国市场情绪驱动"
+  ],
+  "unverified": [
+    "2026Q2 及以后的销毁数量",
+    "CoinGecko 与 Blockworks 总量差 0.98B 的原因",
+    "7.17B 锁仓到期日与是否延长（Blockworks 前后说法不一）",
+    "严格口径的近 30 天 CEX 现货成交额",
+    "Quantstamp 审计报告原文与 Beam 自有合约审计情况",
+    "链上真实用户数/游戏收入"
+  ],
+  "catalysts": [],
+  "summary_reason": "路径 A 低位反弹的游戏 L1，供应已基本全流通、主流交易所流动性好、团队实名，但没有可核实收入、销毁已停，只能观察（B）"
+}
