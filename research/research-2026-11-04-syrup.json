@@ -1,0 +1,224 @@
+{
+  "coin_id": "syrup",
+  "researched_at": "2026-11-04T03:50:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "SYRUP（Maple Finance）：Ethereum 0x643c4e15d7d62ad0abec4a9bd4b001aa3ef52d66，Base 0x688aee022aa544f150678b8e5720b6b96a9e9a2f；由 MPL 按 1:100 转换（MIP-010）",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/syrup",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://docs.maple.finance/maple-for-token-holders/syrup-tokenomics",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko 2026-11-04 03:19Z：价格 $0.15323，流通 1,167.27M，总量 1,267.875M（无最大供应），市值 $178.9M、FDV $194.3M；官方文档写明供应到 2026-09 为 1,267,875,000，与 CoinGecko 总量一致",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/syrup",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://docs.maple.finance/maple-for-token-holders/syrup-tokenomics",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "DefiLlama（maple）协议收入近 30 天 $1.571M、近 90 天 $4.187M、近 365 天 $14.72M；手续费近 365 天 $112.7M；TVL 约 $2.58B（另借出 $1.83B）。月度收入 2026-05 至 10 月：0.80M/1.04M/1.02M/1.13M/1.63M/1.56M",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/maple?dataType=dailyRevenue",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/maple?dataType=dailyFees",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://api.llama.fi/protocol/maple",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "mechanism": "buyback",
+      "claim": "已执行回购：官方 2026-07-08 文章写明 Syrup Strategic Fund 2025 年在市场回购 8M SYRUP，2026 年至发文时“已执行有限回购共 2.5M”（规模很小，回购代币进金库，不销毁）；MIP-021 改为按月收入阶梯（<$1.5M 取 10%，1.5—2M 取 20%，>2M 取 30%）回购。staking 分红已于 2025 年 MIP-019 取消。DefiLlama 持币人收入近 30 天 $157K 是按比例建模，非逐笔链上回购记录",
+      "sources": [
+        {
+          "url": "https://maple.finance/insights/what-syrup-holders-actually-hold",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://www.bitrue.com/blog/maple-finance-buyback-can-mip-021-lift-syrup-price",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/maple?dataType=dailyHoldersRevenue",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://ambcrypto.com/maple-ends-staking-turns-to-buybacks-is-syrup-entering-its-maturity-era/",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": 275103869,
+      "claim": "CoinGecko 近 30 天现货成交合计约 $275.1M（日均 $9.17M，单日最大占 8.4%，无明显集中）；当日交易对：Binance $0.94M、Coinbase $0.41M、Kraken $0.36M 等",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/syrup/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/syrup",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "本次未找到 2026 年 Maple 合约被盗事件；历史上 Maple 1.0 在 2022 年有借款人违约（信用损失，非合约漏洞），本次未打开来源核实金额与赔付；近 30 天币价 -40%，原因未核实",
+      "sources": [
+        {
+          "url": "https://maple.finance/insights/what-syrup-holders-actually-hold",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "矛盾：DefiLlama 持币人收入按“收入×固定比例（2026-07 起 10%）”建模，近 365 天 $2.87M；但官方披露 2026 年回购仅 2.5M SYRUP（约数十万美元），实际回购远小于模型值。CoinGecko 供应与官方文档一致",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/maple?dataType=dailyHoldersRevenue",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://maple.finance/insights/what-syrup-holders-actually-hold",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": true,
+      "supply_growth_12m_pct": 8.6,
+      "claim": "官方 3 年 5% 年通胀计划按文档在 2026-09 结束（总量 1,267.875M）；流通/总量 = 92.1%；剩余约 100.6M 未流通（多在金库），即使 12 个月内全部流通，增长上限 100.6/1167.3 ≈ 8.6%（≤25%）。注意 CoinGecko/DefiLlama 均显示无最大供应",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/syrup",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://docs.maple.finance/maple-for-token-holders/syrup-tokenomics",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://defillama.com/unlocks/maple-finance",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "audit": {
+      "ok": true,
+      "claim": "DefiLlama 记录审计 2 份，链接到 Cantina 审计组合页",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/protocol/maple",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "联合创始人兼执行董事长 Joe Flanagan 实名（官方文章署名）；DefiLlama 融资记录：种子轮/风投轮由 Framework、Polychain 领投，2023-08 战略轮 $5M（BlockTower、Tioga 领投）",
+      "sources": [
+        {
+          "url": "https://maple.finance/insights/what-syrup-holders-actually-hold",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://api.llama.fi/protocol/maple",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": true,
+      "claim": "DefiLlama 解锁页：种子、团队、公售份额已于 2024-09-12 全部释放，唯一持续释放的金库排放（约 102,657 SYRUP/天）注明到 2026-09 结束；官方文档供应到 2026-09 为 1,267.875M。剩余约 100.6M 未流通，释放时间未公布，按全部释放作上限",
+      "unlock_12m_pct": 8.6,
+      "unlock_36m_pct": 8.6,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://defillama.com/unlocks/maple-finance",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://docs.maple.finance/maple-for-token-holders/syrup-tokenomics",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/syrup",
+          "date": "2026-11-04"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.15323,
+    "circulating_supply": 1167271959,
+    "total_supply": 1267875000,
+    "supply_by_month": {
+      "12": 1267875000,
+      "24": 1267875000,
+      "36": 1267875000
+    },
+    "annual_revenue_usd": 14723046,
+    "revenue_growth": {
+      "conservative": 0.0,
+      "base": 0.5,
+      "optimistic": 0.75
+    },
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "协议收入（DefiLlama revenue 口径：管理/服务/策略/发起费，含回购份额）；年化取 min(30d×12=18.85M, 90d×4=16.75M, 365d=14.72M)；基准增速 = 最近两季度（4.19M vs 两季度前 3.37M，半年 +24%）年化约 50%；保守取 0（前一季度 -14.7%）"
+  },
+  "risks": [
+    "近 30 天币价约 -40%（$0.25→$0.153），原因未核实",
+    "实际回购规模远小于 DefiLlama 持币人收入模型值；2026 年官方主动减少回购以充实储备",
+    "MIP-021 把回购比例降到 10%（月收入 <$1.5M 时）",
+    "信用风险：借贷业务依赖机构借款人，历史上有违约",
+    "收入在 2026-05 曾下滑，前一季度 -14.7%"
+  ],
+  "unverified": [
+    "2026-07 之后实际执行的回购数量（无链上明细）",
+    "近 30 天大跌原因",
+    "剩余约 100.6M 未流通 SYRUP 的释放计划",
+    "2022 年违约事件的损失与赔付细节",
+    "no_security_issue：未找到可核实的“无未解决问题”的正式来源"
+  ],
+  "catalysts": [
+    {
+      "claim": "官方称 AUM 12 个月增长 81% 至 $4.6B",
+      "url": "https://maple.finance/insights/what-syrup-holders-actually-hold",
+      "date": "2026-11-04"
+    }
+  ],
+  "summary_reason": "协议收入真实且最近季度 +46%、市值/收入约 12 倍，但回购规模小且模型数据与官方披露不一致、近月币价大跌，维持 B 级观察"
+}

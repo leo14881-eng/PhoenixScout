@@ -1,0 +1,191 @@
+{
+  "coin_id": "gmx",
+  "researched_at": "2026-11-04T03:50:00Z",
+  "grade_hint": "C",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "GMX：Arbitrum 0xfc5a1a6eb076a2c7ad06ed22c90d7e710e35ad0a，Avalanche 0x62edc0692bd897d2295872a9ffcac5425011c661；最大供应 13.25M",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/gmx",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko 2026-11-04 03:19Z：价格 $8.43，流通 = 总量 10.695M，最大 13.25M，市值 = FDV $90.2M（按总量）",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/gmx",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "只算 GMX 代币相关的 GMX EVM + V1：手续费近 365 天 $26.3M，协议收入近 30 天 $0.472M、近 90 天 $1.596M、前 90 天 $2.020M、再前 90 天 $3.054M、近 365 天 $9.72M——持续下降（季度 -21%、-34%）",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/gmx?dataType=dailyRevenue",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/gmx?dataType=dailyFees",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "mechanism": "buyback",
+      "claim": "已执行回购：2026-03 起用协议收入在市场回购，截至 2026-05 约 168,500 GMX、约 $1.1M（均价 $6.50）；同时质押奖励暂停，资金转入金库回购。回购的 GMX 去向（分给质押者或留金库）未写明。注意 DefiLlama 方法论仍写“27% 手续费分给质押者”，与暂停质押奖励不一致",
+      "sources": [
+        {
+          "url": "https://en.bloomingbit.io/feed/news/111776",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/gmx?dataType=dailyHoldersRevenue",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": 126571214,
+      "claim": "CoinGecko 近 30 天成交约 $126.6M（日均 $4.22M，单日最大占 6.1%）；当日 Binance $0.60M、Bybit $0.41M",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/gmx/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/gmx",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": true,
+      "claim": "事故分开记录：① 2025-07 GMX V1（Arbitrum GLP）重入漏洞被盗约 $42M，黑客归还约 $40M（10% 赏金），GMX 2025-08-13 宣布完成约 $44M 赔付分配（含金库 $2M），影响 GLP 持有人已全额补偿（官方 substack）；本次未找到 2026 年新的安全事故",
+      "sources": [
+        {
+          "url": "https://gmxio.substack.com/p/gmx-successfully-completes-distribution",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "重大矛盾：DefiLlama 把 GMX Solana（GMTrade，自有代币 GT，收入用于回购 GT，非 GMX）并入 GMX 母协议。合并口径 2026-10 收入 $4.68M、持币人收入 $4.28M，其中 GMX Solana 分别占 $4.21M、$3.94M；扣除后 GMX 代币相关收入在下降而非“最近季度 +81%”。候选里的收入连增是合并口径造成的假信号（规则：子协议属于不同代币时应逐个计算）",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/gmx?dataType=dailyRevenue",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/gmx?dataType=dailyHoldersRevenue",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://api.llama.fi/protocol/gmx-solana",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": true,
+      "supply_growth_12m_pct": 0.0,
+      "claim": "流通 = 总量 10.695M（100%）；最大供应 13.25M，剩余 2.555M 可由治理增发（上限 23.9%，≤25%）；质押奖励已暂停，未找到新增发计划，按 0 计",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/gmx",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://en.bloomingbit.io/feed/news/111776",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "DefiLlama 母协议无审计记录；只有 GMX Solana 子协议列出审计仓库（gmsol-labs），与 GMX EVM 无关；EVM 合约审计本次未核实",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/protocol/gmx",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://api.llama.fi/protocol/gmx-solana",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "team": {
+      "ok": false,
+      "claim": "团队匿名；2026-05 GMX Labs 任命的首任 CEO “Q”为匿名社区成员（同时主导 GMTrade）；DefiLlama 无融资记录",
+      "sources": [
+        {
+          "url": "https://en.bloomingbit.io/feed/news/111776",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://api.llama.fi/protocol/gmx",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": true,
+      "claim": "流通 = 总量，无待解锁份额；剩余 2.555M 为未铸造的最大供应余量（需治理增发），未找到增发计划",
+      "unlock_12m_pct": 0,
+      "unlock_36m_pct": 0,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": true,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/gmx",
+          "date": "2026-11-04"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 8.43,
+    "circulating_supply": 10694781,
+    "total_supply": 10694781,
+    "supply_by_month": {
+      "12": 10694781,
+      "24": 10694781,
+      "36": 10694781
+    },
+    "annual_revenue_usd": 5666916,
+    "revenue_growth": {
+      "conservative": -0.34,
+      "base": -0.21,
+      "optimistic": 0.0
+    },
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "GMX EVM + V1 协议收入（DefiLlama revenue 口径，剔除 GMX Solana/GMTrade）；年化 min(30d×12=5.67M, 90d×4=6.38M, 365d=9.72M)；最近两个季度 -21%、-34%"
+  },
+  "risks": [
+    "收入连增信号是 DefiLlama 把 GMTrade(GT) 并入 GMX 造成的，GMX 自身收入连续下滑",
+    "质押奖励暂停，持币人现金流依赖金库回购",
+    "团队匿名",
+    "2025-07 曾被盗 $42M（已赔付）"
+  ],
+  "unverified": [
+    "2026-05 之后的回购累计数量与回购代币去向",
+    "GMX EVM 合约审计",
+    "最大供应余量 2.555M 是否有增发计划"
+  ],
+  "catalysts": [],
+  "summary_reason": "候选收入增长来自另一代币 GT 的 GMTrade，剔除后 GMX 收入连续两季下滑，建议淘汰/不入选"
+}

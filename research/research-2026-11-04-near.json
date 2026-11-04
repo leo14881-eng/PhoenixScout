@@ -1,0 +1,206 @@
+{
+  "coin_id": "near",
+  "researched_at": "2026-11-04T03:50:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "NEAR Protocol 原生 L1 代币 NEAR（无合约地址，原生链资产）；CoinGecko 总量 1,310.75M",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/near",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko 2026-11-04 03:19Z：价格 $3.73，流通 1,310.75M ≈ 总量，市值 $4.888B，FDV $4.888B；无最大供应（持续增发）",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/near",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "DefiLlama：NEAR Intents 收入近 30 天 $2.10M、近 90 天 $4.77M、近 365 天 $9.35M（2026-09/10 月 $1.84M/$2.19M）；链上 gas 收入近 365 天仅 $0.84M。媒体称 Intents 累计成交 >$32B",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyRevenue",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/near?dataType=dailyRevenue",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://stocktwits.com/news-articles/markets/cryptocurrency/near-treasury-firm-ceo-says-buybacks-are-still-real-but-issuance-runs-six-times-higher/cZDteDIRBl3",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "mechanism": "buyback",
+      "claim": "已执行回购：DefiLlama 方法论写明自 2026-02-23 起 Intents 收入在公开市场回购 NEAR（不销毁），近 30 天持币人收入 $2.10M；StockTwits 2026-10-06 报道近 30 天约 $1.9M 已用于回购，但同期新增发约 $13M，约为回购的 6 倍。另 70% gas 永久销毁，但规模很小（年 $0.84M）",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyHoldersRevenue",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://stocktwits.com/news-articles/markets/cryptocurrency/near-treasury-firm-ceo-says-buybacks-are-still-real-but-issuance-runs-six-times-higher/cZDteDIRBl3",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/near?dataType=dailyHoldersRevenue",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": 24532621347,
+      "claim": "CoinGecko 近 30 天成交约 $24.5B（日均 $818M，单日最大占 6.3%）；Binance、Coinbase、OKX、Upbit 均有现货",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/near/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/near",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "2026-10-01 NEAR Intents（Omni 存取款基础设施与合约交互漏洞）被盗约 $3.8M，服务暂停，团队承诺全额赔付，漏洞已修补；NEAR L1 未受影响。媒体标题称资金已追回并结案，但该页面无法打开，赔付证据未核实",
+      "sources": [
+        {
+          "url": "https://www.theblock.co/news/ecosystems/2026-10-01-near-intents-halts-services-after-3-8-million-exploit-417404",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": true,
+      "claim": "DefiLlama Intents 持币人收入（近 30 天 $2.10M）与 StockTwits 报道的近 30 天回购约 $1.9M 基本一致；CoinGecko 流通≈总量。注意：系统候选里年化收入 $19.76M 与本次 DefiLlama 合并口径 min 值 $10.19M 不同（口径差异）",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/near-intents?dataType=dailyHoldersRevenue",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://stocktwits.com/news-articles/markets/cryptocurrency/near-treasury-firm-ceo-says-buybacks-are-still-real-but-issuance-runs-six-times-higher/cZDteDIRBl3",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/near",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": true,
+      "supply_growth_12m_pct": 2.5,
+      "claim": "流通≈总量（100%）；最大年增发率 2.5%（有降至 1.6% 的治理提案，尚未实施），12 个月供应增长约 ≤2.5%，扣除 70% gas 销毁影响很小",
+      "sources": [
+        {
+          "url": "https://stocktwits.com/news-articles/markets/cryptocurrency/near-treasury-firm-ceo-says-buybacks-are-still-real-but-issuance-runs-six-times-higher/cZDteDIRBl3",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://www.altcoinbuzz.io/near-intents-fees-buybacks-52-million",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/near",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "本次未打开 NEAR 核心协议或 Intents 的审计报告；Intents 在 HackenProof 有漏洞赏金（仅搜索结果，未打开）",
+      "sources": [
+        {
+          "url": "https://www.theblock.co/news/ecosystems/2026-10-01-near-intents-halts-services-after-3-8-million-exploit-417404",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "CoinGecko 分类列出 a16z、Multicoin、Pantera、Dragonfly、Coinbase Ventures 等机构投资组合；创始人实名信息本次未单独打开页面核实",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/near",
+          "date": "2026-11-04"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": true,
+      "claim": "流通≈总量，无锁仓份额待解锁；新增供应来自 ≤2.5%/年的验证者增发（不是解锁）",
+      "unlock_12m_pct": 0,
+      "unlock_36m_pct": 0,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": true,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/near",
+          "date": "2026-11-04"
+        },
+        {
+          "url": "https://stocktwits.com/news-articles/markets/cryptocurrency/near-treasury-firm-ceo-says-buybacks-are-still-real-but-issuance-runs-six-times-higher/cZDteDIRBl3",
+          "date": "2026-11-04"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 3.73,
+    "circulating_supply": 1310754828,
+    "total_supply": 1310754855,
+    "supply_by_month": {
+      "12": 1343523699,
+      "24": 1377111791,
+      "36": 1411539586
+    },
+    "annual_revenue_usd": 10187663,
+    "revenue_growth": {
+      "conservative": 0.29,
+      "base": 1.0,
+      "optimistic": 1.5
+    },
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "NEAR Intents 收入 + 链上 gas 收入（DefiLlama revenue 口径）；年化 min(30d×12=26.7M, 90d×4=20.1M, 365d=10.19M)；最近季度 +177%、前一季度 +29%，基准增速人为封顶 100%（实际两季度年化远高于此，不可持续）；供应按 2.5%/年增发"
+  },
+  "risks": [
+    "市值/年化收入约 480 倍，远高于协议中位数（约 9 倍），5 倍情景需要收入增长数十倍",
+    "增发约为回购的 6 倍（2026-10 报道），回购不销毁",
+    "2026-10-01 Intents 被盗 $3.8M，赔付未核实",
+    "收入高度依赖 Intents 跨链兑换量，2026-09/10 激增可能不可持续",
+    "公链类，规则上不按协议收入估值"
+  ],
+  "unverified": [
+    "Intents 被盗资金追回/赔付证据",
+    "核心协议审计",
+    "降低增发至 1.6% 的提案状态"
+  ],
+  "catalysts": [
+    {
+      "claim": "有提案把最大增发从 2.5% 降至 1.6%",
+      "url": "https://stocktwits.com/news-articles/markets/cryptocurrency/near-treasury-firm-ceo-says-buybacks-are-still-real-but-issuance-runs-six-times-higher/cZDteDIRBl3",
+      "date": "2026-11-04"
+    }
+  ],
+  "summary_reason": "Intents 收入高速增长且已执行回购，但市值/收入约 480 倍、增发远超回购，估值上无 5 倍空间，维持 B 级观察"
+}
