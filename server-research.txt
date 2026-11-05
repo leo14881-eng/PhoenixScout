@@ -63,3 +63,8 @@ research-2026-11-04-arbitrum.json
 research-2026-11-04-gmx.json
 research-2026-11-04-near.json
 research-2026-11-04-syrup.json
+research-2026-11-05-collector-crypt.json
+research-2026-11-05-compound-governance-token.json
+research-2026-11-05-pyth-network.json
+research-2026-11-05-solv-protocol.json
+research-2026-11-05-venice-token.json
