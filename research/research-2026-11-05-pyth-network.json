@@ -1,0 +1,202 @@
+{
+  "coin_id": "pyth-network",
+  "researched_at": "2026-11-05T04:10:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "PYTH：Solana 铸币地址 HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3（另有 Neon EVM、Manta 桥接版本）；总量/最大供应 10B",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/pyth-network",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko 2026-11-05 03:20Z：价格 $0.06757，流通 7,874,958,835，总量 10B，市值 $531.7M，FDV $675.2M；Tokenomist 显示已解锁 78.75%（7,874,958,880），下一次解锁 2027-05-19（Ecosystem Growth），解锁计划延续到 2027 年",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/pyth-network",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://tokenomist.ai/pyth-network/buyback",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "DefiLlama Pyth 母协议（Core/Pro/Entropy/Express Relay）：手续费近 365 天 $4.61M；协议收入近 30 天 $0.623M、近 90 天 $1.063M、前 90 天 $0.910M、再前 90 天 $0.525M、近 365 天 $2.861M；近 30 天主要来自付费的 Pyth Pro",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/pyth?dataType=dailyRevenue",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/pyth?dataType=dailyFees",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://api.llama.fi/overview/fees?dataType=dailyRevenue",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": null,
+      "mechanism": "buyback",
+      "claim": "2025-12-12 The Block：DAO 推出“PYTH Reserve”，每月用 33% 金库余额（由网络收入资助）链上回购 PYTH，首笔预计 $10–20 万——这是计划公告；未找到已执行回购的金额和日期（Tokenomist 回购数据为空/付费）；DefiLlama 持币人收入近 365 天为 0",
+      "sources": [
+        {
+          "url": "https://www.theblock.co/post/382357/pyth-token-buyback-program-33-dao-treasury-monthly-pyth-purchases",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://tokenomist.ai/pyth-network/buyback",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/pyth?dataType=dailyHoldersRevenue",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": 1401800866,
+      "claim": "CoinGecko 近 30 天成交约 $1.40B（日均 $46.7M，单日最大占 12%）；Binance、Coinbase、OKX、Bybit、Kraken、Upbit 均有现货",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/pyth-network/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/pyth-network",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "2026-05-21 Pyth Core（免费旧版喂价）停摆 5 小时以上，付费 Pyth Pro 未受影响；报道未提到用户实际损失或赔付，官方事故报告当时“待发布”（未核实）；未找到资金被盗类事故",
+      "sources": [
+        {
+          "url": "https://coinalertnews.com/news/2026/05/22/pyth-network-oracle-outage",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": true,
+      "claim": "CoinGecko 流通 7,874,958,835 与 Tokenomist 已解锁 7,874,958,880 一致；DefiLlama 收入数据连续；注意近 30 天×12（$7.48M）超过近 12 个月实际（$2.86M）2 倍，近期收入偏高",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/pyth-network",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://tokenomist.ai/pyth-network/buyback",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/pyth?dataType=dailyRevenue",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "supply_growth_12m_pct": 26.98,
+      "claim": "剩余未解锁 2,125,041,165（21.25%）；Tokenomist 显示下一次解锁 2027-05-19 且计划延续到 2027 年，即剩余份额在未来 12 个月内（2027-05）解锁，占当前流通约 27.0% > 25%（按剩余量推算，单次解锁数量未直接核实）",
+      "sources": [
+        {
+          "url": "https://tokenomist.ai/pyth-network/buyback",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/pyth-network",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "audit": {
+      "ok": true,
+      "claim": "DefiLlama 协议列表 Pyth Core、Pyth Pro、Pyth Express Relay 审计标记 audits=2（未附链接）",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/protocols",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "The Block 报道 Douro Labs 为 Pyth 开发方（引用其机构业务负责人 Michael James）；创始团队实名与投资机构本次未在官方页面核实",
+      "sources": [
+        {
+          "url": "https://www.theblock.co/post/382357/pyth-token-buyback-program-33-dao-treasury-monthly-pyth-purchases",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": true,
+      "claim": "Tokenomist：已解锁 78.75%，下一次解锁 2027-05-19（Ecosystem Growth），解锁计划延续到 2027 年；按剩余 21.25% 推算未来 12/36 个月解锁约占当前流通 27.0%（单次数量为推算）",
+      "unlock_12m_pct": 26.98,
+      "unlock_36m_pct": 26.98,
+      "next_unlock_date": "2027-05-19",
+      "next_unlock_amount": 2125041165,
+      "fully_unlocked": false,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://tokenomist.ai/pyth-network/buyback",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/pyth-network",
+          "date": "2026-11-05"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.06757,
+    "circulating_supply": 7874958835,
+    "total_supply": 10000000000,
+    "supply_by_month": {
+      "12": 10000000000,
+      "24": 10000000000,
+      "36": 10000000000
+    },
+    "annual_revenue_usd": 2860697,
+    "revenue_growth": null,
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "Pyth 母协议协议收入（DefiLlama revenue 口径）；年化 min(30d×12=7.48M, 90d×4=4.25M, 365d=2.86M)；最近两季环比 +16.8%、+73%；增长假设与可比倍数本次未核实，留空由代码计算"
+  },
+  "risks": [
+    "持币人收入为 0，回购只是公告、未见执行记录",
+    "2027-05 预计解锁剩余约 21% 总量（约占流通 27%）",
+    "现价对应市值约为年化收入 186 倍，高于候选估值目标",
+    "2026-05 免费喂价停摆 5 小时以上"
+  ],
+  "unverified": [
+    "PYTH Reserve 回购是否已执行及金额",
+    "2027-05 解锁的精确数量（按剩余量推算）",
+    "2026-05 停摆是否造成下游协议损失",
+    "团队/投资机构背景（官方文档未能打开）"
+  ],
+  "catalysts": [
+    {
+      "claim": "DAO 宣布每月用 33% 金库余额回购 PYTH（计划）",
+      "url": "https://www.theblock.co/post/382357/pyth-token-buyback-program-33-dao-treasury-monthly-pyth-purchases",
+      "date": "2025-12-12"
+    }
+  ],
+  "summary_reason": "收入增长但规模小（年化 $2.9M 对应市值 $5.3 亿），持币人收入为 0、回购未见执行，2027-05 还有约 27% 流通量的解锁，只能观察"
+}

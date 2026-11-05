@@ -1,0 +1,194 @@
+{
+  "coin_id": "venice-token",
+  "researched_at": "2026-11-05T04:10:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "VVV：Base 链合约 0xacfe6019ed1a7dc6f7b508c02d1b04ec88cc21bf；官方帮助中心：创世供应 100M，2025-03-12 销毁 33,539,739 VVV",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/venice-token",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://veniceai.featurebase.app/help/articles/2872784-is-the-supply-capped-for-the-venice-token-vvv",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": null,
+      "claim": "CoinGecko 2026-11-05：价格 $21.74，流通 48,889,818，总量 81,225,776（无最大供应），市值 $1.062B，FDV $1.765B；总量与流通之间约 32.3M 的去向/解锁安排未在官方来源核实",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/venice-token",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "DefiLlama Venice：收入 = 手续费 = 持币人收入；近 30 天 $1.050M、近 90 天 $2.621M、前 90 天 $0.818M、再前 90 天 $0.491M；数据 332 天（不足 365 天）",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/venice?dataType=dailyRevenue",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/venice?dataType=dailyFees",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": null,
+      "mechanism": "burn",
+      "claim": "DefiLlama 把 Venice 全部收入记为持币人收入（方法论页面未能打开）；官方帮助中心只证实 2025-03-12 一次性销毁 33.5M（创世份额，不是收入回购）；“每月用平台收入回购销毁”“Pro 订阅消耗 $2 VVV”来自 KuCoin/DEXTools 二手报道，未见链上金额；质押收益来自增发（每年 3M），不算真实收益",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/venice?dataType=dailyHoldersRevenue",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://veniceai.featurebase.app/help/articles/2872784-is-the-supply-capped-for-the-venice-token-vvv",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/venice-ai-cuts-vvv-emissions-to-3m-tokens-per-year-80-below-launch-rate",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://www.dextools.io/news/venice-token-vvv-1600-percent-ai-rally",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": 1108586233,
+      "claim": "CoinGecko 近 30 天成交约 $1.11B（日均 $37.0M，单日最大占 11%）；Coinbase、Bybit、Kraken、OKX、Upbit 有现货",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/venice-token/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/venice-token",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "打开的页面中未见安全事故；本次未专门检索到事故记录，不能确认没有",
+      "sources": [
+        {
+          "url": "https://www.kucoin.com/news/flash/venice-ai-cuts-vvv-emissions-to-3m-tokens-per-year-80-below-launch-rate",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "来源矛盾：官方帮助中心称增发起始 10M/年、2026-02 降到 6M；KuCoin 称起始 14M/年、2026-05/06/07 逐步降到 3M；总量 81.2M 与“创世 100M − 销毁 33.5M + 增发”口径也无法用已打开来源对上",
+      "sources": [
+        {
+          "url": "https://veniceai.featurebase.app/help/articles/2872784-is-the-supply-capped-for-the-venice-token-vvv",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/venice-ai-cuts-vvv-emissions-to-3m-tokens-per-year-80-below-launch-rate",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/venice-token",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": null,
+      "supply_growth_12m_pct": null,
+      "claim": "增发 3M/年约占流通 6.1%（KuCoin 二手说法），流通率 60.2%（高于 50%），但另有约 32.3M 未流通份额的解锁安排未核实，无法确定 12 个月供应增长",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/venice-token",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/venice-ai-cuts-vvv-emissions-to-3m-tokens-per-year-80-below-launch-rate",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "audit": {
+      "ok": true,
+      "claim": "DefiLlama 协议列表 Venice 审计标记 audits=2（未附链接）",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/protocols",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "官方文档/代币页未能打开，创始人与团队背景本次未核实",
+      "sources": []
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "KuCoin 称“没有团队解锁计划，全部增发给质押者”，但 CoinGecko 总量与流通差约 32.3M，未找到官方说明",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": null,
+      "conflict": true,
+      "sources": [
+        {
+          "url": "https://www.kucoin.com/news/flash/venice-ai-cuts-vvv-emissions-to-3m-tokens-per-year-80-below-launch-rate",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/venice-token",
+          "date": "2026-11-05"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 21.74,
+    "circulating_supply": 48889818,
+    "total_supply": 81225776,
+    "supply_by_month": null,
+    "annual_revenue_usd": 10484000,
+    "revenue_growth": null,
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "Venice 协议收入（DefiLlama revenue 口径）；年化 min(30d×12=12.60M, 90d×4=10.48M)，不足 365 天无 12 个月实际；最近两季环比 +220%、+67%"
+  },
+  "risks": [
+    "约 32.3M（总量 40%）未流通份额的解锁安排不明",
+    "增发数据官方与媒体说法矛盾",
+    "回购销毁规模无链上金额证据，质押收益来自增发",
+    "现价市值约为年化收入 100 倍"
+  ],
+  "unverified": [
+    "每月收入回购销毁的金额与交易记录",
+    "总量与流通差额的归属及解锁时间",
+    "DefiLlama 持币人收入的方法论",
+    "团队背景",
+    "安全事故记录"
+  ],
+  "catalysts": [
+    {
+      "claim": "年增发从 4M 降到 3M（2026-07-01 生效，二手报道）",
+      "url": "https://www.kucoin.com/news/flash/venice-ai-cuts-vvv-emissions-to-3m-tokens-per-year-80-below-launch-rate",
+      "date": "2026-07-01"
+    }
+  ],
+  "summary_reason": "收入快速增长（两季 +67%、+220%），但未流通份额和增发口径存在矛盾、回购销毁缺链上证据，估值已高，维持观察"
+}

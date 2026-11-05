@@ -1,0 +1,184 @@
+{
+  "coin_id": "solv-protocol",
+  "researched_at": "2026-11-05T04:10:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "SOLV：BSC 0xabe8e5cabe24cb36df9540088fd7ce1175b9bc52，以太坊 0x169e36f327caa83d004f5c2668ac25a1424c940d；最大供应 9.66B",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/solv-protocol",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko 2026-11-05：价格 $0.004642，流通 5,904,733,333，总量 = 最大 9.66B，市值 $27.4M，FDV $44.8M；Tokenomist：已解锁 5,714,655,999（59.16%），下一次解锁 2026-11-17（私募、团队顾问、社区奖励、生态、BD），计划延续到 2029 年",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/solv-protocol",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://tokenomist.ai/solv-protocol/buyback",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "DefiLlama Solv 母协议（SolvBTC、Basis Trading、LSTs、Strategies、RWA 等）：手续费近 365 天 $25.4M；协议收入近 30 天 $1.26M、近 90 天 $3.60M、前 90 天 $3.03M、再前 90 天 $0.82M、近 365 天 $12.76M；SolvBTC TVL 约 $498M",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/solv-protocol?dataType=dailyRevenue",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/solv-protocol?dataType=dailyFees",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://api.llama.fi/protocols",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": false,
+      "mechanism": "other",
+      "claim": "DefiLlama 代币权益页（2026-03-06 更新）：回购 N/A、费用开关 OFF、无分红/收入分配、无销毁；Tokenomist 无回购数据；DefiLlama 持币人收入为 0",
+      "sources": [
+        {
+          "url": "https://defillama.com/protocol/token-rights/solv-protocol",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://tokenomist.ai/solv-protocol/buyback",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/solv-protocol?dataType=dailyHoldersRevenue",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": 183052452,
+      "claim": "CoinGecko 近 30 天成交约 $183M（日均 $6.1M，单日最大占 9.4%）；Binance、Bybit、Kraken 有现货",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/solv-protocol/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/solv-protocol",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": true,
+      "claim": "事故分开记录：① 2026-03-05 BitcoinReserveOffering 合约双重铸造漏洞被盗 38.0474 SolvBTC（约 $2.7M），影响不到 10 名用户，Solv 表示承担损失；实际赔付是否完成未找到证据；其余金库未受影响",
+      "sources": [
+        {
+          "url": "https://www.theblock.co/post/392492/solv-protocol-says-exploit-drained-2-7-million-from-bitcoin-yield-vault",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": null,
+      "claim": "Tokenomist 已解锁 5,714,655,999 与流通 5,904,733,333 自身不一致（差约 1.9 亿）；收入数据连续",
+      "sources": [
+        {
+          "url": "https://tokenomist.ai/solv-protocol/buyback",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/solv-protocol",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": null,
+      "supply_growth_12m_pct": null,
+      "claim": "流通率 61.1%（≥50%），但未来 12 个月解锁总量未能核实（DefiLlama 解锁页与官方文档未能打开）",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/solv-protocol",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://tokenomist.ai/solv-protocol/buyback",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "audit": {
+      "ok": true,
+      "claim": "DefiLlama 协议列表 Solv Basis Trading / Solv RWA audits=2，审计链接 https://github.com/solv-finance/Audit；SolvBTC 主协议无审计标记；2026-03 被攻击的 BRO 合约审计情况未核实",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/protocols",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "DefiLlama 代币权益页：7 轮融资合计 $37M（2020-11 天使 $1M 至 2025-03 比特币储备发行 $10M；2024-10 战略轮 $11M、估值 $200M），机构背景可核实；创始人实名未在官方页核实",
+      "sources": [
+        {
+          "url": "https://defillama.com/protocol/token-rights/solv-protocol",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "Tokenomist：下一次解锁 2026-11-17（数量未显示），多为悬崖式释放，计划延续到 2029 年；未来 12/36 个月解锁量未核实；已解锁量与流通量不一致",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": "2026-11-17",
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": true,
+      "sources": [
+        {
+          "url": "https://tokenomist.ai/solv-protocol/buyback",
+          "date": "2026-11-05"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.004642,
+    "circulating_supply": 5904733333,
+    "total_supply": 9660000000,
+    "supply_by_month": null,
+    "annual_revenue_usd": 12763000,
+    "revenue_growth": null,
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "Solv 母协议协议收入（DefiLlama revenue 口径）；年化 min(30d×12=15.12M, 90d×4=14.40M, 365d=12.76M)；最近两季环比 +18.8%、+269%"
+  },
+  "risks": [
+    "SOLV 没有任何价值捕获（费用开关关闭），协议收入不归持币人",
+    "2026-11-17 有解锁，计划延续到 2029 年，数量未知",
+    "2026-03 被盗约 $2.7M",
+    "市值仅约为年化收入 2 倍，但收入与代币无关"
+  ],
+  "unverified": [
+    "2026-11-17 及未来 12/36 个月解锁数量",
+    "2026-03 被盗赔付是否完成",
+    "DefiLlama 收入方法论",
+    "创始团队实名"
+  ],
+  "catalysts": [],
+  "summary_reason": "协议收入真实且增长（年化 $12.8M 对市值 $27M），但 SOLV 无回购/分红/销毁、解锁数据不全，不满足价值捕获门槛，只能观察"
+}

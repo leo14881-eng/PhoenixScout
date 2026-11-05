@@ -1,0 +1,200 @@
+{
+  "coin_id": "collector-crypt",
+  "researched_at": "2026-11-05T04:10:00Z",
+  "grade_hint": "C",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "CARDS：Solana 铸币地址 CARDSccUMFKoPRZxt5vt3ksUbxEFEcnZ3H2pd3dKxYjp；最大供应 2B",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/collector-crypt",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko 2026-11-05：价格 $0.2597，流通 890,914,415，总量 1,972,175,452（最大 2B），市值 $231.3M，FDV $512.1M；4Pillars（2026-06，引用 Tokenomist）：当时流通约 410M，剩余份额线性释放到 2027-11，内部人（基金会/团队/投资人/顾问）合计 72%",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/collector-crypt",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://research.4pillars.io/en/research/collector-crypt-has-no-collectors",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "DefiLlama：收入 = 手续费，近 30 天 $16.65M、近 90 天 $40.57M、前 90 天 $36.87M、近 365 天 $104.9M；但 4Pillars 指出卡包毛销售 90.6% 以回购卡牌形式返还用户，截至 2026-06 净收入约 $43M（留存率 6.7%，并从 11.2% 降到 5.8%），二级交易与实物兑换很少（日活约 420）",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/collector-crypt?dataType=dailyRevenue",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://research.4pillars.io/en/research/collector-crypt-has-no-collectors",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "mechanism": "burn",
+      "claim": "已执行但规模很小：2026-08-29 链上销毁 22,485,689 CARDS（据称来自协议收入）；4Pillars 统计截至 2026-06 代币回购+销毁累计仅 $1.4M（净收入的 3.4%），同期运营钱包换出 $45.7M USDC；DefiLlama 持币人收入近 30 天 $0.41M、近 365 天 $0.43M",
+      "sources": [
+        {
+          "url": "https://solanacompass.com/news/cards-token-marks-one-year-with-225m-token-burn-and-11b-in-raydium-dex-volume",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://research.4pillars.io/en/research/collector-crypt-has-no-collectors",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/collector-crypt?dataType=dailyHoldersRevenue",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": 315346810,
+      "claim": "CoinGecko 近 30 天成交约 $315M（日均 $10.5M，单日最大占 10%）；主流交易所中仅 OKX 有现货",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/collector-crypt/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/collector-crypt",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "打开的来源未提到安全事故；本次未专门检索，不能确认",
+      "sources": [
+        {
+          "url": "https://research.4pillars.io/en/research/collector-crypt-has-no-collectors",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "重大矛盾：DefiLlama 年收入 $104.9M（候选估值用此数），4Pillars 称截至 2026-06 历史累计净收入约 $43M；销毁数据 4Pillars（累计 294,203）与 Solana Compass（单次 22.5M，标题写 225M）不一致",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/collector-crypt?dataType=dailyRevenue",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://research.4pillars.io/en/research/collector-crypt-has-no-collectors",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://solanacompass.com/news/cards-token-marks-one-year-with-225m-token-burn-and-11b-in-raydium-dex-volume",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "supply_growth_12m_pct": 121.4,
+      "claim": "流通率 45.2% < 50%；按 4Pillars（引用 Tokenomist）剩余份额释放到 2027-11，未来 12 个月约 1.08B 进入流通，约占当前流通 121%",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/collector-crypt",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://research.4pillars.io/en/research/collector-crypt-has-no-collectors",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "DefiLlama 无审计记录，官方文档未能打开",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/protocols",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "4Pillars 提到 GSR 为种子前投资方（2026-05 结算 4,045,013 CARDS）；团队实名背景未在官方页面核实",
+      "sources": [
+        {
+          "url": "https://research.4pillars.io/en/research/collector-crypt-has-no-collectors",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": true,
+      "claim": "4Pillars（2026-06，引用 Tokenomist）：剩余份额线性释放至 2027-11；以 CoinGecko 当前流通 890.9M、总量 1,972.2M 推算未来 12 个月（≈到 2027-11）解锁约 1.08B，占流通约 121%；下一次解锁日期与数量本次未能从 Tokenomist/DefiLlama 直接打开核实",
+      "unlock_12m_pct": 121.4,
+      "unlock_36m_pct": 121.4,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://research.4pillars.io/en/research/collector-crypt-has-no-collectors",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/collector-crypt",
+          "date": "2026-11-05"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.2597,
+    "circulating_supply": 890914415,
+    "total_supply": 1972175452,
+    "supply_by_month": {
+      "12": 1972175452,
+      "24": 1972175452,
+      "36": 1972175452
+    },
+    "annual_revenue_usd": 104887000,
+    "revenue_growth": null,
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "DefiLlama revenue 口径（= fees，含卡包销售扣除卡牌回购后的部分，口径存疑）；年化 min(30d×12=199.8M, 90d×4=162.3M, 365d=104.9M)；与 4Pillars 净收入口径冲突"
+  },
+  "risks": [
+    "未来 12 个月解锁约占流通 121%，内部人持有 72%",
+    "收入口径存疑：DefiLlama $105M/年 vs 第三方净收入远低",
+    "代币价值捕获仅占净收入约 3.4%，运营钱包大额换出 USDC",
+    "需求以抽卡循环为主，真实收藏交易很少",
+    "主流交易所只有 OKX"
+  ],
+  "unverified": [
+    "DefiLlama 收入方法论（页面未能打开）",
+    "下一次解锁的精确日期与数量",
+    "审计",
+    "团队背景",
+    "安全事故记录"
+  ],
+  "catalysts": [
+    {
+      "claim": "上线一周年链上销毁 22,485,689 CARDS",
+      "url": "https://solanacompass.com/news/cards-token-marks-one-year-with-225m-token-burn-and-11b-in-raydium-dex-volume",
+      "date": "2026-08-29"
+    }
+  ],
+  "summary_reason": "收入数据口径矛盾、代币只拿到净收入约 3% 的价值，且未来 12 个月解锁超过流通量 100%，建议淘汰/不入选"
+}

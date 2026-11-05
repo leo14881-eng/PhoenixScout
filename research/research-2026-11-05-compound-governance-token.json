@@ -1,0 +1,202 @@
+{
+  "coin_id": "compound-governance-token",
+  "researched_at": "2026-11-05T04:10:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "COMP：以太坊合约 0xc00e94cb662c3520282e6f5717214004a7f26888（另有多链桥接版本）；最大供应 10M",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/compound-governance-token",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko 2026-11-05：价格 $20.67，流通 = 总量 = 最大 10M，市值 = FDV $206.7M；DefiLlama 代币页显示流通 9.67M",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/compound-governance-token",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://defillama.com/token/comp",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "DefiLlama Compound 母协议（V1/V2/V3）：手续费近 365 天 $27.7M；协议收入（储备）近 30 天 $0.395M、近 90 天 $0.971M、前 90 天 $0.369M、再前 90 天 $0.137M、近 365 天 $3.008M；V3 TVL 约 $1.34B",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/compound-finance?dataType=dailyRevenue",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/compound-finance?dataType=dailyFees",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://api.llama.fi/protocols",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": false,
+      "mechanism": "other",
+      "claim": "DefiLlama 代币页：持币人净收入各季度均为 0，“没有生效的分红或收入分配”“没有销毁机制”；stCOMP 30% 储备分给质押者只是 2024 年考虑中的方案；提案 432（2025-05 执行）是 35,200 COMP 的金库理财策略，不是给持币人的分配",
+      "sources": [
+        {
+          "url": "https://defillama.com/token/comp",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://blockworks.com/news/compound-considers-fee-switch-governance-attacker",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://www.tally.xyz/gov/compound/proposal/432",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/compound-finance?dataType=dailyHoldersRevenue",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": 619954810,
+      "claim": "CoinGecko 近 30 天成交约 $620M（日均 $20.7M，单日最大占 20%）；Binance、Coinbase、OKX、Bybit、Kraken、Upbit 有现货",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/compound-governance-token/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/compound-governance-token",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": true,
+      "claim": "事故分开记录：① 2024 年治理攻击（提案 289 批准 499,000 COMP ≈ $24M 给 Humpy 一方，后达成和解、资金不划转）；② 2024-07-11 官网域名被劫持指向钓鱼站，官方称协议合约与资金未受影响，用户损失金额未披露；未找到 2025–2026 年新的合约安全事故",
+      "sources": [
+        {
+          "url": "https://blockworks.com/news/compound-considers-fee-switch-governance-attacker",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://cryptoslate.com/compound-finance-confirms-website-hack-redirecting-users-to-phishing-site/",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": null,
+      "claim": "流通量 CoinGecko 10M 与 DefiLlama 9.67M 不一致（差 3.3%）；DefiLlama 代币页季度“借款利息”下降（Q3 2025 $15.2M → Q2 2026 $3.9M），与协议收入（储备）近两季上升方向不同，口径需区分",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/compound-governance-token",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://defillama.com/token/comp",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/compound-finance?dataType=dailyRevenue",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": true,
+      "supply_growth_12m_pct": 3.4,
+      "claim": "最大供应 10M，流通 9.67–10M（≥96.7%），未来 12 个月最多增加约 0.33M（≤3.4%）",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/compound-governance-token",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://defillama.com/token/comp",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "audit": {
+      "ok": true,
+      "claim": "DefiLlama 协议列表 Compound V2/V3 audits=2，审计链接 https://compound.finance/docs/security",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/protocols",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "本次只看到 Compound 相关人员 Bryan Colligan 的发言（Blockworks），创始团队与机构背景未在官方页面核实",
+      "sources": [
+        {
+          "url": "https://blockworks.com/news/compound-considers-fee-switch-governance-attacker",
+          "date": "2026-11-05"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "无锁仓解锁计划；CoinGecko 流通 = 最大 10M，DefiLlama 流通 9.67M，剩余约 0.33M 的构成（储备/排放）未核实",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": null,
+      "conflict": true,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/compound-governance-token",
+          "date": "2026-11-05"
+        },
+        {
+          "url": "https://defillama.com/token/comp",
+          "date": "2026-11-05"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 20.67,
+    "circulating_supply": 10000000,
+    "total_supply": 10000000,
+    "supply_by_month": {
+      "12": 10000000,
+      "24": 10000000,
+      "36": 10000000
+    },
+    "annual_revenue_usd": 3008000,
+    "revenue_growth": null,
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "Compound 协议收入（储备，DefiLlama revenue 口径）；年化 min(30d×12=4.74M, 90d×4=3.88M, 365d=3.01M)；最近两季环比 +163%、+169%（低基数）"
+  },
+  "risks": [
+    "持币人收入为 0，费用开关/stCOMP 长期停留在讨论阶段",
+    "治理曾被大户攻击",
+    "收入增长来自很低的基数，借款利息总额在下降"
+  ],
+  "unverified": [
+    "2025–2026 年是否有新的回购或费用分配提案通过并执行",
+    "剩余约 0.33M COMP 的构成与排放速度",
+    "团队背景"
+  ],
+  "catalysts": [],
+  "summary_reason": "协议收入低基数翻倍、供应已基本释放，但 COMP 没有任何已执行的价值捕获（持币人收入 0），不满足推荐门槛⑥"
+}
