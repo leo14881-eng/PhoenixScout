@@ -1,0 +1,191 @@
+{
+  "coin_id": "sosovalue",
+  "researched_at": "2026-11-06T04:30:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "SOSO：以太坊 0x76a0e27618462bdac7a29104bdcfff4e6bfcea2d，Base 0x624e2e7fdc8903165f64891672267ab0fcb98831；总量 = 最大供应 1,000,000,000",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/sosovalue?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko 2026-11-06 03:19 UTC：价格 $0.3114，流通 342,001,548（34.2%），总量/最大 1B，市值 $106.5M，FDV $311.3M；Tokenomist 同为 34.20% 已流通，释放延续到 2030 年；未来 12 个月具体释放量来源不一致（见 unlock）",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/sosovalue?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://tokenomist.ai/sosovalue",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://defillama.com/unlocks/sosovalue",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "DefiLlama SoSoValue 母协议（Indexes、Basis、SoDEX 永续/现货）：协议收入近 30 天 $2.31M、近 90 天 $6.26M、前 90 天 $4.82M、再前 90 天 $4.60M、近 365 天 $20.8M（手续费≈收入）；SoSoValue Indexes TVL 约 $95.7M、SoDEX Bridge 约 $63.2M",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/sosovalue?dataType=dailyRevenue",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/sosovalue?dataType=dailyFees",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://api.llama.fi/protocols",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": false,
+      "mechanism": "other",
+      "claim": "DefiLlama 持币人收入近 365 天为 0；Tokenomist 回购、销毁均显示无数据（“--”/Buyback Data Not Available）；未找到已执行的回购/销毁/分红证据（DefiLlama 代币权益页与白皮书未能打开）",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/sosovalue?dataType=dailyHoldersRevenue",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://tokenomist.ai/sosovalue/buyback",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://tokenomist.ai/sosovalue",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": 100994557,
+      "claim": "CoinGecko 近 30 天成交约 $101.0M（日均约 $3.4M，单日最大占 5.3%）；当日成交主要在 Uniswap（Base）、LBank、SoDEX，主流所 Bybit 约 $0.2M、Kraken 约 $0.01M，主流交易所深度偏薄",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/sosovalue/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/sosovalue?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": true,
+      "claim": "DefiLlama 安全事件库无 SoSoValue/SSI/SoDEX 记录；未搜索到被盗或治理纠纷",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/hacks",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "解锁来源冲突：DefiLlama 写“截至 2026-10-27 无即将解锁”，但同页列核心贡献者每周 211 万、合作方每周 22.35 万持续释放；Tokenomist 写 2026-11-24 向核心贡献者解锁（悬崖式）。两家分配口径也不同（DefiLlama 最终 Insiders 38.8%；Tokenomist 核心贡献者 33%+投资人 16.5%）",
+      "sources": [
+        {
+          "url": "https://defillama.com/unlocks/sosovalue",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://tokenomist.ai/sosovalue",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "supply_growth_12m_pct": null,
+      "claim": "流通/总量 34.2% < 50%；仅按 DefiLlama 每周约 233 万线性释放计算，12 个月新增约 1.21 亿（约占流通 35%），已超 25%，未找到需求增长足以抵消稀释的强证据",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/sosovalue?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://defillama.com/unlocks/sosovalue",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "audit": {
+      "ok": true,
+      "claim": "DefiLlama 记录 SSI 协议审计：BlockSec（SSI v1.0）、SlowMist（SSI Protocol 一期、二期）",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/protocols",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "DefiLlama 融资记录：2025-01 A 轮 $15M（红杉中国 HongShan 领投，Mirana Ventures、SafePal、SmallSpark 参投）；2024-06 种子轮 $4.15M（HongShan、GSR Markets、Alumni Ventures 等）；GitHub SoSoValueLabs。创始人实名未在官方页核实",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/protocol/sosovalue",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "Tokenomist：下一次解锁 2026-11-24（核心贡献者，数量未显示），悬崖式，持续到 2030 年；DefiLlama：核心贡献者每周 2.11M、合作方每周 0.2235M 持续释放（占流通 0.68%/周），但又写无即将解锁。两源不一致，未来 12/36 个月比例不写具体值",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": "2026-11-24",
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": true,
+      "sources": [
+        {
+          "url": "https://tokenomist.ai/sosovalue",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://defillama.com/unlocks/sosovalue",
+          "date": "2026-11-06"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.3114,
+    "circulating_supply": 342001548,
+    "total_supply": 1000000000,
+    "supply_by_month": null,
+    "annual_revenue_usd": 20817336,
+    "revenue_growth": null,
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "SoSoValue 母协议协议收入（DefiLlama revenue 口径）；年化 min(30d×12=27.8M, 90d×4=25.0M, 365d=20.8M)=20.8M；最近两季环比 +30.0%、+4.8%"
+  },
+  "risks": [
+    "SOSO 无已核实的回购/销毁/分红，协议收入不归持币人",
+    "流通仅 34%，核心贡献者解锁持续到 2030 年，2026-11-24 有解锁",
+    "解锁数据冲突",
+    "主流交易所成交薄，成交集中在 DEX 与 LBank"
+  ],
+  "unverified": [
+    "2026-11-24 解锁数量及未来 12/36 个月解锁量",
+    "SOSO 代币权益（DefiLlama token-rights、白皮书未能打开）",
+    "创始人实名"
+  ],
+  "catalysts": [],
+  "summary_reason": "收入真实且最近一季加速（年化 $20.8M 对市值 $106M），但 SOSO 无价值捕获、流通仅 34% 且解锁冲突，不满足 A 级条件"
+}

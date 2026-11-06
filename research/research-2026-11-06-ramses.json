@@ -1,0 +1,182 @@
+{
+  "coin_id": "ramses",
+  "researched_at": "2026-11-06T04:30:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "RAM：HyperEVM 0x555570a286f15ebdfe42b66ede2f724aa1ab5555，Robinhood Chain 0x5173d45a1191ee33cbb7d8c7e65f21b04ed54802；CoinGecko 总量 249,258,432、最大 1,000,000,000",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/ramses?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": null,
+      "claim": "CoinGecko 2026-11-06 03:20 UTC：价格 $0.03323，流通 86,096,650（总量的 34.5%），总量 249.3M，最大 1B，市值 $2.86M，FDV $8.28M；x(3,3) 每周排放计划与未来 12 个月供应变化未能核实（官方文档未能打开）",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/ramses?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "DefiLlama Ramses（CL V2 + Legacy V2 + DLMM，含 HyperEVM、Robinhood、Arbitrum、Polygon）：协议收入（含持币人部分）近 30 天 $0.39M、近 90 天 $1.18M、前 90 天 $0.59M、再前 90 天 $0.27M，数据始于 2025-11-08（不足 12 个月）；CL V2 TVL 约 $8.6M",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/ramses-cl-v2?dataType=dailyRevenue",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/ramses-legacy-v2?dataType=dailyRevenue",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/ramses-dlmm?dataType=dailyRevenue",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://api.llama.fi/protocols",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "mechanism": "fee_share",
+      "claim": "DefiLlama 方法论：部分兑换手续费与全部贿选（bribes）分配给持币人（xRAM 锁仓者）；持币人收入近 30 天约 $0.40M、近 90 天约 $1.15M、2026-10 约 $0.45M，属已执行的分配。注意含贿选（可能由其他项目以代币支付），纯手续费占比未核实",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/ramses-cl-v2?dataType=dailyHoldersRevenue",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/ramses-legacy-v2?dataType=dailyHoldersRevenue",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/ramses-dlmm?dataType=dailyHoldersRevenue",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": null,
+      "spot_volume_30d_usd": 40636096,
+      "claim": "CoinGecko 近 30 天成交约 $40.6M（日均约 $1.35M，单日最大占 13.7%）；但当日约 83% 成交在 LBank（$0.92M），自家 DEX 池合计约 $0.19M，没有 Binance/Coinbase/OKX/Bybit/Kraken/Upbit 现货。LBank 成交真实性存疑",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/ramses/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/ramses?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "DefiLlama 安全事件库：2024-10-24 Ramses Exchange（Arbitrum 旧版）奖励分发逻辑漏洞，损失约 $93K，是否赔付无记录；HyperEVM 新版未见事件。赔付情况未核实",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/hacks",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": null,
+      "claim": "CoinGecko 总量 249M 与最大 1B 差距大，排放模型未核实；DefiLlama 的 Ramses 收入合并了 Arbitrum 旧版与 HyperEVM/Robinhood 新版，新 RAM 与旧 Arbitrum RAM 的关系（迁移与否）未核实",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/ramses?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://api.llama.fi/protocols",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "supply_growth_12m_pct": null,
+      "claim": "流通/总量 34.5% < 50%（CoinGecko），ve(3,3) 类模型持续排放，12 个月增长率未核实，无强证据",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/ramses?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "DefiLlama 为 Ramses DLMM 列出审计页 docs.ramses.xyz/pages/audits，但该页未能打开，审计方与日期未核实",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/protocols",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "未找到可核实的团队实名或融资记录（DefiLlama 无融资记录，官网未能打开）",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/protocol/ramses-cl-v2",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "排放/解锁计划需官方文档，docs.ramses.xyz 未能打开，无可核实数据",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/ramses?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-06"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.03323,
+    "circulating_supply": 86096650,
+    "total_supply": 249258432,
+    "supply_by_month": null,
+    "annual_revenue_usd": 4689624,
+    "revenue_growth": null,
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "Ramses 各版本协议收入合计（DefiLlama revenue 口径，含持币人收入与贿选）；年化 min(30d×12=4.69M, 90d×4=4.73M)=4.69M，近12个月实际缺失（数据不足 365 天）；最近两季环比 +100%、+121%"
+  },
+  "risks": [
+    "微型市值（$2.9M），成交大部分在 LBank，真实流动性存疑",
+    "持币人收入含贿选，贿选价值可能来自其他项目排放",
+    "流通仅 34.5%，最大供应 1B，持续排放稀释",
+    "团队、审计、排放计划均未核实",
+    "币价 90 天 +150%，已领先收入增速"
+  ],
+  "unverified": [
+    "团队背景",
+    "审计报告",
+    "排放/解锁计划与未来 12/36 个月供应",
+    "2024-10 旧版被盗赔付",
+    "新旧 RAM 代币关系"
+  ],
+  "catalysts": [],
+  "summary_reason": "收入与持币人分配真实且快速增长（年化约 $4.7M 对市值 $2.9M），但团队、审计、排放计划无法核实，流动性集中在 LBank，只能观察"
+}

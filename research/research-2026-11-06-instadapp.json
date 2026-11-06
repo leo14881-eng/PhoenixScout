@@ -1,0 +1,209 @@
+{
+  "coin_id": "instadapp",
+  "researched_at": "2026-11-06T04:30:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "FLUID（原 INST）：以太坊 0x6f40d4a6237c257fff2db00fa0510deeecd303eb，Base/Arbitrum/Plasma 0x61e030a56d33e8260fdd81f03b162a79fe3449cd，Polygon 0xf50d…dee，Solana DuEy8…pCHQ；总量 = 最大供应 100,000,000",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/instadapp?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko 2026-11-06 03:20 UTC：价格 $2.42，流通 83,696,997，总量/最大 100M，市值 $202.6M，FDV $242.1M；未来 12 个月供应增加上限 = 剩余 16.3M（占流通 19.5%）。Tokenomist 显示已解锁 52.15%、无即将到来的悬崖解锁、又称“解锁已于 2025 年结束”，与流通 83.7% 矛盾，具体释放节奏未核实",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/instadapp?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://tokenomist.ai/instadapp/buyback",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "DefiLlama Fluid 母协议（Lending、DEX、Lite 等）：手续费近 365 天 $54.9M；协议收入近 30 天 $0.74M、近 90 天 $2.05M、前 90 天 $1.75M、再前 90 天 $1.67M、近 365 天 $8.96M；Fluid Lending TVL 约 $612M、DEX 约 $215M",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/fluid?dataType=dailyRevenue",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/fluid?dataType=dailyFees",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://api.llama.fi/protocols",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": false,
+      "mechanism": "buyback",
+      "claim": "2025-10 起执行过回购（DefiLlama 持币人收入 2025-10 至 2026-03 合计约 $4.75M，Defiprime 称累计回购约 1.3% 供应），但 2026-04 起持币人收入为 0；2026-05-11 治理提案要求立即停止回购（Resolv 坏账后），提案结果未核实。DefiLlama 代币权益页（2026-02-18 更新）仍写“回购进行中”、无分红、无销毁——已过时。当前没有在执行的价值捕获",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/fluid?dataType=dailyHoldersRevenue",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://defiprime.com/fluid-resolv-treasury-governance",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://defillama.com/protocol/token-rights/fluid",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://blog.instadapp.io/fluid-reserve-buybacks-growth-strategy",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": 138413523,
+      "claim": "CoinGecko 近 30 天成交约 $138.4M（日均约 $4.6M，单日最大占 15.6%）；Upbit、Bybit、OKX、Coinbase、Bithumb 有现货",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/instadapp/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/instadapp?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "① 2026-03 下旬 Resolv（USR）链下签名被攻破，Fluid 约 $21M 仓位成坏账（Fluid 合约本身未被攻破）；2026-05-12 公布分担：Resolv ~$9.7M、Fluid 国库 ~$8.2M、核心团队 ~$1.5M（未来收入偿还）；团队多签先动用 DEX Lite 信贷额度约 $8M，治理投票前即执行，引发争议，截至 2026-05-17 提案仍在讨论，结果未核实。② 2026-05-31 Merkle 奖励分发运营密钥被盗，损失约 $215K（约 125,109 FLUID + 51,946 GHO + 少量 cbBTC），核心合约与用户存款不受影响；新闻标题称承诺全额赔付，是否完成未核实",
+      "sources": [
+        {
+          "url": "https://defiprime.com/fluid-resolv-treasury-governance",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://api.llama.fi/hacks",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "解锁数据矛盾：Tokenomist 已解锁 52.15% 且称解锁 2025 年结束，CoinGecko 流通 83.7%；DefiLlama 代币权益页仍写回购进行中，与持币人收入 2026-04 起为 0 不符",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/instadapp?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://tokenomist.ai/instadapp/buyback",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://defillama.com/protocol/token-rights/fluid",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/fluid?dataType=dailyHoldersRevenue",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": true,
+      "supply_growth_12m_pct": 19.5,
+      "claim": "最大供应 100M、流通 83.7M：即使剩余 16.3M 全部在 12 个月内释放，增长上限 19.5% ≤ 25%；流通/总量 83.7% ≥ 50%（实际释放节奏未核实，19.5% 是上限）",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/instadapp?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "audit": {
+      "ok": true,
+      "claim": "DefiLlama 记录 Fluid Lending 审计链接：官方审计与安全页、MixBytes Liquidity 审计报告",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/protocols",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "Instadapp/Fluid 团队：创始人 Samyak Jain 公开回应治理争议（Defiprime）；Tokenomist 记录融资 $16.3M；CoinGecko 标注 Coinbase Ventures、Pantera Capital 投资组合",
+      "sources": [
+        {
+          "url": "https://defiprime.com/fluid-resolv-treasury-governance",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://tokenomist.ai/instadapp/buyback",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/instadapp?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-06"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "Tokenomist：无即将到来的悬崖解锁、线性释放，分配 社区 55%、现团队 23.79%、投资人 12.09%、未来团队与生态 7.85%、顾问 1.27%；已解锁 52.15% 与 CoinGecko 流通 83.7% 冲突；DefiLlama 解锁页未能打开。未来 12/36 个月解锁比例只能给上限（19.5%），不写具体值",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": true,
+      "sources": [
+        {
+          "url": "https://tokenomist.ai/instadapp/buyback",
+          "date": "2026-11-06"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/instadapp?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-06"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 2.42,
+    "circulating_supply": 83696997,
+    "total_supply": 100000000,
+    "supply_by_month": null,
+    "annual_revenue_usd": 8191696,
+    "revenue_growth": null,
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "Fluid 母协议协议收入（DefiLlama revenue 口径）；年化 min(30d×12=8.86M, 90d×4=8.19M, 365d=8.96M)=8.19M；最近两季环比 +16.8%、+5.2%；当前流通市值/年化收入约 24.7 倍"
+  },
+  "risks": [
+    "回购 2026-04 起已停（持币人收入 0），协议收入归 DAO，不是持币人利润",
+    "Resolv 坏账 $21M 分担与国库动用的治理争议，最终投票结果未核实",
+    "2026-05-31 运营密钥被盗 $215K，暴露密钥管理问题",
+    "解锁数据冲突（已解锁 52% vs 流通 84%）",
+    "币价 90 天 +98%，远超收入增速，估值已高于同赛道中位数"
+  ],
+  "unverified": [
+    "2026-05-11 治理提案（停止回购、国库资产转移）投票结果",
+    "2026-05-31 被盗是否已全额赔付",
+    "未来 12/36 个月实际解锁节奏（DefiLlama 解锁页打不开）",
+    "核心团队 1.5M 坏账的偿还进度"
+  ],
+  "catalysts": [],
+  "summary_reason": "收入真实且稳定增长（年化约 $8.2M、TVL 超 $8 亿），但回购已停、Resolv 坏账治理争议未见结论、解锁数据冲突，且币价已领先业务，只能观察"
+}
