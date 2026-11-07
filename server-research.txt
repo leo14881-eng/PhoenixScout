@@ -71,3 +71,5 @@ research-2026-11-05-venice-token.json
 research-2026-11-06-instadapp.json
 research-2026-11-06-ramses.json
 research-2026-11-06-sosovalue.json
+research-2026-11-07-nest-2.json
+research-2026-11-07-pepe.json
