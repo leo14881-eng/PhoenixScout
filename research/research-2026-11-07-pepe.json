@@ -1,0 +1,166 @@
+{
+  "coin_id": "pepe",
+  "researched_at": "2026-11-07T03:50:00Z",
+  "grade_hint": "C",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "PEPE：Ethereum 0x6982508145454ce325ddbe47a25d4ec3d2311933（另有 BNB Chain、Arbitrum、Avalanche 跨链版本），总量 = 最大供应 420.69 万亿",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/pepe?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-07"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko：流通 = 总量 = 最大 420,690,000,000,000，市值 = FDV ≈ $2.10B，未来 12 个月无新增供应",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/pepe?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-07"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": false,
+      "claim": "纯模因币，DefiLlama 协议列表中无 PEPE 对应协议、无手续费或收入数据，没有可核实的经济活动",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/protocols",
+          "date": "2026-11-07"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": false,
+      "mechanism": null,
+      "claim": "无回购、销毁、手续费分成或质押收益机制；没有收入可捕获",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/protocols",
+          "date": "2026-11-07"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/pepe?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-07"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": 12377629102,
+      "claim": "CoinGecko 近 30 天成交约 $12.38B（日均约 $413M）；Binance 当日约 $63.0M、OKX $25.4M、KuCoin $30.2M、Bybit $13.7M，另有 Coinbase、Upbit、Kraken 现货；最大单一交易所 FameEX（约 $191M）可信度低",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/pepe/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-07"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/pepe?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-07"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "事故 1：DefiLlama 安全事件库记 2023-08-26 PEPE“Rugpull / Admin Drain”，金额 $15.08M（前团队成员改动多签并转出代币），无退还资金记录；之后代币合约与多签现状未能从官方来源核实",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/hacks",
+          "date": "2026-11-07"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": true,
+      "claim": "CoinGecko 流通、总量、最大供应一致（100% 流通），市值与 FDV 一致；无收入数据可比对",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/pepe?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-07"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": true,
+      "supply_growth_12m_pct": 0,
+      "claim": "流通 = 最大供应，未来 12 个月供应增长 0%，流通率 100%",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/pepe?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-07"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "未找到第三方审计记录（DefiLlama 无对应协议条目），官方网站本次无法打开",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/protocols",
+          "date": "2026-11-07"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "匿名团队，官方网站本次无法打开，未能核实任何实名或机构背景；2023-08 曾发生前团队成员转走多签代币事件",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/hacks",
+          "date": "2026-11-07"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": true,
+      "claim": "CoinGecko 显示流通 = 最大供应，已全部流通，无解锁",
+      "unlock_12m_pct": 0,
+      "unlock_36m_pct": 0,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": true,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/pepe?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-07"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 4.99e-06,
+    "circulating_supply": 420690000000000,
+    "total_supply": 420690000000000,
+    "supply_by_month": {
+      "12": 420690000000000,
+      "24": 420690000000000,
+      "36": 420690000000000
+    },
+    "annual_revenue_usd": null,
+    "revenue_growth": {
+      "conservative": null,
+      "base": null,
+      "optimistic": null
+    },
+    "peer_multiples": {},
+    "peers": [],
+    "metric": "无协议收入，无法按收入倍数估值"
+  },
+  "risks": [
+    "纯模因币，无收入、无价值捕获，价格完全由情绪驱动",
+    "2023-08 前团队成员转走约 $15M 多签代币（DefiLlama 记为 Rugpull）",
+    "最大成交来自低可信度交易所 FameEX",
+    "路径 A 已降级为观察"
+  ],
+  "unverified": [
+    "团队与当前多签/合约权限现状（官方网站无法打开）",
+    "第三方审计"
+  ],
+  "catalysts": [],
+  "summary_reason": "只是超跌反弹的模因币：流动性充足、全部流通，但没有经济活动和价值捕获，淘汰（C）"
+}

@@ -1,0 +1,206 @@
+{
+  "coin_id": "nest-2",
+  "researched_at": "2026-11-07T03:50:00Z",
+  "grade_hint": "C",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "NEST：HyperEVM 合约 0x07c57e32a3c29d5659bda1d3efc2e7bf004e3035（CoinGecko 与 Blockworks 披露文件一致），Hyperliquid 上的 ve(3,3) DEX；Blockworks 文件称无最大供应（持续通胀）",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/nest-2?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-07"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/nest-exchange",
+          "date": "2026-11-07"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": null,
+      "claim": "CoinGecko：流通 298,308,004、总量 1,970,276,489、无最大供应，市值约 $7.07M、FDV 约 $46.7M（流通率 15.1%）；排放参数只知 inflationRate 150bp、每周期衰减 1%，未找到每周排放数量，未来 12 个月供应变化无法核实",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/nest-2?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-07"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/nest-exchange",
+          "date": "2026-11-07"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "DefiLlama：nest 交易量近 30 天约 $485.5M；手续费近 30 天 $810,203（前 30 天 $641,970）、近 90 天 $1,962,654、有数据以来约 356 天合计 $4,326,165；TVL 约 $30.2M（Hyperliquid L1）",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/nest?dataType=dailyRevenue",
+          "date": "2026-11-07"
+        },
+        {
+          "url": "https://api.llama.fi/summary/dexs/nest",
+          "date": "2026-11-07"
+        },
+        {
+          "url": "https://api.llama.fi/protocol/nest",
+          "date": "2026-11-07"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "mechanism": "fee_share",
+      "claim": "Blockworks 原文：veNEST 投票者获得所投池子 100% 交易手续费，智能合约在每个周期末分配；DefiLlama 方法说明“目前 100% 手续费归 veNEST 锁仓者”，持币人收入近 30 天 $810,203（链上已分配）。注意：LP 拿 NEST 排放而非手续费，持币人收入被持续增发稀释；回购只写了“由 Assistance Fund 和 HYPE Engine 执行”，未找到已执行金额，不计入",
+      "sources": [
+        {
+          "url": "https://blockworks.com/token-transparency/filing/nest-exchange",
+          "date": "2026-11-07"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/nest-cl?dataType=dailyHoldersRevenue",
+          "date": "2026-11-07"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/nest?dataType=dailyHoldersRevenue",
+          "date": "2026-11-07"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": false,
+      "spot_volume_30d_usd": 7740288,
+      "claim": "CoinGecko 近 30 天成交约 $7.74M（日均约 $258K，低于 50 万美元门槛）；交易对只在 Nest 自己的 DEX，无任何中心化交易所现货",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/nest-2/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-07"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/nest-2?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-07"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "DefiLlama 安全事件库没有 Nest 记录；但 Blockworks 披露：单一地址 0xD969…fE6d 持有 Voter 的 GOVERNANCE_ROLE，可无门槛、无时间锁关停/恢复 gauge，且全系统无暂停功能、无持币人提案/否决机制——存在中心化治理风险；Blockworks“截至 2026-09-08 无被攻击记录”一句只拿到摘要未见原文",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/hacks",
+          "date": "2026-11-07"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/nest-exchange",
+          "date": "2026-11-07"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "数据矛盾：Blockworks 文件里认购表按 10 亿总量计算，但链上总量 2026-09-08 已约 18.2 亿；CoinGecko 今日总量 19.70 亿；HYPE Engine 同时被写为 2-of-3 Safe 和 3/4 多签；天使轮占比 3.5%（发行方）与 5%（公开文档）不一致（后三项来自页面摘要部分）",
+      "sources": [
+        {
+          "url": "https://blockworks.com/token-transparency/filing/nest-exchange",
+          "date": "2026-11-07"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/nest-2?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-07"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "supply_growth_12m_pct": null,
+      "claim": "流通量只占总量 15.1%（远低于 50%），无最大供应；总量从 2026-09-08 约 18.20 亿（Blockworks）增至今日 19.70 亿（CoinGecko），约 60 天 +8.3%，LP 排放持续增发；没有需求能抵消稀释的强证据",
+      "sources": [
+        {
+          "url": "https://blockworks.com/token-transparency/filing/nest-exchange",
+          "date": "2026-11-07"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/nest-2?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-07"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "Blockworks 原文列出 BailSec、Hats Finance、Code4rena 为一次性服务方，但无报告日期和范围；DefiLlama 记 2 份审计、链接 docs.usenest.xyz/security/audits，该页面本次无法打开",
+      "sources": [
+        {
+          "url": "https://blockworks.com/token-transparency/filing/nest-exchange",
+          "date": "2026-11-07"
+        },
+        {
+          "url": "https://api.llama.fi/protocol/nest",
+          "date": "2026-11-07"
+        }
+      ]
+    },
+    "team": {
+      "ok": false,
+      "claim": "只有化名：CEO @satsyxbt（自称 Blast 创始人）、COO @Telaga、CSO @ace_da_book（自称 Aerodrome 背景），无实名、无法律实体（“纯链上业务、无法律外壳”）；融资只有小额天使轮/Echo/社区轮（摘要部分：合计约 $94 万），无知名机构",
+      "sources": [
+        {
+          "url": "https://blockworks.com/token-transparency/filing/nest-exchange",
+          "date": "2026-11-07"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "Blockworks 摘要：Fenix 空投 6 个月悬崖、天使/社区轮 6 个月锁定、Echo 3 个月悬崖+3 个月线性；团队 1.5 亿等 7.5 亿为永久最长锁定 veNEST；LP 排放按周期持续发放、每周数量未披露；无法算出未来 12/36 个月解锁占流通比例；不同口径总量不一致",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": true,
+      "sources": [
+        {
+          "url": "https://blockworks.com/token-transparency/filing/nest-exchange",
+          "date": "2026-11-07"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/nest-2?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-07"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.0237116,
+    "circulating_supply": 298308004,
+    "total_supply": 1970276489,
+    "supply_by_month": {},
+    "annual_revenue_usd": 4326165,
+    "revenue_growth": {
+      "conservative": 0.0,
+      "base": 0.25,
+      "optimistic": 0.5
+    },
+    "peer_multiples": {},
+    "peers": [],
+    "metric": "协议年化收入（DefiLlama revenue = 持币人收入）：min(近30天×12=$9.72M, 近90天×4=$7.85M, 有数据以来约 356 天=$4.33M)；供应持续增发，supply_by_month 无法核实故留空"
+  },
+  "risks": [
+    "流通率仅 15%、无最大供应，总量约 60 天增长 8.3%，持续高稀释",
+    "现货只在自家 DEX，日均成交约 $26 万，低于流动性门槛",
+    "团队全为化名、无法律实体，单一密钥可无时间锁关停 gauge",
+    "币价 90 天 +272% 而收入同期基本持平，涨幅主要是估值扩张",
+    "依赖 Hyperliquid/HyperEVM 生态与 HYPE 价格"
+  ],
+  "unverified": [
+    "未来 12/36 个月排放和解锁数量（官方文档本次无法打开）",
+    "审计报告日期与范围",
+    "Assistance Fund / HYPE Engine 已执行回购金额",
+    "CoinGecko 流通量口径是否第三方核实",
+    "同赛道（ve(3,3) DEX）可比估值倍数"
+  ],
+  "catalysts": [],
+  "summary_reason": "手续费 100% 分给 veNEST 锁仓者、收入真实，但流通率 15%、持续增发、只在自家 DEX 交易且团队化名，淘汰（C）"
+}
