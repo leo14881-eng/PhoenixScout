@@ -1,0 +1,216 @@
+{
+  "coin_id": "hyperlane",
+  "researched_at": "2026-11-08T03:50:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "HYPER：Ethereum 0x93a2db22b7c736b341c32ff666307f4a9ed910f5（官方文档与 CoinGecko 一致），Arbitrum/BSC/Base 0xc9d23ed2adb0f551369946bd377f8644ce1ca5c4，Optimism 0x9923db8d7fbacc2e69e87fad19b886c81cd74979；最大供应 10 亿（CoinGecko、Tokenomist 一致）",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/hyperlane?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://docs.hyperlane.xyz/docs/protocol-economics/intro",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://tokenomist.ai/hyperlane/unlock-events",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": null,
+      "claim": "CoinGecko：价格 $0.055882、流通 338,174,017、总量 811,333,337、最大 10 亿，市值 ≈ $18.9M、FDV ≈ $45.3M（按总量）；Tokenomist 写已解锁 278,311,167（27.83%）、72.17% 仍锁定、核心贡献者线性释放、近期无悬崖解锁，但未来 12 个月逐月释放表为付费内容，未能核实；官方文档未给出分配与释放表",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/hyperlane?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://tokenomist.ai/hyperlane/unlock-events",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://docs.hyperlane.xyz/docs/protocol-economics/intro",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "DefiLlama（Cross Chain Bridge）：跨链 gas 支付（IGP）收入近 30 天 $50,816、前 30 天 $19,182，近 90 天 $91,598、前 90 天 $39,886、再前 90 天 $43,155，近 365 天 $365,871；Warp Route 锁仓合计约 $69.9M（其中 BSC 约 $59.1M、Ethereum 约 $6.5M、Base 约 $3.2M）。活动真实但规模很小",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/hyperlane?dataType=dailyRevenue",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.llama.fi/protocol/hyperlane",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": false,
+      "claim": "DefiLlama 持币人收入近 365 天为 0；官方文档：质押奖励按 epoch（约 30 天）固定速率发放，验证者奖励是质押奖励的佣金；官方 stHYPER 说明写明质押者和验证者奖励都来自 TGE 分配（即代币释放），不是手续费；未提及回购、销毁或手续费分成",
+      "mechanism": null,
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/hyperlane?dataType=dailyHoldersRevenue",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://docs.hyperlane.xyz/docs/protocol-economics/intro",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://medium.com/@hyperlane_fdn/hyperlane-staking-and-sthyper-d9e5b09fa849",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": null,
+      "claim": "CoinGecko 近 30 天成交约 $100.8M（日均约 $3.4M），Binance、Upbit、MEXC、WhiteBIT 有现货；但 24 小时快照中最大的是 GroveX（约 $0.40M）、BitDelta（约 $0.16M）等低可信度交易所，Binance 约 $0.16M、Upbit 约 $0.04M，真实现货成交可能明显低于总数",
+      "spot_volume_30d_usd": 100848962,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/hyperlane/market_chart?vs_currency=usd&days=90&interval=daily",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/hyperlane?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": true,
+      "claim": "DefiLlama 安全事件库没有 Hyperlane 记录；官方文档说明罚没（slashing）由全体质押者分摊。搜索结果中有一篇第三方披露 RateLimited ISM 漏洞的文章（未打开、未核实是否造成损失）",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/hacks",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://docs.hyperlane.xyz/docs/protocol-economics/intro",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "供应口径矛盾：CoinGecko 流通 338,174,017（近 90 天一直不变，疑似未更新），而 Tokenomist 写已解锁 278,311,167；CoinGecko 总量 811,333,337 与最大/Tokenomist 总量 10 亿不同；在线性释放期内流通量 90 天不变说明 CoinGecko 流通数据不可靠",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/hyperlane?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/hyperlane/market_chart?vs_currency=usd&days=90&interval=daily",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://tokenomist.ai/hyperlane/unlock-events",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "claim": "流通量只占最大供应约 33.8%（CoinGecko）或 27.8%（Tokenomist 已解锁口径），低于 50%；核心贡献者 25%、早期投资人 10.9%、质押奖励 20%、扩张奖励 19.25% 等仍在释放，未来 12 个月增量无法核实；没有需求增长足以抵消稀释的强证据（持币人收入为 0）",
+      "supply_growth_12m_pct": null,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/hyperlane?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://tokenomist.ai/hyperlane/unlock-events",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "audit": {
+      "ok": true,
+      "claim": "官方审计页列出：ChainLight（2025 Q2 安全审计、HyperToken、Yield Routes、CCIP、Hook/ISM）、Offbeat Security（质押奖励）、ChainSecurity、Trail of Bits（Protocol v3，2023-09）、Hacken（v2，2023-04）、FYEO（v1，2022-08）、Sec3、Sherlock（2025-03）、Oak Security（CosmWasm，2024-02）；DefiLlama 审计字段为 0（未收录）",
+      "sources": [
+        {
+          "url": "https://docs.hyperlane.xyz/docs/resources/audits",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.llama.fi/protocol/hyperlane",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "开发方原名 Abacus Network（Abacus Works），创始人兼 CEO Jon Kol 实名；2022-09-22 完成 $18.5M 融资，Variant 领投，Galaxy Digital、CoinFund、Circle、Figment、Blockdaemon、Kraken Ventures、NFX 参投",
+      "sources": [
+        {
+          "url": "https://www.theblock.co/post/172095/variant-leads-18-5-million-fundraise-for-developer-platform-hyperlane",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "Tokenomist：已解锁 27.83%（278,311,167），72.17% 仍锁定，线性释放（核心贡献者），近期无悬崖解锁；分配：核心贡献者 25%、质押奖励 20%、扩张奖励 19.25%、早期投资人 10.9%、战略启动 10.25%、扩张空投 7.5%、基金会 7.1%。逐月释放数量为付费内容，未来 12/36 个月新增占比无法计算；且 Tokenomist 已解锁量与 CoinGecko 流通量不一致",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": true,
+      "sources": [
+        {
+          "url": "https://tokenomist.ai/hyperlane/unlock-events",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/hyperlane?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.055882,
+    "circulating_supply": 338174017,
+    "total_supply": 1000000000,
+    "supply_by_month": {},
+    "annual_revenue_usd": 365871,
+    "revenue_growth": {
+      "conservative": 0.0,
+      "base": 0.3,
+      "optimistic": 0.6
+    },
+    "peer_multiples": {},
+    "peers": [],
+    "metric": "协议年化收入（DefiLlama revenue = 付给 Hyperlane 官方 relayer 的 IGP gas 费）：min(近30天×12=$609,792, 近90天×4=$366,392, 近365天=$365,871)；近 90 天比前 90 天 +130%，但基数很小、增速不稳定，基准按 30%。收入归 relayer 运营方，不归持币人；总量按最大供应 10 亿（保守）"
+  },
+  "risks": [
+    "持币人收入为 0：质押奖励来自代币释放（TGE 分配），不是手续费",
+    "流通量不到最大供应的 34%，核心贡献者/投资人/奖励池仍在线性释放，稀释压力大",
+    "协议收入很小（年化约 $37 万），流通市值 / 收入约 52 倍",
+    "CoinGecko 流通量 90 天不变、与 Tokenomist 已解锁量不一致，供应数据不可靠",
+    "成交量相当部分来自低可信度交易所",
+    "跨链桥赛道是黑客高发领域，Warp Route 锁仓约八成集中在 BSC"
+  ],
+  "unverified": [
+    "未来 12/36 个月解锁数量和下一次大额解锁日期（Tokenomist 付费内容，官方文档未公布）",
+    "CoinGecko 流通量是否为项目自报",
+    "真实现货成交额",
+    "RateLimited ISM 漏洞披露是否造成损失",
+    "同赛道可比估值倍数",
+    "官方 TGE 日期与分配公告（Medium 公告页无法打开）"
+  ],
+  "catalysts": [],
+  "summary_reason": "跨链收入最近两个季度增长较快，但规模很小、持币人没有任何价值捕获、流通率约三分之一且释放表无法核实，最多 B 级观察"
+}

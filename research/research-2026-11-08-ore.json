@@ -1,0 +1,204 @@
+{
+  "coin_id": "ore",
+  "researched_at": "2026-11-08T03:50:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "ORE（Solana）合约 oreoU2P8bN6jkk3jbaiVxYnG1dCXcYxwhwyK9jSybcp，最大供应 300 万（CoinGecko）；DefiLlama 协议 ORE Protocol（Gamified Mining，gecko_id=ore，官网 ore.supply）",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/ore?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.llama.fi/protocol/ore-protocol",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": null,
+      "claim": "CoinGecko：价格 $124.60、流通 = 总量 520,035、最大 300 万，市值 ≈ $64.8M，FDV 按总量 ≈ $64.8M（按最大供应约 $374M）。按市值/价格推算的流通量 2026-08-11 为 482,901，2026-11-08 为 520,035，89 天净增 7.69%（年化约 31.5%）。未来 12 个月供应变化只能按历史趋势推算，没有官方排放/埋藏数据（本次未能打开官网和 DefiLlama 代币页）",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/ore?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/ore/market_chart?vs_currency=usd&days=90&interval=daily",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "DefiLlama：收入近 30 天 $4,425,354、前 30 天 $2,869,368，近 90 天 $10,052,712、前 90 天 $8,884,143，近 365 天 $42,614,252；收入 = 协议钱包 45db2F… 收取矿工投入 SOL 的 10%。注意：活动本质是带排放补贴的挖矿/抽奖式玩法，依赖 ORE 价格；第三方媒体（2025-12-01）称 2025-11 收入见顶后回落、仿盘收入一度超过 ORE",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/ore-protocol?dataType=dailyRevenue",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://solanafloor.com/news/ore-down-80-from-highs-as-forks-eclipse-revenue",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "claim": "已执行的回购：DefiLlama 方法说明 99% 收入用于回购 ORE（埋藏/销毁并分给质押者），1% 归金库；持币人收入近 30 天 $4,381,099、近 365 天 $42,188,105（按协议钱包实际收款统计）。局限：CoinGecko 流通量 89 天仍净增 7.69%，回购不足以抵消挖矿排放",
+      "mechanism": "buyback",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/ore-protocol?dataType=dailyHoldersRevenue",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/ore/market_chart?vs_currency=usd&days=90&interval=daily",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": false,
+      "claim": "无主流交易所现货：CoinGecko 24 小时成交约 $1.18M，主要在 Meteora（约 $0.69M）、LBank（约 $0.41M）、Orca（约 $0.08M）；近 30 天总成交约 $54.9M（日均约 $1.83M），中心化交易所部分只有 LBank",
+      "spot_volume_30d_usd": 54945443,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/ore?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/ore/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "DefiLlama 安全事件库没有 ORE 被盗记录；治理风险：第三方媒体（2025-12-01）指出升级权限、管理员权限和前端都是中心化控制点，去中心化治理仍在探索、未确认；DefiLlama 审计字段为 0",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/hacks",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://solanafloor.com/news/ore-down-80-from-highs-as-forks-eclipse-revenue",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.llama.fi/protocol/ore-protocol",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": null,
+      "claim": "DefiLlama 方法写“buyback and burn”，但 CoinGecko 流通量 89 天净增 7.69%，说明埋藏不足以抵消排放；排放速率与埋藏总量本次没有可交叉核对的官方数据（官网、DefiLlama 代币页未能打开），无法判断是否一致",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/ore-protocol?dataType=dailyHoldersRevenue",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/ore/market_chart?vs_currency=usd&days=90&interval=daily",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/ore?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "claim": "不满足：流通 520,035 仅为最大供应 300 万的约 17.3%；CoinGecko 推算流通量 89 天净增 7.69%，按此趋势未来 12 个月净增约 31.5%（>25%，为历史趋势推算，非官方数据）；没有需求增长足以抵消稀释的强证据",
+      "supply_growth_12m_pct": 31.5,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/ore?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/ore/market_chart?vs_currency=usd&days=90&interval=daily",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "DefiLlama 协议审计记录为 0；未找到公开第三方审计报告",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/protocol/ore-protocol",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "第三方媒体（2025-12-01）称创始人为化名开发者 HardHat Chad；开发公司与融资信息本次未能打开官方或 Blockworks 来源核实，创始人未实名",
+      "sources": [
+        {
+          "url": "https://solanafloor.com/news/ore-down-80-from-highs-as-forks-eclipse-revenue",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "新供应来自持续挖矿排放（无团队/投资人分配的说法本次未能从官方来源核实）；CoinGecko 推算近 89 天净增 7.69%，扣除埋藏后的未来净增量没有官方数据，因此 12/36 个月新增流通占比写 null，不按“已全部解锁”处理",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/ore/market_chart?vs_currency=usd&days=90&interval=daily",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/ore?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 124.6,
+    "circulating_supply": 520035,
+    "total_supply": 520035,
+    "supply_by_month": {},
+    "annual_revenue_usd": 40210848,
+    "revenue_growth": {
+      "conservative": 0.065,
+      "base": 0.13,
+      "optimistic": 0.2
+    },
+    "peer_multiples": {},
+    "peers": [],
+    "metric": "协议年化收入（DefiLlama revenue 口径）：min(近30天×12=$53.1M, 近90天×4=$40.2M, 近365天=$42.6M)；基准增速 = 近 90 天/前 90 天 ≈ +13%，保守取一半、乐观约 1.5 倍；供应按 CoinGecko 当前流通（注意按历史趋势每年净增约 30%）"
+  },
+  "risks": [
+    "持续挖矿排放：CoinGecko 流通量 89 天净增 7.69%（年化约 31.5%），回购埋藏抵消不了排放，流通仅占最大供应约 17%",
+    "收入依赖矿工投入 SOL 的抽奖式玩法，波动大，仿盘竞争",
+    "无主流交易所现货，成交集中在 Meteora 和 LBank",
+    "无第三方审计；升级/管理员权限中心化",
+    "创始人化名；币价 90 天 +120% 远快于季度收入增长（+10%），币价已领先业务",
+    "协议收入 ≠ 持币人利润：回购被排放抵消后持币人净收益可能为负"
+  ],
+  "unverified": [
+    "未来 12/36 个月净供应增长（官方排放与埋藏数据）",
+    "代币分配是否 100% 来自挖矿（官方来源本次未能打开）",
+    "团队与融资背景",
+    "第三方审计报告",
+    "同赛道可比估值倍数",
+    "2025-12 以后的治理去中心化进展"
+  ],
+  "catalysts": [],
+  "summary_reason": "回购真实执行、收入规模较大，但净供应仍以年化约 30% 增长、无主流交易所和审计、币价已领先业务，B 级观察"
+}

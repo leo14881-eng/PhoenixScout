@@ -1,0 +1,221 @@
+{
+  "coin_id": "liquity",
+  "researched_at": "2026-11-08T03:50:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "LQTY：Ethereum 0x6dea81c8171d0ba574754ef6f8b412f2ed88c54d，Arbitrum 0xfb9e5d956d889d91a82737b9bfcdac1dce3e1449；最大供应 = 总量 1 亿（CoinGecko）；DefiLlama 协议 Liquity（gecko_id=liquity，含 V1、V2）",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/liquity?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.llama.fi/protocol/liquity",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko：价格 $0.176875、流通 98,852,816、总量 = 最大 100,000,000，市值 ≈ $17.48M、FDV ≈ $17.69M；剩余未流通约 1.15M 枚；按市值/价格推算的流通量近 30 天从 98,840,011 增至 98,855,309（+15,298 枚），未来 12 个月供应增长上限 1.16%",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/liquity?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/liquity/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "DefiLlama：Liquity V1 收入近 30 天 $127,470（前 30 天 $1,528，主要是赎回费跳升）、近 365 天 $229,287；Liquity V2 手续费近 30 天 $771,466、近 365 天 $2,478,633，其中协议收入（25% 利息，用于 PIL 激励）近 30 天 $30,883、近 365 天 $399,768；DefiLlama Ethereum 锁仓约 $243.8M（另 LQTY 质押约 $9.4M）。V2 2025-05-19 上线",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/liquity-v1?dataType=dailyRevenue",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/liquity-v2?dataType=dailyRevenue",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/liquity-v2?dataType=dailyFees",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.llama.fi/protocol/liquity",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://www.liquity.org/blog/forkonomics-update---august-2025",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "claim": "质押 LQTY 获得 Liquity V1 借款费和赎回费，属于手续费真实收益：DefiLlama V1 持币人收入近 30 天 $127,470、近 365 天 $229,287（链上已支付）；CoinGecko 项目描述同样写明 LQTY 通过质押获得协议手续费。V2 的 25% 利息只能投票分配给 PIL 外部激励（官方 2025-08 称约 2.5 万 BOLD/月），不计入持币人收入",
+      "mechanism": "real_yield_staking",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/liquity-v1?dataType=dailyHoldersRevenue",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/liquity?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://www.liquity.org/blog/forkonomics-update---august-2025",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "claim": "CoinGecko 近 30 天成交约 $43.2M（日均约 $1.44M）；24 小时快照：HTX 约 $0.54M、Binance 约 $0.11M、Uniswap V3 约 $0.04M，其余分散在 LBank、MEXC 等；主流交易所有现货，但成交集中度偏高（HTX 一家约占四成）",
+      "spot_volume_30d_usd": 43184504,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/liquity/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/liquity?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": true,
+      "claim": "事件 1：DefiLlama 标注 2025-02-12 “Issue found in contracts”（V2 稳定池问题，团队提示撤出），2025-05-19 “Liquity V2 relaunch”，官方 2025-08 更新确认 V2 于 5 月 19 日重新上线；DefiLlama 安全事件库没有 Liquity 被盗记录，无损失、无需赔付",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/protocol/liquity",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.llama.fi/hacks",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://www.liquity.org/blog/forkonomics-update---august-2025",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": true,
+      "claim": "CoinGecko 最大供应 1 亿与流通量推算一致；DefiLlama V1 持币人收入与收入口径一致（V1 借款/赎回费全部归质押者）；V1 近 30 天收入异常偏高（一次性赎回），情景输入已用 365 天口径",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/liquity?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/liquity-v1?dataType=dailyHoldersRevenue",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/liquity-v1?dataType=dailyRevenue",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": true,
+      "claim": "硬上限 1 亿，当前流通 98.85%；未来 12 个月供应增长上限 = (100M − 98.85M)/98.85M ≈ 1.16%；近 30 天实际增量 15,298 枚，年化约 0.19%",
+      "supply_growth_12m_pct": 1.16,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/liquity?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/liquity/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "audit": {
+      "ok": true,
+      "claim": "DefiLlama V1 费用条目记录 2 份审计（审计机构名称本次未能从官方文档打开核实）",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/liquity-v1?dataType=dailyRevenue",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "机构背景：CoinGecko 将 LQTY 归入 Pantera Capital Portfolio、Alameda Research Portfolio 分类；开发公司与创始人实名信息本次未能打开官方融资公告核实",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/liquity?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": true,
+      "claim": "最大供应 1 亿、流通 98.85%，剩余约 1.15M 枚只来自 V1 稳定池社区发放，近 30 天实际释放 15,298 枚；12/36 个月新增解锁上限约 1.16%（上限值），没有大额一次性解锁",
+      "unlock_12m_pct": 1.16,
+      "unlock_36m_pct": 1.16,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/liquity?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/liquity/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-08"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.176875,
+    "circulating_supply": 98852816,
+    "total_supply": 100000000,
+    "supply_by_month": {
+      "12": 100000000,
+      "24": 100000000,
+      "36": 100000000
+    },
+    "annual_revenue_usd": 629055,
+    "revenue_growth": {
+      "conservative": 0.0,
+      "base": 0.25,
+      "optimistic": 0.375
+    },
+    "peer_multiples": {},
+    "peers": [],
+    "metric": "协议年化收入（DefiLlama revenue，V1+V2 合并）：min(近30天×12=$1.90M, 近90天×4=$0.98M, 近365天=$0.63M)；其中真正归持币人的只有 V1 部分（近 365 天 $229,287）。近 30 天 V1 跳升主要是一次性赎回费，增速按保守口径；供应按硬上限 1 亿"
+  },
+  "risks": [
+    "持币人收入只来自 V1（LUSD 借贷在萎缩），近 30 天跳升是一次性赎回费，不可持续",
+    "V2 的 25% 利息只能投票分配给外部激励，不直接归持币人",
+    "流通市值 / 持币人年收入约 76 倍，估值不便宜",
+    "2025-02 V2 稳定池问题导致重新部署，BOLD 规模增长不确定",
+    "成交集中在 HTX，主流交易所成交偏低；币价 90 天 -7.9%"
+  ],
+  "unverified": [
+    "团队实名与融资（本次只核实到 CoinGecko 投资机构分类）",
+    "审计机构名称（官方文档本次未能打开）",
+    "V2 PIL 外部激励给质押者的实际金额",
+    "同赛道（CDP）可比估值倍数"
+  ],
+  "catalysts": [],
+  "summary_reason": "供应几乎全部流通、质押可拿 V1 手续费真实收益，但持币人收入很小且不可持续，现价已高于收入估值，B 级观察"
+}

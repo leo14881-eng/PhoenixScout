@@ -1,0 +1,203 @@
+{
+  "coin_id": "trust-wallet-token",
+  "researched_at": "2026-11-08T03:50:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "TWT：BNB Chain BEP-20 0x4b0f1812e5df2a09796481ff14017e6005508003，另有 BEP-2 TWT-8C2；总量 10 亿（CoinGecko）；第三方分析（2026-06-21）给出同一合约地址并称创世一次性铸造全部供应",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/trust-wallet-token?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://dev.to/mrnasdog/twt-inflation-analysis-june-2026-fixed-supply-flows-roughly-steady-33bk",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": false,
+      "claim": "CoinGecko：价格 $0.39705、流通 416,649,900、总量 10 亿，市值 ≈ $165.5M、FDV ≈ $397.1M；约 5.83 亿枚在项目储备中，第三方分析称没有公开释放时间表，未来 12 个月供应变化不可核实（本次未能打开官方 litepaper）",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/trust-wallet-token?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://dev.to/mrnasdog/twt-inflation-analysis-june-2026-fixed-supply-flows-roughly-steady-33bk",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "DefiLlama：Trust Wallet 钱包兑换/跨链收入近 30 天 $580,130、前 30 天 $359,500，近 90 天 $1,306,132、近 365 天 $4,735,403；Trust Wallet Perps（Hyperliquid builder code）近 30 天 $1,525,891、前 30 天 $1,527,588、近 90 天 $4,187,295、上线以来（193 天）$4,506,967。合计近 30 天约 $2.11M",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/trust-wallet-wallet?dataType=dailyRevenue",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/trust-wallet-perps?dataType=dailyRevenue",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": false,
+      "claim": "DefiLlama：Perps 方法说明写明“No fees distributed to TWT token holders”，持币人收入为 0；钱包部分持币人收入只有历史上 1 天、合计 $10,865 的记录；第三方分析称无协议增发、无持续销毁、无回购，唯一一次销毁是 2020-10-03（BEP-2 迁移）。TWT 只有手续费折扣、Trust Premium 锁仓会员等用途",
+      "mechanism": null,
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/trust-wallet-perps?dataType=dailyHoldersRevenue",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/trust-wallet-wallet?dataType=dailyHoldersRevenue",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://dev.to/mrnasdog/twt-inflation-analysis-june-2026-fixed-supply-flows-roughly-steady-33bk",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": null,
+      "claim": "CoinGecko 近 30 天总成交约 $170.3M（日均约 $5.7M），但 24 小时快照中 GroveX（约 $1.46M）、Aivora（约 $0.78M）、Biconomy.com（约 $0.38M）等低可信度交易所占大头，Binance 约 $0.35M、Bybit 约 $0.12M；真实现货成交可能远低于总数，有刷量嫌疑",
+      "spot_volume_30d_usd": 170278279,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/trust-wallet-token/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/trust-wallet-token?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "事故 1：DefiLlama 记录 2025-12-25 Trust Wallet 钱包（浏览器扩展）供应链攻击，损失 $8.5M，“returnedFunds” 为空；项目方赔付是否完成，本次未能打开官方或媒体来源核实。代币合约本身没有安全事件记录",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/hacks",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "CoinGecko 成交量集中在低可信度交易所，与主流交易所成交差距很大；流通 41.7% 由项目方口径决定，储备 5.83 亿枚无公开明细",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/trust-wallet-token?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://dev.to/mrnasdog/twt-inflation-analysis-june-2026-fixed-supply-flows-roughly-steady-33bk",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "claim": "流通量只占总量 41.7%（<50%）；CoinGecko 流通量近 30 天基本不变（416,649,900 → 416,648,579），但未流通 5.83 亿枚（约为当前流通的 140%）没有公开释放计划，可能随时释放；没有需求增长足以抵消稀释的强证据",
+      "supply_growth_12m_pct": null,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/trust-wallet-token?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/trust-wallet-token/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://dev.to/mrnasdog/twt-inflation-analysis-june-2026-fixed-supply-flows-roughly-steady-33bk",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "DefiLlama Trust Wallet 协议审计字段为空，钱包/Perps 审计记录 0；未找到第三方审计报告",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/protocol/trust-wallet",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/trust-wallet-wallet?dataType=dailyRevenue",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "本次未能打开团队/公司背景的来源（官方博客、维基百科访问均未获准）；CoinGecko 未给出团队信息。团队背景本次未核实",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/trust-wallet-token?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "没有官方解锁时间表；第三方分析（2026-06-21）称储备约 5.83 亿枚“no published release schedule”，近 90 天净通胀 0.00%；未来 12/36 个月新增解锁无法计算",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://dev.to/mrnasdog/twt-inflation-analysis-june-2026-fixed-supply-flows-roughly-steady-33bk",
+          "date": "2026-11-08"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/trust-wallet-token?localization=false&tickers=true&community_data=false&developer_data=false",
+          "date": "2026-11-08"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.39705,
+    "circulating_supply": 416649900,
+    "total_supply": 1000000000,
+    "supply_by_month": {},
+    "annual_revenue_usd": 9242370,
+    "revenue_growth": {
+      "conservative": 0.0,
+      "base": 0.5,
+      "optimistic": 0.75
+    },
+    "peer_multiples": {},
+    "peers": [],
+    "metric": "协议年化收入（DefiLlama revenue，钱包 + Perps 合并）：min(近30天×12=$25.3M, 近90天×4=$22.0M, 近12个月实际≈$9.24M＝钱包365天$4.74M＋Perps上线以来$4.51M)；Perps 不足 12 个月，近两个 30 天持平，基准按 50%。收入全部归公司，不归持币人；总量按 10 亿（保守）"
+  },
+  "risks": [
+    "持币人拿不到任何收入：钱包与 Perps 收入全部归 Trust Wallet 公司，TWT 只有折扣/会员用途",
+    "流通率 41.7%，未流通 5.83 亿枚无公开释放计划，高稀释风险",
+    "成交量大部分来自低可信度交易所，疑似刷量",
+    "2025-12 浏览器扩展被盗（DefiLlama 记 $8.5M），赔付完成情况未核实",
+    "收入的七成来自 Hyperliquid builder code，依赖外部平台；Perps 近 30 天收入已不再增长"
+  ],
+  "unverified": [
+    "团队背景（本次未能打开来源）",
+    "安全：2025-12 扩展被盗事件的赔付是否完成",
+    "审计：未找到第三方审计",
+    "解锁：未流通部分的释放计划（官方 litepaper 本次未能打开）",
+    "真实现货成交额",
+    "同赛道可比估值倍数"
+  ],
+  "catalysts": [],
+  "summary_reason": "钱包与 Perps 收入较一年前大幅增长，但 TWT 没有任何价值捕获、流通率不到一半且无解锁计划，最多 B 级观察"
+}
