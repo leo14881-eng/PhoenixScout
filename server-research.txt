@@ -73,3 +73,7 @@ research-2026-11-06-ramses.json
 research-2026-11-06-sosovalue.json
 research-2026-11-07-nest-2.json
 research-2026-11-07-pepe.json
+research-2026-11-08-hyperlane.json
+research-2026-11-08-liquity.json
+research-2026-11-08-ore.json
+research-2026-11-08-trust-wallet-token.json
