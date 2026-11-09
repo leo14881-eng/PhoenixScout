@@ -77,3 +77,6 @@ research-2026-11-08-hyperlane.json
 research-2026-11-08-liquity.json
 research-2026-11-08-ore.json
 research-2026-11-08-trust-wallet-token.json
+research-2026-11-09-avalon-2.json
+research-2026-11-09-lido-dao.json
+research-2026-11-09-sun-token.json
