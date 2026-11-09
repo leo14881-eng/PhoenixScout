@@ -1,0 +1,185 @@
+{
+  "coin_id": "lido-dao",
+  "researched_at": "2026-11-09T04:30:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "LDO：Ethereum 0x5a98fcbea516cf06857215779fd812ca3bef1b32（另有 Polygon/Arbitrum/Optimism 桥接合约），总量 = 最大供应 1,000,000,000",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/lido-dao",
+          "date": "2026-11-09"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko：价格 $0.3202、流通 829.57M、总量/最大 1B，市值 $265.6M、FDV $320.2M；剩余约 170M 未流通（推测在 DAO 金库，未核实）",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/lido-dao",
+          "date": "2026-11-09"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "DefiLlama Lido 协议收入（DAO 所得质押奖励分成）近 30 天 $3.44M、近 1 年 $34.87M；6—10 月 2.05M/2.20M/2.61M/3.16M/3.64M，回升中；总手续费近 30 天 $56.5M",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/lido?dataType=dailyRevenue",
+          "date": "2026-11-09"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": null,
+      "mechanism": "buyback",
+      "claim": "存疑：DefiLlama 持币人收入 2026-06 至 09 共 $7.06M、10 月起为 0；但 Lido 论坛 2026-10-07 帖称 NEST 自 2026-08-10 上线以来“尚未买入任何 LDO”，9 月底预算计数为 -$542,451（收入低于 $40M 年化门槛需先补亏）；DefiLlama 的 6—9 月数字可能来自 2026-04 Snapshot 的一次性 stETH→LDO 购买计划（最多 10,000 stETH，买入 LDO 回金库），该计划执行结果未核实。买入的 LDO 进金库、不销毁，暂无用途决定",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/lido?dataType=dailyHoldersRevenue",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://research.lido.fi/t/nest-tying-the-buyback-threshold-to-the-approved-budget/11982",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://research.lido.fi/t/utilizing-market-opportunities-steth-ldo-trade/11358",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://research.lido.fi/t/liquid-buybacks-nest-execution-with-ldo-wsteth-liquidity/10894",
+          "date": "2026-11-09"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": null,
+      "claim": "CoinGecko 24h 成交 $18.7M，其中 BitDelta $3.47M、Poloniex/CoinUp/P2B 等可疑所占比高；主流现货 Binance $1.45M、Bybit $1.29M，合计仍高于 50 万门槛；服务端 30 天日均 $38.4M（含可疑量）",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/lido-dao",
+          "date": "2026-11-09"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": true,
+      "claim": "官方安全披露：2026-08-06 Staking Router v3 会计预言机/VEBO 事件（低级别，损失未写明）；2026-03-23 Immunefi 漏洞批量披露（低）；2025-05-11 Chorus One 预言机密钥泄露（高级别，紧急轮换；报道称其热钱包被盗 1.4 ETH，非协议资金）；未见未解决的重大问题",
+      "sources": [
+        {
+          "url": "https://docs.lido.fi/security/disclosures/",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "重大矛盾：DefiLlama 记 6—9 月持币人收入（回购）$7.06M，而 Lido 论坛 2026-10-07 称 NEST 尚未买入任何 LDO，两者无法对上（可能是另一项一次性买入计划被计为持币人收入，未核实）；CoinGecko 成交额含大量可疑交易所",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/lido?dataType=dailyHoldersRevenue",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://research.lido.fi/t/nest-tying-the-buyback-threshold-to-the-approved-budget/11982",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://www.coingecko.com/en/coins/lido-dao",
+          "date": "2026-11-09"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": true,
+      "supply_growth_12m_pct": 20.5,
+      "claim": "硬上限 1B，流通 82.96%；即使剩余 170M 全部在 12 个月内流通，增长上限 = 170.4/829.6 ≈ 20.5%（≤25%）；实际释放计划未核实",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/lido-dao",
+          "date": "2026-11-09"
+        }
+      ]
+    },
+    "audit": {
+      "ok": true,
+      "claim": "官方审计仓库：2026 年 MixBytes、Certora（Staking Router v3，07-2026）、Ack3（NEST，07-2026）、Composable Security 等多份；历史审计方含 ChainSecurity、OpenZeppelin、Sigma Prime、Statemind 等",
+      "sources": [
+        {
+          "url": "https://github.com/lidofinance/audits/",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "DefiLlama 列出融资 $167M：2021-05-05 私募 $73M、2022-03-03 $70M、2022-09-14 金库多元化 $24M；团队实名未在本次打开的页面核实",
+      "sources": [
+        {
+          "url": "https://defillama.com/protocol/token-rights/lido",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "未找到官方解锁表；剩余约 170M 未流通，推测为 DAO 金库，未核实",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": null,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/lido-dao",
+          "date": "2026-11-09"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.3202,
+    "circulating_supply": 829567764,
+    "total_supply": 1000000000,
+    "supply_by_month": null,
+    "annual_revenue_usd": 34873618,
+    "revenue_growth": {
+      "conservative": 0.0,
+      "base": 0.35,
+      "optimistic": 0.5
+    },
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "DAO 协议收入（DefiLlama revenue 近 1 年 $34.87M，保守口径；近 30 天×12 = $41.2M）；8—10 月 9.42M 比 5—7 月 6.95M 环比 +35.5%；协议收入属于 DAO 金库，不是持币人利润；流通市值/年收入 ≈ 7.6 倍；同赛道倍数未核实"
+  },
+  "risks": [
+    "NEST 回购上线 3 个月未买入任何 LDO（论坛 2026-10-07），收入需高于 $40M 年化门槛且先补亏",
+    "买入的 LDO 进金库、不销毁，无用途决定",
+    "Blockworks 报道 DAO 第三季度净收入约 -$20 万（未独立核实）",
+    "收入与 ETH 价格及质押收益率强相关",
+    "CoinGecko 成交额大量来自可疑交易所"
+  ],
+  "unverified": [
+    "DefiLlama 6—9 月持币人收入 $7.06M 的实际来源（是否一次性 stETH→LDO 买入计划）",
+    "NEST 门槛是否随 2027 预算（预计 11 月底）调整",
+    "剩余 170M LDO 的归属与释放计划（unlock）",
+    "30 天真实现货成交额",
+    "同赛道估值倍数",
+    "团队实名"
+  ],
+  "catalysts": [
+    {
+      "claim": "团队称 NEST 门槛与 2027 预算挂钩的决定预计随 2027 拨款申请在 11 月底提出（需链上投票）",
+      "url": "https://research.lido.fi/t/nest-tying-the-buyback-threshold-to-the-approved-budget/11982",
+      "date": "2026-11-09"
+    }
+  ],
+  "summary_reason": "协议收入回升（10 月年化约 $43M）但 NEST 回购未实际执行、DefiLlama 回购数据与官方论坛矛盾，价值捕获存疑"
+}

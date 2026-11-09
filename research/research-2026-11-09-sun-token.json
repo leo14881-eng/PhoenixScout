@@ -1,0 +1,198 @@
+{
+  "coin_id": "sun-token",
+  "researched_at": "2026-11-09T04:30:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "SUN：TRON 合约 TSSMHYeV2uE9qYH95DqyoCuNCzEL1NvU3S（旧合约 TKkeiboTkxXKJpbmVFbv4a8ov5rAfRDMf9 已升级），最大供应 19.901B",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/sun-token",
+          "date": "2026-11-09"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko：价格 $0.015399、流通 19.215B、总量/最大 19.901B，市值 $295.9M、FDV $306.5M；差额约 686M 与累计销毁量（2026-10 新闻稿 685.78M）几乎相同",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/sun-token",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://yellow.com/press-releases/SUN-Completes-52nd-Buyback-and-Burn",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "DefiLlama SUN 协议收入近 30 天 $181.8K、近 1 年 $1.095M；5—10 月 156.8K/143.8K/113.8K/190.6K/165.9K/180.6K；总手续费近 30 天 $1.45M",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/sun?dataType=dailyRevenue",
+          "date": "2026-11-09"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "mechanism": "buyback",
+      "claim": "已执行回购销毁：DefiLlama 持币人收入（回购销毁）2026-05 起每月 $2.6—5.3 万，近 30 天 $51.1K、近 1 年 $246.5K；第 50 次（2026-04-25）销毁 18.8M、累计 670M；第 52 次（2026-10-27）后累计 685.78M。SunPerp“100% 收入回购”只是承诺，未见执行数额",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/sun?dataType=dailyHoldersRevenue",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/sun-completes-50th-buyback-and-burn-total-destroyed-reaches-18-8m",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://yellow.com/press-releases/SUN-Completes-52nd-Buyback-and-Burn",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": null,
+      "claim": "CoinGecko 24h 成交 $8.24M，其中 Poloniex $5.72M（约 70%，可疑）、Icrypex $0.76M；主流现货 Binance $0.39M、HTX $0.09M、WhiteBIT $0.11M，主流合计约 $0.6M/天，勉强高于 50 万门槛；30 天现货总额未核实",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/sun-token",
+          "date": "2026-11-09"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": true,
+      "claim": "CertiK 页面未列出事故；搜索到的 Sunray Finance 被盗、Arbitrum 假 SUN 合约均非本项目；未发现 SunSwap/SunPump 未解决的重大安全事件（核实深度有限）",
+      "sources": [
+        {
+          "url": "https://skynet.certik.com/projects/sun-token",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": true,
+      "claim": "CoinGecko 总量与流通差额≈累计销毁量；第 50 次（670M，2026-04）与第 52 次（685.78M，2026-10）累计销毁数字前后衔接；DefiLlama 持币人收入与回购节奏一致；但 CoinGecko 成交额约 70% 来自 Poloniex，表面流动性失真",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/sun-token",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/sun-completes-50th-buyback-and-burn-total-destroyed-reaches-18-8m",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/sun?dataType=dailyHoldersRevenue",
+          "date": "2026-11-09"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": true,
+      "supply_growth_12m_pct": 3.57,
+      "claim": "流通/总量 96.6%；即使总量与流通差额全部释放，12 个月增长上限 = 0.686/19.215 ≈ 3.57%；且该差额很可能就是已销毁量，实际净供应在回购销毁下趋于下降",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/sun-token",
+          "date": "2026-11-09"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "CertiK 页面自相矛盾（“Has CertiK Audit”与“not audited by CertiK”并存），未找到审计报告",
+      "sources": [
+        {
+          "url": "https://skynet.certik.com/projects/sun-token",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "MEXC 介绍为 TRON 生态“社会实验”，0 VC、无预挖；新闻稿署名 SUN Team Singapore；未找到实名团队页，CertiK 显示无 KYC",
+      "sources": [
+        {
+          "url": "https://www.mexc.com/price/SUN/tokenomics",
+          "date": "2026-11-02"
+        },
+        {
+          "url": "https://yellow.com/press-releases/SUN-Completes-52nd-Buyback-and-Burn",
+          "date": "2026-11-02"
+        },
+        {
+          "url": "https://skynet.certik.com/projects/sun-token",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "未找到官方解锁表；流通已占 96.6%，剩余差额可能为已销毁量",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": null,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/sun-token",
+          "date": "2026-11-02"
+        },
+        {
+          "url": "https://www.mexc.com/price/SUN/tokenomics",
+          "date": "2026-11-02"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.015399,
+    "circulating_supply": 19214949012,
+    "total_supply": 19900730000,
+    "supply_by_month": null,
+    "annual_revenue_usd": 1095139,
+    "revenue_growth": {
+      "conservative": 0.0,
+      "base": 0.1,
+      "optimistic": 0.15
+    },
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "协议年化收入（DefiLlama revenue 近 1 年 $1.095M）；流通市值/年收入 ≈ 270 倍；8—10 月 537K 比 5—7 月 414K 环比 +29.6%；同赛道倍数未核实"
+  },
+  "risks": [
+    "流通市值约为年收入 270 倍，5 倍估值情景基本不成立",
+    "回购销毁规模小（近 1 年约 $25 万）",
+    "CoinGecko 成交额约 70% 来自 Poloniex，真实现货深度约 $60 万/天",
+    "团队匿名/未 KYC，高度依附 TRON/孙宇晨生态",
+    "SunPerp 回购只是承诺"
+  ],
+  "unverified": [
+    "第三方审计报告",
+    "团队实名",
+    "剩余供应归属（推测为已销毁量）",
+    "30 天真实现货成交额",
+    "回购销毁链上交易",
+    "同赛道估值倍数",
+    "SunPerp 回购执行情况"
+  ],
+  "catalysts": [
+    {
+      "claim": "2026-10-27 第 52 次回购销毁，累计 685.78M",
+      "url": "https://yellow.com/press-releases/SUN-Completes-52nd-Buyback-and-Burn",
+      "date": "2026-11-02"
+    }
+  ],
+  "summary_reason": "收入持续回升、回购销毁持续执行、供应几乎全流通，但市值/收入约 270 倍且真实流动性偏弱"
+}

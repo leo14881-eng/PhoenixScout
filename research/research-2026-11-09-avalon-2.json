@@ -1,0 +1,220 @@
+{
+  "coin_id": "avalon-2",
+  "researched_at": "2026-11-09T04:30:00Z",
+  "grade_hint": "C",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "AVL（Avalon Labs，BTC 抵押借贷/USDa）：Ethereum 0x5c8d0c48810fd37a0a824d074ee290e64f7a8fa2，BSC 0x9beee89723ceec27d7c2834bec6834208ffdc202，另有 Bitlayer、Merlin 合约；总量/最大供应 1,000,000,000（官方文档“capped at 1 Billion”）",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/avalon-2",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://docs.avalonfinance.xyz/avl-governance-token/avl-tokenomics",
+          "date": "2026-11-09"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko：价格 $0.016684、流通 446.93M（44.7%）、总量 1B，市值 $7.46M、FDV $16.68M；未来 12 个月供应变化按官方归属条款推算较大（见 unlock），具体数量未核实",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/avalon-2",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://docs.avalonfinance.xyz/avl-governance-token/avl-tokenomics",
+          "date": "2026-11-09"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "DefiLlama Avalon Labs：TVL 约 $239.6M（90 天前约 $113.3M）；协议收入近 30 天 $33.7K、近 1 年 $103.5K，6—10 月 5.6K/16.1K/23.4K/10.8K/34.6K；手续费近 30 天 $109K。2025-11 有一次约 $2.79M 的单月异常尖峰（不计入 1 年口径）。规模很小",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/avalon-labs?dataType=dailyRevenue",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/avalon-labs?dataType=dailyFees",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://api.llama.fi/protocol/avalon-labs",
+          "date": "2026-11-09"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": false,
+      "mechanism": null,
+      "claim": "DefiLlama 持币人收入近 1 年为 0；官方文档与官网未提及回购、销毁、手续费分成或真实收益质押；“Yield Incentives”是增发激励，不算价值捕获",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/summary/fees/avalon-labs?dataType=dailyHoldersRevenue",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://docs.avalonfinance.xyz/avl-governance-token/avl-tokenomics",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://www.avalonfinance.xyz/",
+          "date": "2026-11-09"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": false,
+      "spot_volume_30d_usd": null,
+      "claim": "CoinGecko 24h 成交 $272K（Bithumb $182K、Toobit $54K、Bybit $17K、PancakeSwap $14K）；服务端 30 天日均 $467K，低于 50 万门槛",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/avalon-2",
+          "date": "2026-11-09"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "DefiLlama hacks 字段为空，官网与文档未提及事故；未查外部事故数据库，核实深度有限",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/protocol/avalon-labs",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://www.avalonfinance.xyz/",
+          "date": "2026-11-09"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "代币分配有冲突：官方文档 生态与金库 15%、投资人 19%；DropsTab 为 16%/18%，且 TGE 释放比例（5% vs 7.5%）不同；DropsTab 显示已解锁 32.83%（快照日期不明）而 CoinGecko 流通 44.7%；收入 2025-11 单月 $2.79M 尖峰与其他月份 <$4 万量级不一致",
+      "sources": [
+        {
+          "url": "https://docs.avalonfinance.xyz/avl-governance-token/avl-tokenomics",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://dropstab.com/coins/avalon-finance/vesting",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://www.coingecko.com/en/coins/avalon-2",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://api.llama.fi/summary/fees/avalon-labs?dataType=dailyRevenue",
+          "date": "2026-11-09"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "supply_growth_12m_pct": null,
+      "claim": "流通/总量 44.7% < 50%；按官方条款（社区激励与生态金库 48 个月线性、团队 18 个月悬崖后 18 个月线性、投资人与顾问 12 个月悬崖后 12 个月线性），TGE 若为 2025-02（DropsTab 时间线首个事件），未来 12 个月团队、投资人、顾问、社区、生态同时释放，估算新增可能达流通量一半左右，未核实；无需求增长抵消稀释的强证据",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/avalon-2",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://docs.avalonfinance.xyz/avl-governance-token/avl-tokenomics",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://dropstab.com/coins/avalon-finance/vesting",
+          "date": "2026-11-09"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "官网称经 Salus、SlowMist、BlockSec、Nethermind 四家审计、报告在 GitHub（avalonfinancexyz），本次未打开报告核实",
+      "sources": [
+        {
+          "url": "https://www.avalonfinance.xyz/",
+          "date": "2026-11-09"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "DefiLlama 记录 2024-12-23 A 轮 $10M，Framework Ventures 领投（另有 UTXO Management、Kinetic、Presto Labs 等）；官网与文档未列实名团队",
+      "sources": [
+        {
+          "url": "https://api.llama.fi/protocol/avalon-labs",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://www.avalonfinance.xyz/",
+          "date": "2026-11-09"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "官方文档只给条款不给日期和数量：社区激励 28%（TGE 7.5%，3 个月悬崖后 48 个月线性）、空投 20%（TGE 50%，6 个月后余下 50%）、生态与金库 15%（同社区）、团队 10%（18 个月悬崖+18 个月线性）、顾问 4%（12+12）、初始流动性 4%、投资人 19%（12+12）。DropsTab 时间线下一事件为 2027-02（数量未写），且分配比例与官方冲突；12/36 个月解锁比例无法可靠计算",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": true,
+      "sources": [
+        {
+          "url": "https://docs.avalonfinance.xyz/avl-governance-token/avl-tokenomics",
+          "date": "2026-11-09"
+        },
+        {
+          "url": "https://dropstab.com/coins/avalon-finance/vesting",
+          "date": "2026-11-09"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.016684,
+    "circulating_supply": 446934623,
+    "total_supply": 1000000000,
+    "supply_by_month": null,
+    "annual_revenue_usd": 103481,
+    "revenue_growth": {
+      "conservative": 0.0,
+      "base": 0.5,
+      "optimistic": 1.0
+    },
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "协议年化收入（DefiLlama revenue 近 12 个月实际 $103.5K，保守口径；近 30 天×12 = $404K 偏高）；流通市值/年收入 ≈ 72 倍；收入不归持币人；同赛道倍数未核实"
+  },
+  "risks": [
+    "持币人收入为 0，无任何已执行的回购/销毁/分成",
+    "流通仅 44.7%，团队、投资人、顾问处于解锁期，稀释压力大",
+    "流动性低于 50 万门槛，成交集中在 Bithumb",
+    "收入规模极小（年 ~$10 万），且曾出现异常尖峰",
+    "代币分配数据来源互相矛盾"
+  ],
+  "unverified": [
+    "审计报告原文（官网称 4 家）",
+    "团队实名",
+    "解锁日期、数量与 12/36 个月比例（官方与 DropsTab 冲突）",
+    "30 天真实现货成交额",
+    "外部安全事故数据库"
+  ],
+  "catalysts": [
+    {
+      "claim": "DefiLlama TVL 90 天内由约 $113M 升至约 $240M",
+      "url": "https://api.llama.fi/protocol/avalon-labs",
+      "date": "2026-11-09"
+    }
+  ],
+  "summary_reason": "收入季度环比大增但基数极小，持币人无价值捕获、流通不足一半、流动性不达标，淘汰"
+}
