@@ -1,0 +1,194 @@
+{
+  "coin_id": "just",
+  "researched_at": "2026-11-10T06:30:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "JST：TRON 合约 TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9；总量 8.018B，最大供应 9.9B（差额≈累计销毁）",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/just",
+          "date": "2026-11-10"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko：价格 $0.1416、市值 $1.135B、FDV $1.135B、流通=总量 8.018B；总量由 9.9B 经 5 轮回购销毁降至约 8.02B（累计约 1.881B）；未见新增发或锁仓，12 个月供应预计持平或继续下降",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/just",
+          "date": "2026-11-10"
+        },
+        {
+          "url": "https://cryptoslate.com/just-completes-5th-jst-buyback-burn-over-170m-tokens-23-53m-burned-ahead-of-major-deflationary-upgrade/",
+          "date": "2026-11-10"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "JustLend DAO（TRON 借贷）TVL 2026Q1 约 $6.91B、活跃用户超 48.2 万；CoinGecko（Token Terminal 口径）24h 手续费 $427K、收入 $85.8K。但服务器候选文件 DefiLlama 口径年化收入仅约 $0.62M，口径差异巨大",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/just",
+          "date": "2026-11-10"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/just-reports-q1-2026-financials-total-buyback-amounts-reach-60-03m",
+          "date": "2026-11-10"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "mechanism": "buyback",
+      "claim": "已执行回购销毁 5 轮：2025-10-19 约 559M、2026-01-15 525M、2026-04-15 约 271M、2026-07-17 约 355M、2026-10-16 170,723,144 JST（约 $23.53M），累计约 1.881B、超 $100M，资金来自 JustLend DAO 净收入/储备（第 4 轮含 USDJ 历史稳定费 $10.39M）。CryptoSlate 文为项目付费稿；第一阶段储备已用完，后续'升级'未给出机制和日期",
+      "sources": [
+        {
+          "url": "https://cryptoslate.com/just-completes-5th-jst-buyback-burn-over-170m-tokens-23-53m-burned-ahead-of-major-deflationary-upgrade/",
+          "date": "2026-11-10"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/justlend-dao-destroys-525m-jst-tokens-in-major-burn-event",
+          "date": "2026-11-10"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/just-reports-q1-2026-financials-total-buyback-amounts-reach-60-03m",
+          "date": "2026-11-10"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": null,
+      "claim": "CoinGecko 24h 成交 $23.55M：HTX $9.06M（36%）、Binance $1.96M、LBank $0.51M、Hotcoin $0.44M；主流现货 Binance+HTX 约 $11M/天，远高于 50 万门槛；30 天现货总额未核实",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/just",
+          "date": "2026-11-10"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": true,
+      "claim": "CoinGecko 显示 CertiK 评分 85.21%（2026-11-09 更新）、Immunefi 赏金上限 $5 万；网页搜索未发现 JustLend 被攻击事件（核实深度有限）；治理高度集中于 TRON/孙宇晨生态",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/just",
+          "date": "2026-11-10"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "重大矛盾：①收入口径——DefiLlama（服务器）年化约 $0.62M，Token Terminal 24h 收入 $85.8K（年化约 $31M），而一年内回购约 $100M，三者无法对上；②回购资金来源两篇报道说法相反（USDD 收入是否已注入）；③第 5 轮资金拆分 $10.34M+$9.28M=$19.62M 与 $23.53M 不符",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/just",
+          "date": "2026-11-10"
+        },
+        {
+          "url": "https://cryptoslate.com/just-completes-5th-jst-buyback-burn-over-170m-tokens-23-53m-burned-ahead-of-major-deflationary-upgrade/",
+          "date": "2026-11-10"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/justlend-dao-destroys-525m-jst-tokens-in-major-burn-event",
+          "date": "2026-11-10"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": true,
+      "supply_growth_12m_pct": 0,
+      "claim": "流通/总量 100%；无已知解锁，回购销毁持续，12 个月供应增长 ≤0%（前提：销毁部分不会重新铸造，未见相关条款）",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/just",
+          "date": "2026-11-10"
+        },
+        {
+          "url": "https://cryptoslate.com/just-completes-5th-jst-buyback-burn-over-170m-tokens-23-53m-burned-ahead-of-major-deflationary-upgrade/",
+          "date": "2026-11-10"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "CoinGecko 引用 CertiK 评分，但未打开任何审计报告",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/just",
+          "date": "2026-11-10"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "官网 just.network 只有一句介绍（借贷、稳定币、质押、能量租赁），未找到实名团队页；属 TRON 生态",
+      "sources": [
+        {
+          "url": "https://just.network/",
+          "date": "2026-11-10"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": true,
+      "claim": "CoinGecko 流通=总量 8.018B，最大供应与总量差额≈累计销毁量，视为已全部流通；未找到官方代币经济页确认",
+      "unlock_12m_pct": 0,
+      "unlock_36m_pct": 0,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": true,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/just",
+          "date": "2026-11-10"
+        },
+        {
+          "url": "https://cryptoslate.com/just-completes-5th-jst-buyback-burn-over-170m-tokens-23-53m-burned-ahead-of-major-deflationary-upgrade/",
+          "date": "2026-11-10"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.1416,
+    "circulating_supply": 8018000000,
+    "total_supply": 8018000000,
+    "supply_by_month": null,
+    "annual_revenue_usd": null,
+    "revenue_growth": null,
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "收入口径冲突未解决：DefiLlama 约 $0.62M/年（市值/收入约 1,800 倍）vs Token Terminal 24h×365 约 $31M（约 36 倍，单日外推不可靠），不填年化收入"
+  },
+  "risks": [
+    "收入口径严重冲突，估值无法确定；按 DefiLlama 口径市值/收入约 1,800 倍",
+    "回购第一阶段储备已用完，后续能否持续依赖未落地的'升级'",
+    "主流现货成交约 36% 集中在 HTX（TRON 关联交易所）",
+    "高度依附 TRON/孙宇晨生态，治理集中",
+    "回购报道多为项目付费稿"
+  ],
+  "unverified": [
+    "JustLend 真实协议年收入（DefiLlama 与 Token Terminal 不一致）",
+    "回购销毁链上交易",
+    "第三方审计报告",
+    "团队实名",
+    "30 天现货成交额",
+    "官方代币经济/锁仓说明",
+    "同赛道估值倍数"
+  ],
+  "catalysts": [
+    {
+      "claim": "2026-10-16 第 5 轮回购销毁 170.7M JST，并宣布将引入 GasFree 等新业务收入的回购升级",
+      "url": "https://cryptoslate.com/just-completes-5th-jst-buyback-burn-over-170m-tokens-23-53m-burned-ahead-of-major-deflationary-upgrade/",
+      "date": "2026-11-10"
+    }
+  ],
+  "summary_reason": "已执行 5 轮回购销毁（累计约 19% 供应）、全流通、流动性好，但收入口径冲突大、估值不明"
+}

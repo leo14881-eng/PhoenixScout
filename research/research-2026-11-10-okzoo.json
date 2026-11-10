@@ -1,0 +1,180 @@
+{
+  "coin_id": "okzoo",
+  "researched_at": "2026-11-10T06:30:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "AIOT：BNB Smart Chain 合约 0x55ad16bd573b3365f43a9daeb0cc66a73821b4a5，总量/最大供应 1B",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/okzoo",
+          "date": "2026-11-10"
+        },
+        {
+          "url": "https://www.mexc.com/price/AIOT/tokenomics",
+          "date": "2026-11-10"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": null,
+      "claim": "CoinGecko：价格 $0.1529、市值 $80.29M、FDV $152.87M、流通 525.25M（正文写 530M，不一致）；MEXC 流通量显示'--'；未来 12 个月供应变化查不到",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/okzoo",
+          "date": "2026-11-10"
+        },
+        {
+          "url": "https://www.mexc.com/price/AIOT/tokenomics",
+          "date": "2026-11-10"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": null,
+      "claim": "项目自述为 AIoT 环境传感 DePIN（便携传感器、手表绑定 P-NFT，宠物 App），称有 B2B 数据 API；未找到任何收入、设备数或付费数据，DefiLlama 无法读取",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/okzoo",
+          "date": "2026-11-10"
+        },
+        {
+          "url": "https://okzoo.app/en/docs",
+          "date": "2026-11-10"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": false,
+      "mechanism": null,
+      "claim": "CoinGecko 描述只提'通缩预期'、与硬件使用挂钩的定期销毁，未找到任何已执行的销毁/回购记录；质押奖励来源未说明，属叙事层面",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/okzoo",
+          "date": "2026-11-10"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": null,
+      "claim": "CoinGecko 24h 现货 $13.28M，其中 PancakeSwap V3 $9.98M、Gate $2.23M、XT $0.45M、MEXC $0.18M；无币安现货；永续成交远大于现货（Binance Futures 24h $156.5M，未平仓 $45.7M），价格主要由合约驱动；30 天现货总额未核实",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/okzoo",
+          "date": "2026-11-10"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "网页搜索未找到 OKZOO 相关安全事件，也未找到 CertiK 等核查结果；未能核实",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/okzoo",
+          "date": "2026-11-10"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": null,
+      "claim": "流通量 525.25M 与 530M 两处说法不一，MEXC 未给流通量；无收入数据可交叉验证",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/okzoo",
+          "date": "2026-11-10"
+        },
+        {
+          "url": "https://www.mexc.com/price/AIOT/tokenomics",
+          "date": "2026-11-10"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": null,
+      "supply_growth_12m_pct": null,
+      "claim": "流通/总量约 52.5%（刚过 50%），剩余约 475M 的解锁计划未查到，12 个月供应增长无法计算",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/okzoo",
+          "date": "2026-11-10"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "GitHub 仅有 okzoo-v2-smart-contract（最后更新 2025-08-22）和一个 ComfyUI 分叉，无审计报告",
+      "sources": [
+        {
+          "url": "https://github.com/okzoo-app",
+          "date": "2026-11-10"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "CoinGecko 称团队含前 Hashed 投资总监、Cointelegraph 首席分析师，由 GuildFi 孵化；GitHub 组织无公开成员；未找到实名团队页核实",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/okzoo",
+          "date": "2026-11-10"
+        },
+        {
+          "url": "https://github.com/okzoo-app",
+          "date": "2026-11-10"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "官方文档正文无法读取，第三方解锁页无法打开，解锁计划未核实",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/okzoo",
+          "date": "2026-11-10"
+        },
+        {
+          "url": "https://www.mexc.com/price/AIOT/tokenomics",
+          "date": "2026-11-10"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.1529,
+    "circulating_supply": 525250000,
+    "total_supply": 1000000000,
+    "supply_by_month": null,
+    "annual_revenue_usd": null,
+    "revenue_growth": null,
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "无可核实收入或使用量，无法估值"
+  },
+  "risks": [
+    "30 天 +227%、90 天 +333% 的反弹主要由永续合约驱动（合约成交约为现货 12 倍），回撤风险大",
+    "约 47.5% 供应未流通且解锁计划未知",
+    "无收入、无已执行的价值捕获",
+    "现货主要在 PancakeSwap，中心化交易所现货深度有限",
+    "GitHub 一年多未更新"
+  ],
+  "unverified": [
+    "解锁计划（12/36 个月、下一次解锁）",
+    "收入与设备/用户数据",
+    "团队实名",
+    "第三方审计",
+    "安全事件",
+    "销毁是否真正执行",
+    "30 天现货成交额"
+  ],
+  "catalysts": [],
+  "summary_reason": "路径 A 观察：长期 -88% 后强反弹，但无收入、无已执行价值捕获、解锁计划未知，只能观察"
+}
