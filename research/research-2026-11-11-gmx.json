@@ -1,0 +1,185 @@
+{
+  "coin_id": "gmx",
+  "researched_at": "2026-11-11T04:30:00Z",
+  "grade_hint": "C",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "GMX：Arbitrum 0xfc5a1a6eb076a2c7ad06ed22c90d7e710e35ad0a，Avalanche 0x62edc0692bd897d2295872a9ffcac5425011c661；最大供应 13.25M",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/gmx",
+          "date": "2026-11-11"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko 2026-11-11 03:20Z：价格 $7.64，流通 = 总量 10.695M，最大 13.25M，市值 = FDV $81.7M",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/gmx",
+          "date": "2026-11-11"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（DefiLlama 母协议合并口径）：季度收入 q0 $8.68M、q1 $4.29M、q2 $4.12M，近 12 个月实际 $20.0M，30d×12=$42.5M（被标“近期收入异常偏高”）。但 2026-11-04 研究发现合并口径含 GMX Solana（GMTrade，代币 GT），剔除后 GMX 代币相关收入年化约 $5.67M 且连续下滑",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-11.json",
+          "date": "2026-11-11"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-04-gmx.json",
+          "date": "2026-11-11"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "claim": "据搜索结果摘要（仅标题）：“GMX DAO repurchases 12,380 GMX tokens for $85,000 as buyback program surpasses $2.4 million”“GMX Repurchases 16,800 GMX Tokens in One Week”——已执行的市场回购；回购代币去向（金库/分配）未核实",
+      "mechanism": "buyback",
+      "sources": [
+        {
+          "url": "https://cryptobriefing.com/gmx-dao-token-buyback-program/",
+          "date": "2026-11-11"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/gmx-repurchases-16-800-gmx-tokens-in-one-week",
+          "date": "2026-11-11"
+        },
+        {
+          "url": "https://www.valuethemarkets.com/cryptocurrency/news/gmx-dao-expands-its-token-buyback-strategy-and-influences-market-dynamics",
+          "date": "2026-11-11"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "claim": "CoinGecko 近 30 天成交约 $120.1M（日均约 $4.0M，单日最大占 6.4%）；当日主流所 Binance 约 $0.30M、Bybit $0.30M、OKX $0.05M，最大成交在 GroveX/BloFin 等小所",
+      "spot_volume_30d_usd": 120097282,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/gmx/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-11"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/gmx",
+          "date": "2026-11-11"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": true,
+      "claim": "事故分开记录（沿用 11-04 研究）：① 2025-07 GMX V1 重入漏洞被盗约 $42M，黑客归还约 $40M，2025-08 完成约 $44M 赔付（官方 substack）。本次搜索未见 2026 年新安全事故；另有标题称 DAO 投票把 700 万代币移入应急基金（未核实细节）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-04-gmx.json",
+          "date": "2026-11-11"
+        },
+        {
+          "url": "https://pluang.com/en/news-feed/pemungutan-suara-gmx-dao-pindahkan-7-juta-token-ke-dana-darurat",
+          "date": "2026-11-11"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "重大矛盾：候选文件持币人收入年化 $41.97M 超过协议收入年化（12 个月实际）$20.0M，且 30d×12 是 12 个月实际的 2 倍以上；11-04 研究已查明 DefiLlama 把 GMX Solana（GT 代币）并入 GMX 母协议，收入连增/估值目标是合并口径造成的假信号",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-11.json",
+          "date": "2026-11-11"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-04-gmx.json",
+          "date": "2026-11-11"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": true,
+      "claim": "流通 = 总量 10.695M（100%）；最大供应余量 2.555M 需治理增发（上限 23.9%），未见增发计划，按 0 计",
+      "supply_growth_12m_pct": 0.0,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/gmx",
+          "date": "2026-11-11"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "沿用 11-04 研究：DefiLlama 母协议无审计记录，EVM 合约审计未核实",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-04-gmx.json",
+          "date": "2026-11-11"
+        }
+      ]
+    },
+    "team": {
+      "ok": false,
+      "claim": "沿用 11-04 研究：团队匿名，GMX Labs 首任 CEO“Q”为匿名社区成员；无融资记录",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-04-gmx.json",
+          "date": "2026-11-11"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": true,
+      "claim": "流通 = 总量，无待解锁份额；剩余 2.555M 为未铸造余量，未见增发计划",
+      "unlock_12m_pct": 0,
+      "unlock_36m_pct": 0,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": true,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/gmx",
+          "date": "2026-11-11"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 7.64,
+    "circulating_supply": 10695394,
+    "total_supply": 10695394,
+    "supply_by_month": {
+      "12": 10695394,
+      "24": 10695394,
+      "36": 10695394
+    },
+    "annual_revenue_usd": 5666916,
+    "revenue_growth": {
+      "conservative": -0.34,
+      "base": -0.21,
+      "optimistic": 0.0
+    },
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "GMX EVM + V1 协议收入（剔除 GMX Solana/GMTrade），年化沿用 2026-11-04 研究 min(30d×12, 90d×4, 365d)=$5.67M；最近两季 -21%、-34%。不使用候选文件合并口径 $20.0M"
+  },
+  "risks": [
+    "候选收入/估值来自 DefiLlama 把 GMTrade(GT) 并入 GMX 的合并口径",
+    "GMX 自身收入连续下滑",
+    "团队匿名",
+    "主流所现货成交薄（Binance/Bybit 各约 $0.3M/日）",
+    "2025-07 曾被盗 $42M（已赔付）"
+  ],
+  "unverified": [
+    "最新回购累计数量及回购代币去向",
+    "GMX EVM 合约审计",
+    "DAO 移 700 万代币入应急基金的细节",
+    "剔除 GMX Solana 后的最新收入（本次未重新取数）"
+  ],
+  "catalysts": [],
+  "summary_reason": "回购在执行，但候选收入增长来自另一代币 GT 的 GMTrade，剔除后 GMX 收入连续下滑，维持淘汰建议"
+}
