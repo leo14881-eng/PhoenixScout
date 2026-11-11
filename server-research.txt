@@ -82,3 +82,7 @@ research-2026-11-09-lido-dao.json
 research-2026-11-09-sun-token.json
 research-2026-11-10-just.json
 research-2026-11-10-okzoo.json
+research-2026-11-11-arbitrum.json
+research-2026-11-11-gmx.json
+research-2026-11-11-initia.json
+research-2026-11-11-syrup.json
