@@ -86,3 +86,8 @@ research-2026-11-11-arbitrum.json
 research-2026-11-11-gmx.json
 research-2026-11-11-initia.json
 research-2026-11-11-syrup.json
+research-2026-11-12-compound-governance-token.json
+research-2026-11-12-concrete.json
+research-2026-11-12-pyth-network.json
+research-2026-11-12-spark-2.json
+research-2026-11-12-venice-token.json
