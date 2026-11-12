@@ -1,0 +1,213 @@
+{
+  "coin_id": "spark-2",
+  "researched_at": "2026-11-12T03:40:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "SPK：以太坊合约 0xc20059e0317de91738d13af027dfc4a50781b066；总量 = 最大供应 10B（CoinGecko 2026-11-12 03:22Z）",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/spark-2",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": null,
+      "claim": "CoinGecko：价格 $0.01566，流通 3,439,493,640（34.4%），总量 10B，市值 $53.9M，FDV $156.6M；未来 12 个月供应变化（解锁计划）只在搜索结果中看到 Tokenomist/DefiLlama unlocks 页面标题，未能核实数量",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/spark-2",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://tokenomist.ai/spark-2",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://defillama.com/unlocks/spark",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（接近入选）：最近季度收入 +401.0%（比两个季度前 +380.8%），前一季度 -4.0%；CoinGecko 简介称在 DeFi/CeFi/RWA 部署 $3.86B 资金。据搜索结果摘要（仅标题）：“Spark posts Q1 profit as TVL jumps after Aave exploit”。候选文件未给出 Spark 年化收入绝对值",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-12.json",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/spark-2",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://blockport.io/latest-news/spark-q1-profit-tvl-jumps-aave-exploit/",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "claim": "据搜索结果摘要（仅标题）：“Spark Completes First Month of Token Buyback, Repurchasing 26.66M SPK for 571,957 USDS”“Spark buys back over 100M SPK using $2M in revenue”——用协议收入在市场回购，属已执行回购；回购代币去向（销毁/金库）与最新累计数未核实",
+      "mechanism": "buyback",
+      "sources": [
+        {
+          "url": "https://www.kucoin.com/news/flash/spark-completes-first-month-of-token-buyback-repurchases-26-66m-spk-for-571-957-usds",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://cryptobriefing.com/spark-spk-token-buyback-revenue/",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://www.valuethemarkets.com/cryptocurrency/news/spark-uses-protocol-revenue-to-buy-back-more-than-100-million-spk-tokens",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "claim": "CoinGecko 近 30 天成交约 $175.2M（日均约 $5.8M，单日最大占 8.8%）；Binance、Bybit 有现货，当日成交最大在 Paribu、GroveX 等",
+      "spot_volume_30d_usd": 175241397,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/spark-2/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/spark-2",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": true,
+      "claim": "据搜索结果摘要（仅标题）：2026 年 KelpDAO（rsETH 跨链桥）被盗事件中受损的是 Aave（约 $195–200M 坏账），Spark 提前下架 rsETH、限速机制使其未受损并吸纳资金流入；未见 Spark 自身合约被盗事故",
+      "sources": [
+        {
+          "url": "https://cryptobriefing.com/spark-protocol-rate-limits-kelpdao-hack/",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://index.vn/en/news/spark-delists-rseth-early-shields-protocol-as-aave-faces-eth-liquidity-crisis",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://cryptobriefing.com/aave-195m-bad-debt-kelpdao-exploit-spark/",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": null,
+      "claim": "只有 CoinGecko 单一供应来源和候选文件的季度增速，未能与第二来源交叉核实；候选文件未给出收入绝对值，无法检查收入与回购金额是否匹配",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/spark-2",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-12.json",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "claim": "流通 34.4% < 50%，剩余 65.6% 待释放；据搜索结果摘要（仅标题）“SPK leads $120M in token unlocks this week”，说明仍有大额解锁；未来 12 个月具体增长未核实，无抵消稀释的强证据",
+      "supply_growth_12m_pct": null,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/spark-2",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://zippfeed.com/a/spk-leads-120m-in-token-unlocks-this-week",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "本次未检索审计记录",
+      "sources": []
+    },
+    "team": {
+      "ok": true,
+      "claim": "据搜索结果摘要（仅标题）：Spark 为 Sky（原 MakerDAO）生态子项目，CEO Sam MacPherson 实名（Blockworks 0xResearch 播客、CoinDesk Consensus 演讲嘉宾）",
+      "sources": [
+        {
+          "url": "https://blockworks.com/podcast/0xresearch/9db302f6-4fcd-11f1-87a9-f3e6ab476be6",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://consensus-hongkong.coindesk.com/agenda/speaker/-sam-spark-speaker",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://blockworks.co/podcast/0xresearch/706e6a8e-09e8-11ee-9dcb-3b6224200b11",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "解锁计划页面（Tokenomist、DefiLlama unlocks、tokenomics.com）只在搜索结果中出现，未打开，数量与日期未核实",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://tokenomist.ai/spark-2",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://defillama.com/unlocks/spark",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://app.tokenomics.com/tokenomics/spark/unlocks",
+          "date": "2026-11-12"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.01565931,
+    "circulating_supply": 3439493640,
+    "total_supply": 10000000000,
+    "supply_by_month": null,
+    "annual_revenue_usd": null,
+    "revenue_growth": null,
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "候选文件只有季度增速、无年化收入绝对值；不估造，留空"
+  },
+  "risks": [
+    "流通仅 34.4%，大额持续解锁（高稀释风险）",
+    "收入增长依赖 Sky/USDS 资金调配，前一季度收入 -4%",
+    "回购规模相对解锁量可能偏小"
+  ],
+  "unverified": [
+    "未来 12/36 个月解锁数量和下一次解锁日期",
+    "年化协议收入绝对值",
+    "第三方审计",
+    "回购代币的去向与最新累计数",
+    "供应数据第二来源"
+  ],
+  "catalysts": [
+    {
+      "claim": "据搜索结果摘要：Aave 因 KelpDAO 事件出现坏账后资金流向 SparkLend",
+      "url": "https://thedefiant.io/news/defi/sparklend-tvl-surges-by-usd1b-since-kelp-exploit",
+      "date": "2026-11-12"
+    }
+  ],
+  "summary_reason": "已执行收入回购、团队实名、收入季度增速高，但流通仅 34% 且解锁数据缺失，最高 B 级观察"
+}

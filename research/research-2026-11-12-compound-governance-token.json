@@ -1,0 +1,192 @@
+{
+  "coin_id": "compound-governance-token",
+  "researched_at": "2026-11-12T03:40:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "COMP：以太坊合约 0xc00e94cb662c3520282e6f5717214004a7f26888（另有多链桥接版本）；最大供应 10M",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/compound-governance-token",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko 2026-11-12：价格 $19.96，流通 = 总量 = 最大 10M，市值 = FDV $199.6M",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/compound-governance-token",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（DefiLlama Compound 母协议）：季度收入 q0 $1.01M、q1 $0.40M、q2 $0.14M（连增，最近季度 +150.8%），近 12 个月实际 $3.07M，30d×12 $4.69M",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-12.json",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": false,
+      "claim": "候选文件持币人收入年化 $0；搜索结果只见 2024 年费用分配讨论与提案 612（延长金库操作延迟），未见已执行的回购/分配",
+      "mechanism": "other",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-12.json",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://blockworks.com/news/compound-considers-fee-switch-governance-attacker",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://cryptobriefing.com/compound-proposal-612-treasury-delays/",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "claim": "CoinGecko 近 30 天成交约 $602M（日均约 $20M，单日最大占 20.6%）；候选文件列 Binance、OKX、Bybit、Coinbase、Kraken 现货",
+      "spot_volume_30d_usd": 602453236,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/compound-governance-token/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/compound-governance-token",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-12.json",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": true,
+      "claim": "事故分开记录（沿用 11-05 研究）：① 2024 治理攻击（提案 289，499k COMP），后和解、资金未划转；② 2024-07-11 官网域名被劫持指向钓鱼站，官方称合约资金未受影响，用户损失未披露；本次搜索未见 2025–2026 新合约事故；提案 612 拟把金库操作延迟从 2 天延到 10 天（治理加固）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-05-compound-governance-token.json",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://cryptobriefing.com/compound-proposal-612-treasury-delays/",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": null,
+      "claim": "CoinGecko 流通 10M 与 11-05 研究 DefiLlama 代币页 9.67M 不一致（差 3.3%）",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/compound-governance-token",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-05-compound-governance-token.json",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": true,
+      "claim": "流通 ≥96.7% 总量，最大供应 10M 已全部铸造，未来 12 个月最多增加约 0.33M（≤3.4%）",
+      "supply_growth_12m_pct": 3.4,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/compound-governance-token",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-05-compound-governance-token.json",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "audit": {
+      "ok": true,
+      "claim": "候选文件质量分“第三方审计”✓（DefiLlama audits=2）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-12.json",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "本次搜索结果未给出现任团队/机构背景（只见治理新闻）",
+      "sources": []
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "无锁仓解锁计划；CoinGecko 流通 = 最大 10M，DefiLlama 9.67M（11-05 研究），差额构成未核实",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": null,
+      "conflict": true,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/compound-governance-token",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-05-compound-governance-token.json",
+          "date": "2026-11-12"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 19.96,
+    "circulating_supply": 10000000,
+    "total_supply": 10000000,
+    "supply_by_month": {
+      "12": 10000000,
+      "24": 10000000,
+      "36": 10000000
+    },
+    "annual_revenue_usd": 3065838,
+    "revenue_growth": null,
+    "peer_multiples": {
+      "p25": 9.12,
+      "median": 15.72,
+      "p75": 25.29
+    },
+    "peers": [
+      {
+        "name": "DefiLlama Lending 赛道 10 个协议中位数（服务器计算）",
+        "multiple": 15.72,
+        "source": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-12.json"
+      }
+    ],
+    "metric": "Compound 协议收入（储备，DefiLlama revenue 口径，候选文件 revenueBasis.used = 近 12 个月实际）"
+  },
+  "risks": [
+    "持币人收入为 0，费用开关长期未执行",
+    "市值约为年化收入 65 倍，现价高于候选估值目标 4 倍",
+    "收入增长来自很低的基数",
+    "治理曾被大户攻击"
+  ],
+  "unverified": [
+    "是否有新的回购/费用分配提案通过并执行",
+    "剩余约 0.33M COMP 的构成",
+    "团队背景"
+  ],
+  "catalysts": [],
+  "summary_reason": "收入低基数连增，但无价值捕获、估值远高于目标"
+}

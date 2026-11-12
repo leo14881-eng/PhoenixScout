@@ -1,0 +1,192 @@
+{
+  "coin_id": "venice-token",
+  "researched_at": "2026-11-12T03:40:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "VVV：Base 链合约 0xacfe6019ed1a7dc6f7b508c02d1b04ec88cc21bf；无最大供应（持续增发）",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/venice-token",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": null,
+      "claim": "CoinGecko 2026-11-12：价格 $19.77，流通 48,943,862（60.2%），总量 81,234,571，无最大供应，市值 $967.4M，FDV $1.606B；总量与流通差约 32.3M 的解锁安排仍未核实",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/venice-token",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-05-venice-token.json",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（DefiLlama 口径）：季度收入 q0 $2.83M、q1 $1.19M、q2 $0.44M（连增，最近季度 +136.9%），年化 $11.27M（90d×4）；据搜索结果摘要（仅标题）Venice AI 收入/ARR 超过 1 亿美元（媒体说法，与 DefiLlama 口径不同）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-12.json",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://pasqualepillitteri.it/ja/news/12439/venice-ai-vvv-token-100-million-arr-ja",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "claim": "候选文件持币人收入年化 $13.71M（>0）；据搜索结果摘要（仅标题）“venice sets a new vvv burn record”——已执行销毁；销毁金额与链上记录未核实；质押收益来自增发，不计入",
+      "mechanism": "burn",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-12.json",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://www.bankless.com/read/news/venice-sets-a-new-vvv-burn-record.md",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "claim": "CoinGecko 近 30 天成交约 $962M（日均约 $32M，单日最大占 5.8%）；Coinbase、Bybit、Kraken、OKX 有现货",
+      "spot_volume_30d_usd": 962230639,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/venice-token/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/venice-token",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "未见合约被盗事故；治理/市场事件：2025-01 上线时两名 Aerodrome 贡献者因交易 VVV 被暂停、项目方遭“拉高出货”指控（据搜索结果摘要）；仅凭搜索标题不能确认无事故",
+      "sources": [
+        {
+          "url": "https://www.theblock.co/amp/post/337521/two-contributors-suspended-from-venices-vvv-token-launch-on-aerodrome",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://news.bitcoin.com/erik-voorheess-venice-token-faces-pump-and-dump-allegations/",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "矛盾：候选文件持币人收入年化 $13.71M 高于协议收入年化 $11.27M；增发速度官方与媒体说法不一致（11-05 研究）；约 32.3M 未流通份额无官方说明",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-12.json",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-05-venice-token.json",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": null,
+      "claim": "流通率 60.2%（≥50%）；增发约 3M/年（媒体说法，约占流通 6%），但据搜索结果摘要（标题）“VVV inflation analysis June 2026: supply growing, projected to keep growing”；32.3M 未流通份额释放安排未核实，12 个月增长无法确定",
+      "supply_growth_12m_pct": null,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/venice-token",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://dev.to/mrnasdog/vvv-inflation-analysis-june-2026-supply-growing-projected-to-keep-growing-c3b",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/venice-ai-cuts-vvv-emissions-to-3m-tokens-per-year-80-below-launch-rate",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "audit": {
+      "ok": true,
+      "claim": "候选文件质量分“第三方审计”✓（DefiLlama 审计记录）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-12.json",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "据搜索结果摘要：创始人 Erik Voorhees（ShapeShift 创始人）；团队其余成员与融资未核实",
+      "sources": [
+        {
+          "url": "https://news.bitcoin.com/erik-voorheess-venice-token-faces-pump-and-dump-allegations/",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://siliconangle.com/?p=774481",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "无锁仓计划说法（KuCoin：全部增发给质押者）与 CoinGecko 总量-流通差 32.3M 仍矛盾",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": null,
+      "conflict": true,
+      "sources": [
+        {
+          "url": "https://www.kucoin.com/news/flash/venice-ai-cuts-vvv-emissions-to-3m-tokens-per-year-80-below-launch-rate",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/venice-token",
+          "date": "2026-11-12"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 19.77,
+    "circulating_supply": 48943862,
+    "total_supply": 81234571,
+    "supply_by_month": null,
+    "annual_revenue_usd": 11270124,
+    "revenue_growth": null,
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "Venice 协议收入（DefiLlama revenue 口径，候选文件 revenueBasis.used = 90d×4）；同赛道不足 5 个，不填可比倍数"
+  },
+  "risks": [
+    "市值约为年化收入 86 倍，现价远高于候选估值目标",
+    "持续增发、32.3M 未流通份额去向不明",
+    "持币人收入 > 协议收入的口径矛盾",
+    "上线期拉高出货指控"
+  ],
+  "unverified": [
+    "销毁金额与链上记录",
+    "总量与流通差额的归属及解锁时间",
+    "安全事故记录",
+    "团队除创始人外的背景"
+  ],
+  "catalysts": [],
+  "summary_reason": "收入连增且有执行中的销毁，但供应/解锁数据矛盾、估值远高于目标"
+}

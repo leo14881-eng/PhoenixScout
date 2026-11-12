@@ -1,0 +1,187 @@
+{
+  "coin_id": "concrete",
+  "researched_at": "2026-11-12T03:40:00Z",
+  "grade_hint": "C",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "CT：以太坊与 BSC 同地址 0x0a092e544da31150b439a1aaa1a3a2214a867f46；固定供应 1B（CoinGecko；KuCoin 标题“fixed supply of 1 billion”）",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/concrete",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/concrete-launches-foundation-and-governance-token-ct-with-1-billion-fixed-supply",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": null,
+      "claim": "CoinGecko：价格 $0.1082，流通 190,000,000（19%，整数，疑为项目申报），总量 1B，市值 $20.6M，FDV $108.2M；2026-09 TGE（搜索标题），解锁计划未核实",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/concrete",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://www.bitrue.com/blog/concrete-tge",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（DefiLlama）：季度收入 q0 $121.6k、q1 $13.4k、q2 $18；近 12 个月实际 $137.8k，30d×12=$663k（异常偏高）——有真实金库业务但收入规模极小",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-12.json",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": false,
+      "claim": "候选文件持币人收入 $0；搜索结果未见回购/销毁/手续费分配；CT 定位为治理代币",
+      "mechanism": null,
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-12.json",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/concrete-launches-foundation-and-governance-token-ct-with-1-billion-fixed-supply",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "claim": "CoinGecko 近 30 天成交约 $617M（单日最大占 10.7%）；Upbit、Coinbase、Kraken、Bithumb、KuCoin 有现货；近 30 天价格 -70%",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/concrete/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/concrete",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "本次搜索未见 Concrete 合约被盗事故（结果中的 Concentric 事件是另一个项目）；不能确认",
+      "sources": [
+        {
+          "url": "https://www.certik.com/blog/concentric-fi-incident-analysis",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": null,
+      "claim": "新币无 90 天价格；收入 30d×12 是 12 个月实际 4.8 倍；流通量为整数 190M，未与第二来源核对",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-12.json",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/concrete",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "claim": "流通率 19% < 50%（候选文件标“高稀释风险”）；无抵消稀释的强证据",
+      "supply_growth_12m_pct": null,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/concrete",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-12.json",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "audit": {
+      "ok": true,
+      "claim": "据搜索结果摘要：Concrete 文档站有 Cantina 审计报告 PDF（cantinacode-concrete-finance）；候选文件质量分“第三方审计”✓",
+      "sources": [
+        {
+          "url": "https://docs.concrete.xyz/assets/files/cantinacode-concrete-finance-813b45d86d6450723139b0cc55857c4d.pdf",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-12.json",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "据搜索结果摘要（仅标题）：开发方 Blueprint Finance 2024-02 融资 $7.5M（Fortune、Crowdfund Insider），Polychain 领投其战略轮（Dealroom）；创始人实名未从摘要直接确认",
+      "sources": [
+        {
+          "url": "https://fortune.com/crypto/2024/02/15/blueprint-finance-concrete-protocol-defi-credit/",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://www.crowdfundinsider.com/2024/02/221559-defi-adoption-blueprint-finance-secures-7-5m-to-support-on-chain-debt-and-credit-solution/",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://dealroom.co/news/145963-polychain-leads-strategic-round-for-blueprint-finances-concrete-infrastr/",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "流通 19%，其余 81% 的解锁计划未核实",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/concrete",
+          "date": "2026-11-12"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.108242,
+    "circulating_supply": 190000000,
+    "total_supply": 1000000000,
+    "supply_by_month": null,
+    "annual_revenue_usd": 137798,
+    "revenue_growth": null,
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "Concrete 协议收入（DefiLlama revenue 口径，候选文件 revenueBasis.used = 近 12 个月实际）"
+  },
+  "risks": [
+    "流通仅 19%，81% 待释放（高稀释风险）",
+    "代币无价值捕获",
+    "收入极小，FDV/年化收入约 785 倍",
+    "上线后 30 天 -70%"
+  ],
+  "unverified": [
+    "解锁计划",
+    "安全事故记录",
+    "流通量是否为项目自报",
+    "创始人实名"
+  ],
+  "catalysts": [],
+  "summary_reason": "新上线治理代币，无价值捕获、流通 19%、收入极小，淘汰（C）"
+}

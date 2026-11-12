@@ -1,0 +1,218 @@
+{
+  "coin_id": "pyth-network",
+  "researched_at": "2026-11-12T03:40:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "PYTH：Solana 铸币地址 HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3（另有 Neon EVM、Manta 桥接版）；总量 = 最大供应 10B",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/pyth-network",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko 2026-11-12 03:22Z：价格 $0.06487，流通 7,874,958,825（78.75%），总量 10B，市值 $510.9M，FDV $648.7M；候选文件解锁字段（来自 11-05 研究）下一次解锁 2027-05-19、数量 2,125,041,165",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/pyth-network",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-12.json",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-05-pyth-network.json",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（DefiLlama 口径）：季度收入 q0 $1.61M、q1 $0.90M、q2 $0.53M（连增，最近季度 +78.7%），近 12 个月实际 $3.40M，30d×12=$7.47M（被标“近期收入异常偏高”）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-12.json",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": null,
+      "claim": "候选文件持币人收入年化 $0；据搜索结果摘要（仅标题）：2025-12 推出 PYTH Reserve（每月用 33% 金库回购）、“Pyth Network DAO approves sending 100% of product revenue to PYTH buybacks”——均为计划/治理批准，未见已执行回购的金额和日期",
+      "mechanism": "buyback",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-12.json",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://www.theblock.co/amp/post/382357/pyth-token-buyback-program-33-dao-treasury-monthly-pyth-purchases",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://cryptobriefing.com/?p=389759",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "claim": "CoinGecko 近 30 天成交约 $1.14B（日均约 $38M，单日最大占 14.7%）；Binance、Upbit、OKX、Coinbase、Kraken、Bybit 有现货",
+      "spot_volume_30d_usd": 1144133042,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/pyth-network/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/pyth-network",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "事故分开记录：① 2026-05-21 Pyth Core 免费喂价停摆 5 小时以上，付费 Pyth Pro 未受影响，未见损失/赔付报道；② 据搜索结果摘要（论坛帖标题）“The $1.78 million oracle failure: how one bad price feed turned healthy loans into collateral carnage”——一次错误喂价导致约 $1.78M 清算损失，时间与是否赔付未核实；未见资金被盗事故",
+      "sources": [
+        {
+          "url": "https://coinalertnews.com/news/2026/05/22/pyth-network-oracle-outage",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://whale-alert.io/stories/8bb801d755fe1d/Pyth-Network-price-feeds-went-down-for-more-than-five-hours-disrupting-DeFi-oracle-data",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://forum.pyth.network/t/the-1-78-million-oracle-failure-how-one-bad-price-feed-turned-healthy-loans-into-collateral-carnage/2585",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": true,
+      "claim": "CoinGecko 流通 7,874,958,825 与 11-05 研究 Tokenomist 已解锁 7,874,958,880 一致；收入季度序列连续；注意 30d×12 是 12 个月实际的 2.2 倍",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/pyth-network",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-12.json",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-05-pyth-network.json",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "claim": "剩余 2,125,041,165 预计 2027-05-19 解锁（未来 12 个月内），占当前流通 26.98% > 25%；无足以抵消稀释的强证据",
+      "supply_growth_12m_pct": 26.98,
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-12.json",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/pyth-network",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-05-pyth-network.json",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "audit": {
+      "ok": true,
+      "claim": "候选文件质量分“第三方审计”✓（DefiLlama 审计记录 audits=2，11-05 研究）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-12.json",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-05-pyth-network.json",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "开发方 Douro Labs（The Block 报道）；创始人实名与投资机构本次搜索结果未给出",
+      "sources": [
+        {
+          "url": "https://www.theblock.co/amp/post/382357/pyth-token-buyback-program-33-dao-treasury-monthly-pyth-purchases",
+          "date": "2026-11-12"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": true,
+      "claim": "沿用 11-05 研究（Tokenomist）：已解锁 78.75%，下一次 2027-05-19（Ecosystem Growth 等），剩余 21.25% 总量 ≈ 当前流通 26.98%；单次数量为按剩余量推算",
+      "unlock_12m_pct": 26.98,
+      "unlock_36m_pct": 26.98,
+      "next_unlock_date": "2027-05-19",
+      "next_unlock_amount": 2125041165,
+      "fully_unlocked": false,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-05-pyth-network.json",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-12.json",
+          "date": "2026-11-12"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/pyth-network",
+          "date": "2026-11-12"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.064874,
+    "circulating_supply": 7874958825,
+    "total_supply": 10000000000,
+    "supply_by_month": {
+      "12": 10000000000,
+      "24": 10000000000,
+      "36": 10000000000
+    },
+    "annual_revenue_usd": 3402986,
+    "revenue_growth": null,
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "Pyth 协议收入（DefiLlama revenue 口径，候选文件 revenueBasis.used = 近 12 个月实际）；同赛道 Oracle 只有 2 个可比，不填可比倍数"
+  },
+  "risks": [
+    "持币人收入为 0，回购仍停留在计划/治理批准",
+    "2027-05 一次性解锁约占流通 27%",
+    "市值约为年化收入 150 倍，远高于候选估值目标",
+    "喂价停摆与错误喂价事故"
+  ],
+  "unverified": [
+    "回购是否已执行及金额",
+    "$1.78M 错误喂价事故的时间与赔付",
+    "团队/投资机构背景",
+    "2027-05 解锁的精确数量"
+  ],
+  "catalysts": [
+    {
+      "claim": "据搜索结果摘要：DAO 批准把 100% 产品收入用于 PYTH 回购",
+      "url": "https://cryptobriefing.com/?p=389759",
+      "date": "2026-11-12"
+    }
+  ],
+  "summary_reason": "收入季度连增，但价值捕获未执行、12 个月解锁 27% 超限、估值远高于目标"
+}
