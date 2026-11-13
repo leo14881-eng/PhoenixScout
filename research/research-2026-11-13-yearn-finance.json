@@ -1,0 +1,161 @@
+{
+  "coin_id": "yearn-finance",
+  "researched_at": "2026-11-13T04:00:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "YFI：Ethereum 0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e 等 13 条链；CoinGecko 总量与最大供应均 36,666",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/yearn-finance",
+          "date": "2026-11-13"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko 2026-11-13：价格 $1,870.86，流通 35,871，最大 36,666；市值 $67.1M（页面另一处为 $67.28M）、FDV $68.6M；最大供应封顶，未来 12 个月新增至多 795 枚",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/yearn-finance",
+          "date": "2026-11-13"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（DefiLlama 口径）：最近季度收入 +24.8%，前一季度 -17.8%，币价 90 天 -3.9%",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-13.json",
+          "date": "2026-11-13"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": null,
+      "claim": "据搜索结果标题：Blockworks 报道 Yearn 推出 YFI 回购计划、YIP-88 stYFI 治理改革（收入分给质押者）；2026 年是否仍在执行、金额多少未核实",
+      "mechanism": "buyback",
+      "sources": [
+        {
+          "url": "https://blockworks.co/yearn-finance-launches-yfi-buyback-program-markets-wrap",
+          "date": "2026-11-13"
+        },
+        {
+          "url": "https://gov.yearn.fi/t/yip-88-governance-overhaul-styfi/14552",
+          "date": "2026-11-13"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": null,
+      "claim": "候选文件 30 天日均 $5.5M（30 天合计按日均×30 推算约 $165M）；CoinGecko 24h $12.4M 中约 $10.07M 在 GroveX，Binance/Coinbase/OKX 现货合计仅约 $0.44M，真实流动性存疑",
+      "spot_volume_30d_usd": 165000000,
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/yearn-finance",
+          "date": "2026-11-13"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-13.json",
+          "date": "2026-11-13"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "CoinGecko 页面：CertiK 评分 70.37%（2026-11-12）、Immunefi 赏金上限 $200K；历史安全事故本次未检索，未核实",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/yearn-finance",
+          "date": "2026-11-13"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": null,
+      "claim": "CoinGecko 同页市值两处数字不一致（$67.11M 与 $67.28M），成交集中在 GroveX",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/yearn-finance",
+          "date": "2026-11-13"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": true,
+      "claim": "最大供应 36,666 封顶，流通 35,871（97.8%）；未来 12 个月供应增长上限 2.2%（全部剩余进入流通时）",
+      "supply_growth_12m_pct": 2.2,
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/yearn-finance",
+          "date": "2026-11-13"
+        }
+      ]
+    },
+    "audit": {
+      "ok": true,
+      "claim": "CoinGecko 页面引用 cer.live：平台审计覆盖率 100%（第三方数据，非 CoinGecko 背书），具体审计方未核实",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/yearn-finance",
+          "date": "2026-11-13"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "未核实（搜索结果仅有 RootData 项目页标题）",
+      "sources": [
+        {
+          "url": "https://www.rootdata.com/projects/detail/Yearn%20Finance%20?k=NDk0",
+          "date": "2026-11-13"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "最大供应封顶，已流通 97.8%，剩余约 795 枚（占流通 2.2%）释放计划未核实",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/yearn-finance",
+          "date": "2026-11-13"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 1870.86,
+    "circulating_supply": 35871,
+    "total_supply": 36666,
+    "supply_by_month": null,
+    "annual_revenue_usd": null,
+    "revenue_growth": null,
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "协议年化收入（候选文件未给出绝对值，缺失）"
+  },
+  "risks": [
+    "成交约 80% 在 GroveX，主流交易所现货很薄",
+    "收入前一季度下滑，增长不连续",
+    "回购/stYFI 分配是否仍在执行未核实",
+    "老牌 DeFi，历史安全事故本次未核实"
+  ],
+  "unverified": [
+    "年化收入绝对值",
+    "回购或 stYFI 分配的执行记录",
+    "历史安全事故与赔付",
+    "团队背景",
+    "剩余 795 枚释放计划"
+  ],
+  "catalysts": [],
+  "summary_reason": "供应几乎全流通、收入最近季度回升，但价值捕获执行与流动性真实性未核实，只能观察"
+}

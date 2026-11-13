@@ -1,0 +1,175 @@
+{
+  "coin_id": "ramses",
+  "researched_at": "2026-11-13T04:00:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "RAM：HyperEVM 0x555570a286f15ebdfe42b66ede2f724aa1ab5555，Robinhood 0x5173d45a1191ee33cbb7d8c7e65f21b04ed54802；总量 249.257M、最大 1B",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/ramses",
+          "date": "2026-11-13"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": null,
+      "claim": "CoinGecko 2026-11-13：价格 $0.02747（市场表显示 $0.030，不一致），流通 86.101M（34.5%），市值 $2.37M，FDV $6.85M；排放计划未核实",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/ramses",
+          "date": "2026-11-13"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（DefiLlama revenue 口径）：季度收入 $284K → $582K → $1.235M，最近季度 +112.2%；近 12 个月实际年化 $2.97M",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-13.json",
+          "date": "2026-11-13"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "claim": "候选文件：DefiLlama 持币人收入年化 $4.23M（xRAM 锁仓者分配，含贿选），属已执行分配；纯手续费占比未核实",
+      "mechanism": "fee_share",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-13.json",
+          "date": "2026-11-13"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": null,
+      "claim": "候选文件 30 天日均 $1.34M（30 天合计按日均×30 推算约 $40.2M）；CoinGecko 显示 94% 成交在 LBank，无主流交易所现货",
+      "spot_volume_30d_usd": 40150000,
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/ramses",
+          "date": "2026-11-13"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-13.json",
+          "date": "2026-11-13"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "上次研究（2026-11-06）记录 2024-10 旧版 Arbitrum 合约漏洞约 $93K，赔付未核实；本次未新增核实",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-06-ramses.json",
+          "date": "2026-11-13"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": null,
+      "claim": "CoinGecko 头部价格与市场表价格不一致；收入合并新旧版本，新旧 RAM 关系未核实",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/ramses",
+          "date": "2026-11-13"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-13.json",
+          "date": "2026-11-13"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "claim": "流通/总量 34.5% < 50%，最大 1B，持续排放，无强证据",
+      "supply_growth_12m_pct": null,
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/ramses",
+          "date": "2026-11-13"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "未核实（搜索结果无审计报告链接）",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/ramses",
+          "date": "2026-11-13"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "未找到可核实的团队实名或融资记录",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/ramses",
+          "date": "2026-11-13"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "排放计划未核实；搜索结果仅有 MEXC 代币经济页标题，未打开",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://www.mexc.com/price/ramses/tokenomics",
+          "date": "2026-11-13"
+        },
+        {
+          "url": "https://www.coingecko.com/en/coins/ramses",
+          "date": "2026-11-13"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.02747,
+    "circulating_supply": 86101000,
+    "total_supply": 249257000,
+    "supply_by_month": null,
+    "annual_revenue_usd": 2966049,
+    "revenue_growth": null,
+    "peer_multiples": {
+      "p25": 3.12,
+      "median": 8.8,
+      "p75": 21.5
+    },
+    "peers": [
+      {
+        "name": "候选文件 prelim：全部协议 76 个的市值/年化收入分位数",
+        "multiple": 8.8,
+        "source": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-13.json"
+      }
+    ],
+    "metric": "协议年化收入（DefiLlama revenue 口径，近 12 个月实际）"
+  },
+  "risks": [
+    "微型市值 $2.4M，成交 94% 在 LBank",
+    "持币人收入含贿选",
+    "流通 34.5%，最大 1B 持续排放",
+    "团队、审计、排放计划均未核实"
+  ],
+  "unverified": [
+    "团队背景",
+    "审计",
+    "排放/解锁计划",
+    "2024-10 旧版漏洞赔付",
+    "新旧 RAM 关系"
+  ],
+  "catalysts": [],
+  "summary_reason": "收入连续三季增长、持币人分配真实，市值仅约 0.8 倍年收入，但流动性、团队、排放均不可核实，维持 B 观察"
+}
