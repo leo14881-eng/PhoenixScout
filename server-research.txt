@@ -95,3 +95,5 @@ research-2026-11-13-lighter.json
 research-2026-11-13-ramses.json
 research-2026-11-13-sosovalue.json
 research-2026-11-13-yearn-finance.json
+research-2026-11-14-geodnet.json
+research-2026-11-14-nest-2.json
