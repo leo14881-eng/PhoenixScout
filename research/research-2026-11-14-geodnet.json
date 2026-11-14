@@ -1,0 +1,202 @@
+{
+  "coin_id": "geodnet",
+  "researched_at": "2026-11-14T03:40:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": null,
+      "claim": "本次 CoinGecko 页面抓取被权限拒绝，未能重新核实合约地址；候选文件（服务器取自 CoinGecko）给出价格 $0.2175、市值 $163.6M、FDV $201.1M，由此推得流通约 752.2M、总量约 924.8M。合约地址只能沿用 2026-10-30 研究结果，本次未核实",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-14.json",
+          "date": "2026-11-14"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": null,
+      "claim": "候选文件：流通市值 $163,607,741、FDV $201,136,453、流通率 81.3%（CoinGecko 口径）；未来 12 个月供应变化没有官方释放表可核实，且 10-30 研究发现与 DefiLlama 解锁页流通量（约 447M）冲突，本次未能打开核实",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-14.json",
+          "date": "2026-11-14"
+        },
+        {
+          "url": "https://defillama.com/unlocks/geodnet",
+          "date": "2026-11-14"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（服务器 DefiLlama 口径）：协议收入近三个季度 q2 $2,384,641 → q1 $2,659,039 → q0 $2,755,173，最近季度 +3.6%；近12个月实际 $9,810,634，近30天×12 $10,956,084，近90天×4 $10,987,932（无异常偏高）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-14.json",
+          "date": "2026-11-14"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "mechanism": "buyback",
+      "claim": "候选文件：DefiLlama 持币人收入年化 $9,264,393（与协议收入接近，对应收入用于回购销毁的口径）；总量约 924.8M 低于最大供应 10 亿，说明已有销毁。据搜索结果摘要（标题“GEODNET hits Coinbase as 80% burn model”，2026-06）收入 80% 回购销毁；具体每月已执行金额本次未打开页面核实。注意协议收入不等于持币人利润",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-14.json",
+          "date": "2026-11-14"
+        },
+        {
+          "url": "https://www.hokanews.com/2026/06/geodnet-hits-coinbase-as-80-burn-model.html",
+          "date": "2026-11-14"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": 67986038,
+      "claim": "候选文件：30 天日均成交额 $2,266,201（30 天合计约 $68.0M，CoinGecko 口径，可能含 DEX），高于 50 万美元门槛；主流交易所现货：Upbit、Coinbase（服务器取自 CoinGecko 交易对）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-14.json",
+          "date": "2026-11-14"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "据搜索结果摘要：搜索“GEODNET hack exploit”未出现 GEODNET 本身的被盗/攻击事件（结果为 GeoDeFi、GDS 等其他项目）；但只看了搜索结果标题，未打开 DefiLlama 安全事件库核实，不能确认",
+      "sources": [
+        {
+          "url": "https://www.cyberscope.io/audits/coin-geodnet",
+          "date": "2026-11-14"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": null,
+      "claim": "2026-10-30 研究记录的流通量（CoinGecko ~745M vs DefiLlama 解锁页 ~447M）和分配比例冲突，本次无法打开页面确认是否已解决；候选文件中服务器仍标注“解锁数据冲突”",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-14.json",
+          "date": "2026-11-14"
+        },
+        {
+          "url": "https://defillama.com/protocol/unlocks/geodnet",
+          "date": "2026-11-14"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": null,
+      "supply_growth_12m_pct": null,
+      "claim": "按 CoinGecko 口径（候选文件）：流通率 81.3%，尚未流通约 172.5M = 流通量的 22.9%（这是全部释放的上限，不是 12 个月的实际数）；但与 DefiLlama 流通量冲突，且无官方 12 个月释放表，不能认定",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-14.json",
+          "date": "2026-11-14"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "据搜索结果摘要：Cyberscope 有一页“coin-geodnet”审计/评估条目，但未打开核实范围和日期；候选文件显示 DefiLlama 无审计记录（审计“未知”）",
+      "sources": [
+        {
+          "url": "https://www.cyberscope.io/audits/coin-geodnet",
+          "date": "2026-11-14"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-14.json",
+          "date": "2026-11-14"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "据搜索结果摘要：Mike Horton 为 GEODNET 联合创始人兼 CEO（Inside Unmanned Systems 报道标题“GEODNET CEO Mike Horton… at Xponential 2024”；维基百科有其词条），实名可查；融资信息本次未核实",
+      "sources": [
+        {
+          "url": "https://insideunmannedsystems.com/geodnet-ceo-mike-horton-discusses-the-future-of-blockchain-based-gnss-reference-networks-at-xponential-2024/",
+          "date": "2026-11-14"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Mike_A._Horton",
+          "date": "2026-11-14"
+        },
+        {
+          "url": "https://www.geodnet.com/about",
+          "date": "2026-11-14"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": true,
+      "claim": "据搜索结果摘要：DefiLlama 解锁页标题显示单次解锁价值约 $16,829（约占流通 0.019%），属挖矿日常释放，未见大额解锁；但 12/36 个月合计、私募第 3 轮（自报约 2026-12 释放完）具体数量无法核实；流通量来源冲突未解决",
+      "sources": [
+        {
+          "url": "https://defillama.com/unlocks/geodnet",
+          "date": "2026-11-14"
+        },
+        {
+          "url": "https://docs.geodnet.com/geod-token/tokenomics",
+          "date": "2026-11-14"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.2174953680046527,
+    "circulating_supply": 752235519,
+    "total_supply": 924784996,
+    "supply_by_month": {},
+    "annual_revenue_usd": 9810634,
+    "revenue_growth": {
+      "conservative": 0.0,
+      "base": 0.1675,
+      "optimistic": 0.3349
+    },
+    "peer_multiples": {
+      "p25": 3.05,
+      "median": 8.71,
+      "p75": 21.89
+    },
+    "peers": [
+      {
+        "name": "DefiLlama 全部协议（76 个，同赛道 Oracle 不足 5 个）",
+        "multiple": 8.71,
+        "source": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-14.json"
+      }
+    ],
+    "metric": "协议年化收入（DefiLlama revenue 口径，近12个月实际 $9.81M，取自候选文件）；增速与倍数取自候选文件 prelim（服务器计算）"
+  },
+  "risks": [
+    "币价领先业务：最近季度收入 +3.6%，币价 90 天 +16%；现价 $0.2175 高于代码估值目标 $0.092",
+    "流通量与解锁数据各来源冲突，第 3 轮私募可能在 2026-12 前释放完",
+    "回购比例口径（全部收入 80% vs 基金会份额的 80%）未统一",
+    "本次网页抓取被拒，身份/审计/安全只靠候选文件和搜索结果标题"
+  ],
+  "unverified": [
+    "合约地址（本次未重新核实）",
+    "未来 12/36 个月解锁比例和下一次大额解锁",
+    "真实流通量（CoinGecko vs DefiLlama 冲突）",
+    "第三方审计（Cyberscope 条目未打开）",
+    "DefiLlama 安全事件库",
+    "每月已执行回购销毁的确切金额"
+  ],
+  "catalysts": [
+    {
+      "claim": "据搜索结果摘要：GEOD 上线 Coinbase，80% 收入销毁模式",
+      "url": "https://www.hokanews.com/2026/06/geodnet-hits-coinbase-as-80-burn-model.html",
+      "date": "2026-11-14"
+    }
+  ],
+  "summary_reason": "真实 RTK 订阅收入（年化约 $9.8M）且持币人收入接近全部收入，但收入增速慢于币价、现价高于估值目标、流通量和解锁数据冲突，维持观察"
+}

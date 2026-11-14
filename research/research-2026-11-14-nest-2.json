@@ -1,0 +1,184 @@
+{
+  "coin_id": "nest-2",
+  "researched_at": "2026-11-14T03:40:00Z",
+  "grade_hint": "C",
+  "items": {
+    "identity": {
+      "ok": null,
+      "claim": "本次 CoinGecko 页面抓取被权限拒绝，未重新核实合约；候选文件给出价格 $0.01394、市值 $4.17M、FDV $27.6M，推得流通约 299.2M、总量约 1,980.1M（比 11-07 的 1,970.3M 又增加约 9.8M）。HyperEVM 上的 ve(3,3) DEX",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-14.json",
+          "date": "2026-11-14"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/nest-exchange",
+          "date": "2026-11-14"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": null,
+      "claim": "候选文件：流通市值 $4,172,598、FDV $27,610,932、流通率 15.1%；无最大供应、LP 排放持续，未来 12 个月供应变化无官方数字可核实",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-14.json",
+          "date": "2026-11-14"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（DefiLlama 口径）：季度收入 q2 $224,830 → q1 $1,909,871 → q0 $2,084,516（最近季度 +9.1%）；近12个月实际 $4,484,803，近30天×12 $10,420,296（超过12个月实际 2 倍，标注近期收入异常偏高、可能不可持续）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-14.json",
+          "date": "2026-11-14"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "mechanism": "fee_share",
+      "claim": "候选文件：DefiLlama 持币人收入年化 $10,565,022（手续费分给 veNEST 投票者）；据搜索结果摘要 Blockworks 透明度文件描述为 veNEST 获得所投池子手续费。注意持币人收入被持续增发稀释；回购未见已执行金额，不计入",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-14.json",
+          "date": "2026-11-14"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/nest-exchange",
+          "date": "2026-11-14"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": false,
+      "spot_volume_30d_usd": 8237063,
+      "claim": "候选文件：30 天日均成交额 $274,569（< 50 万美元门槛），主流交易所现货：无（只有 HyperEVM 上的 DEX 池，据搜索结果 dexscreener 条目）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-14.json",
+          "date": "2026-11-14"
+        },
+        {
+          "url": "https://dexscreener.com/hyperevm/0x535f30f50ebda33575242c38b976e681d13db6fa",
+          "date": "2026-11-14"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "据搜索结果摘要：未见 Nest Exchange 被攻击报道（搜到的 Hyperdrive、Hypervault 是其他 HyperEVM 项目）；11-07 研究记录的单一地址可无时间锁关停 gauge 的中心化治理问题本次无法确认是否已改",
+      "sources": [
+        {
+          "url": "https://blockworks.com/token-transparency/filing/nest-exchange",
+          "date": "2026-11-14"
+        },
+        {
+          "url": "https://rekt.news/hypervault-rugged",
+          "date": "2026-11-14"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "近期收入明显偏高：近30天×12（$10.4M）是近12个月实际（$4.48M）的 2.3 倍；持币人收入年化 $10.57M 大于协议年化收入 $4.48M（口径不同）；11-07 研究记录的总量与认购表口径不一致仍未解决",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-14.json",
+          "date": "2026-11-14"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "supply_growth_12m_pct": null,
+      "claim": "流通率 15.1%（远低于 50%），无最大供应；总量由 11-07 约 1,970.3M 增至今日约 1,980.1M（7 天 +0.5%，按候选文件 FDV/价格推算），持续增发；没有需求抵消稀释的强证据",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-14.json",
+          "date": "2026-11-14"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "据搜索结果摘要：CertiK Skynet 有“nest-protocol”条目，但无法确认是否同一项目（另有老牌 NEST Protocol），未打开核实；DefiLlama 审计链接本次未打开",
+      "sources": [
+        {
+          "url": "https://skynet.certik.com/projects/nest-protocol",
+          "date": "2026-11-14"
+        }
+      ]
+    },
+    "team": {
+      "ok": false,
+      "claim": "本次搜索未找到实名团队信息；11-07 研究（Blockworks 透明度文件）记录核心成员均为化名、无法律实体",
+      "sources": [
+        {
+          "url": "https://blockworks.com/token-transparency/filing/nest-exchange",
+          "date": "2026-11-14"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": true,
+      "claim": "DefiLlama 有 nest 解锁页（据搜索结果），本次未打开；每周排放数量未披露，无法计算 12/36 个月占比；总量口径不一致",
+      "sources": [
+        {
+          "url": "https://defillama.com/unlocks/nest",
+          "date": "2026-11-14"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.0139444566755206,
+    "circulating_supply": 299229873,
+    "total_supply": 1980065100,
+    "supply_by_month": {},
+    "annual_revenue_usd": 4484803,
+    "revenue_growth": {
+      "conservative": 0.0,
+      "base": 0.5,
+      "optimistic": 1.0
+    },
+    "peer_multiples": {
+      "p25": 3.05,
+      "median": 8.71,
+      "p75": 21.89
+    },
+    "peers": [
+      {
+        "name": "DefiLlama 全部协议（76 个）",
+        "multiple": 8.71,
+        "source": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-14.json"
+      }
+    ],
+    "metric": "协议年化收入（DefiLlama revenue 口径，近12个月实际 $4.48M，取自候选文件）；增速与倍数取自候选文件 prelim；持续增发未建模，情景会高估"
+  },
+  "risks": [
+    "流通率 15%、无最大供应，持续增发稀释",
+    "日均成交约 $27 万，低于门槛，只在自家 DEX 交易",
+    "团队化名、治理中心化",
+    "币价 90 天 +159% 远超收入增速 +9.1%；近期收入异常偏高可能不可持续",
+    "现价高于代码估值目标（$0.0089）"
+  ],
+  "unverified": [
+    "合约地址（本次未重新核实）",
+    "未来 12/36 个月排放/解锁数量",
+    "审计报告",
+    "已执行回购金额",
+    "治理密钥问题是否已改"
+  ],
+  "catalysts": [],
+  "summary_reason": "手续费分给 veNEST、收入真实，但流通率 15%、持续增发、流动性不足且团队化名，维持淘汰（C）"
+}
