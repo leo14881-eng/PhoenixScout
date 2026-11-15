@@ -1,0 +1,200 @@
+{
+  "coin_id": "liquity",
+  "researched_at": "2026-11-15T04:00:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": null,
+      "claim": "本次 CoinGecko 页面抓取被拒，合约地址未能重新核实；候选文件只有 coinId（liquity）、价格与市值",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-15.json",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "候选文件：价格 $0.1434、市值 $14,026,060、FDV $14,188,390、流通率 98.86%；未来 12 个月供应 100,002,626（unlock12mPct 1.16%），硬上限 1 亿",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-15.json",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（DefiLlama，V1+V2 合并）：季度收入 q0 $260,843、q1 $107,940、q2 $87,532，最近季度 +141.7%；年化 近30天×12 $2.07M、近90天×4 $1.04M、近12个月实际 $637,569（取最小）；持币人收入年化 $1,742,770。业务真实但规模很小",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-15.json",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "mechanism": "fee_share",
+      "claim": "候选文件：DefiLlama 持币人收入年化 $1,742,770（已发生、链上统计）；官方文档 LQTY 质押 FAQ（V1 质押获得借款费与赎回费；V2 有 LQTY 质押页面）——文档内容据搜索结果标题，未打开。属于手续费分配，非增发",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-15.json",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://docs.liquity.org/faq/staking",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://docs.liquity.org/v2-faq/lqty-staking",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": 48006839,
+      "claim": "候选文件：30 天日均成交额 $1.60M（×30 ≈ $4,800 万，CoinGecko 现货口径），在 Binance、OKX、Coinbase、Kraken 有现货（候选文件质量分交易所列表）；成交集中度未能本次核实",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-15.json",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": true,
+      "claim": "事件 1（据搜索结果摘要，仅标题，未打开页面）：2025-02-12 Liquity V2 稳定池（Earn）发现潜在问题，团队建议用户撤出，The Defiant 标题写“No Users Impacted”，Cointelegraph 标题称期间流出 $17M；随后 V2 重新部署（官方博客“Liquity V2 is being relaunched”）。无损失、无需赔付。未见 2026 年新事故",
+      "sources": [
+        {
+          "url": "https://liquity.org/blog/stability-pool-issue",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://thedefiant.io/news/defi/liquity-protocol-investigates-issue-affecting-v2-stability-pools-advises-users-4e5948be",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://www.liquity.org/blog/liquity-v2-redeployment",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://cointelegraph.com/news/liquity-v2-outflows-17m-investigation-earn-pools",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": null,
+      "claim": "候选文件：持币人收入年化 $1.74M 高于协议收入年化 $0.64M（口径不同：V1 借款/赎回费全部归质押者，V2 利息 25% 归 PIL 激励），且近 30 天×12 是近 12 个月实际的 3.2 倍（一次性赎回费），两组口径关系未能本次核实",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-15.json",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": true,
+      "supply_growth_12m_pct": 1.16,
+      "claim": "候选文件：流通率 98.86%，未来 12 个月供应上限 100,002,626，增长约 1.16%（≤25%，流通 ≥50%）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-15.json",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "audit": {
+      "ok": true,
+      "claim": "（据搜索结果摘要，仅标题，未打开页面）官方博客“Auditing Liquity V2”及文档“Technical Docs & Audits”页面；候选文件质量分第三方审计 ✓",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-15.json",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://www.liquity.org/blog/auditing-liquity-v2",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://docs.liquity.org/v2-documentation/technical-docs-and-audits",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "（据搜索结果摘要，仅标题，未打开页面）Liquity 2021-03 完成 $6M A 轮，Pantera Capital 领投（官方博客、Cointelegraph、The Block）；联合创始人 Robert Lauko 实名",
+      "sources": [
+        {
+          "url": "https://www.liquity.org/blog/liquity-raises-6m-in-series-a-funding",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://cointelegraph.com/news/pantera-capital-backs-liquidity-protocol-s-6m-series-a-funding-round",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://www.theblock.co/news/defi/2021-03-29-defi-lending-liquity-stablecoin-funding-99721",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": true,
+      "unlock_12m_pct": 1.16,
+      "unlock_36m_pct": 1.16,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": false,
+      "claim": "候选文件：流通率 98.86%，剩余约 1.1% 为上限，12/36 个月新增解锁 ≤1.16%，没有大额一次性解锁",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-15.json",
+          "date": "2026-11-15"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.142122,
+    "circulating_supply": 98855898,
+    "total_supply": 100000000,
+    "supply_by_month": {
+      "12": 100000000,
+      "24": 100000000,
+      "36": 100000000
+    },
+    "annual_revenue_usd": 637568.8,
+    "revenue_growth": {
+      "conservative": 0.0,
+      "base": 0.5,
+      "optimistic": 1.0
+    },
+    "peer_multiples": {
+      "p25": 2.807074271496848,
+      "median": 7.760618118063992,
+      "p75": 22.451181387265123
+    },
+    "peers": [],
+    "metric": "协议年化收入（DefiLlama revenue，保守口径 min=近12个月实际 $637,569）；持币人收入年化 $1.74M 另列；增速按候选文件 prelim（季度 +141.7% 被上限截断）；倍数为 候选文件 prelim.peerMultiples（DefiLlama 全部协议 78 个“流通市值/年化收入”分位数；同赛道不足 5 个），没有具体可比项目名单"
+  },
+  "risks": [
+    "当前流通市值/收入约 13.4 倍，高于全部协议中位数 7.8 倍，现价高于估值目标（目标价 $0.0495）",
+    "收入规模很小，近 30 天收入靠一次性赎回费拉高，不可持续",
+    "V2 曾因稳定池问题重新部署，BOLD 规模与收入能否持续增长未知",
+    "币价 90 天 -25.7%"
+  ],
+  "unverified": [
+    "合约地址（本次未能打开 CoinGecko）",
+    "审计机构名称与范围（只见文档标题）",
+    "持币人收入与协议收入口径差异",
+    "同赛道（CDP）可比项目倍数"
+  ],
+  "catalysts": [],
+  "summary_reason": "价值捕获（质押分手续费）、供应几乎全流通、团队与审计可查，但收入太小、估值高于目标，基准情景达不到 5 倍，B 级观察"
+}

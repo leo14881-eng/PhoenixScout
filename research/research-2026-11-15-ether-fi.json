@@ -1,0 +1,231 @@
+{
+  "coin_id": "ether-fi",
+  "researched_at": "2026-11-15T04:00:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "ETHFI：Ethereum 0xfe0c30065b384f05761f15d0cc899d4f9f9cc0eb，Base 0x6c240dda6b5c336df09a4d011139beaaa1ea2aa2，Arbitrum 0x7189fb5b6504bbff6a852b13b7b82a3c118fdc27，Scroll 0x056a5fa5da84ceb7f93d36e545c5905607d8bd81；最大供应 10 亿（CoinGecko 页面）",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/ether-fi",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": null,
+      "claim": "CoinGecko 页面：价格 $0.5620、市值 $561.334M、FDV $561.334M、流通 998.536M = 总量 998.536M、最大 1B。市值与 FDV 可读到，但流通=总量意味着把仍在归属期的团队/投资人份额也计为流通的可能性无法排除；未来 12 个月供应变化（Tokenomist 等解锁页只出现在搜索结果，未打开）未能核实",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/ether-fi",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://tokenomist.ai/ether-fi/unlock-events",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（服务器按 DefiLlama 计算）：最近季度收入 +29.6%，比两个季度前 +5.3%，前一季度 -18.7%；30 天日均成交额 $34.7M。另（据搜索结果摘要，仅标题，未打开页面）：CASH 卡累计消费超 $8 亿、其中 2026 年 $6 亿；2026-09 宣布完全退出 EigenLayer 再质押。年化收入金额候选文件未给出",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-15.json",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://cryptobriefing.com/ether-fi-cash-exceeds-800m-spend/",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://blockhead.co/2026/09/29/ether-fi-to-fully-exit-eigenlayer-restaking-as-sector-profits-collapse",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": null,
+      "mechanism": "buyback",
+      "claim": "（据搜索结果摘要，仅标题，未打开页面）The Block 报道 Ether.fi DAO “提议” $5,000 万 ETHFI 回购（提案不算已执行）；tokenomics.com 标题称“双回购引擎向 ETHFI 质押者返还 $1,624 万”，Tokenomist 有 ETHFI 回购页面。已执行回购的金额、时间、链上证据未能核实",
+      "sources": [
+        {
+          "url": "https://www.theblock.co/post/377106/ether-fi-dao-proposes-50-million-ethfi-buyback-as-defis-repurchase-wave-tops-1-4-billion",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://tokenomics.com/articles/etherfi-tokenomics-how-the-dual-buyback-engine-returns-16-24m-to-ethfi-stakers",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://www.tokenomist.ai/ether-fi/buyback",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": 1041000000,
+      "claim": "候选文件：30 天日均成交额 $34.7M（×30 ≈ $10.41 亿，CoinGecko 全部交易所口径）。CoinGecko 页面 24 小时现货：Binance ETHFI/USDT $4,096,175、OKX $2,056,089、WEEX $2,044,102、LBank $963,962 等；仅 Binance+OKX 现货日成交约 $6.2M，远高于 50 万美元门槛。注意 24 小时合约成交（Binance Futures $33.2M）远大于现货",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-15.json",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://www.coingecko.com/en/coins/ether-fi",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "事故 1（据搜索结果摘要，仅标题，未打开页面）：2024-09 域名账户接管未遂（官方 gitbook 事件页、Cointelegraph 标题均写“no funds lost”），无损失、无需赔付。事故 2：2026-04-19 Kelp DAO 被盗约 $2.92 亿（CoinDesk 标题），Ether.fi CEO 参与救援（Whale Alert、The Defiant 标题）；Ether.fi 自身是否受损、敞口与赔付未能核实。未见 Ether.fi 合约被盗记录",
+      "sources": [
+        {
+          "url": "https://etherfi.gitbook.io/etherfi/security/sep-24-incident-attempted-domain-account-takeover",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://cointelegraph.com/news/etherfi-domain-takeover-attempt-secured-no-funds-lost",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://www.coindesk.com/tech/2026/04/19/2026-s-biggest-crypto-exploit-kelp-dao-hit-for-usd292-million-with-wrapped-ether-stranded-across-20-chains",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://thedefiant.io/podcasts-and-videos/podcast/defi-s-near-death-moment-or-mike-silagadze-on-ether-fi-security-and-what-comes-next",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": null,
+      "claim": "CoinGecko 页面内部数字有小差异（市值 $561.334M vs FAQ $560,471,221；24h 成交 $40.97M vs $40.69M，属更新时差）。主要疑点：流通 = 总量 998.536M，与搜索结果中存在的 Tokenomist/CoinLaunch 解锁页面（未打开）可能矛盾，无法判断是否一致",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/ether-fi",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://tokenomist.ai/ether-fi/unlock-events",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": null,
+      "supply_growth_12m_pct": null,
+      "claim": "按 CoinGecko 流通 998.536M / 最大 1B，未来新增上限仅约 0.15%、流通率 99.85%；但该流通量是否包含仍锁定份额未能核实，解锁计划页面未打开，因此不判定通过",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/ether-fi",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "（据搜索结果摘要，仅标题，未打开页面）官方文档有 security/audits 页面（etherfi.gitbook.io），审计机构与范围未打开核实",
+      "sources": [
+        {
+          "url": "https://etherfi.gitbook.io/etherfi/security/audits",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "（据搜索结果摘要，仅标题，未打开页面）CEO Mike Silagadze 实名；2023-02 种子轮 $5.3M（NIV、Chapter One 联合领投，The Block）；2024-02-28 A 轮 $23M（Bullish Capital、CoinFund 领投，Bullish 官网/CoinDesk）",
+      "sources": [
+        {
+          "url": "https://www.theblock.co/post/215620/etherfi-raises-funding",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://www.bullish.com/news-insights/ether-fi-secures-23m-in-funding-led-by-bullish-capital-and-coinfund",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://thelogic.co/briefing/mike-silagadzes-ether-fi-raises-us23m-series-a/",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": false,
+      "claim": "CoinGecko 显示流通 = 总量，但搜索结果中有 Tokenomist、tokenomics.com、CoinLaunch 的 ETHFI 解锁/归属页面（未打开），无法确认是否已全部解锁；不写“已全部解锁”",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/ether-fi",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://tokenomist.ai/ether-fi/unlock-events",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://coinlaunch.space/projects/etherfi/vesting/",
+          "date": "2026-11-15"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.562,
+    "circulating_supply": 998536000,
+    "total_supply": 1000000000,
+    "supply_by_month": {},
+    "annual_revenue_usd": null,
+    "revenue_growth": {
+      "conservative": null,
+      "base": null,
+      "optimistic": null
+    },
+    "peer_multiples": {
+      "p25": 2.807074271496848,
+      "median": 7.760618118063992,
+      "p75": 22.451181387265123
+    },
+    "peers": [],
+    "metric": "协议年化收入：候选文件 nearMiss 只给出季度增速（最近季度 +29.6%、前一季度 -18.7%），没有收入金额，本次未取得；倍数为 候选文件 prelim.peerMultiples（DefiLlama 全部协议 78 个“流通市值/年化收入”分位数；同赛道不足 5 个），没有具体可比项目名单"
+  },
+  "risks": [
+    "前一季度收入 -18.7%，收入尚未连续增长；2026-09 宣布退出 EigenLayer 再质押，业务重心转向 CASH 卡/新银行，收入结构在变化",
+    "价值捕获证据只有搜索标题：$5,000 万回购是 DAO 提案，已执行回购金额未核实",
+    "CoinGecko 显示流通≈总量，可能把仍锁定的团队/投资人份额计入流通，真实稀释风险未知",
+    "2026-04 Kelp DAO 被盗事件中 Ether.fi 的敞口未核实；再质押/LRT 赛道系统性风险高",
+    "合约成交远大于现货，价格受杠杆资金影响大；较历史高点 $8.53 跌 93.4%"
+  ],
+  "unverified": [
+    "年化协议收入与持币人收入金额（候选文件未给出）",
+    "已执行回购的金额与链上证据",
+    "未来 12/36 个月解锁量与下一次大额解锁",
+    "CoinGecko 流通量口径是否包含锁定份额",
+    "第三方审计机构与范围",
+    "Kelp DAO 事件对 Ether.fi 的影响",
+    "同赛道可比项目倍数"
+  ],
+  "catalysts": [
+    {
+      "claim": "CASH 卡累计消费超 $8 亿，其中 2026 年 $6 亿（据搜索结果标题）",
+      "url": "https://cryptobriefing.com/ether-fi-cash-exceeds-800m-spend/",
+      "date": "2026-11-15"
+    },
+    {
+      "claim": "Ether.fi DAO 提议 $5,000 万 ETHFI 回购（仅提案，据搜索结果标题）",
+      "url": "https://www.theblock.co/post/377106/ether-fi-dao-proposes-50-million-ethfi-buyback-as-defis-repurchase-wave-tops-1-4-billion",
+      "date": "2026-11-15"
+    }
+  ],
+  "summary_reason": "接近入选：最近季度收入 +29.6% 而币价 90 天 -1.2%，主流交易所现货充足、团队实名有机构背景；但前一季度收入下滑、收入金额和已执行回购未核实，只能 B 级观察"
+}

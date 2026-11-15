@@ -1,0 +1,183 @@
+{
+  "coin_id": "ore",
+  "researched_at": "2026-11-15T04:00:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": null,
+      "claim": "本次 CoinGecko 页面抓取被拒，合约与最大供应未能重新核实；候选文件只有 coinId（ore）、价格与市值",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-15.json",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": null,
+      "claim": "候选文件：价格 $76.31（prelim $82.37）、市值 $42,958,296、FDV $42,939,959、流通率 100%（按 CoinGecko 当前总量）；ORE 持续挖矿排放，未来 12 个月净供应变化没有官方数据",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-15.json",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（DefiLlama）：季度收入 q0 $10,083,399、q1 $9,002,591、q2 $6,357,370，最近季度 +12.0%；年化 近30天×12 $49.04M、近90天×4 $40.04M、近12个月实际 $39.07M。本质是带排放补贴的挖矿玩法",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-15.json",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "mechanism": "buyback",
+      "claim": "候选文件：DefiLlama 持币人收入年化 $49,222,367（已发生的回购/埋藏，按协议实际收款统计）。局限：回购是否足以抵消挖矿排放未核实",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-15.json",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": false,
+      "spot_volume_30d_usd": 52594014,
+      "claim": "候选文件：30 天日均成交额 $1.75M（×30 ≈ $5,259 万），但质量分“主流交易所现货”✗（Binance/Coinbase/OKX/Bybit/Kraken/Upbit 均无），成交主要在 DEX 和小交易所",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-15.json",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "事故 1（据搜索结果摘要，仅标题，未打开页面）：ORE 质押程序智能合约漏洞被利用，损失 25.5 SOL（Crypto Briefing 标题），Grafa 标题称“staking bug forces contract migration”；发生日期与是否赔付未核实。损失金额小，但说明合约有过漏洞",
+      "sources": [
+        {
+          "url": "https://cryptobriefing.com/ore-smart-contract-bug-solana-yield/",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://grafa.com/en/news/crypto/solana-staking-bug-forces-contract-migration",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://www.valuethemarkets.com/cryptocurrency/news/ore-staking-program-exploit-what-investors-need-to-know",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": null,
+      "claim": "候选文件中 prelim 价格 $82.37 与 pathBNotListed 价格 $76.31 不同（取数时间差）；持币人收入年化 $49.2M 高于协议收入保守口径 $39.1M（口径不同）；排放与埋藏数据没有可交叉核对的来源",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-15.json",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": null,
+      "supply_growth_12m_pct": null,
+      "claim": "ORE 按挖矿持续排放，CoinGecko 总量随流通增长，所以“流通率 100%”不代表供应固定；未来 12 个月净增长（排放 − 埋藏）本次没有可核实数据",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-15.json",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "（据搜索结果摘要，仅标题，未打开页面）搜索结果中的 Halborn “oro” 和 Cyberscope “coin-ore” 审计页是否就是 ORE Protocol 无法判断；候选文件质量分第三方审计“未知”",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-15.json",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://www.cyberscope.io/audits/coin-ore",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "（据搜索结果摘要，仅标题，未打开页面）开发者为化名 HardHat Chad（IQ.wiki）；Blockworks 标题称 ORE 开发者完成种子轮；Blockworks 有 ORE 代币透明度披露（H2 2026）。创始人未实名，投资机构未核实",
+      "sources": [
+        {
+          "url": "https://iq.wiki/wiki/hardhat-chad",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://blockworks.co/news/lightspeed-newsletter-solana-ore-funding",
+          "date": "2026-11-15"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/ore",
+          "date": "2026-11-15"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": false,
+      "claim": "新供应来自持续挖矿排放，没有可核实的未来 12/36 个月净增量；不按“已全部解锁”处理",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-15.json",
+          "date": "2026-11-15"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 82.37,
+    "circulating_supply": 521528,
+    "total_supply": 521528,
+    "supply_by_month": {},
+    "annual_revenue_usd": 39065874.0,
+    "revenue_growth": {
+      "conservative": 0.0,
+      "base": 0.12,
+      "optimistic": 0.18
+    },
+    "peer_multiples": {
+      "p25": 2.807074271496848,
+      "median": 7.760618118063992,
+      "p75": 22.451181387265123
+    },
+    "peers": [],
+    "metric": "协议年化收入（DefiLlama revenue，保守口径 min=近12个月实际 $39.07M）；基准增速取最近季度 +12.0%，乐观为 1.5 倍；流通量 = 候选文件市值 / prelim 价格推算；注意持续排放未计入供应模型；倍数为 候选文件 prelim.peerMultiples（DefiLlama 全部协议 78 个“流通市值/年化收入”分位数；同赛道不足 5 个），没有具体可比项目名单"
+  },
+  "risks": [
+    "持续挖矿排放，未来供应净增长未知，回购埋藏可能抵消不了排放",
+    "无主流交易所现货",
+    "创始人化名，无审计确认，质押程序曾被利用（25.5 SOL）",
+    "收入依赖挖矿/抽奖式玩法与 ORE 价格，30 天币价 -37%",
+    "币价 90 天 +27% 快于季度收入 +12%"
+  ],
+  "unverified": [
+    "未来 12/36 个月净供应增长",
+    "合约地址与最大供应（本次未能打开 CoinGecko）",
+    "第三方审计",
+    "团队与投资机构",
+    "质押漏洞事件日期与赔付",
+    "同赛道可比倍数"
+  ],
+  "catalysts": [],
+  "summary_reason": "当前流通市值/收入仅约 1.1 倍、持币人收入可观，但持续排放、无主流交易所现货、无审计、团队化名，B 级观察"
+}
