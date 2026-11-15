@@ -97,3 +97,8 @@ research-2026-11-13-sosovalue.json
 research-2026-11-13-yearn-finance.json
 research-2026-11-14-geodnet.json
 research-2026-11-14-nest-2.json
+research-2026-11-15-ether-fi.json
+research-2026-11-15-hyperlane.json
+research-2026-11-15-liquity.json
+research-2026-11-15-ore.json
+research-2026-11-15-trust-wallet-token.json
