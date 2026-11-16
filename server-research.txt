@@ -102,3 +102,7 @@ research-2026-11-15-hyperlane.json
 research-2026-11-15-liquity.json
 research-2026-11-15-ore.json
 research-2026-11-15-trust-wallet-token.json
+research-2026-11-16-avalon-2.json
+research-2026-11-16-evaa-protocol.json
+research-2026-11-16-merlin-chain.json
+research-2026-11-16-sun-token.json
