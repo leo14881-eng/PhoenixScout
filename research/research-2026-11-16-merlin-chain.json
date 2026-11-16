@@ -1,0 +1,169 @@
+{
+ "coin_id": "merlin-chain",
+ "researched_at": "2026-11-16T03:40:00Z",
+ "grade_hint": "B",
+ "items": {
+  "identity": {
+   "ok": null,
+   "claim": "MERL：比特币二层 Merlin Chain 代币；候选文件推算流通约 1.418B、总量约 2.083B。合约地址未能取得（CoinGecko 页面抓取被拒）",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json",
+     "date": "2026-11-16"
+    }
+   ]
+  },
+  "supply_verifiable": {
+   "ok": true,
+   "claim": "候选文件：价格 $0.03092、流通市值 $43,851,856、FDV $64,406,331、流通率 68.1%；未来 12 个月供应变化未核实",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json",
+     "date": "2026-11-16"
+    }
+   ]
+  },
+  "economic_activity": {
+   "ok": null,
+   "claim": "候选文件无 DefiLlama 协议收入；据搜索结果摘要（标题）DefiLlama “Merlin's Seal” TVL $354.11m（质押存量，不是收入）。公链类不按协议收入估值",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json",
+     "date": "2026-11-16"
+    },
+    {
+     "url": "https://defillama.com/protocol/merlins-seal",
+     "date": "2026-11-16"
+    }
+   ]
+  },
+  "value_capture": {
+   "ok": null,
+   "claim": "据搜索结果摘要（标题）Tokenomist 有 Merlin Chain 回购页面，但未打开，无法确认回购是否已执行及金额；候选文件持币人收入为空",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json",
+     "date": "2026-11-16"
+    },
+    {
+     "url": "https://tokenomist.ai/merlin-chain/buyback",
+     "date": "2026-11-16"
+    }
+   ]
+  },
+  "liquidity": {
+   "ok": true,
+   "claim": "候选文件：30 天日均成交额 $6,055,784（≥ 50 万）；主流所现货 OKX、Bybit",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json",
+     "date": "2026-11-16"
+    }
+   ],
+   "spot_volume_30d_usd": null
+  },
+  "no_security_issue": {
+   "ok": null,
+   "claim": "据搜索结果摘要（标题）：搜到的 2023-04 “Merlin DEX（zkSync）$1.82M 被盗/跑路”是另一个同名项目，与 Merlin Chain 无关；未见 Merlin Chain 自身事故标题，但不足以证明无事故",
+   "sources": [
+    {
+     "url": "https://www.theblock.co/news/regulation/2023-04-26-zksync-dex-merlin-hack-228302",
+     "date": "2026-11-16"
+    },
+    {
+     "url": "https://www.certik.com/blog/certiks-update-on-the-merlin-dex-rugpull",
+     "date": "2026-11-16"
+    }
+   ]
+  },
+  "data_consistent": {
+   "ok": null,
+   "claim": "只有候选文件一个来源，无法交叉核对",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json",
+     "date": "2026-11-16"
+    }
+   ]
+  },
+  "supply_growth": {
+   "ok": null,
+   "claim": "流通率 68.1% ≥ 50%，但未取得解锁表；若剩余全部 12 个月内释放，增长上限约 46.9%（> 25%），无法确认 ≤ 25%",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json",
+     "date": "2026-11-16"
+    }
+   ],
+   "supply_growth_12m_pct": null
+  },
+  "audit": {
+   "ok": null,
+   "claim": "候选文件 DefiLlama 审计记录“未知”；搜索结果未见审计报告",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json",
+     "date": "2026-11-16"
+    }
+   ]
+  },
+  "team": {
+   "ok": null,
+   "claim": "据搜索结果摘要（标题）Tokenomist 有 Merlin Chain 融资页，但未打开，团队实名与机构未核实",
+   "sources": [
+    {
+     "url": "https://tokenomist.ai/merlin-chain/fundraising",
+     "date": "2026-11-16"
+    }
+   ]
+  },
+  "unlock": {
+   "ok": null,
+   "claim": "据搜索结果摘要（标题）tokenomics.com、Tokenomist 有 MERL 解锁页，但未打开，日期与数量未取得",
+   "sources": [
+    {
+     "url": "https://app.tokenomics.com/tokenomics/merlin-chain/unlocks",
+     "date": "2026-11-16"
+    },
+    {
+     "url": "https://tokenomist.ai/merlin-chain",
+     "date": "2026-11-16"
+    }
+   ],
+   "unlock_12m_pct": null,
+   "unlock_36m_pct": null,
+   "next_unlock_date": null,
+   "next_unlock_amount": null,
+   "fully_unlocked": false,
+   "conflict": false
+  }
+ },
+ "self_reported_mcap": false,
+ "scenario_inputs": {
+  "price_usd": 0.030922851234097444,
+  "circulating_supply": 1418105196,
+  "total_supply": 2082807000,
+  "supply_by_month": null,
+  "annual_revenue_usd": null,
+  "revenue_growth": null,
+  "peer_multiples": null,
+  "peers": [],
+  "metric": "公链类、无可核实协议收入，无法估值"
+ },
+ "risks": [
+  "无可核实协议收入，公链类无法按收入估值",
+  "解锁计划未知，剩余约 32% 供应待释放",
+  "回购是否执行未核实",
+  "长期跌幅约 95%（候选文件），反弹持续性存疑"
+ ],
+ "unverified": [
+  "合约地址",
+  "解锁计划",
+  "回购执行情况",
+  "团队与融资",
+  "审计",
+  "安全事故"
+ ],
+ "catalysts": [],
+ "summary_reason": "路径 A 超跌反弹观察：比特币二层，TVL 较大但无可核实收入与价值捕获，解锁未知"
+}

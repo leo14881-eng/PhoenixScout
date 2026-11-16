@@ -1,0 +1,178 @@
+{
+ "coin_id": "evaa-protocol",
+ "researched_at": "2026-11-16T03:40:00Z",
+ "grade_hint": "B",
+ "items": {
+  "identity": {
+   "ok": null,
+   "claim": "EVAA：TON 链借贷协议代币（据搜索结果摘要标题“TON’s DeFi Lending Platform”）；候选文件推算流通约 6.64M、总量约 50.2M。合约地址未能取得（CoinGecko 页面抓取被拒）",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json",
+     "date": "2026-11-16"
+    },
+    {
+     "url": "https://bingx.com/en/learn/article/what-is-evaa-protocol-and-how-does-evaa-work",
+     "date": "2026-11-16"
+    }
+   ]
+  },
+  "supply_verifiable": {
+   "ok": true,
+   "claim": "候选文件（服务器取自 CoinGecko）：价格 $2.7732、流通市值 $18,412,616、FDV $139,110,709、流通率 13.2%；未来 12 个月供应变化未核实",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json",
+     "date": "2026-11-16"
+    }
+   ]
+  },
+  "economic_activity": {
+   "ok": null,
+   "claim": "候选文件无 DefiLlama 收入（“无可核实收入，无法估值”）；据搜索结果摘要（标题）DefiLlama 页面显示 TVL $7.74m，只有借贷存量，没有收入数据",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json",
+     "date": "2026-11-16"
+    },
+    {
+     "url": "https://defillama.com/protocol/evaa-protocol",
+     "date": "2026-11-16"
+    }
+   ]
+  },
+  "value_capture": {
+   "ok": null,
+   "claim": "候选文件持币人收入为空；搜索结果标题未出现已执行的回购/销毁/分红",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json",
+     "date": "2026-11-16"
+    }
+   ]
+  },
+  "liquidity": {
+   "ok": true,
+   "claim": "候选文件：30 天日均成交额 $9,581,794（≥ 50 万）；主流所现货只有 Kraken。近 30 天 +372% 暴涨期的成交，持续性存疑",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json",
+     "date": "2026-11-16"
+    }
+   ],
+   "spot_volume_30d_usd": null
+  },
+  "no_security_issue": {
+   "ok": null,
+   "claim": "据搜索结果摘要（标题）：搜到的“TAC bridge exploit / EVM network halts … TON connection”属于 TAC 链，不是 EVAA；EVAA 有 HackenProof 漏洞赏金。未见 EVAA 自身事故标题，但不足以证明无事故",
+   "sources": [
+    {
+     "url": "https://tac.build/blog/post-mortem-report-tac-bridge",
+     "date": "2026-11-16"
+    },
+    {
+     "url": "https://hackenproof.com/evaa/evaa-web",
+     "date": "2026-11-16"
+    }
+   ]
+  },
+  "data_consistent": {
+   "ok": null,
+   "claim": "只有候选文件一个来源，无法交叉核对；流通率仅 13%，市值 $18M 对 FDV $139M",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json",
+     "date": "2026-11-16"
+    }
+   ]
+  },
+  "supply_growth": {
+   "ok": false,
+   "claim": "流通/总量 13.2% < 50%，候选文件标“高稀释风险”；无需求增长抵消稀释的强证据",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json",
+     "date": "2026-11-16"
+    }
+   ],
+   "supply_growth_12m_pct": null
+  },
+  "audit": {
+   "ok": true,
+   "claim": "据搜索结果摘要（标题）：Quantstamp 有 EVAA 公开审计证书、Trail of Bits 资料库有 “evaa-finance” 与 “fiva-evaa-integration” 条目；候选文件质量分“第三方审计”为 ✓。报告内容未打开",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json",
+     "date": "2026-11-16"
+    },
+    {
+     "url": "https://certificate.quantstamp.com/full/evaa/df7aa699-793b-49f7-b348-1f78e9ca9870/index.html",
+     "date": "2026-11-16"
+    },
+    {
+     "url": "https://new.trailofbits.com/library/evaa-finance/",
+     "date": "2026-11-16"
+    }
+   ]
+  },
+  "team": {
+   "ok": null,
+   "claim": "据搜索结果摘要（标题）只有项目介绍类页面（BingX 学院、IQ.wiki），标题未给出团队实名或融资信息，未核实",
+   "sources": [
+    {
+     "url": "https://bingx.com/en/learn/article/what-is-evaa-protocol-and-how-does-evaa-work",
+     "date": "2026-11-16"
+    },
+    {
+     "url": "https://iq.wiki/wiki/evaa-protocol",
+     "date": "2026-11-16"
+    }
+   ]
+  },
+  "unlock": {
+   "ok": null,
+   "claim": "据搜索结果摘要（标题）MEXC 有 EVAA 代币经济页，但未打开；解锁日期、数量未取得",
+   "sources": [
+    {
+     "url": "https://www.mexc.com/price/EVAA/tokenomics",
+     "date": "2026-11-16"
+    }
+   ],
+   "unlock_12m_pct": null,
+   "unlock_36m_pct": null,
+   "next_unlock_date": null,
+   "next_unlock_amount": null,
+   "fully_unlocked": false,
+   "conflict": false
+  }
+ },
+ "self_reported_mcap": false,
+ "scenario_inputs": {
+  "price_usd": 2.7731970443324343,
+  "circulating_supply": 6639491,
+  "total_supply": 50162577,
+  "supply_by_month": null,
+  "annual_revenue_usd": null,
+  "revenue_growth": null,
+  "peer_multiples": null,
+  "peers": [],
+  "metric": "无可核实协议收入，无法估值"
+ },
+ "risks": [
+  "流通率仅 13%，FDV 是流通市值约 7.6 倍，解锁抛压大",
+  "无可核实收入与价值捕获",
+  "30 天 +372% 的暴涨后回撤风险（候选文件：长期跌幅超 90%）",
+  "TVL 约 $7.7M，规模小"
+ ],
+ "unverified": [
+  "团队实名与机构背景（搜索标题无相关信息）",
+  "合约地址与最大供应",
+  "解锁计划",
+  "协议收入/手续费",
+  "价值捕获机制",
+  "安全事故",
+  "审计报告内容"
+ ],
+ "catalysts": [],
+ "summary_reason": "路径 A 超跌反弹观察：有审计但无可核实收入、流通仅 13%，不具备推荐条件"
+}

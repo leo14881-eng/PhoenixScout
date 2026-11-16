@@ -1,0 +1,212 @@
+{
+ "coin_id": "sun-token",
+ "researched_at": "2026-11-16T03:40:00Z",
+ "grade_hint": "B",
+ "items": {
+  "identity": {
+   "ok": true,
+   "claim": "SUN（TRON 生态 SunSwap/SunPump 代币）：2026-11-09 研究文件记录 TRON 合约 TSSMHYeV2uE9qYH95DqyoCuNCzEL1NvU3S、最大供应 19.901B；候选文件（服务器取自 CoinGecko）市值 $283,515,858、FDV $293,634,531、价格 $0.014802，与之吻合。本次未能重新打开 CoinGecko 页面（本次 CoinGecko 页面抓取被拒，按规定未再打开任何网站；以下只用候选文件和 WebSearch 结果标题）",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-09-sun-token.json",
+     "date": "2026-11-09"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json",
+     "date": "2026-11-16"
+    }
+   ]
+  },
+  "supply_verifiable": {
+   "ok": true,
+   "claim": "候选文件：流通市值 $283,515,858、FDV $293,634,531、流通率 96.55%（推算流通约 19.153B、总量约 19.837B）；总量与流通差额约 684M，据搜索结果摘要（标题）累计回购销毁已超 685M，差额与累计销毁量接近，未来 12 个月供应变化最多约 +3.6%",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json",
+     "date": "2026-11-16"
+    },
+    {
+     "url": "https://yellow.com/press-releases/SUN-Completes-52nd-Buyback-and-Burn",
+     "date": "2026-11-16"
+    }
+   ]
+  },
+  "economic_activity": {
+   "ok": true,
+   "claim": "候选文件（DefiLlama 协议收入，服务器计算）：最近三个季度收入 q2 $136,988 → q1 $378,693 → q0 $542,575，最近季度 +43.3%；年化收入保守口径 $1,114,678（近30天×12 $2,141,100、近90天×4 $2,139,904、近12个月实际 $1,114,678）",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json",
+     "date": "2026-11-16"
+    }
+   ]
+  },
+  "value_capture": {
+   "ok": true,
+   "claim": "已执行回购销毁：候选文件持币人收入（DefiLlama holdersRevenue）年化 $603,892 > 0；据搜索结果摘要（标题）SUN.io 已完成第 52 次回购销毁、累计销毁超 685M，此前第 49、50 次也有报道。SunPerp“100% 收入回购”仅为承诺（标题“Justin Sun Pledges 100% Revenue on Buyback”），不计入",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json",
+     "date": "2026-11-16"
+    },
+    {
+     "url": "https://yellow.com/press-releases/SUN-Completes-52nd-Buyback-and-Burn",
+     "date": "2026-11-16"
+    },
+    {
+     "url": "https://www.kucoin.com/news/flash/sun-completes-50th-buyback-and-burn-total-destroyed-reaches-18-8m",
+     "date": "2026-11-16"
+    },
+    {
+     "url": "https://coingape.com/expert-says-sun-is-uptobers-biggest-play-as-justin-sun-pledges-100-revenue-on-buyback/?rand=24432",
+     "date": "2026-11-16"
+    }
+   ],
+   "mechanism": "buyback"
+  },
+  "liquidity": {
+   "ok": true,
+   "claim": "候选文件：30 天日均成交额 $11,762,602，高于 50 万门槛；有 Binance、Bybit、Kraken 现货。但 2026-11-09 研究发现 CoinGecko 成交约 70% 来自 Poloniex，主流所真实现货约 $60 万/天，仅勉强达标；本次无法重新核实",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json",
+     "date": "2026-11-16"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-09-sun-token.json",
+     "date": "2026-11-09"
+    }
+   ],
+   "spot_volume_30d_usd": null
+  },
+  "no_security_issue": {
+   "ok": null,
+   "claim": "据搜索结果摘要（标题），搜索“SunSwap SunPump exploit hack 2026”只出现 Pump.fun、Cetus 等其他项目事故，未见 SUN/SunSwap 相关事故标题；标题级信息不足以证明无事故，未核实",
+   "sources": [
+    {
+     "url": "https://hacked.slowmist.io/?page=85+",
+     "date": "2026-11-16"
+    },
+    {
+     "url": "https://blocksec.com/blog/weekly-web3-security-incident-roundup-jan-25-feb-1-2026",
+     "date": "2026-11-16"
+    }
+   ]
+  },
+  "data_consistent": {
+   "ok": null,
+   "claim": "供应差额与累计销毁量衔接；但候选文件内部收入口径不一：prelim 年化收入 $2,176,262（同赛道“全部协议”76 个，中位数 8.4 倍） vs 推荐门槛用 $1,114,678（同赛道 Dexs 7 个，中位数 3.6 倍）；成交额集中 Poloniex 使表面流动性失真。本次无法打开 CoinGecko 交叉核对",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json",
+     "date": "2026-11-16"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-09-sun-token.json",
+     "date": "2026-11-09"
+    }
+   ]
+  },
+  "supply_growth": {
+   "ok": true,
+   "claim": "流通率 96.55% ≥ 50%；即便总量与流通差额全部进入流通，12 个月增长上限约 3.57% ≤ 25%；持续回购销毁使净供应趋降",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json",
+     "date": "2026-11-16"
+    }
+   ],
+   "supply_growth_12m_pct": 3.57
+  },
+  "audit": {
+   "ok": null,
+   "claim": "候选文件质量分“第三方审计”项为 ✓（DefiLlama 审计记录）；研究层未取得审计报告原文，2026-11-09 研究发现 CertiK 页面自相矛盾",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json",
+     "date": "2026-11-16"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-09-sun-token.json",
+     "date": "2026-11-09"
+    }
+   ]
+  },
+  "team": {
+   "ok": null,
+   "claim": "据搜索结果摘要（标题），项目高度依附 TRON/孙宇晨生态（“Justin Sun Pledges 100% Revenue on Buyback”）；未找到实名核心团队页面",
+   "sources": [
+    {
+     "url": "https://coingape.com/expert-says-sun-is-uptobers-biggest-play-as-justin-sun-pledges-100-revenue-on-buyback/?rand=24432",
+     "date": "2026-11-16"
+    }
+   ]
+  },
+  "unlock": {
+   "ok": null,
+   "claim": "未找到官方解锁表；流通率 96.55%，剩余差额可能为已销毁量（未核实），不写 fully_unlocked=true",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json",
+     "date": "2026-11-16"
+    }
+   ],
+   "unlock_12m_pct": null,
+   "unlock_36m_pct": null,
+   "next_unlock_date": null,
+   "next_unlock_amount": null,
+   "fully_unlocked": null,
+   "conflict": false
+  }
+ },
+ "self_reported_mcap": false,
+ "scenario_inputs": {
+  "price_usd": 0.01480236585257579,
+  "circulating_supply": 19153415125,
+  "total_supply": 19836999972,
+  "supply_by_month": null,
+  "annual_revenue_usd": 1114678.3,
+  "revenue_growth": {
+   "conservative": 0.0,
+   "base": 0.43,
+   "optimistic": 0.65
+  },
+  "peer_multiples": {
+   "p25": 2.93,
+   "median": 8.41,
+   "p75": 20.02
+  },
+  "peers": [
+   {
+    "name": "服务器计算：DefiLlama 全部协议（76 个，同赛道 Dexs 仅 7 个、中位数 3.6 倍）流通市值/年化收入",
+    "multiple": 8.41,
+    "source": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-16.json"
+   }
+  ],
+  "metric": "协议年化收入（DefiLlama revenue，保守口径 min(近30天×12, 近90天×4, 近12个月实际)）；当前流通市值/年化收入 ≈ 254 倍；基准增速取最近季度 +43%（≤50% 上限），乐观 = 基准×1.5"
+ },
+ "risks": [
+  "估值极高：流通市值约为年化收入 254 倍，候选文件估值目标比现价低约 98.7%，5 倍情景不成立",
+  "回购销毁规模小（持币人收入年化约 $60 万，对 2.8 亿美元市值）",
+  "真实主流所现货流动性可能仅约 $60 万/天（成交集中 Poloniex）",
+  "团队未实名、高度依赖 TRON/孙宇晨生态",
+  "SunPerp 100% 收入回购只是承诺"
+ ],
+ "unverified": [
+  "本次 CoinGecko 页面抓取被拒，价格/供应/成交分布未重新核实",
+  "安全事故（仅有搜索标题，无法确认无事故）",
+  "第三方审计报告原文",
+  "团队实名",
+  "解锁表与剩余供应归属",
+  "30 天真实现货成交额",
+  "候选文件两种同赛道倍数口径冲突（全部协议 8.4 倍 vs Dexs 3.6 倍）"
+ ],
+ "catalysts": [
+  {
+   "claim": "据搜索结果摘要：SunSwap 加速生态集成、持续执行回购销毁（第 52 次）",
+   "url": "https://yellow.com/press-releases/SUN-Completes-52nd-Buyback-and-Burn",
+   "date": "2026-11-16"
+  }
+ ],
+ "summary_reason": "收入季度 +43% 且回购销毁持续执行、几乎全流通，但市值/收入约 250 倍、估值目标远低于现价，维持 B 级观察"
+}
