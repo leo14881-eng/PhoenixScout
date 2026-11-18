@@ -107,3 +107,7 @@ research-2026-11-16-evaa-protocol.json
 research-2026-11-16-merlin-chain.json
 research-2026-11-16-sun-token.json
 research-2026-11-17-just.json
+research-2026-11-18-arbitrum.json
+research-2026-11-18-lido-dao.json
+research-2026-11-18-meet48.json
+research-2026-11-18-syrup.json
