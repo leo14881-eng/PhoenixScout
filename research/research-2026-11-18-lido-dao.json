@@ -1,0 +1,220 @@
+{
+  "coin_id": "lido-dao",
+  "researched_at": "2026-11-18T03:40:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "LDO：Ethereum 0x5a98fcbea516cf06857215779fd812ca3bef1b32（另有 Polygon 0xc3c7…、Arbitrum 0x13ad…、Optimism 0xfdb7… 桥接合约），总量 = 最大供应 1,000,000,000（CoinGecko 2026-11-18 03:19Z）",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/lido-dao",
+          "date": "2026-11-18"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko 2026-11-18 03:19Z：价格 $0.273419，流通 822.98M，总量/最大 1B，市值 $225.0M、FDV $273.4M。注意：流通量比 11-09 研究的 829.57M 减少约 6.6M，原因未核实（可能是金库买入或口径调整）",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/lido-dao",
+          "date": "2026-11-18"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-09-lido-dao.json",
+          "date": "2026-11-18"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（服务器 DefiLlama 计算）：最近季度收入 +45.8%，比两个季度前 +18.7%，但前一季度 -18.6%（收入连增不成立）；收入绝对值沿用 11-09 研究（DefiLlama 协议收入近 1 年 $34.87M、近 30 天 $3.44M），本次未重新取数",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-18.json",
+          "date": "2026-11-18"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-09-lido-dao.json",
+          "date": "2026-11-18"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": null,
+      "mechanism": "buyback",
+      "claim": "据搜索结果摘要（仅标题）：有“NEST automated LDO buyback mechanism goes live on mainnet”“LDO Rises 5% as Lido DAO Votes on NEST Buyback”“Lido DAO exposes token flaw and forces a budget review”等报道，仍未见 NEST 已实际买入 LDO 的证据；11-09 研究记录论坛 2026-10-07 称 NEST 尚未买入任何 LDO（收入需高于 $40M 年化门槛）。回购只认已执行部分，写未核实；买入的 LDO 进金库、不销毁",
+      "sources": [
+        {
+          "url": "https://cryptobriefing.com/nest-ldo-buyback-mechanism-live/",
+          "date": "2026-11-18"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/ldo-rises-5-as-lido-dao-votes-on-nest-buyback-amid-eip-8361-debate",
+          "date": "2026-11-18"
+        },
+        {
+          "url": "https://cryptoslate.com/lido-dao-exposes-token-flaw-and-forces-a-budget-review/",
+          "date": "2026-11-18"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-09-lido-dao.json",
+          "date": "2026-11-18"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": 812739598,
+      "claim": "CoinGecko 近 30 天成交合计约 $812.7M（日均约 $27.1M，单日最大占 7.5%）；但当日前列多为 BitDelta、CoinUp、Hotcoin、Poloniex 等小所，主流所 Binance 约 $1.06M（仍高于 50 万门槛）；含可疑成交，真实现货量偏低",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/lido-dao/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-18"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/lido-dao",
+          "date": "2026-11-18"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "据搜索结果摘要（仅标题），分开记录：① “MetaMask Exits Lido Validators Amid Infrastructure ‘Security Incident’”（decrypt，时间、损失未核实，可能为节点运营方基础设施事件）；② 2026 年 KelpDAO rsETH 被盗约 $292M，Lido DAO 参与救助、EarnETH 曾有约 9% rsETH 敞口（损失、赔付未核实）；③ 2026-07-25 会计预言机 CL 余额轻微少报披露、Staking Router v3 事件有事后报告（低级别）；④ 2025-05 Chorus One 预言机密钥泄露，热钱包被盗 1.4 ETH（非协议资金）。①②是否已了结未核实",
+      "sources": [
+        {
+          "url": "https://decrypt.co/379800/metamask-exits-lido-validators-amid-infrastructure-security-incident",
+          "date": "2026-11-18"
+        },
+        {
+          "url": "https://crypto.news/lido-joins-defi-relief-push-after-292m-kelp-exploit/",
+          "date": "2026-11-18"
+        },
+        {
+          "url": "https://index.vn/en/news/lido-earneth-had-9percent-rseth-exposure-as-kelp-recovery-tops-dollar70-million",
+          "date": "2026-11-18"
+        },
+        {
+          "url": "https://research.lido.fi/t/security-disclosure-25-7-2026-minor-underreporting-of-total-protocol-cl-side-balances-in-accounting-oracle-report/11756",
+          "date": "2026-11-18"
+        },
+        {
+          "url": "https://cryptobriefing.com/lido-staking-router-v3-post-mortem/",
+          "date": "2026-11-18"
+        },
+        {
+          "url": "https://thedefiant.io/news/defi/lido-finance-initiates-emergency-vote-after-chorus-one-oracle-node-leak-1-4-eth-9b2159fe",
+          "date": "2026-11-18"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "沿用 11-09 研究的矛盾：DefiLlama 记 6—9 月持币人收入 $7.06M，而论坛 10-07 称 NEST 未买入任何 LDO，本次未取得新数据消除；另 CoinGecko 流通量从 829.57M 降到 822.98M，原因未知；成交额大量来自可疑交易所",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-09-lido-dao.json",
+          "date": "2026-11-18"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/lido-dao",
+          "date": "2026-11-18"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": true,
+      "supply_growth_12m_pct": 21.5,
+      "claim": "硬上限 1B，流通/总量 82.3%（≥50%）；即使剩余约 177.0M 全部在 12 个月内流通，增长上限 = 177.0/823.0 ≈ 21.5%（≤25%）；实际释放计划未核实",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/lido-dao",
+          "date": "2026-11-18"
+        }
+      ]
+    },
+    "audit": {
+      "ok": true,
+      "claim": "沿用 11-09 研究：官方审计仓库 github.com/lidofinance/audits 列有 2026 年 MixBytes、Certora（Staking Router v3）、Ack3（NEST）等多份，历史审计方含 ChainSecurity、OpenZeppelin、Sigma Prime、Statemind",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-09-lido-dao.json",
+          "date": "2026-11-18"
+        },
+        {
+          "url": "https://github.com/lidofinance/audits/",
+          "date": "2026-11-02"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "沿用 11-09 研究：融资合计约 $167M（2021-05 $73M、2022-03 $70M、2022-09 $24M）；核心贡献者实名本次未核实",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-09-lido-dao.json",
+          "date": "2026-11-18"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "未找到官方解锁表；剩余约 177M 未流通，推测为 DAO 金库，未核实",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": null,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/lido-dao",
+          "date": "2026-11-18"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.273419,
+    "circulating_supply": 822979145,
+    "total_supply": 1000000000,
+    "supply_by_month": null,
+    "annual_revenue_usd": 34873618,
+    "revenue_growth": {
+      "conservative": 0.0,
+      "base": 0.187,
+      "optimistic": 0.458
+    },
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "DAO 协议收入（DefiLlama revenue 近 1 年 $34.87M，沿用 11-09 研究）；增速取候选文件：保守 0（前一季度 -18.6%），基准 +18.7%（比两个季度前），乐观 +45.8%（最近季度）；协议收入归 DAO 金库，不是持币人利润；流通市值/年收入 ≈ 6.5 倍；同赛道倍数未取得"
+  },
+  "risks": [
+    "NEST 回购仍无已执行证据，收入需高于 $40M 年化门槛",
+    "买入的 LDO 进金库、不销毁",
+    "前一季度收入 -18.6%，收入与 ETH 价格、质押收益率强相关",
+    "MetaMask 退出 Lido 验证者的“安全事件”及 KelpDAO rsETH 敞口未核实",
+    "近 30 天币价 -31%、1 年 -61%",
+    "成交额大量来自可疑交易所"
+  ],
+  "unverified": [
+    "NEST 是否已实际买入 LDO（及 DefiLlama 6—9 月持币人收入来源）",
+    "MetaMask 验证者安全事件的时间、损失与处理",
+    "KelpDAO 事件对 EarnETH 的实际损失和赔付",
+    "CoinGecko 流通量减少约 6.6M 的原因",
+    "剩余约 177M LDO 的归属与释放计划（unlock）",
+    "30 天真实现货成交额",
+    "同赛道估值倍数",
+    "团队实名"
+  ],
+  "catalysts": [
+    {
+      "claim": "据搜索结果摘要：Lido DAO 就 NEST 回购及预算进行投票/审查（2027 预算预计 11 月底提出）",
+      "url": "https://www.kucoin.com/news/flash/ldo-rises-5-as-lido-dao-votes-on-nest-buyback-amid-eip-8361-debate",
+      "date": "2026-11-18"
+    }
+  ],
+  "summary_reason": "最近季度收入 +45.8% 但前一季度 -18.6%，NEST 回购仍无执行证据、数据矛盾未消除，维持观察"
+}

@@ -1,0 +1,182 @@
+{
+  "coin_id": "meet48",
+  "researched_at": "2026-11-18T03:40:00Z",
+  "grade_hint": "C",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "MEET48（IDOL）：BNB Chain 0x3b4de3c7855c03bb9f50ea252cd2c9fa1125ab07；总量 4,767.83M，最大供应 4.8B（CoinGecko 2026-11-18）；官网 meet48.com",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/meet48",
+          "date": "2026-11-18"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko 2026-11-18 03:20Z：价格 $0.019851，流通 2,276.63M，总量 4,767.83M，最大 4.8B，市值 $45.2M、FDV $94.6M；未来 12 个月供应变化无官方数据（见 unlock）",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/meet48",
+          "date": "2026-11-18"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": null,
+      "claim": "候选文件：无可核实收入（revenueAnnual 为空）。据搜索结果摘要（仅标题）：MEET48 为 BNB Chain 上的偶像/粉丝经济应用，有“MEET48 Best7”投票活动；实际用户数和收入未核实",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-18.json",
+          "date": "2026-11-18"
+        },
+        {
+          "url": "https://wublock.substack.com/p/introducing-meet48-bnb-chain-powered?r=jbpop",
+          "date": "2026-11-18"
+        },
+        {
+          "url": "https://www.investegate.co.uk/crypto-news/513",
+          "date": "2026-11-18"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": null,
+      "mechanism": "burn",
+      "claim": "据搜索结果摘要（仅标题）：“MEET48 Burned 30% of the Total Voting Income from ‘MEET48 Best7’ in IDOL Tokens, About 8.7 Million Tokens”——一次性活动收入销毁约 8.7M IDOL（≈ 流通 0.38%），链上执行和是否持续未核实",
+      "sources": [
+        {
+          "url": "https://www.investegate.co.uk/crypto-news/513",
+          "date": "2026-11-18"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": 431721089,
+      "claim": "CoinGecko 近 30 天成交约 $431.7M（日均约 $14.4M，单日最大占 14.1%，集中度偏高）；当日最大为 PancakeSwap V3 约 $3.87M，中心化所 LBank $1.14M、Bitget $0.33M、Gate $0.32M；没有 Binance/Coinbase/OKX 等主流现货",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/meet48/market_chart?vs_currency=usd&days=30&interval=daily",
+          "date": "2026-11-18"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/meet48",
+          "date": "2026-11-18"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "本次搜索（MEET48 hack/exploit/audit）未返回相关结果，无法判断",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/meet48",
+          "date": "2026-11-18"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": null,
+      "claim": "CoinGecko 流通率 47.7% 与候选文件 circRatio 0.4775 一致；但无收入数据、解锁数据，无法交叉核对",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/meet48",
+          "date": "2026-11-18"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-18.json",
+          "date": "2026-11-18"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "supply_growth_12m_pct": null,
+      "claim": "流通/总量 = 2,276.6/4,767.8 = 47.7%（<50%），未来 12 个月解锁量未核实，无需求增长强证据",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/meet48",
+          "date": "2026-11-18"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "未找到第三方审计来源",
+      "sources": [
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/meet48",
+          "date": "2026-11-18"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "据搜索结果摘要（仅标题）有项目介绍和 IDO（Binance Wallet IDO 分类）、空投公告，团队实名和投资机构未核实",
+      "sources": [
+        {
+          "url": "https://www.dlnews.com/external/meet48-launches-idol-airdrop-on-june-9-ahead-of-tge-leading-web3-entertainment",
+          "date": "2026-11-18"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/meet48",
+          "date": "2026-11-18"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "搜索结果有 coinlaunch.space 和 MEXC 的 IDOL 解锁/代币经济页面（未打开）；剩余约 2.49B 未流通（≈ 流通 109%），未来 12/36 个月解锁量未核实",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://coinlaunch.space/projects/meet48/vesting/?timeStatus=past",
+          "date": "2026-11-18"
+        },
+        {
+          "url": "https://www.mexc.com/price/IDOL/tokenomics",
+          "date": "2026-11-18"
+        },
+        {
+          "url": "https://api.coingecko.com/api/v3/coins/meet48",
+          "date": "2026-11-18"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.01985128,
+    "circulating_supply": 2276629423,
+    "total_supply": 4767829423,
+    "supply_by_month": null,
+    "annual_revenue_usd": null,
+    "revenue_growth": null,
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "无可核实收入，无法估值"
+  },
+  "risks": [
+    "无可核实收入，无法估值",
+    "流通率 47.7%，剩余约 2.49B 未流通，解锁计划未核实",
+    "近 30 天 +178% 属短期暴涨，成交集中于 PancakeSwap，无主流交易所现货",
+    "团队、审计未核实"
+  ],
+  "unverified": [
+    "实际收入与用户数",
+    "解锁计划（unlock）",
+    "销毁是否持续、链上执行量",
+    "第三方审计",
+    "团队与投资机构",
+    "安全事故记录"
+  ],
+  "catalysts": [],
+  "summary_reason": "路径 A 超跌反弹（30 天 +178%），但无可核实收入、流通率 <50%、解锁未知，不具备评 A 条件"
+}
