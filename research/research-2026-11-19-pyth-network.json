@@ -1,0 +1,218 @@
+{
+ "coin_id": "pyth-network",
+ "researched_at": "2026-11-19T03:30:00Z",
+ "grade_hint": "B",
+ "items": {
+  "identity": {
+   "ok": true,
+   "claim": "PYTH：Solana 铸币地址 HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3（另有 Neon EVM、Manta 桥接版）；总量 = 最大供应 10B",
+   "sources": [
+    {
+     "url": "https://api.coingecko.com/api/v3/coins/pyth-network",
+     "date": "2026-11-19"
+    }
+   ]
+  },
+  "supply_verifiable": {
+   "ok": true,
+   "claim": "CoinGecko 2026-11-19 03:20Z：价格 $0.053691，流通 7,874,958,717（78.75%），总量/最大 10B，市值 $422.8M，FDV $536.9M；剩余 2,125,041,283 下一次解锁 2027-05-19（沿用 11-12 研究，候选文件 unlock 字段一致）",
+   "sources": [
+    {
+     "url": "https://api.coingecko.com/api/v3/coins/pyth-network",
+     "date": "2026-11-19"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-19.json",
+     "date": "2026-11-19"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-12-pyth-network.json",
+     "date": "2026-11-19"
+    }
+   ]
+  },
+  "economic_activity": {
+   "ok": true,
+   "claim": "候选文件（DefiLlama 口径）：季度收入 q0 $1.611M、q1 $0.893M、q2 $0.544M（连增，最近季度 +80.3%），近 12 个月实际 $3.39M，30d×12 $7.47M（标“近期收入异常偏高”）",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-19.json",
+     "date": "2026-11-19"
+    }
+   ]
+  },
+  "value_capture": {
+   "ok": true,
+   "mechanism": "buyback",
+   "claim": "据搜索结果摘要：Pyth 官方 X（约 2026-01-05）称“PYTH Reserve is active and purchased its first round of tokens, with 2,157,086.99 PYTH acquired”——已执行回购（首轮约 216 万枚，规模很小）；资金来自 DAO 金库每月 33%，此后 DAO 通过 100% 产品收入用于回购（TMGM 2026-10-09 标题称规则已生效）；后续各轮执行金额未核实；候选文件持币人收入仍为 $0",
+   "sources": [
+    {
+     "url": "https://x.com/PythNetwork/status/2008191946079227978",
+     "date": "2026-11-19"
+    },
+    {
+     "url": "https://www.theblock.co/post/382357/pyth-token-buyback-program-33-dao-treasury-monthly-pyth-purchases",
+     "date": "2026-11-19"
+    },
+    {
+     "url": "https://www.tmgm.com/de/analysis/market-news/article/pyth-network-price-forecast-pyth-gains-bullish-momentum-as-100-revenue-buyback-rule-takes-hold-202610090844",
+     "date": "2026-11-19"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-19.json",
+     "date": "2026-11-19"
+    }
+   ]
+  },
+  "liquidity": {
+   "ok": true,
+   "spot_volume_30d_usd": 843326306,
+   "claim": "CoinGecko 近 30 天成交约 $843M（日均约 $28M，单日最大占 7.1%）；Binance、Coinbase、OKX、Bybit、Kraken、Upbit 有现货",
+   "sources": [
+    {
+     "url": "https://api.coingecko.com/api/v3/coins/pyth-network/market_chart?vs_currency=usd&days=30&interval=daily",
+     "date": "2026-11-19"
+    },
+    {
+     "url": "https://api.coingecko.com/api/v3/coins/pyth-network",
+     "date": "2026-11-19"
+    }
+   ]
+  },
+  "no_security_issue": {
+   "ok": null,
+   "claim": "事故分开记录（沿用 11-12 研究来源）：① 2026-05-21 Pyth Core 免费喂价停摆 5 小时以上，付费版未受影响，未见损失/赔付报道；② 论坛帖标题称一次错误喂价导致约 $1.78M 清算损失，时间与赔付未核实；未见资金被盗事故",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-12-pyth-network.json",
+     "date": "2026-11-19"
+    },
+    {
+     "url": "https://coinalertnews.com/news/2026/05/22/pyth-network-oracle-outage",
+     "date": "2026-11-19"
+    }
+   ]
+  },
+  "data_consistent": {
+   "ok": true,
+   "claim": "CoinGecko 流通 7,874,958,717 与 10B−待解锁 2,125,041,283 一致；收入季度序列连续；注意 30d×12 为 12 个月实际 2.2 倍",
+   "sources": [
+    {
+     "url": "https://api.coingecko.com/api/v3/coins/pyth-network",
+     "date": "2026-11-19"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-19.json",
+     "date": "2026-11-19"
+    }
+   ]
+  },
+  "supply_growth": {
+   "ok": false,
+   "supply_growth_12m_pct": 26.98,
+   "claim": "剩余 2,125,041,283 预计 2027-05-19 解锁（未来 12 个月内），占当前流通 26.98% > 25%；回购规模远小于解锁量，无抵消稀释的强证据",
+   "sources": [
+    {
+     "url": "https://api.coingecko.com/api/v3/coins/pyth-network",
+     "date": "2026-11-19"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-19.json",
+     "date": "2026-11-19"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-12-pyth-network.json",
+     "date": "2026-11-19"
+    }
+   ]
+  },
+  "audit": {
+   "ok": true,
+   "claim": "候选文件质量分“第三方审计”✓（DefiLlama 审计记录）",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-19.json",
+     "date": "2026-11-19"
+    }
+   ]
+  },
+  "team": {
+   "ok": true,
+   "claim": "据搜索结果摘要：核心贡献方 Douro Labs 2023-08 成立，由 Jump Crypto 原专家团队出走创立（Business Wire、Bloomberg 报道标题），负责人 Mike Cahill（Blockworks 讲者页）",
+   "sources": [
+    {
+     "url": "https://businesswire.com/news/home/20230829666281/en/Douro-Labs-Launches-and-Joins-Pyth-Network-as-Core-Contributor",
+     "date": "2026-11-19"
+    },
+    {
+     "url": "https://news.bloomberglaw.com/crypto/jumps-crypto-specialists-depart-for-blockchain-focused-startup",
+     "date": "2026-11-19"
+    },
+    {
+     "url": "https://blockworks.com/speaker/mike-cahill",
+     "date": "2026-11-19"
+    }
+   ]
+  },
+  "unlock": {
+   "ok": true,
+   "unlock_12m_pct": 26.98,
+   "unlock_36m_pct": 26.98,
+   "next_unlock_date": "2027-05-19",
+   "next_unlock_amount": 2125041283,
+   "fully_unlocked": false,
+   "conflict": false,
+   "claim": "已解锁 78.75%；下一次（也是最后一次大额）2027-05-19，剩余 21.25% 总量 = 当前流通 26.98%（数量按 10B−CoinGecko 流通计算；日期沿用 11-05/11-12 研究 Tokenomist 来源）",
+   "sources": [
+    {
+     "url": "https://api.coingecko.com/api/v3/coins/pyth-network",
+     "date": "2026-11-19"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-12-pyth-network.json",
+     "date": "2026-11-19"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-19.json",
+     "date": "2026-11-19"
+    }
+   ]
+  }
+ },
+ "self_reported_mcap": false,
+ "scenario_inputs": {
+  "price_usd": 0.053691,
+  "circulating_supply": 7874958717,
+  "total_supply": 10000000000,
+  "supply_by_month": {
+   "12": 10000000000,
+   "24": 10000000000,
+   "36": 10000000000
+  },
+  "annual_revenue_usd": 3391904,
+  "revenue_growth": null,
+  "peer_multiples": null,
+  "peers": [],
+  "metric": "Pyth 协议收入（DefiLlama revenue 口径，候选文件 revenueBasis.used = 近 12 个月实际）；同赛道 Oracle 只有 2 个，不填可比倍数"
+ },
+ "risks": [
+  "2027-05-19 一次性解锁约占流通 27%",
+  "流通市值约为年化收入 125 倍，远高于候选估值目标",
+  "回购规模很小（首轮约 216 万枚），持币人收入仍为 0",
+  "喂价停摆与错误喂价事故",
+  "近 30 天 -26%"
+ ],
+ "unverified": [
+  "首轮之后各月回购的执行数量",
+  "错误喂价事故的时间与赔付",
+  "2027-05-19 解锁日期的第二来源"
+ ],
+ "catalysts": [
+  {
+   "claim": "据搜索结果摘要：DAO 通过把 100% 产品收入用于 PYTH 回购",
+   "url": "https://cryptobriefing.com/?p=389759",
+   "date": "2026-11-19"
+  }
+ ],
+ "summary_reason": "收入连增、回购已开始执行，但 12 个月解锁 27% 超过 25% 上限、估值约 125 倍收入，维持 B"
+}
