@@ -111,3 +111,8 @@ research-2026-11-18-arbitrum.json
 research-2026-11-18-lido-dao.json
 research-2026-11-18-meet48.json
 research-2026-11-18-syrup.json
+research-2026-11-19-compound-governance-token.json
+research-2026-11-19-concrete.json
+research-2026-11-19-pyth-network.json
+research-2026-11-19-threshold-network-token.json
+research-2026-11-19-venice-token.json
