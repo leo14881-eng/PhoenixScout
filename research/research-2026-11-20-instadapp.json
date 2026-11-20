@@ -1,0 +1,216 @@
+{
+  "coin_id": "instadapp",
+  "researched_at": "2026-11-20T03:40:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "FLUID（原 INST，CoinGecko 页已改为 /fluid）：Ethereum 0x6f40d4a6237c257fff2db00fa0510deeecd303eb；Base/Arbitrum/Plasma 0x61e030a56d33e8260fdd81f03b162a79fe3449cd；Polygon 0xf50d05a1402d0adafa880d36050736f9f6ee7dee；Solana DuEy8wWrzCUun5ZbbG9hkVqXqqicpTQw8gB7nEAzpCHQ；总量 = 最大供应 100M",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/instadapp",
+          "date": "2026-11-20"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "CoinGecko 2026-11-20：价格 $1.76，流通 83.697M，总量/最大 100M，市值 $147.36M，FDV $176.06M；未来 12 个月供应增加上限 = 剩余 16.3M（占流通 19.5%）",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/instadapp",
+          "date": "2026-11-20"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（DefiLlama 口径）：季度协议收入 $1.68M → $1.78M → $2.10M，最近季度 +18.1%；年化 $8.29M",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-20.json",
+          "date": "2026-11-20"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": false,
+      "claim": "候选文件：DefiLlama 持币人收入年化 0（2026-04 起回购已停）；本次搜索未见回购恢复的证据。另据搜索结果标题 AGI3/Kinetic Group 拟收购最多 10% FLUID 供应，属外部买入，不是协议价值捕获",
+      "mechanism": "buyback",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-20.json",
+          "date": "2026-11-20"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/fluid-and-agi3-group-announce-strategic-partnership-kinetic-group-to-acquire-up-to-10-fluid-supply",
+          "date": "2026-11-20"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "claim": "候选文件 30 天日均 $3.32M（30 天合计按日均×30 推算约 $99.5M）；CoinGecko 24h $1.47M，现货有 Coinbase、OKX、Bybit、Gate（Binance 仅合约）",
+      "spot_volume_30d_usd": 99480000,
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/instadapp",
+          "date": "2026-11-20"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-20.json",
+          "date": "2026-11-20"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "据搜索结果摘要，分开记录：① 2026-03 Resolv（USR）基础设施被攻破，Fluid 约 $21M 坏账；KuCoin 标题称已全部覆盖，并完成处置（$19.3M 由各方分担），Fluid 合约本身未被攻破，国库动用曾引发治理争议；② 2026-05-31 运营密钥被盗，损失约 125K FLUID + 51.9K GHO（Crypto Times 标题），核心合约未受影响，赔付证据未见；③ KuCoin 标题“Fluid Reports Hack Affecting Backend System, Promises Full Loss Coverage”日期未核实，可能与②为同一事件",
+      "sources": [
+        {
+          "url": "https://www.kucoin.com/news/flash/fluid-confirms-21m-bad-debt-from-resolv-exploit-fully-covered",
+          "date": "2026-11-20"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/fluid-completes-resolution-of-resolv-incident-19-3m-usd-bad-debt-shared-among-parties",
+          "date": "2026-11-20"
+        },
+        {
+          "url": "https://www.cryptotimes.io/2026/05/31/fluid-protocol-loses-125k-fluid-51-9k-gho-in-key-compromise-attack/",
+          "date": "2026-11-20"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/defi-protocol-fluid-reports-hack-impacting-backend-system-promises-full-loss-coverage",
+          "date": "2026-11-20"
+        },
+        {
+          "url": "https://defiprime.com/fluid-resolv-treasury-governance",
+          "date": "2026-11-20"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": null,
+      "claim": "服务端标记解锁数据冲突（此前 Tokenomist 已解锁 52% vs CoinGecko 流通 83.7%）；CoinGecko 解锁表为空，本次无法消解",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-20.json",
+          "date": "2026-11-20"
+        },
+        {
+          "url": "https://www.coingecko.com/en/coins/instadapp",
+          "date": "2026-11-20"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": true,
+      "claim": "最大供应 100M、流通 83.697M：即使剩余 16.3M 全部在 12 个月内释放，增长上限 19.5% ≤ 25%；流通/总量 83.7% ≥ 50%（19.5% 为上限，实际节奏未核实）",
+      "supply_growth_12m_pct": 19.5,
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/instadapp",
+          "date": "2026-11-20"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "CoinGecko 显示 CER.live 安全评分 67%、平台审计覆盖 50%、Immunefi 最高漏洞赏金 $500K（2026-11-19 更新）；具体审计报告本次未取得",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/instadapp",
+          "date": "2026-11-20"
+        },
+        {
+          "url": "https://immunefi.com/bounty/instadapp",
+          "date": "2026-11-20"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "据搜索结果摘要（标题）：InstaDApp 2019 年种子轮 $2.4M（Pantera Capital 领投、Coinbase Ventures 参投），2021 年 $10M 融资（Standard Crypto 领投）；创始人为 Jain 兄弟（The Defiant 报道）",
+      "sources": [
+        {
+          "url": "https://www.coindesk.com/instadapp-defi-site-raises-2-4-million-from-prominent-crypto-investors",
+          "date": "2026-11-20"
+        },
+        {
+          "url": "https://www.theblock.co/linked/108224/defi-startup-instadapp-raises-10-million-in-new-funding",
+          "date": "2026-11-20"
+        },
+        {
+          "url": "https://thedefiant.substack.com/p/the-19-and-21-year-old-crypto-native-552",
+          "date": "2026-11-20"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "CoinGecko 解锁表为空；剩余未流通 16.3M（占流通 19.5%）为上限；解锁数据存在冲突（见 data_consistent），具体比例不写",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": true,
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/instadapp",
+          "date": "2026-11-20"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-20.json",
+          "date": "2026-11-20"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 1.76,
+    "circulating_supply": 83697000,
+    "total_supply": 100000000,
+    "supply_by_month": null,
+    "annual_revenue_usd": 8293680.08,
+    "revenue_growth": {
+      "optimistic": 0.5557122733977229,
+      "conservative": 0.0,
+      "base": 0.27785613669886144
+    },
+    "peer_multiples": {
+      "p25": 7.89,
+      "median": 12.49,
+      "p75": 21.83
+    },
+    "peers": [
+      {
+        "name": "候选文件 prelim：同赛道 Lending 9 个协议的流通市值/年化收入分位数",
+        "multiple": 12.49,
+        "source": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-20.json"
+      }
+    ],
+    "metric": "Fluid 协议年化收入（DefiLlama revenue 口径，$8.29M）；当前流通市值/年化收入约 17.8 倍"
+  },
+  "risks": [
+    "持币人收入为 0、回购已停，协议收入不是持币人利润",
+    "多起安全/坏账事件（Resolv 坏账、运营密钥被盗），密钥管理有隐患",
+    "解锁数据冲突",
+    "币价 90 天 +25% 已领先收入增速 +18%，估值高于同赛道中位数"
+  ],
+  "unverified": [
+    "回购是否恢复",
+    "“后端被黑”事件日期与赔付",
+    "具体审计报告",
+    "未来 12/36 个月解锁节奏"
+  ],
+  "catalysts": [
+    {
+      "claim": "据搜索结果标题：Fluid 与 AGI3 Group 战略合作，Kinetic Group 拟收购最多 10% FLUID 供应（日期未核实）",
+      "url": "https://www.kucoin.com/news/flash/fluid-and-agi3-group-announce-strategic-partnership-kinetic-group-to-acquire-up-to-10-fluid-supply",
+      "date": "2026-11-20"
+    }
+  ],
+  "summary_reason": "借贷+DEX 收入稳步增长、流通 84% 稀释小，但回购已停、持币人无收入且多起安全事件，只能观察"
+}

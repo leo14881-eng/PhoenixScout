@@ -1,0 +1,202 @@
+{
+  "coin_id": "spark-2",
+  "researched_at": "2026-11-20T03:40:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": null,
+      "claim": "本次 CoinGecko 币页（/en/coins/spark-2）两次均返回首页，未能核实合约与总量；候选文件（服务器 CoinGecko 数据）：价格 $0.0135、市值 $46.64M、FDV $134.69M",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-20.json",
+          "date": "2026-11-20"
+        },
+        {
+          "url": "https://www.coingecko.com/en/coins/spark-2",
+          "date": "2026-11-20"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": null,
+      "claim": "候选文件：市值 $46.64M、FDV $134.69M、流通/总量 34.6%；未来 12 个月供应变化未能核实（解锁页仅见搜索标题：DefiLlama unlocks、Tokenomist、tokenomics.com，未打开）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-20.json",
+          "date": "2026-11-20"
+        },
+        {
+          "url": "https://www.tokenomist.ai/spark-2",
+          "date": "2026-11-20"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（DefiLlama 口径）：季度收入 $129K → $602K → $2.28M，最近季度 +279.5%；近 12 个月实际协议收入 $6.61M；服务端标记“近期收入异常偏高，可能不可持续”（近 30 天×12=$16.8M 超过近 12 个月实际 2 倍）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-20.json",
+          "date": "2026-11-20"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "claim": "候选文件：DefiLlama 持币人收入年化 $4.46M；据搜索结果摘要（标题）：“Spark Completes First Month of Token Buyback, Repurchasing 26.66M SPK for 571,957 USDS”“Spark Launches Third Month of SPK Buyback with 326,900 USDS”“Spark buys back over 100M SPK using $2M in revenue”——用协议收入在市场回购，已执行；回购代币去向（销毁/金库）未核实",
+      "mechanism": "buyback",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-20.json",
+          "date": "2026-11-20"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/spark-completes-first-month-of-token-buyback-repurchases-26-66m-spk-for-571-957-usds",
+          "date": "2026-11-20"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/spark-initiates-third-month-of-spk-buyback-with-326-900-usds",
+          "date": "2026-11-20"
+        },
+        {
+          "url": "https://cryptobriefing.com/spark-spk-token-buyback-revenue/",
+          "date": "2026-11-20"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "claim": "候选文件 30 天日均成交 $5.68M（30 天合计按日均×30 推算约 $170.5M），质量分记录 Binance、Coinbase、Bybit、OKX、Kraken 均有现货",
+      "spot_volume_30d_usd": 170480000,
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-20.json",
+          "date": "2026-11-20"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": true,
+      "claim": "据搜索结果摘要（标题）：2026 年 KelpDAO 被盗事件中受损的是 Aave，SparkLend 未受损并吸纳资金（“SparkLend TVL surges by $1B since Kelp exploit”）；搜索未见 Spark 自身合约被盗事故",
+      "sources": [
+        {
+          "url": "https://thedefiant.io/sparklend-tvl-surges-by-usd1b-since-kelp-exploit",
+          "date": "2026-11-20"
+        },
+        {
+          "url": "https://beincrypto.com/spark-price-sparklend-aave-kelp-exploit/",
+          "date": "2026-11-20"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": null,
+      "claim": "CoinGecko 币页本次无法打开，供应只有候选文件单一来源；服务端标记近期收入异常偏高（spike），近 30 天年化与近 12 个月实际相差 2.5 倍",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-20.json",
+          "date": "2026-11-20"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "claim": "流通/总量 34.6% < 50%（候选文件）；据搜索结果标题“Spark’s SPK Unlock: Can Yield Infrastructure Survive Heavy New Supply?”（2026-06）仍有大额解锁；无抵消稀释的强证据",
+      "supply_growth_12m_pct": null,
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-20.json",
+          "date": "2026-11-20"
+        },
+        {
+          "url": "https://cryptodaily.co.uk/2026/06/spark-spk-unlock-yield-infrastructure",
+          "date": "2026-11-20"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "本次未检索到审计报告；候选文件质量分记录第三方审计为是（来自 DefiLlama），研究层未独立核实",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-20.json",
+          "date": "2026-11-20"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "据搜索结果摘要（标题）：Spark 为 Sky（原 MakerDAO）生态子项目，Sam MacPherson 实名（Blockworks 演讲嘉宾页、IQ.wiki 词条）",
+      "sources": [
+        {
+          "url": "https://blockworks.com/speaker/sam-macpherson",
+          "date": "2026-11-20"
+        },
+        {
+          "url": "https://iq.wiki/en/wiki/sam-macpherson",
+          "date": "2026-11-20"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "解锁计划页（DefiLlama unlocks、Tokenomist、tokenomics.com）只在搜索结果出现，未打开；数量与日期未核实",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://www.tokenomist.ai/spark-2",
+          "date": "2026-11-20"
+        },
+        {
+          "url": "https://app.tokenomics.com/tokenomics/spark/unlocks",
+          "date": "2026-11-20"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.01350248723259311,
+    "circulating_supply": 3453884843,
+    "total_supply": 9975545666,
+    "supply_by_month": null,
+    "annual_revenue_usd": 6614554.0,
+    "revenue_growth": {
+      "optimistic": 1.0,
+      "conservative": 0.0,
+      "base": 0.5
+    },
+    "peer_multiples": {
+      "p25": 3.42,
+      "median": 8.05,
+      "p75": 19.79
+    },
+    "peers": [
+      {
+        "name": "候选文件 prelim：全部协议 76 个的流通市值/年化收入分位数（同赛道不足 5 个）",
+        "multiple": 8.05,
+        "source": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-20.json"
+      }
+    ],
+    "metric": "协议年化收入（DefiLlama revenue 口径，近 12 个月实际 $6.61M）；流通量、总量由候选文件市值÷价格、FDV÷价格推算"
+  },
+  "risks": [
+    "流通仅约 35%，持续大额解锁稀释",
+    "近期收入异常偏高（spike），可能不可持续",
+    "收入依赖 Sky/USDS 资金调配",
+    "按服务器估值现价已高于目标价"
+  ],
+  "unverified": [
+    "合约与总量（CoinGecko 币页本次打不开）",
+    "解锁日期、数量及未来 12/36 个月供应",
+    "回购代币去向（销毁或进金库）",
+    "审计报告"
+  ],
+  "catalysts": [],
+  "summary_reason": "收入最近季度 +280% 且持续用收入回购，但收入有异常尖峰、流通仅 35% 且解锁计划未核实，只能观察"
+}
