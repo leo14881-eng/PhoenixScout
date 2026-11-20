@@ -116,3 +116,7 @@ research-2026-11-19-concrete.json
 research-2026-11-19-pyth-network.json
 research-2026-11-19-threshold-network-token.json
 research-2026-11-19-venice-token.json
+research-2026-11-20-instadapp.json
+research-2026-11-20-lighter.json
+research-2026-11-20-sosovalue.json
+research-2026-11-20-spark-2.json
