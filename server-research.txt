@@ -120,3 +120,5 @@ research-2026-11-20-instadapp.json
 research-2026-11-20-lighter.json
 research-2026-11-20-sosovalue.json
 research-2026-11-20-spark-2.json
+research-2026-11-21-geodnet.json
+research-2026-11-21-nest-2.json
