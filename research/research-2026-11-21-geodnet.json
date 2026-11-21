@@ -1,0 +1,188 @@
+{
+  "coin_id": "geodnet",
+  "researched_at": "2026-11-21T03:40:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": null,
+      "claim": "本次 CoinGecko 页面抓取失败（client_error），合约地址未重新核实；候选文件（服务器取自 CoinGecko）价格 $0.1912、市值 $143,589,316、FDV $176,562,658，推得流通约 750.9M、总量约 923.4M（比 11-14 的 924.8M 略降，与销毁一致）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-21.json",
+          "date": "2026-11-21"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": null,
+      "claim": "候选文件：流通率 81.3%；未来 12 个月供应变化没有官方释放表可核实，且历史研究记录的 CoinGecko 与 DefiLlama 解锁页流通量冲突（约 745M vs 447M）未解决，本次按规定不打开 defillama.com",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-21.json",
+          "date": "2026-11-21"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（服务器 DefiLlama 口径）：季度收入 q2 $2,401,352 → q1 $2,699,901 → q0 $2,741,483，最近季度 +1.5%；近12个月实际 $9,880,400，近30天×12 $10,652,328，近90天×4 $10,777,260（无异常偏高）。增速明显放缓（11-14 为 +3.6%）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-21.json",
+          "date": "2026-11-21"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "mechanism": "buyback",
+      "claim": "候选文件：DefiLlama 持币人收入年化 $9,218,355（接近协议收入，对应回购销毁口径）；总量持续略降，说明销毁在执行。据搜索结果摘要（Blockworks 透明度报告 H2 2025、DefiLlama token 页标题）有回购销毁相关披露，具体每月已执行金额本次未打开页面核实。协议收入不等于持币人利润",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-21.json",
+          "date": "2026-11-21"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/geodnet",
+          "date": "2026-11-21"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": 63481341,
+      "claim": "候选文件：30 天日均成交额 $2,116,045（30 天合计约 $63.5M，CoinGecko 口径，可能含 DEX），高于 50 万美元门槛；主流交易所现货：Coinbase（服务器取自 CoinGecko 交易对）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-21.json",
+          "date": "2026-11-21"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "据搜索结果摘要：搜索“GEODNET hack exploit audit”结果中被盗事件为 GeoDB（另一项目，“$1.6 Million Stolen from GeoDB”），未见 GEODNET 本身的安全事故；仅凭搜索标题，未核实 DefiLlama 安全事件库，不能确认",
+      "sources": [
+        {
+          "url": "https://insured.substack.com/p/16-million-stolen-from-geodb",
+          "date": "2026-11-21"
+        },
+        {
+          "url": "https://www.cyberscope.io/audits/coin-geodnet",
+          "date": "2026-11-21"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": null,
+      "claim": "流通量来源冲突（CoinGecko vs DefiLlama 解锁页）仍未解决，候选文件中服务器仍标“解锁数据冲突”；收入三个口径之间一致",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-21.json",
+          "date": "2026-11-21"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": null,
+      "supply_growth_12m_pct": null,
+      "claim": "按 CoinGecko 口径流通率 81.3%（≥50%），尚未流通约 172.4M = 流通量 23.0%（全部释放上限，不是 12 个月实际数）；但流通量来源冲突、无官方 12 个月释放表，不能认定",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-21.json",
+          "date": "2026-11-21"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "据搜索结果摘要：Cyberscope 有“coin-geodnet”条目，未打开核实范围与日期；候选文件显示 DefiLlama 无审计记录（审计“未知”）",
+      "sources": [
+        {
+          "url": "https://www.cyberscope.io/audits/coin-geodnet",
+          "date": "2026-11-21"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-21.json",
+          "date": "2026-11-21"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "据搜索结果摘要（11-14 研究沿用）：Mike Horton 为联合创始人兼 CEO，实名可查（Inside Unmanned Systems 报道、维基百科词条）；本次搜索另有 Blockworks 透明度报告条目。融资信息未核实",
+      "sources": [
+        {
+          "url": "https://insideunmannedsystems.com/geodnet-ceo-mike-horton-discusses-the-future-of-blockchain-based-gnss-reference-networks-at-xponential-2024/",
+          "date": "2026-11-14"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/geodnet",
+          "date": "2026-11-21"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": true,
+      "claim": "无官方 12/36 个月解锁表可核实（本次不打开 docs/defillama）；11-14 研究据搜索标题记录 DefiLlama 解锁页仅见挖矿日常小额释放，私募第 3 轮自报约 2026-12 释放完，数量未核实；流通量来源冲突",
+      "sources": [
+        {
+          "url": "https://defillama.com/unlocks/geodnet",
+          "date": "2026-11-14"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-21.json",
+          "date": "2026-11-21"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.19121742023370625,
+    "circulating_supply": 750921730,
+    "total_supply": 923360737,
+    "supply_by_month": {},
+    "annual_revenue_usd": 9880400,
+    "revenue_growth": {
+      "conservative": 0.0,
+      "base": 0.1517,
+      "optimistic": 0.3033
+    },
+    "peer_multiples": {
+      "p25": 3.56,
+      "median": 7.37,
+      "p75": 20.84
+    },
+    "peers": [
+      {
+        "name": "DefiLlama 全部协议（77 个，同赛道不足 5 个）",
+        "multiple": 7.37,
+        "source": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-21.json"
+      }
+    ],
+    "metric": "协议年化收入（DefiLlama revenue 口径，近12个月实际 $9.88M，取自候选文件）；增速与倍数取自候选文件 prelim（服务器计算）"
+  },
+  "risks": [
+    "收入增速放缓到季度 +1.5%，当前倍数约 13 倍高于同类中位数 7.4 倍；现价 $0.191 高于代码估值目标 $0.079",
+    "流通量与解锁数据各来源冲突，私募第 3 轮可能在 2026-12 前释放完",
+    "回购销毁的每月已执行金额未逐笔核实",
+    "本次 CoinGecko 抓取失败，身份/审计/安全只靠候选文件和搜索结果标题"
+  ],
+  "unverified": [
+    "合约地址（本次未重新核实）",
+    "未来 12/36 个月解锁比例和下一次大额解锁",
+    "真实流通量（CoinGecko vs DefiLlama 冲突）",
+    "第三方审计（Cyberscope 条目未打开）",
+    "DefiLlama 安全事件库",
+    "每月已执行回购销毁的确切金额"
+  ],
+  "catalysts": [],
+  "summary_reason": "真实 RTK 订阅收入（年化约 $9.9M）且持币人收入接近全部收入，但收入增速放缓到 +1.5%、现价高于估值目标、解锁数据冲突，维持观察"
+}

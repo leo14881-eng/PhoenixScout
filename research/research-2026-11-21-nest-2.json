@@ -1,0 +1,196 @@
+{
+  "coin_id": "nest-2",
+  "researched_at": "2026-11-21T03:40:00Z",
+  "grade_hint": "C",
+  "items": {
+    "identity": {
+      "ok": false,
+      "claim": "代币身份对不上：DefiLlama 收入对应的是 HyperEVM 上的 ve(3,3) DEX Nest Exchange；而本次打开的 CoinGecko nest-2 页面显示的是 Solana 上交易（NEST/WSOL，Meteora DAMM V2）的代币，市值 $1,074,614、FDV $2,241,524、流通 478.87M、总量 998.87M、最大 1B，未显示合约地址（页面日期信息疑似陈旧）。候选文件（服务器 CoinGecko 接口）则为价格 $0.01036、市值 $3,143,238、FDV $20,010,577，推得流通约 303.4M、总量约 1931.6M。CoinGecko id 与 DefiLlama 协议的映射可能错误，需人工确认",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/nest-2",
+          "date": "2026-11-21"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-21.json",
+          "date": "2026-11-21"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": false,
+      "claim": "两处 CoinGecko 数据互相矛盾（页面：总量 998.87M、流通率 48%；候选文件：总量约 1,931.6M、流通率 15.7%）；无最大供应/排放表可核实",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/nest-2",
+          "date": "2026-11-21"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-21.json",
+          "date": "2026-11-21"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（DefiLlama 口径，Nest Exchange）：季度收入 q2 $318,049 → q1 $1,929,779 → q0 $2,094,038（最近季度 +8.5%）；近12个月实际 $4,614,068，近30天×12 $10,370,404（超过12个月实际 2 倍，标注异常偏高）。注意：该收入是否属于 nest-2 这个代币存疑（见 identity）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-21.json",
+          "date": "2026-11-21"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": null,
+      "mechanism": "fee_share",
+      "claim": "候选文件：DefiLlama 持币人收入年化 $11,163,501（veNEST 投票者分手续费）；但若 CoinGecko nest-2 并非 Nest Exchange 代币，则价值捕获不能归属本币。回购未见已执行金额",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-21.json",
+          "date": "2026-11-21"
+        },
+        {
+          "url": "https://blockworks.com/token-transparency/filing/nest-exchange",
+          "date": "2026-11-21"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": false,
+      "spot_volume_30d_usd": 7893594,
+      "claim": "候选文件：30 天日均成交额 $263,120（< 50 万美元门槛）；CoinGecko 页面显示 24h 成交 $56,649，只有 2 个交易所 3 个市场，主要为 DEX，主流交易所无现货",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-21.json",
+          "date": "2026-11-21"
+        },
+        {
+          "url": "https://www.coingecko.com/en/coins/nest-2",
+          "date": "2026-11-21"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "据搜索结果摘要：未见 Nest Exchange 被攻击报道；历史研究记录的单一地址可关停 gauge 的中心化治理问题未确认是否已改",
+      "sources": [
+        {
+          "url": "https://blockworks.com/token-transparency/filing/nest-exchange",
+          "date": "2026-11-21"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "重大矛盾：① CoinGecko 页面（Solana、总量 998.87M、市值 $1.07M）与候选文件（总量约 1,931.6M、市值 $3.14M）不一致；② 近30天×12 收入是近12个月实际的 2.2 倍；③ 持币人收入年化 $11.2M 大于协议年化收入 $4.6M",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/nest-2",
+          "date": "2026-11-21"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-21.json",
+          "date": "2026-11-21"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "supply_growth_12m_pct": null,
+      "claim": "候选文件流通率 15.7%（远低于 50%），无排放表；页面口径流通率 48% 也低于 50%；无需求抵消稀释的强证据",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-21.json",
+          "date": "2026-11-21"
+        },
+        {
+          "url": "https://www.coingecko.com/en/coins/nest-2",
+          "date": "2026-11-21"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "未找到可确认属于本币的审计；DefiLlama 审计链接未打开",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-21.json",
+          "date": "2026-11-21"
+        }
+      ]
+    },
+    "team": {
+      "ok": false,
+      "claim": "据历史研究（Blockworks 透明度文件，据搜索结果）核心成员为化名、无法律实体；本次未找到实名团队",
+      "sources": [
+        {
+          "url": "https://blockworks.com/token-transparency/filing/nest-exchange",
+          "date": "2026-11-21"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": true,
+      "claim": "无可核实的排放/解锁表；两处 CoinGecko 供应口径冲突",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-21.json",
+          "date": "2026-11-21"
+        },
+        {
+          "url": "https://www.coingecko.com/en/coins/nest-2",
+          "date": "2026-11-21"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.01035973465253027,
+    "circulating_supply": 303409122,
+    "total_supply": 1931572349,
+    "supply_by_month": {},
+    "annual_revenue_usd": 4614068,
+    "revenue_growth": {
+      "conservative": 0.0,
+      "base": 0.5,
+      "optimistic": 1.0
+    },
+    "peer_multiples": {
+      "p25": 3.56,
+      "median": 7.37,
+      "p75": 20.84
+    },
+    "peers": [
+      {
+        "name": "DefiLlama 全部协议（77 个，同赛道不足 5 个）",
+        "multiple": 7.37,
+        "source": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-21.json"
+      }
+    ],
+    "metric": "协议年化收入（DefiLlama revenue 口径，近12个月实际 $4.61M，取自候选文件）；代币映射存疑、持续增发未建模，情景不可靠"
+  },
+  "risks": [
+    "CoinGecko nest-2 可能不是 Nest Exchange（HyperEVM）的代币，收入归属存疑",
+    "流通率 15.7%、持续增发",
+    "日均成交约 $26 万，低于门槛，无主流交易所",
+    "团队化名、治理中心化",
+    "近期收入异常偏高可能不可持续"
+  ],
+  "unverified": [
+    "合约地址与链（HyperEVM vs Solana）",
+    "CoinGecko id 与 DefiLlama 协议映射",
+    "未来 12/36 个月排放/解锁",
+    "审计",
+    "已执行回购金额"
+  ],
+  "catalysts": [],
+  "summary_reason": "收入数据真实但代币映射出现重大矛盾（CoinGecko 页面为 Solana 代币），且流通率低、流动性不足、团队化名，维持淘汰（C）"
+}
