@@ -122,3 +122,7 @@ research-2026-11-20-sosovalue.json
 research-2026-11-20-spark-2.json
 research-2026-11-21-geodnet.json
 research-2026-11-21-nest-2.json
+research-2026-11-22-ether-fi.json
+research-2026-11-22-liquity.json
+research-2026-11-22-ore.json
+research-2026-11-22-trust-wallet-token.json
