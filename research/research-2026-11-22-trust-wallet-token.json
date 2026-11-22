@@ -1,0 +1,192 @@
+{
+  "coin_id": "trust-wallet-token",
+  "researched_at": "2026-11-22T04:00:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": null,
+      "claim": "本次 CoinGecko 页面抓取被拒（client_error），按规定不再打开其他网站，合约地址未能重新核实；候选文件只有 coinId、名称 Trust Wallet（TWT）、价格与市值",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-22.json",
+          "date": "2026-11-22"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": null,
+      "claim": "候选文件：价格 $0.3145、市值 $130,915,624、FDV $314,210,141、流通率 41.66%；未来 12 个月供应变化没有官方释放表（候选文件 unlock 标“解锁数据缺失”）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-22.json",
+          "date": "2026-11-22"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（DefiLlama）：年化收入 近30天×12 $32.26M、近90天×4 $25.98M、近12个月实际 $10.56M（采用；spike=true，近期收入异常偏高），最近季度收入 +403.4%",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-22.json",
+          "date": "2026-11-22"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": null,
+      "claim": "候选文件：DefiLlama 持币人收入年化 $132,191（约为收入的 1.3%），机制不明。搜索结果（据搜索结果摘要，仅标题）有官方 TWT litepaper 与“代币销毁说明”科普文，DEV Community 标题“TWT inflation analysis June 2026: fixed supply”，未能确认有已执行的回购或持续销毁",
+      "mechanism": "other",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-22.json",
+          "date": "2026-11-22"
+        },
+        {
+          "url": "https://trustwallet.com/en/blog/company/trust-wallet-token-twt-litepaper",
+          "date": "2026-11-22"
+        },
+        {
+          "url": "https://dev.to/mrnasdog/twt-inflation-analysis-june-2026-fixed-supply-flows-roughly-steady-33bk",
+          "date": "2026-11-22"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": null,
+      "claim": "候选文件：30 天日均成交额 $14.44M（×30 ≈ $4.33 亿，CoinGecko 全部交易所口径），质量分主流交易所现货有 Binance、Bybit；早前研究发现大量成交在低可信度交易所，本次 CoinGecko 抓取被拒，未能核实真实现货占比",
+      "spot_volume_30d_usd": 433283861,
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-22.json",
+          "date": "2026-11-22"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "事故 1（据搜索结果摘要，仅标题）：2025-12-25 前后 Trust Wallet 浏览器扩展 v2.68 被植入后门（BlockSec 标题：被盗 API key 让官方更新通道变后门），The Block 标题称用户损失至少 $6M，Cointelegraph 标题 $7M；官方发布“v268 incident community update”，赔付是否全部完成未核实。另 Crypto Briefing 标题称 Binance、Polymarket 遇袭时 Trust Wallet 未受影响。代币合约本身未见事件",
+      "sources": [
+        {
+          "url": "https://trustwallet.com/en/blog/company/trust-wallet-browser-extension-v268-incident-community-update",
+          "date": "2026-11-22"
+        },
+        {
+          "url": "https://www.theblock.co/post/383735/trust-wallet-extension-incident",
+          "date": "2026-11-22"
+        },
+        {
+          "url": "https://blocksec.com/blog/trust-wallet-incident-a-stolen-api-key-turns-the-official-update-channel-into-a-backdoor",
+          "date": "2026-11-22"
+        },
+        {
+          "url": "https://cointelegraph.com/features/trust-wallet-s-7m-hack-shows-where-crypto-friendly-smes-may-be-vulnerable",
+          "date": "2026-11-22"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": null,
+      "claim": "候选文件标注近 30 天×12 收入是近 12 个月实际的约 3 倍（spike）；持币人收入与收入口径差异大；成交量真实性未能重新核实",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-22.json",
+          "date": "2026-11-22"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "claim": "候选文件：流通率 41.66%，低于 50%；约 5.8 亿枚未流通，没有公开释放计划；没有需求增长足以抵消稀释的强证据",
+      "supply_growth_12m_pct": null,
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-22.json",
+          "date": "2026-11-22"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "候选文件质量分第三方审计“未知”；本次搜索未找到 TWT 合约审计报告",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-22.json",
+          "date": "2026-11-22"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "（据搜索结果摘要，仅标题）Trust Wallet CEO Eowyn Chen 实名；Bloomberg 2023-12 标题称 Trust Wallet 为 CZ 持有的加密应用；RootData 有项目页",
+      "sources": [
+        {
+          "url": "https://www.bloomberg.com/news/articles/2023-12-02/trust-wallet-ex-binance-ceo-cz-owned-crypto-app-eyeing-asia-uae-for-growth",
+          "date": "2026-11-22"
+        },
+        {
+          "url": "https://www.rootdata.com/Projects/detail/Trust%20Wallet?k=NDQwOQ%3D%3D",
+          "date": "2026-11-22"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "没有官方解锁时间表；候选文件标“解锁数据缺失”；搜索结果中 MEXC tokenomics 页、litepaper 未打开",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-22.json",
+          "date": "2026-11-22"
+        },
+        {
+          "url": "https://www.mexc.com/price/TWT/tokenomics",
+          "date": "2026-11-22"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.31451303835780076,
+    "circulating_supply": 416249900,
+    "total_supply": 1000000000,
+    "supply_by_month": {},
+    "annual_revenue_usd": 10557912.42,
+    "revenue_growth": {
+      "conservative": 0.0,
+      "base": 0.5,
+      "optimistic": 1.0
+    },
+    "peer_multiples": {
+      "p25": 3.5051699443870326,
+      "median": 7.468887165479368,
+      "p75": 20.43579129150165
+    },
+    "peers": [],
+    "metric": "协议年化收入（DefiLlama revenue，保守口径 近12个月实际 $10.56M）；增速按候选文件 prelim（季度 +403% 已被基准 50%/乐观 100% 上限截断）；流通量 = 候选文件市值/价格；供应按总量 10 亿（保守）；倍数为 候选文件 prelim.peerMultiples（DefiLlama 全部协议 76 个“流通市值/年化收入”分位数；同赛道不足 5 个），没有具体可比项目名单"
+  },
+  "risks": [
+    "流通率仅 41.7%，约 5.8 亿枚储备无公开释放表",
+    "现价已高于估值目标（候选文件目标价 $0.0789）",
+    "近期收入异常偏高，可持续性存疑",
+    "持币人收入只占收入约 1.3%，价值捕获不明",
+    "2025-12 浏览器扩展被盗 $6–7M，赔付完成情况未核实"
+  ],
+  "unverified": [
+    "合约地址（CoinGecko 抓取被拒）",
+    "已执行回购/销毁",
+    "未来解锁计划",
+    "第三方审计",
+    "真实现货成交占比",
+    "扩展被盗赔付完成情况",
+    "同赛道可比倍数"
+  ],
+  "catalysts": [],
+  "summary_reason": "收入季度 +403% 但流通率不足 50%、解锁数据缺失、价值捕获不明且现价高于估值目标，B 级观察"
+}

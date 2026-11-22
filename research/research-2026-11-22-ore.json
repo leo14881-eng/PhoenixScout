@@ -1,0 +1,210 @@
+{
+  "coin_id": "ore",
+  "researched_at": "2026-11-22T04:00:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": null,
+      "claim": "CoinGecko 页面（本次抓取的文本不含合约地址表）：总量 517,420、最大供应 3,000,000，页面提到近期合约迁移；合约地址未能核实（搜索结果中 Phantom 页面链接含 Solana 地址 oreoU2P8bN6jkk3jbaiVxYnG1dCXcYxwhwyK9jSybcp，据搜索结果摘要，未打开，无法确认是否为迁移后的合约）",
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/ore",
+          "date": "2026-11-22"
+        },
+        {
+          "url": "https://phantom.com/tokens/solana/oreoU2P8bN6jkk3jbaiVxYnG1dCXcYxwhwyK9jSybcp",
+          "date": "2026-11-22"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": null,
+      "claim": "候选文件：价格 $75.06、市值 $39,198,895、FDV $39,198,895（流通率 100%，按当前总量）。CoinGecko 页面：市值 $77.815M、FDV $77.815M、流通=总量 517,420、最大供应 3M。ORE 持续挖矿排放，未来 12 个月供应变化没有可核实数据",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-22.json",
+          "date": "2026-11-22"
+        },
+        {
+          "url": "https://www.coingecko.com/en/coins/ore",
+          "date": "2026-11-22"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（DefiLlama）：年化收入 近30天×12 $43.42M、近90天×4 $39.24M、近12个月实际 $37.62M（采用），最近季度收入 +14.0%。另（据搜索结果摘要，仅标题，未打开页面）Crypto Briefing 标题称 ORE 周挖矿量接近 $1,200 万、为 2 月以来最高。本质是带排放补贴的挖矿玩法",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-22.json",
+          "date": "2026-11-22"
+        },
+        {
+          "url": "https://cryptobriefing.com/ore-mining-volume-highest-since-february/",
+          "date": "2026-11-22"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "claim": "候选文件：DefiLlama 持币人收入年化 $46,494,856（按协议已发生的回购/埋藏统计）；CoinGecko 页面描述“buy-and-bury”回购销毁机制。局限：回购是否足以抵消挖矿排放未核实",
+      "mechanism": "buyback",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-22.json",
+          "date": "2026-11-22"
+        },
+        {
+          "url": "https://www.coingecko.com/en/coins/ore",
+          "date": "2026-11-22"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": false,
+      "claim": "候选文件：30 天日均成交额 $1.64M（×30 ≈ $4,931 万），质量分“主流交易所现货”✗。CoinGecko 页面：24 小时成交 $2.19M，最活跃交易对为 Meteora ORE/WSOL（24h $1,285,440），另有 LBank；未见 Binance/Coinbase/OKX/Bybit/Kraken/Upbit 现货",
+      "spot_volume_30d_usd": 49310136,
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-22.json",
+          "date": "2026-11-22"
+        },
+        {
+          "url": "https://www.coingecko.com/en/coins/ore",
+          "date": "2026-11-22"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "事故 1（据搜索结果摘要，仅标题，未打开页面）：ORE 质押程序智能合约漏洞被利用，损失 25.5 SOL（Crypto Briefing 标题），Grafa 标题称“staking bug forces contract migration”；CoinGecko 页面也提到近期合约迁移。发生日期与是否赔付未核实。未见其他事故",
+      "sources": [
+        {
+          "url": "https://cryptobriefing.com/ore-smart-contract-bug-solana-yield/",
+          "date": "2026-11-22"
+        },
+        {
+          "url": "https://grafa.com/en/news/crypto/solana-staking-bug-forces-contract-migration",
+          "date": "2026-11-22"
+        },
+        {
+          "url": "https://www.coingecko.com/en/coins/ore",
+          "date": "2026-11-22"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "重大矛盾：候选文件价格 $75.06、市值 $39.2M；本次 CoinGecko 页面 24h 区间 $144.92–$170.41、衍生品价格约 $150、市值 $77.815M，约为候选文件的 2 倍，原因（单日暴涨、合约迁移后换币或页面数据问题）无法核实。另 CoinGecko 流通 517,420 与 FAQ“520 Thousand”略有出入；持币人收入 $46.5M 高于协议收入 $37.6M（口径不同）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-22.json",
+          "date": "2026-11-22"
+        },
+        {
+          "url": "https://www.coingecko.com/en/coins/ore",
+          "date": "2026-11-22"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "claim": "CoinGecko 页面：流通 517,420 / 最大供应 3,000,000 ≈ 17.2%，且 ORE 按挖矿持续排放；未来 12 个月净增长（排放 − 埋藏）没有可核实数据，也没有需求增长足以抵消稀释的强证据",
+      "supply_growth_12m_pct": null,
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/ore",
+          "date": "2026-11-22"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "候选文件质量分第三方审计“未知”；本次搜索结果未见可确认属于 ORE 的审计报告",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-22.json",
+          "date": "2026-11-22"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "（据搜索结果摘要，仅标题，未打开页面）开发者为化名 HardHat Chad（IQ.wiki）；Blockworks 有 ORE 代币透明度披露页。创始人未实名，投资机构未核实",
+      "sources": [
+        {
+          "url": "https://iq.wiki/wiki/hardhat-chad",
+          "date": "2026-11-22"
+        },
+        {
+          "url": "https://blockworks.com/insights/ore-dashboard-primer",
+          "date": "2026-11-22"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "新供应来自持续挖矿排放（最大供应 3M，当前约 51.7 万），没有可核实的未来 12/36 个月净增量；不按“已全部解锁”处理",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://www.coingecko.com/en/coins/ore",
+          "date": "2026-11-22"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-22.json",
+          "date": "2026-11-22"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 75.05842159553683,
+    "circulating_supply": 522236,
+    "total_supply": 3000000,
+    "supply_by_month": {},
+    "annual_revenue_usd": 37616655.0,
+    "revenue_growth": {
+      "conservative": 0.0,
+      "base": 0.14,
+      "optimistic": 0.21
+    },
+    "peer_multiples": {
+      "p25": 3.5051699443870326,
+      "median": 7.468887165479368,
+      "p75": 20.43579129150165
+    },
+    "peers": [],
+    "metric": "协议年化收入（DefiLlama revenue，保守口径 近12个月实际 $37.62M）；基准增速取最近季度 +14.0%，乐观 1.5 倍；价格用候选文件（与 CoinGecko 约 $150 冲突，见 data_consistent）；流通量 = 候选文件市值/价格；总量用 CoinGecko 最大供应 3M；持续排放未计入供应模型；倍数为 候选文件 prelim.peerMultiples（DefiLlama 全部协议 76 个“流通市值/年化收入”分位数；同赛道不足 5 个），没有具体可比项目名单"
+  },
+  "risks": [
+    "候选文件价格与 CoinGecko 页面相差约 2 倍，数据矛盾未解决",
+    "持续挖矿排放（最大供应 3M，当前仅约 17%），回购埋藏能否抵消未知",
+    "无主流交易所现货，成交集中在 Meteora DEX",
+    "创始人化名、无审计确认，质押程序曾被利用（25.5 SOL）并迁移合约",
+    "收入依赖挖矿玩法与 ORE 价格"
+  ],
+  "unverified": [
+    "价格/市值冲突原因（候选 $75 vs CoinGecko 约 $150）",
+    "合约地址（迁移后）",
+    "未来 12/36 个月净供应增长",
+    "第三方审计",
+    "团队与投资机构",
+    "质押漏洞事件日期与赔付",
+    "同赛道可比倍数"
+  ],
+  "catalysts": [
+    {
+      "claim": "ORE 周挖矿量接近 $1,200 万，2 月以来最高（据搜索结果标题）",
+      "url": "https://cryptobriefing.com/ore-mining-volume-highest-since-february/",
+      "date": "2026-11-22"
+    }
+  ],
+  "summary_reason": "流通市值/收入约 1 倍、持币人收入可观，但最大供应 3M 下持续排放、无主流交易所现货、无审计、团队化名，且价格数据与 CoinGecko 冲突，B 级观察"
+}
