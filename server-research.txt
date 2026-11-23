@@ -126,3 +126,7 @@ research-2026-11-22-ether-fi.json
 research-2026-11-22-liquity.json
 research-2026-11-22-ore.json
 research-2026-11-22-trust-wallet-token.json
+research-2026-11-23-avalon-2.json
+research-2026-11-23-evaa-protocol.json
+research-2026-11-23-hyperlane.json
+research-2026-11-23-sun-token.json
