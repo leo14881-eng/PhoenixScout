@@ -1,0 +1,203 @@
+{
+ "coin_id": "sun-token",
+ "researched_at": "2026-11-23T03:40:00Z",
+ "grade_hint": "B",
+ "items": {
+  "identity": {
+   "ok": true,
+   "claim": "SUN（TRON 生态 SunSwap/SunPump 代币）：沿用 2026-11-09/11-16 研究 TRON 合约 TSSMHYeV2uE9qYH95DqyoCuNCzEL1NvU3S；候选文件价格 $0.014617、市值 $280,797,490、FDV $290,819,145，与以往研究一致",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json",
+     "date": "2026-11-23"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-16-sun-token.json",
+     "date": "2026-11-16"
+    }
+   ]
+  },
+  "supply_verifiable": {
+   "ok": true,
+   "claim": "候选文件：流通市值 $280,797,490、FDV $290,819,145、流通率 96.55%（推算流通约 19.210B、总量约 19.896B）；差额约 686M，据搜索结果摘要（标题）累计回购销毁已超 685M，未来 12 个月供应变化上限约 +3.57%",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json",
+     "date": "2026-11-23"
+    },
+    {
+     "url": "https://cryptoslate.com/sun-io-completes-52nd-buyback-and-burn-total-sun-burned-surpasses-685m-as-sunswap-accelerates-ecosystem-integrations/",
+     "date": "2026-11-23"
+    }
+   ]
+  },
+  "economic_activity": {
+   "ok": true,
+   "claim": "候选文件（DefiLlama 协议收入）：季度收入 q2 $152,980 → q1 $398,416 → q0 $522,713，最近季度 +31.2%；年化保守口径 $1,141,125（近30天×12 $2,271,711、近90天×4 $2,059,149、近12个月实际 $1,141,125）",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json",
+     "date": "2026-11-23"
+    }
+   ]
+  },
+  "value_capture": {
+   "ok": true,
+   "mechanism": "buyback",
+   "claim": "已执行回购销毁：候选文件持币人收入（DefiLlama holdersRevenue）年化 $644,432 > 0；据搜索结果摘要（标题）SUN.io 已完成第 52 次回购销毁、累计销毁超 685M（Mitrade 2026-10-28 转载），此前第 49、50 次也有报道。SunPerp“100% 收入回购”仍只计为承诺",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json",
+     "date": "2026-11-23"
+    },
+    {
+     "url": "https://cryptoslate.com/sun-io-completes-52nd-buyback-and-burn-total-sun-burned-surpasses-685m-as-sunswap-accelerates-ecosystem-integrations/",
+     "date": "2026-11-23"
+    },
+    {
+     "url": "https://www.mitrade.com/insights/news/live-news/article-3-2203389-20261028",
+     "date": "2026-11-23"
+    },
+    {
+     "url": "https://www.kucoin.com/news/flash/sun-completes-50th-buyback-and-burn-total-destroyed-reaches-18-8m",
+     "date": "2026-11-23"
+    }
+   ]
+  },
+  "liquidity": {
+   "ok": true,
+   "spot_volume_30d_usd": null,
+   "claim": "候选文件：30 天日均成交额 $10,373,045，高于 50 万门槛；现货有 Binance、Bybit、Kraken。沿用 2026-11-09 研究：成交约 70% 来自 Poloniex，主流所真实现货约 $60 万/天，仅勉强达标；本次未重新核实",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json",
+     "date": "2026-11-23"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-09-sun-token.json",
+     "date": "2026-11-09"
+    }
+   ]
+  },
+  "no_security_issue": {
+   "ok": null,
+   "claim": "据搜索结果摘要（标题）：出现“Malicious smart contract causes $2.8M in SUN token losses on Arbitrum”，标题看是恶意合约导致的 SUN 代币损失，是否为 SUN/SunSwap 官方合约漏洞、发生时间与是否赔付无法从标题判断；其余结果为 Cetus、Bunni、SwapNet 等其他项目事故。需人工核实",
+   "sources": [
+    {
+     "url": "https://cryptorank.io/news/feed/9ce1e-malicious-smart-contract-causes-2-8m-in-sun-token-losses-on-arbitrum",
+     "date": "2026-11-23"
+    }
+   ]
+  },
+  "data_consistent": {
+   "ok": null,
+   "claim": "供应差额与累计销毁量大致衔接；但候选文件收入/倍数口径不一：prelim 年化 $2,096,597、同赛道“全部协议”77 个中位数 7.4 倍，而估值目标用 $1,141,125 × Dexs 中位数 3.3 倍；成交额集中 Poloniex 使表面流动性失真",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json",
+     "date": "2026-11-23"
+    }
+   ]
+  },
+  "supply_growth": {
+   "ok": true,
+   "supply_growth_12m_pct": 3.57,
+   "claim": "流通率 96.55% ≥ 50%；即便剩余差额全部进入流通，12 个月增长上限约 3.57% ≤ 25%；持续回购销毁使净供应趋降",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json",
+     "date": "2026-11-23"
+    }
+   ]
+  },
+  "audit": {
+   "ok": null,
+   "claim": "候选文件质量分“第三方审计”为 ✓（DefiLlama 审计记录）；研究层未取得审计报告原文",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json",
+     "date": "2026-11-23"
+    }
+   ]
+  },
+  "team": {
+   "ok": null,
+   "claim": "沿用 2026-11-16 研究：项目依附 TRON/孙宇晨生态，未找到实名核心团队页面；候选文件质量分“团队背景”为 ✗",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json",
+     "date": "2026-11-23"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-16-sun-token.json",
+     "date": "2026-11-16"
+    }
+   ]
+  },
+  "unlock": {
+   "ok": null,
+   "unlock_12m_pct": null,
+   "unlock_36m_pct": null,
+   "next_unlock_date": null,
+   "next_unlock_amount": null,
+   "fully_unlocked": null,
+   "conflict": false,
+   "claim": "未找到官方解锁表；流通率 96.55%，剩余差额可能为已销毁量（未核实），不写 fully_unlocked=true",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json",
+     "date": "2026-11-23"
+    }
+   ]
+  }
+ },
+ "self_reported_mcap": false,
+ "scenario_inputs": {
+  "price_usd": 0.014617190646335376,
+  "circulating_supply": 19210086041,
+  "total_supply": 19895693505,
+  "supply_by_month": null,
+  "annual_revenue_usd": 1141124.51,
+  "revenue_growth": {
+   "conservative": 0.0,
+   "base": 0.31,
+   "optimistic": 0.47
+  },
+  "peer_multiples": {
+   "p25": 3.29,
+   "median": 7.4,
+   "p75": 20.39
+  },
+  "peers": [
+   {
+    "name": "服务器计算：DefiLlama 全部协议 77 个 流通市值/年化收入（同赛道 Dexs 仅 7 个，中位数 3.3 倍）",
+    "multiple": 7.4,
+    "source": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json"
+   }
+  ],
+  "metric": "协议年化收入（DefiLlama，保守口径）；当前流通市值/年化收入 ≈ 246 倍；基准增速取最近季度 +31%，乐观 = 基准×1.5"
+ },
+ "risks": [
+  "估值极高：流通市值约为年化收入 246 倍，候选文件估值目标比现价低约 98.7%",
+  "回购规模小（持币人收入年化约 $64 万，对 2.8 亿美元市值）",
+  "真实主流所现货流动性可能仅约 $60 万/天",
+  "团队未实名、高度依赖 TRON 生态",
+  "搜索标题出现 Arbitrum 上 $2.8M SUN 代币损失事件，性质未明"
+ ],
+ "unverified": [
+  "Arbitrum $2.8M SUN 损失事件的性质、时间与赔付",
+  "第三方审计报告原文",
+  "团队实名",
+  "解锁表与剩余供应归属",
+  "30 天真实现货成交额",
+  "候选文件两种同赛道倍数口径冲突"
+ ],
+ "catalysts": [
+  {
+   "claim": "据搜索结果摘要：SUN.io 完成第 52 次回购销毁，SunSwap 加速生态集成",
+   "url": "https://www.mitrade.com/insights/news/live-news/article-3-2203389-20261028",
+   "date": "2026-11-23"
+  }
+ ],
+ "summary_reason": "收入季度 +31% 且回购销毁持续执行、几乎全流通，但市值/收入约 246 倍、估值目标远低于现价，维持 B 级观察"
+}

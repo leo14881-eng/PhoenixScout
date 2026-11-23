@@ -1,0 +1,207 @@
+{
+ "coin_id": "avalon-2",
+ "researched_at": "2026-11-23T03:40:00Z",
+ "grade_hint": "C",
+ "items": {
+  "identity": {
+   "ok": true,
+   "claim": "AVL（Avalon Labs，BTC 抵押借贷/USDa）：沿用 2026-11-09 研究 Ethereum 0x5c8d0c48810fd37a0a824d074ee290e64f7a8fa2、BSC 0x9beee89723ceec27d7c2834bec6834208ffdc202，最大供应 1B；候选文件 FDV/价格推算总量约 999M，吻合",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-09-avalon-2.json",
+     "date": "2026-11-09"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json",
+     "date": "2026-11-23"
+    }
+   ]
+  },
+  "supply_verifiable": {
+   "ok": true,
+   "claim": "候选文件：价格 $0.014330、流通市值 $6,714,769、FDV $14,311,793、流通率 46.9%（推算流通约 469M）；未来 12 个月供应变化数量未核实",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json",
+     "date": "2026-11-23"
+    }
+   ]
+  },
+  "economic_activity": {
+   "ok": true,
+   "claim": "候选文件（DefiLlama 协议收入）：季度收入 q2 $619 → q1 $38,725 → q0 $94,137，最近季度 +143.1%；年化保守口径仅 $136,273（近30天×12 $598,429），标注“近期收入异常偏高，可能不可持续”；规模极小",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json",
+     "date": "2026-11-23"
+    }
+   ]
+  },
+  "value_capture": {
+   "ok": false,
+   "mechanism": null,
+   "claim": "候选文件持币人收入年化 $0。据搜索结果摘要（标题）Avalon Labs 曾销毁 93.9M、80M AVL，“destroys 37% of circulating AVL”，Crypto Times 2025-09-10 报道“burns $1.88M in AVL”——均为 2025 年的一次性销毁，资金来源与是否持续无法从标题判断，DefiLlama 未记录持币人收入，不认定为可验证的持续价值捕获",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json",
+     "date": "2026-11-23"
+    },
+    {
+     "url": "https://crypto.news/avalon-labs-destroys-37-of-circulating-avl-tokens/",
+     "date": "2026-11-23"
+    },
+    {
+     "url": "https://www.cryptotimes.io/2025/09/10/avalon-labs-burns-1-88m-in-avl-tokens-price-jumps-11/",
+     "date": "2026-11-23"
+    },
+    {
+     "url": "https://coingape.com/avalon-labs-burns-a-massive-93-9-million-avl-tokens-as-part-of-buyback-and-burn-plan",
+     "date": "2026-11-23"
+    }
+   ]
+  },
+  "liquidity": {
+   "ok": false,
+   "spot_volume_30d_usd": 9659146,
+   "claim": "候选文件：30 天日均成交额 $321,972，低于 50 万美元门槛（gate：流动性不足）；主流所现货只有 Bybit",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json",
+     "date": "2026-11-23"
+    }
+   ]
+  },
+  "no_security_issue": {
+   "ok": null,
+   "claim": "据搜索结果摘要（标题）：搜索“Avalon Labs USDa exploit hack 2026”只出现 Resolv USR、Avalanche 闪电贷等其他项目事故，未见 Avalon Labs 事故标题；不足以证明无事故",
+   "sources": [
+    {
+     "url": "https://www.theblock.co/post/394582/resolvs-usr-stablecoin-depegs-after-attacker-mints-80-million-unbacked-tokens-extracts-roughly-25-million",
+     "date": "2026-11-23"
+    },
+    {
+     "url": "https://blockworks.co/news/avalanche-flash-loan-attack-nets-370k",
+     "date": "2026-11-23"
+    }
+   ]
+  },
+  "data_consistent": {
+   "ok": false,
+   "claim": "候选文件收入口径差异大（近30天×12 $598,429 vs 近12个月实际 $136,273，标注尖峰）；prelim 年化 $377,584 与门槛口径不一；候选文件解锁标签“解锁数据冲突”；沿用 2026-11-09 研究：官方文档与 DropsTab 分配比例不一致",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json",
+     "date": "2026-11-23"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-09-avalon-2.json",
+     "date": "2026-11-09"
+    }
+   ]
+  },
+  "supply_growth": {
+   "ok": false,
+   "supply_growth_12m_pct": null,
+   "claim": "流通/总量 46.9% < 50%；团队、投资人等处于归属期（沿用 2026-11-09 研究），12 个月增长比例无法可靠计算；无强证据",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json",
+     "date": "2026-11-23"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-09-avalon-2.json",
+     "date": "2026-11-09"
+    }
+   ]
+  },
+  "audit": {
+   "ok": null,
+   "claim": "候选文件质量分“第三方审计”为 ✓（DefiLlama 审计记录）；沿用 2026-11-09 研究：官网称 Salus、SlowMist、BlockSec、Nethermind 审计，报告原文未核实",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json",
+     "date": "2026-11-23"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-09-avalon-2.json",
+     "date": "2026-11-09"
+    }
+   ]
+  },
+  "team": {
+   "ok": null,
+   "claim": "沿用 2026-11-09/11-16 研究：2024-12 A 轮 $10M（Framework Ventures 领投），未找到实名团队；候选文件质量分“团队背景”为 ✗",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-16-avalon-2.json",
+     "date": "2026-11-16"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json",
+     "date": "2026-11-23"
+    }
+   ]
+  },
+  "unlock": {
+   "ok": null,
+   "unlock_12m_pct": null,
+   "unlock_36m_pct": null,
+   "next_unlock_date": null,
+   "next_unlock_amount": null,
+   "fully_unlocked": false,
+   "conflict": true,
+   "claim": "候选文件解锁标签“解锁数据缺失、解锁数据冲突”；未打开任何解锁页面，日期与数量未取得；沿用 2026-11-09 研究：官方文档与 DropsTab 分配比例冲突",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json",
+     "date": "2026-11-23"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-09-avalon-2.json",
+     "date": "2026-11-09"
+    }
+   ]
+  }
+ },
+ "self_reported_mcap": false,
+ "scenario_inputs": {
+  "price_usd": 0.014330114688388318,
+  "circulating_supply": 468577478,
+  "total_supply": 998721456,
+  "supply_by_month": null,
+  "annual_revenue_usd": 136272.63,
+  "revenue_growth": {
+   "conservative": 0.0,
+   "base": 0.5,
+   "optimistic": 1.0
+  },
+  "peer_multiples": {
+   "p25": 7.24,
+   "median": 12.05,
+   "p75": 20.39
+  },
+  "peers": [
+   {
+    "name": "服务器计算：DefiLlama Lending 赛道 9 个协议 流通市值/年化收入",
+    "multiple": 12.05,
+    "source": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json"
+   }
+  ],
+  "metric": "协议年化收入（保守口径 $136,273）；流通市值/年化收入 ≈ 49 倍；收入不归持币人"
+ },
+ "risks": [
+  "持币人收入为 0，2025 年销毁属一次性、不能视作持续回购",
+  "流通 <50%，解锁数据冲突",
+  "流动性低于 50 万门槛",
+  "收入规模极小且有尖峰，估值目标比现价低约 89%"
+ ],
+ "unverified": [
+  "销毁资金来源与是否持续",
+  "解锁日期、数量与 12/36 个月比例",
+  "审计报告原文",
+  "团队实名",
+  "安全事故（仅有搜索标题）"
+ ],
+ "catalysts": [],
+ "summary_reason": "收入季度大增但基数极小、持币人收入为 0、流通不足一半、流动性不达标且现价高于估值目标，维持 C 级淘汰"
+}

@@ -1,0 +1,207 @@
+{
+ "coin_id": "hyperlane",
+ "researched_at": "2026-11-23T03:40:00Z",
+ "grade_hint": "B",
+ "items": {
+  "identity": {
+   "ok": true,
+   "claim": "沿用 2026-11-15 研究：HYPER Ethereum 合约 0x93a2db22b7c736b341c32ff666307f4a9ed910f5，Arbitrum/BSC/Base 0xc9d23ed2adb0f551369946bd377f8644ce1ca5c4，最大供应 1B；据搜索结果摘要（标题）Hyperlane 基金会发布“Introducing HYPER”公告。本次未重新核对合约",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-15-hyperlane.json",
+     "date": "2026-11-15"
+    },
+    {
+     "url": "https://medium.com/@hyperlane_fdn/introducing-hyper-f3846883f1f5",
+     "date": "2026-11-23"
+    }
+   ]
+  },
+  "supply_verifiable": {
+   "ok": null,
+   "claim": "今日候选文件只在 nearMiss 中列出 Hyperlane，没有价格、市值、FDV、流通量字段；沿用 2026-11-15 研究的 CoinGecko 数据（流通 338.174M、Outstanding 475.468M、总量 811.333M、最大 1B）已过期且口径冲突；未来 12 个月供应变化未核实",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json",
+     "date": "2026-11-23"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-15-hyperlane.json",
+     "date": "2026-11-15"
+    }
+   ]
+  },
+  "economic_activity": {
+   "ok": true,
+   "claim": "候选文件 nearMiss（服务器按 DefiLlama 计算）：最近季度收入 +121.1%（比两个季度前 +120.1%），前一季度 -0.5%；年化收入金额未给出。收入为跨链消息/gas 费，规模未知",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json",
+     "date": "2026-11-23"
+    }
+   ]
+  },
+  "value_capture": {
+   "ok": false,
+   "mechanism": null,
+   "claim": "候选文件没有 Hyperlane 持币人收入；据搜索结果摘要（标题）只有“Hyperlane Staking and stHYPER”质押公告和 Protocol Economics 文档，未见已执行的回购、销毁或手续费分成；质押奖励来源未能确认为手续费真实收益，不予承认",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json",
+     "date": "2026-11-23"
+    },
+    {
+     "url": "https://medium.com/@hyperlane_fdn/hyperlane-staking-and-sthyper-d9e5b09fa849",
+     "date": "2026-11-23"
+    },
+    {
+     "url": "https://docs.hyperlane.xyz/docs/protocol-economics/intro",
+     "date": "2026-11-23"
+    }
+   ]
+  },
+  "liquidity": {
+   "ok": true,
+   "spot_volume_30d_usd": 84000000,
+   "claim": "候选文件 nearMiss：30 天日均成交额 $2.8M（×30 ≈ $8,400 万，全部交易所口径），高于 50 万门槛；沿用 2026-11-15 研究：主流所（Binance、Bybit）现货日成交约 $65 万，真实主流所现货接近门槛",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json",
+     "date": "2026-11-23"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-15-hyperlane.json",
+     "date": "2026-11-15"
+    }
+   ]
+  },
+  "no_security_issue": {
+   "ok": null,
+   "claim": "据搜索结果摘要（标题）：2026-04 被攻击的是 Polkadot 系 Hyperbridge（损失后修正为约 $250 万），与 Hyperlane 不是同一项目；“Humanity Protocol Claims $36mn Hack, but ZachXBT Says Seems Possibly Staged”出现在 Hyperlane 搜索结果中，标题未说明是否涉及 Hyperlane 跨链路由；未见 Hyperlane 自身被盗标题，但不足以确认无事故",
+   "sources": [
+    {
+     "url": "https://www.theblock.co/post/397773/polkadot-hyperbridge-exploit-losses-2-5-million-ten-times-initial-estimate",
+     "date": "2026-11-23"
+    },
+    {
+     "url": "https://www.kucoin.com/news/flash/humility-protocol-suffers-36m-theft-via-bridge-exploits",
+     "date": "2026-11-23"
+    },
+    {
+     "url": "https://san-1510.aid.brainsum.com/news/top-news/humanity-protocol-claims-36mn-hack-zachxbt-says-seems-possibly-staged",
+     "date": "2026-11-23"
+    }
+   ]
+  },
+  "data_consistent": {
+   "ok": false,
+   "claim": "今日候选文件缺少 Hyperlane 市场数据；沿用 2026-11-15 研究：CoinGecko 流通/Outstanding/总量/最大供应四种口径矛盾、流通量疑似长期不更新",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-23.json",
+     "date": "2026-11-23"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-15-hyperlane.json",
+     "date": "2026-11-15"
+    }
+   ]
+  },
+  "supply_growth": {
+   "ok": false,
+   "supply_growth_12m_pct": null,
+   "claim": "沿用 2026-11-15 研究：流通约 338M，仅占最大供应 1B 的约 34%（< 50%）；12 个月新增解锁未核实；无需求增长足以抵消稀释的强证据",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-15-hyperlane.json",
+     "date": "2026-11-15"
+    }
+   ]
+  },
+  "audit": {
+   "ok": true,
+   "claim": "据搜索结果摘要（标题/文件名）：官方文档托管 ChainLight v3.1 协议审计报告 PDF；报告内容未打开",
+   "sources": [
+    {
+     "url": "https://docs.hyperlane.xyz/assets/files/chainlight-v3.1-protocol-audit-64bfe64a431b86d1f6a5e5704b0c25ce.pdf",
+     "date": "2026-11-23"
+    }
+   ]
+  },
+  "team": {
+   "ok": true,
+   "claim": "沿用 2026-11-15 研究（据搜索结果摘要）：2022-09 种子轮 $18.5M，Variant 领投；开发公司 Abacus Works",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-15-hyperlane.json",
+     "date": "2026-11-15"
+    },
+    {
+     "url": "https://www.theblock.co/post/172095/variant-leads-18-5-million-fundraise-for-developer-platform-hyperlane",
+     "date": "2026-11-15"
+    }
+   ]
+  },
+  "unlock": {
+   "ok": null,
+   "unlock_12m_pct": null,
+   "unlock_36m_pct": null,
+   "next_unlock_date": null,
+   "next_unlock_amount": null,
+   "fully_unlocked": false,
+   "conflict": true,
+   "claim": "解锁表只出现在搜索结果（CoinLaunch、DropsTab、Tokenomist、tokenomics.com），未打开，日期与数量未取得；沿用 2026-11-15 研究：流通与 Outstanding 口径相差约 1.37 亿，冲突",
+   "sources": [
+    {
+     "url": "https://coinlaunch.space/projects/hyperlane/vesting/",
+     "date": "2026-11-23"
+    },
+    {
+     "url": "https://dropstab.com/coins/hyper-coin/vesting",
+     "date": "2026-11-23"
+    },
+    {
+     "url": "https://tokenomist.ai/hyperlane",
+     "date": "2026-11-23"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-15-hyperlane.json",
+     "date": "2026-11-15"
+    }
+   ]
+  }
+ },
+ "self_reported_mcap": false,
+ "scenario_inputs": {
+  "price_usd": null,
+  "circulating_supply": 338174000,
+  "total_supply": 1000000000,
+  "supply_by_month": null,
+  "annual_revenue_usd": null,
+  "revenue_growth": {
+   "conservative": null,
+   "base": null,
+   "optimistic": null
+  },
+  "peer_multiples": null,
+  "peers": [],
+  "metric": "今日候选文件无 Hyperlane 价格与年化收入金额，无法估值；流通量沿用 2026-11-15 研究（CoinGecko，疑似过期）；收入为跨链费，不等于持币人利润"
+ },
+ "risks": [
+  "没有可验证的价值捕获（未见回购、销毁或手续费分成）",
+  "流通仅约占最大供应 34%，解锁抛压未核实",
+  "供应数据口径矛盾",
+  "币价 90 天 -36.6%（候选文件）",
+  "跨链桥赛道黑客高发"
+ ],
+ "unverified": [
+  "价格、市值、FDV（今日候选文件无此字段）",
+  "年化收入金额",
+  "未来 12/36 个月解锁与下一次大额解锁",
+  "Humanity Protocol 被盗是否涉及 Hyperlane",
+  "质押奖励来源（手续费还是增发）",
+  "同赛道可比倍数"
+ ],
+ "catalysts": [],
+ "summary_reason": "收入最近季度 +121% 但前一季度持平、无价值捕获、流通率约 34%，维持 B 级观察（偏向淘汰）"
+}
