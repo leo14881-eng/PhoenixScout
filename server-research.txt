@@ -130,3 +130,5 @@ research-2026-11-23-avalon-2.json
 research-2026-11-23-evaa-protocol.json
 research-2026-11-23-hyperlane.json
 research-2026-11-23-sun-token.json
+research-2026-11-24-aria-ai.json
+research-2026-11-24-just.json
