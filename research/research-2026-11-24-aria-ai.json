@@ -1,0 +1,199 @@
+{
+  "coin_id": "aria-ai",
+  "researched_at": "2026-11-24T03:30:00Z",
+  "grade_hint": "C",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "Aria.AI（ARIA），BNB Chain，合约 0x5d3a12c42e5372b2cc3264ab3cdcf660a1555238（沿用 2026-11-03 研究；据搜索结果，Phantom 代币页链接含同一合约地址）；候选文件总量/最大供应 1,000,000,000",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-24.json",
+          "date": "2026-11-24"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-03-aria-ai.json",
+          "date": "2026-11-24"
+        },
+        {
+          "url": "https://phantom.com/tokens/bnb/0x5d3a12c42e5372b2cc3264ab3cdcf660a1555238",
+          "date": "2026-11-24"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": false,
+      "claim": "候选文件 2026-11-24：价格 $0.3108，市值 $56,425,679，FDV $308,337,042，流通 183,000,000（=官方 TGE 释放量 18.3%，仍未更新）。沿用 2026-11-03 研究：DropsTab 显示流通约 4.4 亿，两源相差 2 倍以上；TGE 日期未知，未来 12 个月供应变化无法核实",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-24.json",
+          "date": "2026-11-24"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-03-aria-ai.json",
+          "date": "2026-11-24"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": null,
+      "claim": "候选文件无收入数据（不在路径 B/DefiLlama）；沿用 2026-11-03 研究：未找到用户数、收入或付费数据",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-24.json",
+          "date": "2026-11-24"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-03-aria-ai.json",
+          "date": "2026-11-24"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": false,
+      "mechanism": "other",
+      "claim": "沿用 2026-11-03 研究：代币用途为治理、游戏内消耗、AI 使用，无回购/销毁/手续费分配；本次搜索结果摘要未见任何已执行回购",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-03-aria-ai.json",
+          "date": "2026-11-24"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": null,
+      "spot_volume_30d_usd": null,
+      "claim": "候选文件：24h 成交 $38,486,967、30 天日均 $23,205,915（含 DEX/总口径）；沿用 2026-11-03 研究：无 Binance/Coinbase/OKX 等主流现货，Binance 仅永续合约，合约持仓曾高于流通市值",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-24.json",
+          "date": "2026-11-24"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-03-aria-ai.json",
+          "date": "2026-11-24"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "沿用 2026-11-03 研究：未发现合约被盗，但 2026-04 Binance ARIA 合约曾闪崩约 90%，有操纵嫌疑报道；本次搜索结果标题未提供新信息",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-03-aria-ai.json",
+          "date": "2026-11-24"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "流通量口径冲突（CoinGecko 1.83 亿 vs DropsTab 4.40 亿，沿用 2026-11-03 研究）未解决；候选文件流通量仍为 TGE 释放量",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-24.json",
+          "date": "2026-11-24"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-03-aria-ai.json",
+          "date": "2026-11-24"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "supply_growth_12m_pct": null,
+      "claim": "候选文件：流通/总量 18.3% < 50%；官方归属表（沿用 2026-11-03 研究）显示社区 51%、团队 15%、投资人 8.5%、生态 9.7% 仍在线性释放，无需求增长抵消稀释的证据",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-24.json",
+          "date": "2026-11-24"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-03-aria-ai.json",
+          "date": "2026-11-24"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "沿用 2026-11-03 研究：未找到第三方审计报告",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-03-aria-ai.json",
+          "date": "2026-11-24"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "沿用 2026-11-03 研究：无团队页，未找到实名团队",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-03-aria-ai.json",
+          "date": "2026-11-24"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "据搜索结果，CoinGlass 有 ARIA 解锁页（未打开）；沿用 2026-11-03 研究：TGE 日期未知、下次解锁日期缺失，流通口径冲突导致 12/36 个月解锁比例无法计算",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": true,
+      "sources": [
+        {
+          "url": "https://www.coinglass.com/currencies/ARIA/vesting",
+          "date": "2026-11-24"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-03-aria-ai.json",
+          "date": "2026-11-24"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": true,
+  "scenario_inputs": {
+    "price_usd": 0.3108,
+    "circulating_supply": 183000000,
+    "total_supply": 1000000000,
+    "supply_by_month": {
+      "12": null,
+      "24": null,
+      "36": null
+    },
+    "annual_revenue_usd": null,
+    "revenue_growth": {
+      "conservative": null,
+      "base": null,
+      "optimistic": null
+    },
+    "peer_multiples": {
+      "p25": null,
+      "median": null,
+      "p75": null
+    },
+    "peers": [],
+    "metric": "无可核实收入，无法估值"
+  },
+  "risks": [
+    "近 30 天涨 342%、90 天涨 991%，典型投机拉升",
+    "流通仅 18.3%（或 44%），FDV 是市值 5.5 倍，持续解锁",
+    "曾在 Binance 合约闪崩约 90%，有操纵风险",
+    "无收入、无价值捕获、无实名团队、无审计",
+    "流通量疑为项目自报未更新"
+  ],
+  "unverified": [
+    "真实流通量与 TGE 日期",
+    "解锁计划日期",
+    "产品用户与收入",
+    "团队",
+    "审计",
+    "主流交易所现货成交"
+  ],
+  "catalysts": [],
+  "summary_reason": "路径 A 价格强反弹，但无收入/价值捕获、流通仅 18%、供应口径冲突，维持淘汰 C"
+}

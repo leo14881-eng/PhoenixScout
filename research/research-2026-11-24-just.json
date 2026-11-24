@@ -1,0 +1,206 @@
+{
+  "coin_id": "just",
+  "researched_at": "2026-11-24T03:30:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "JST（TRON 链）：合约 TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9、最大供应 9.9B 沿用 2026-11-17 研究（本次未重新打开网页核实）；候选文件 2026-11-24 显示市值=FDV=$1,169,165,721、流通/总量 100%、研究核实的未来 12 个月流通量 8,018,019,892",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-24.json",
+          "date": "2026-11-24"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-17-just.json",
+          "date": "2026-11-24"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "候选文件 2026-11-24：价格 $0.14582（prelim）/ $0.14645（pathBNotListed），市值 $1,169,165,721，FDV $1,169,165,721，circRatio 1.0，unlock12mPct 0；未来 12 个月供应预计持平或因回购销毁下降",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-24.json",
+          "date": "2026-11-24"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件 2026-11-24（DefiLlama 口径）：季度收入 q0 $599,432 / q1 $126,117 / q2 $121,574，最近季度 +375%；近 12 个月实际收入 $1,001,694（近 30 天×12 = $6,023,724，被服务器标记为异常偏高 spike）。JustLend 借贷活动真实存在，但收入规模小",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-24.json",
+          "date": "2026-11-24"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "mechanism": "buyback",
+      "claim": "据搜索结果摘要（标题）：JST 已完成第 5 轮回购销毁（超 1.7 亿枚、约 $23.53M），Q1 2026 累计回购金额达 $60.03M；'$50M 储备金 + DAO 治理'升级属公告，未计为已执行。候选文件持币人收入年化为 0（DefiLlama 未计入回购）",
+      "sources": [
+        {
+          "url": "https://cryptoslate.com/just-completes-5th-jst-buyback-burn-over-170m-tokens-23-53m-burned-ahead-of-major-deflationary-upgrade/",
+          "date": "2026-11-24"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/just-reports-q1-2026-financials-total-buyback-amounts-reach-60-03m",
+          "date": "2026-11-24"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/just-upgrades-jst-buyback-and-burn-mechanism-with-dao-governance-and-50m-reserve-fund",
+          "date": "2026-11-24"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-24.json",
+          "date": "2026-11-24"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": null,
+      "claim": "候选文件 2026-11-24：30 天日均成交 $26,039,329（约合 30 天 $7.8 亿，为总成交口径，未拆分现货）；主流交易所现货 Binance、Kraken（质量分项 ✓）。2026-11-17 研究显示约 39% 成交集中在 HTX（沿用 2026-11-17 研究）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-24.json",
+          "date": "2026-11-24"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-17-just.json",
+          "date": "2026-11-24"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "据搜索结果摘要：搜索 'JustLend exploit hack security incident 2026' 结果均为其他借贷协议（Loopscale、Purrlend 等）事件，未出现 JustLend 被攻击；仅凭标题无法确认，列为未核实",
+      "sources": [
+        {
+          "url": "https://immunefi.com/blog/research/2026-lending-hacks/",
+          "date": "2026-11-24"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "重大矛盾未解决：DefiLlama 近 12 个月收入约 $1.0M，而据搜索结果摘要 Q1 2026 累计回购即达 $60.03M，回购资金远超可核实协议收入（依赖储备/USDD 等其他来源）；近 30 天×12（$6.0M）与 12 个月实际差 6 倍",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-24.json",
+          "date": "2026-11-24"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/just-reports-q1-2026-financials-total-buyback-amounts-reach-60-03m",
+          "date": "2026-11-24"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": true,
+      "supply_growth_12m_pct": 0,
+      "claim": "候选文件：circRatio 1.0、unlock12mPct 0、supply12m 与当前流通一致；回购销毁持续，12 个月供应增长 ≤0%",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-24.json",
+          "date": "2026-11-24"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "候选文件质量分'第三方审计'为 ✓（来自 DefiLlama 审计记录），但本次未打开审计报告",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-24.json",
+          "date": "2026-11-24"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "候选文件质量分'团队背景'缺失；沿用 2026-11-17 研究：TRON/孙宇晨生态推广，未找到实名核心团队页",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-24.json",
+          "date": "2026-11-24"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-17-just.json",
+          "date": "2026-11-24"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": true,
+      "claim": "候选文件：circRatio 1.0，unlock12mPct 0、unlock36mPct 0，视为已全部流通（沿用 2026-11-17 研究结论，未找到官方代币经济页）",
+      "unlock_12m_pct": 0,
+      "unlock_36m_pct": 0,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": true,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-24.json",
+          "date": "2026-11-24"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-17-just.json",
+          "date": "2026-11-24"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.14582,
+    "circulating_supply": 8018019892,
+    "total_supply": 8018019892,
+    "supply_by_month": {
+      "12": 8018019892,
+      "24": 8018019892,
+      "36": 8018019892
+    },
+    "annual_revenue_usd": 1001694,
+    "revenue_growth": {
+      "conservative": 0.0,
+      "base": 0.5,
+      "optimistic": 1.0
+    },
+    "peer_multiples": {
+      "p25": 6.7,
+      "median": 11.57,
+      "p75": 20.64
+    },
+    "peers": [],
+    "metric": "协议年化收入（DefiLlama，服务器口径 used=近12个月实际 $1,001,694）；倍数来自候选文件 prelim.just.peerMultiples（Lending 9 个）；供应按不变"
+  },
+  "risks": [
+    "按 DefiLlama 收入市值/收入约 1,170 倍，现价远高于服务器估值目标（gate：现价已高于估值目标）",
+    "回购资金远超可核实协议收入，可持续性存疑",
+    "近 30 天收入异常偏高（spike），季度 +375% 可能不可持续",
+    "成交集中于 TRON 关联交易所 HTX，治理集中、团队未实名"
+  ],
+  "unverified": [
+    "no_security_issue（仅凭搜索标题）",
+    "第三方审计报告",
+    "团队实名",
+    "回购链上交易与资金来源",
+    "$50M 储备金回购升级是否执行",
+    "30 天纯现货成交额",
+    "合约地址与最大供应（沿用 2026-11-17 研究）",
+    "可比项目明细"
+  ],
+  "catalysts": [
+    {
+      "claim": "据搜索结果摘要，JUST 宣布 DAO 治理 + $50M 储备金升级回购销毁机制（公告，未执行）",
+      "url": "https://www.kucoin.com/news/flash/just-upgrades-jst-buyback-and-burn-mechanism-with-dao-governance-and-50m-reserve-fund",
+      "date": "2026-11-24"
+    }
+  ],
+  "summary_reason": "全流通、已执行多轮回购销毁、流动性好，但收入仅约 $1M/年、回购远超收入、估值极高，维持 B"
+}
