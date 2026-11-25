@@ -132,3 +132,6 @@ research-2026-11-23-hyperlane.json
 research-2026-11-23-sun-token.json
 research-2026-11-24-aria-ai.json
 research-2026-11-24-just.json
+research-2026-11-25-arbitrum.json
+research-2026-11-25-lido-dao.json
+research-2026-11-25-syrup.json
