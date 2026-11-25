@@ -1,0 +1,206 @@
+{
+  "coin_id": "arbitrum",
+  "researched_at": "2026-11-25T03:40:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "沿用 11-18 研究：ARB Arbitrum One 0x912ce59144191c1204e64559fe8253a0e49e6548，Ethereum 0xb50721bcf8d664c30412cfbc6cf7a15145234ad1；总量/最大 10B",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-18-arbitrum.json",
+          "date": "2026-11-25"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "候选文件 watch：价格 $0.110271，市值 $770.84M，FDV $1.1016B，流通率 69.98%（≈ 6,997.67M / 10B，与 11-18 一致，说明 11-16 后无新解锁）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-25.json",
+          "date": "2026-11-25"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（服务器 DefiLlama 计算）：Arbitrum 相关收入近 30 天 $580,677（前 30 天 $773,428），Robinhood Chain 10% 分成估算 $87,976（前 30 天 $161,529），合计 $668,653，比前 30 天 $934,957 下降约 28%",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-25.json",
+          "date": "2026-11-25"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": false,
+      "mechanism": "other",
+      "claim": "候选文件：持币人收入近 30 天为 0；ARB 仅治理，收入进 DAO 金库。据搜索结果摘要（仅标题）：“Arbitrum Initiates Token Buyback Plan”“Arbitrum Surpasses $20B as Offchain Labs Adds ARB”——为开发公司 Offchain Labs 购入，不是协议收入回购；论坛“Institutional $ARB Buyback via Bond Issuance”仍为提案",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-25.json",
+          "date": "2026-11-25"
+        },
+        {
+          "url": "https://yellow.com/en-US/news/arbitrum-initiates-token-buyback-plan-as-price-plummets-85-from-peak",
+          "date": "2026-11-25"
+        },
+        {
+          "url": "https://coinmarketcap.com/community/post/372265591",
+          "date": "2026-11-25"
+        },
+        {
+          "url": "https://forum.arbitrum.foundation/t/proposal-institutional-arb-buyback-via-bond-issuance/29491",
+          "date": "2026-11-25"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": null,
+      "claim": "今日候选文件 watch 条目无成交额字段；沿用 11-18 研究：CoinGecko 近 30 天成交约 $4.24B，Binance、OKX、KuCoin 等主流所有现货，但小所占比高",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-25.json",
+          "date": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-18-arbitrum.json",
+          "date": "2026-11-25"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": true,
+      "claim": "本次搜索未见 Arbitrum 协议资金损失；沿用此前研究：2026-05 安全委员会冻结 KelpDAO 黑客约 30,766 ETH（KelpDAO 被盗，非 Arbitrum 漏洞），属治理中心化争议点",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-18-arbitrum.json",
+          "date": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-11-arbitrum.json",
+          "date": "2026-11-25"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": true,
+      "claim": "候选文件 流通率 0.69977 与 11-18 CoinGecko 流通 6,997.67M 一致；市值/价格换算流通约 6,990M，差异 <0.2%，属取数时点差；收入来自服务器 DefiLlama 汇总；解锁结束月份（2027-02 或 03）说法不一",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-25.json",
+          "date": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-18-arbitrum.json",
+          "date": "2026-11-25"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": true,
+      "supply_growth_12m_pct": 5.3,
+      "claim": "据搜索结果摘要（247wallst 标题：“92.6 million ARB unlocks every month until early 2027”）：剩余约 4 次 × 92.65M ≈ 370.6M，占流通 5.3%；流通/总量 70.0%（≥50%）；未计 DAO 金库支出和 2% 年增发上限",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-25.json",
+          "date": "2026-11-25"
+        },
+        {
+          "url": "https://247wallst.com/investing/cryptocurrency/2026/10/02/arbitrum-is-up-more-than-100-since-august-and-92-6-million-arb-unlocks-every-month-until-early-2027-can-the-rally-survive-the-supply/",
+          "date": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-18-arbitrum.json",
+          "date": "2026-11-25"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "未打开 Nitro 审计报告，无可核实来源",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-18-arbitrum.json",
+          "date": "2026-11-25"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "沿用此前研究：开发方 Offchain Labs，Pantera、Polychain 等机构投资",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-18-arbitrum.json",
+          "date": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-11-arbitrum.json",
+          "date": "2026-11-25"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": true,
+      "claim": "据搜索结果摘要（KuCoin“ARB and ZRO events… in December”、247wallst“每月 92.6M 至 2027 年初”）：下一次 2026-12-16 约 92.65M（≈流通 1.32%），剩余约 4 次合计约 370.6M ≈ 流通 5.3%；结束月 2027-02 或 03 说法不一",
+      "unlock_12m_pct": 5.3,
+      "unlock_36m_pct": 5.3,
+      "next_unlock_date": "2026-12-16",
+      "next_unlock_amount": 92650000,
+      "fully_unlocked": false,
+      "conflict": true,
+      "sources": [
+        {
+          "url": "https://www.kucoin.com/news/articles/token-unlocks-liquidity-shocks-and-supply-pressure-how-arb-and-zro-events-could-shape-market-structure-in-december",
+          "date": "2026-11-25"
+        },
+        {
+          "url": "https://247wallst.com/investing/cryptocurrency/2026/10/02/arbitrum-is-up-more-than-100-since-august-and-92-6-million-arb-unlocks-every-month-until-early-2027-can-the-rally-survive-the-supply/",
+          "date": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-18-arbitrum.json",
+          "date": "2026-11-25"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.110271,
+    "circulating_supply": 6997670388,
+    "total_supply": 10000000000,
+    "supply_by_month": {
+      "12": 7368270388,
+      "24": 7368270388,
+      "36": 7368270388
+    },
+    "annual_revenue_usd": 8023836,
+    "revenue_growth": {
+      "conservative": -0.3,
+      "base": 0.0,
+      "optimistic": 0.3
+    },
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "DAO 收入（Arbitrum 相关 + Robinhood Chain 10% 分成估算，候选文件近 30 天 $668,653 × 12）；持币人收入为 0，不能当持币人利润；流通市值/年收入 ≈ 96 倍；L2 同赛道倍数未取得"
+  },
+  "risks": [
+    "持币人收入为 0，没有已执行的协议收入价值捕获",
+    "DAO 收入近 30 天环比降约 28%，Robinhood Chain 分成降约 46%",
+    "币价 30 天 -34.6%",
+    "2026-12-16 约 92.65M 解锁（≈流通 1.32%）",
+    "安全委员会可冻结资金的治理中心化争议"
+  ],
+  "unverified": [
+    "今日 30 天成交额（候选文件未提供）",
+    "核心协议审计报告",
+    "解锁结束月份（2027-02 或 03）",
+    "Offchain Labs 购买 ARB 的实际执行规模（公司行为，不计价值捕获）",
+    "DAO 金库持有 ARB 及支出计划"
+  ],
+  "catalysts": [],
+  "summary_reason": "重点观察：DAO 收入与合作链分成继续下降、持币人收入为 0，渣打预测的分成逻辑仍无数据支撑"
+}

@@ -1,0 +1,227 @@
+{
+  "coin_id": "syrup",
+  "researched_at": "2026-11-25T03:40:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "沿用 2026-11-18 研究：SYRUP（Maple Finance）Ethereum 0x643c4e15d7d62ad0abec4a9bd4b001aa3ef52d66，Base 0x688aee022aa544f150678b8e5720b6b96a9e9a2f；今日候选文件未含合约字段",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-18-syrup.json",
+          "date": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-25.json",
+          "date": "2026-11-25"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": null,
+      "claim": "今日候选文件（nearMiss）没有价格、市值、FDV、流通量；沿用 11-18 研究：价格 $0.102775、流通 1,167.27M、总量 1,267.875M、市值 $119.9M、FDV $130.3M（已过期 7 天）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-25.json",
+          "date": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-18-syrup.json",
+          "date": "2026-11-25"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（服务器 DefiLlama 计算）：最近季度收入 +36.8%，比两个季度前 +34.0%，前一季度 -2.1%（只差收入连增）；据搜索结果摘要（仅标题）：“Maple Finance TVL Surpasses $2.2B”（时间未核实）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-25.json",
+          "date": "2026-11-25"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/maple-finance-tvl-surpasses-2-2b-amid-14-syrup-rally",
+          "date": "2026-11-25"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": null,
+      "mechanism": "buyback",
+      "claim": "据搜索结果摘要（仅标题）：“Maple reveals $2M SYRUP token buyback”“Maple Finance Ends Staking, Launches Buyback Program”；此前研究记录官方披露 2026 年仅执行约 2.5M SYRUP 回购（进金库、不销毁）。本次搜索未见 2026-11 新的已执行回购数量，写未核实",
+      "sources": [
+        {
+          "url": "https://thedefiant.io/news/tokens/maple-reveals-2m-syrup-token-buyback",
+          "date": "2026-11-25"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/maple-finance-ends-staking-launches-buyback-program-for-syrup-token",
+          "date": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-11-syrup.json",
+          "date": "2026-11-25"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "spot_volume_30d_usd": 219000000,
+      "claim": "候选文件：30 天日均成交额 $7.3M（×30 ≈ $219M，为换算值），高于 50 万门槛；11-18 研究记录主流所 Coinbase、Binance、Upbit、Kraken 均有现货",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-25.json",
+          "date": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-18-syrup.json",
+          "date": "2026-11-25"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "据搜索结果摘要（仅标题）：本次未见 2026 年 Maple 合约被盗报道；官方文档有“syrupUSDC and syrupUSDT defaults and impairments”页面（内容未打开，是否有 2026 年新违约未核实）；历史事故分开记录：2022-12 Orthogonal Trading 违约约 $36M（信用违约，非合约漏洞，赔付比例未核实，沿用此前研究）",
+      "sources": [
+        {
+          "url": "https://docs.maple.finance/legal/syrupusdc-and-syrupusdt-defaults-and-impairments",
+          "date": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-11-syrup.json",
+          "date": "2026-11-25"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": false,
+      "claim": "沿用此前研究的矛盾：DefiLlama 持币人收入按收入固定比例建模，而官方披露 2026 年回购仅约 2.5M SYRUP；本次未取得新数据消除；今日候选文件缺价格与供应字段",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-18-syrup.json",
+          "date": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-11-syrup.json",
+          "date": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-25.json",
+          "date": "2026-11-25"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": true,
+      "supply_growth_12m_pct": 8.6,
+      "claim": "沿用 11-18 研究：流通/总量 92.1%；官方通胀 2026-09 结束；剩余约 100.6M 即使 12 个月内全部流通，增长上限约 8.6%",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-18-syrup.json",
+          "date": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-04-syrup.json",
+          "date": "2026-11-25"
+        }
+      ]
+    },
+    "audit": {
+      "ok": true,
+      "claim": "沿用此前研究：DefiLlama 记录 2 份审计（Cantina），另有 Immunefi 漏洞赏金",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-11-syrup.json",
+          "date": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-18-syrup.json",
+          "date": "2026-11-25"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "沿用此前研究：联合创始人 Joe Flanagan 实名，Framework、Polychain 等投资。据搜索结果摘要（仅标题）：联合创始人兼 COO 因战略分歧离职（cointelegraph、fintechfutures、crowdfundinsider 等），管理层分裂（具体人员、时间未核实）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-11-syrup.json",
+          "date": "2026-11-25"
+        },
+        {
+          "url": "https://cointelegraph.com/news/maple-finance-strategy-rift-co-founder-coo-exit",
+          "date": "2026-11-25"
+        },
+        {
+          "url": "https://www.fintechfutures.com/blockchain-crypto-digital-assets/maple-finance-co-founder-and-coo-depart",
+          "date": "2026-11-25"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": true,
+      "claim": "沿用此前研究：种子/团队/公售 2024-09 全部释放，金库排放 2026-09 结束；剩余约 100.6M 未流通、释放时间未公布，按全部释放作上限 8.6%",
+      "unlock_12m_pct": 8.6,
+      "unlock_36m_pct": 8.6,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-04-syrup.json",
+          "date": "2026-11-25"
+        },
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-18-syrup.json",
+          "date": "2026-11-25"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.102775,
+    "circulating_supply": 1167271959,
+    "total_supply": 1267875000,
+    "supply_by_month": {
+      "12": 1267875000,
+      "24": 1267875000,
+      "36": 1267875000
+    },
+    "annual_revenue_usd": 14452424,
+    "revenue_growth": {
+      "conservative": 0.0,
+      "base": 0.34,
+      "optimistic": 0.51
+    },
+    "peer_multiples": {
+      "p25": 5.52,
+      "median": 11.28,
+      "p75": 19.99
+    },
+    "peers": [
+      {
+        "name": "同赛道 Lending 9 个（服务器 prelim 计算，流通市值/年化收入，取自今日候选文件 JUST 条目的同组倍数）",
+        "multiple": 11.28,
+        "source": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-25.json"
+      }
+    ],
+    "metric": "价格、流通量沿用 11-18 研究（今日候选文件无）；年收入沿用 11-17 候选 revenueAnnual $14.45M（DefiLlama revenue 口径）；增速取今日候选：保守 0（前一季度 -2.1%）、基准 +34.0%（比两个季度前）、乐观 = 基准×1.5；协议收入不是持币人利润"
+  },
+  "risks": [
+    "币价 90 天 -64.0%；联合创始人兼 COO 因战略分歧离职",
+    "实际回购规模远小于 DefiLlama 持币人收入模型值",
+    "信用风险：机构借款人违约（2022 年 Orthogonal $36M）",
+    "前一季度收入 -2.1%，收入连增不成立"
+  ],
+  "unverified": [
+    "今日价格、市值、流通量（候选文件未提供，沿用 11-18）",
+    "2026-07 后按月阶梯回购的实际执行量",
+    "离职高管身份、时间及对业务的影响",
+    "syrupUSDC/USDT 是否有 2026 年新违约或减值",
+    "2022 年违约的赔付比例"
+  ],
+  "catalysts": [],
+  "summary_reason": "收入最近季度 +36.8%、比两个季度前 +34%，但前一季度微降、回购执行量未核实、管理层分裂、币价 90 天 -64%，维持接近入选观察"
+}
