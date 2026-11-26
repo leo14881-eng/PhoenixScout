@@ -1,0 +1,2347 @@
+{
+  "scanDay" : "2026-11-26",
+  "status" : "ok",
+  "benchmarks" : {
+    "btcLong" : -0.4027884193196739,
+    "ethLong" : -0.4955819061858907,
+    "benchALong" : -0.684480236596424,
+    "btcRecent" : -0.06748477226522354,
+    "ethRecent" : -0.11840680303499318,
+    "benchARecent" : -0.12390830172682576,
+    "btc30" : -0.2456007135568301,
+    "eth30" : -0.27153964800562,
+    "benchB30" : -0.20651475619183662,
+    "btc90" : -0.24784639065112724,
+    "eth90" : -0.3268787743341126,
+    "benchB90" : -0.2365354867936268,
+    "btc180" : -0.1785932498947158,
+    "eth180" : -0.16001649342428947,
+    "btc365" : -0.30856368592423356,
+    "eth365" : -0.42860367328896876
+  },
+  "benchInfo" : {
+    "aTotal" : 100,
+    "aComputable" : 95,
+    "aNoCurrentData" : 5,
+    "bTotal" : 100,
+    "bComputable" : 94,
+    "baseDate" : "2025-10-31",
+    "midDate" : "2026-07-31",
+    "breadthTop100Long" : -0.6102497083846862
+  },
+  "pathA" : [ {
+    "coin" : {
+      "id" : "aria-ai",
+      "symbol" : "aria",
+      "name" : "Aria.AI",
+      "rank" : 339,
+      "price" : 0.334784,
+      "marketCap" : 6.1265559E7,
+      "fdv" : 3.34784478E8,
+      "circulating" : 1.83E8,
+      "totalSupply" : 1.0E9,
+      "maxSupply" : 1.0E9,
+      "volume24h" : 1.1500318E7
+    },
+    "result" : {
+      "coinId" : "aria-ai",
+      "rLong" : -0.8581386374200468,
+      "rRecent" : 12.291235678801657,
+      "r30" : 2.747147411565971,
+      "r90" : 8.479891348255356,
+      "r180" : 8.071076222466758,
+      "r365" : 4.202890899583844,
+      "a1LongOk" : true,
+      "a1RecentOk" : true,
+      "a1Pass" : true,
+      "a2Pass" : true,
+      "longWeak" : true,
+      "candidate" : true,
+      "drop65to90" : true,
+      "top3Concentration" : 0.43025832056435065,
+      "higherLow" : true,
+      "volumeRatio" : 11.54011633843033,
+      "excess30" : 2.9536621677578077,
+      "excess90" : 8.716426835048983,
+      "maxDayShare" : 0.13873567304554485,
+      "avgVolume30" : 2.305479515594441E7,
+      "ma90" : 0.08749411832000953,
+      "aboveMa90" : true,
+      "ma90FlatOrUp" : true,
+      "strength" : 11.67008900280679,
+      "notes" : [ ]
+    },
+    "inPriorityRange" : true,
+    "price" : 0.33656236240959725,
+    "basePrice" : 0.17849911267499918,
+    "baseLabel" : "2025-10-31 价",
+    "low30" : 0.07819521023482218
+  }, {
+    "coin" : {
+      "id" : "evaa-protocol",
+      "symbol" : "evaa",
+      "name" : "EVAA Protocol",
+      "rank" : 785,
+      "price" : 2.81,
+      "marketCap" : 1.8599402E7,
+      "fdv" : 1.40521916E8,
+      "circulating" : 6617972.0,
+      "totalSupply" : 5.0E7,
+      "maxSupply" : 5.0E7,
+      "volume24h" : 4.7371046E7
+    },
+    "result" : {
+      "coinId" : "evaa-protocol",
+      "rLong" : -0.9175355935864238,
+      "rRecent" : 2.3945548180987144,
+      "r30" : 4.53679304097604,
+      "r90" : 2.7543909294322457,
+      "r180" : 6.8902019867370115,
+      "r365" : 1.4631872514121889,
+      "a1LongOk" : true,
+      "a1RecentOk" : true,
+      "a1Pass" : true,
+      "a2Pass" : true,
+      "longWeak" : true,
+      "candidate" : true,
+      "drop65to90" : false,
+      "top3Concentration" : 1.3118590752086412,
+      "higherLow" : true,
+      "volumeRatio" : 19.541220953260225,
+      "excess30" : 4.743307797167876,
+      "excess90" : 2.9909264162258724,
+      "maxDayShare" : 0.26019447214956976,
+      "avgVolume30" : 2.3054215550418146E7,
+      "ma90" : 1.1496400061965135,
+      "aboveMa90" : true,
+      "ma90FlatOrUp" : true,
+      "strength" : 7.734234213393749,
+      "notes" : [ "长期跌幅超过 90%，归零风险高" ]
+    },
+    "inPriorityRange" : false,
+    "price" : 2.8245820733738,
+    "basePrice" : 10.090317568433404,
+    "baseLabel" : "2025-10-31 价",
+    "low30" : 1.0533870519062558
+  } ],
+  "pathB" : [ {
+    "coinId" : "just",
+    "protocol" : "JUST",
+    "q0" : 657006.0,
+    "q1" : 126266.0,
+    "q2" : 121878.0,
+    "revenueGrowth" : 4.20334848652844,
+    "price90" : 0.5230752813942163,
+    "pass" : true,
+    "priceLagging" : true,
+    "notes" : [ ]
+  }, {
+    "coinId" : "trust-wallet-token",
+    "protocol" : "Trust Wallet",
+    "q0" : 6724701.0,
+    "q1" : 1623398.42,
+    "q2" : 986323.0,
+    "revenueGrowth" : 3.142360197689487,
+    "price90" : -0.3436930145834646,
+    "pass" : true,
+    "priceLagging" : true,
+    "notes" : [ ]
+  }, {
+    "coinId" : "liquity",
+    "protocol" : "Liquity",
+    "q0" : 336171.58,
+    "q1" : 144426.7,
+    "q2" : 80119.52,
+    "revenueGrowth" : 1.3276276477964255,
+    "price90" : -0.41158168148203267,
+    "pass" : true,
+    "priceLagging" : true,
+    "notes" : [ ]
+  }, {
+    "coinId" : "compound-governance-token",
+    "protocol" : "Compound",
+    "q0" : 1067442.0,
+    "q1" : 478562.0,
+    "q2" : 146839.0,
+    "revenueGrowth" : 1.2305197654640359,
+    "price90" : -0.07515916451442817,
+    "pass" : true,
+    "priceLagging" : true,
+    "notes" : [ ]
+  }, {
+    "coinId" : "venice-token",
+    "protocol" : "Venice Token",
+    "q0" : 2961609.0,
+    "q1" : 1327947.0,
+    "q2" : 481412.55,
+    "revenueGrowth" : 1.2302162661612246,
+    "price90" : 0.6191384175550967,
+    "pass" : true,
+    "priceLagging" : true,
+    "notes" : [ ]
+  }, {
+    "coinId" : "lighter",
+    "protocol" : "Lighter",
+    "q0" : 1.5229936E7,
+    "q1" : 7845398.0,
+    "q2" : 7605005.0,
+    "revenueGrowth" : 0.941257282294665,
+    "price90" : -0.35384423919761254,
+    "pass" : true,
+    "priceLagging" : true,
+    "notes" : [ ]
+  }, {
+    "coinId" : "pyth-network",
+    "protocol" : "Pyth Network",
+    "q0" : 1611238.1199999999,
+    "q1" : 877097.81,
+    "q2" : 558665.22,
+    "revenueGrowth" : 0.8370107662222983,
+    "price90" : -0.01666487704947406,
+    "pass" : true,
+    "priceLagging" : true,
+    "notes" : [ ]
+  }, {
+    "coinId" : "threshold-network-token",
+    "protocol" : "Threshold Network",
+    "q0" : 239336.85,
+    "q1" : 148352.88,
+    "q2" : 119327.62,
+    "revenueGrowth" : 0.6132942616280856,
+    "price90" : 0.03877787425774004,
+    "pass" : true,
+    "priceLagging" : true,
+    "notes" : [ ]
+  }, {
+    "coinId" : "sun-token",
+    "protocol" : "Sun Token",
+    "q0" : 511409.09,
+    "q1" : 402247.3,
+    "q2" : 168824.0,
+    "revenueGrowth" : 0.2713797954641337,
+    "price90" : -0.13514296471435283,
+    "pass" : true,
+    "priceLagging" : true,
+    "notes" : [ ]
+  }, {
+    "coinId" : "nest-2",
+    "protocol" : "NEST",
+    "q0" : 2090193.9,
+    "q1" : 1894583.0,
+    "q2" : 501306.0,
+    "revenueGrowth" : 0.10324746923201555,
+    "price90" : -0.3376175954960937,
+    "pass" : true,
+    "priceLagging" : true,
+    "notes" : [ ]
+  }, {
+    "coinId" : "instadapp",
+    "protocol" : "Fluid",
+    "q0" : 2094986.61,
+    "q1" : 1787984.59,
+    "q2" : 1701493.64,
+    "revenueGrowth" : 0.17170283330014602,
+    "price90" : 0.05111411967096213,
+    "pass" : true,
+    "priceLagging" : false,
+    "notes" : [ ]
+  }, {
+    "coinId" : "sosovalue",
+    "protocol" : "SoSoValue",
+    "q0" : 6009053.01,
+    "q1" : 5234873.26,
+    "q2" : 4678359.0,
+    "revenueGrowth" : 0.14788891947309524,
+    "price90" : 0.008096074043651091,
+    "pass" : true,
+    "priceLagging" : false,
+    "notes" : [ ]
+  } ],
+  "newPool" : [ {
+    "coin" : {
+      "id" : "aero",
+      "symbol" : "aero",
+      "name" : "Aero",
+      "rank" : 121,
+      "price" : 0.40418,
+      "marketCap" : 3.12016499E8,
+      "fdv" : 8.6315814E8,
+      "circulating" : 7.719739624167049E8,
+      "totalSupply" : 2.135578125E9,
+      "maxSupply" : null,
+      "volume24h" : 1.5067566E7
+    },
+    "firstDay" : "2026-10-23"
+  }, {
+    "coin" : {
+      "id" : "3jane-usd3",
+      "symbol" : "usd3",
+      "name" : "3Jane USD3",
+      "rank" : 225,
+      "price" : 1.19,
+      "marketCap" : 1.10056024E8,
+      "fdv" : 1.10056024E8,
+      "circulating" : 9.2376971168618E7,
+      "totalSupply" : 9.2376971168618E7,
+      "maxSupply" : null,
+      "volume24h" : 215424.0
+    },
+    "firstDay" : "2026-08-30"
+  }, {
+    "coin" : {
+      "id" : "numa-x",
+      "symbol" : "crx",
+      "name" : "NUMA-X",
+      "rank" : 292,
+      "price" : 0.074619,
+      "marketCap" : 7.4618591E7,
+      "fdv" : 7.4618591E7,
+      "circulating" : 1.0E9,
+      "totalSupply" : 1.0E9,
+      "maxSupply" : 1.0E9,
+      "volume24h" : 164155.0
+    },
+    "firstDay" : "2026-10-20"
+  }, {
+    "coin" : {
+      "id" : "ritual",
+      "symbol" : "ritual",
+      "name" : "Ritual",
+      "rank" : 374,
+      "price" : 0.02867016,
+      "marketCap" : 5.1606297E7,
+      "fdv" : 2.86701648E8,
+      "circulating" : 1.8E9,
+      "totalSupply" : 1.0E10,
+      "maxSupply" : 1.0E10,
+      "volume24h" : 941970.0
+    },
+    "firstDay" : "2026-10-28"
+  }, {
+    "coin" : {
+      "id" : "infinity-gaming",
+      "symbol" : "$inf8",
+      "name" : "Infinity Gaming",
+      "rank" : 385,
+      "price" : 0.252724,
+      "marketCap" : 5.0544784E7,
+      "fdv" : 6.3180998E7,
+      "circulating" : 1.9999971944160566E8,
+      "totalSupply" : 2.4999971944160566E8,
+      "maxSupply" : 2.5E8,
+      "volume24h" : 140114.0
+    },
+    "firstDay" : "2026-09-26"
+  }, {
+    "coin" : {
+      "id" : "marscat-token",
+      "symbol" : "mcat",
+      "name" : "Marscat Token",
+      "rank" : 391,
+      "price" : 0.525344,
+      "marketCap" : 4.9413531E7,
+      "fdv" : 5.25344258E8,
+      "circulating" : 9.405933299999988E7,
+      "totalSupply" : 1.0E9,
+      "maxSupply" : 1.0E9,
+      "volume24h" : 892222.0
+    },
+    "firstDay" : "2026-09-16"
+  }, {
+    "coin" : {
+      "id" : "noxo",
+      "symbol" : "noxo",
+      "name" : "NOXO",
+      "rank" : 414,
+      "price" : 0.274747,
+      "marketCap" : 4.5791228E7,
+      "fdv" : 4.5791228E7,
+      "circulating" : 1.66666666E8,
+      "totalSupply" : 1.66666666E8,
+      "maxSupply" : 1.66666666E8,
+      "volume24h" : 23807.0
+    },
+    "firstDay" : "2026-08-31"
+  }, {
+    "coin" : {
+      "id" : "intel-tokenized-bstocks",
+      "symbol" : "intcb",
+      "name" : "Intel (bStocks Tokenized Stock)",
+      "rank" : 433,
+      "price" : 55.05,
+      "marketCap" : 4.3344243E7,
+      "fdv" : 4.3344243E7,
+      "circulating" : 787332.58141155,
+      "totalSupply" : 787332.58141155,
+      "maxSupply" : null,
+      "volume24h" : 8975996.0
+    },
+    "firstDay" : "2026-09-09"
+  }, {
+    "coin" : {
+      "id" : "aria-chain",
+      "symbol" : "ariax",
+      "name" : "ARIA NETWORK",
+      "rank" : 437,
+      "price" : 0.212968,
+      "marketCap" : 4.259353E7,
+      "fdv" : 4.259353E7,
+      "circulating" : 2.0E8,
+      "totalSupply" : 2.0E8,
+      "maxSupply" : 2.0E8,
+      "volume24h" : 641510.0
+    },
+    "firstDay" : "2026-09-09"
+  }, {
+    "coin" : {
+      "id" : "wintermute-usdc-select",
+      "symbol" : "armusdcs",
+      "name" : "Wintermute USDC Select",
+      "rank" : 444,
+      "price" : 1.029,
+      "marketCap" : 4.1676886E7,
+      "fdv" : 4.1676886E7,
+      "circulating" : 4.051822701557388E7,
+      "totalSupply" : 4.051822701557388E7,
+      "maxSupply" : null,
+      "volume24h" : 0.0
+    },
+    "firstDay" : "2026-10-31"
+  }, {
+    "coin" : {
+      "id" : "fastx-network-token",
+      "symbol" : "fxnw",
+      "name" : "FastX Network Token",
+      "rank" : 450,
+      "price" : 0.317943,
+      "marketCap" : 4.1332578E7,
+      "fdv" : 3.17942907E8,
+      "circulating" : 1.3E8,
+      "totalSupply" : 1.0E9,
+      "maxSupply" : 1.0E9,
+      "volume24h" : 201506.0
+    },
+    "firstDay" : "2026-09-23"
+  }, {
+    "coin" : {
+      "id" : "strategy-tokenized-bstocks",
+      "symbol" : "mstrb",
+      "name" : "Strategy (bStocks Tokenized Stock)",
+      "rank" : 563,
+      "price" : 82.52,
+      "marketCap" : 3.0146872E7,
+      "fdv" : 3.0146872E7,
+      "circulating" : 365333.003289,
+      "totalSupply" : 365333.003289,
+      "maxSupply" : null,
+      "volume24h" : 1.8539935E7
+    },
+    "firstDay" : "2026-09-09"
+  } ],
+  "added" : [ ],
+  "dropped" : [ ],
+  "quality" : {
+    "cgOk" : 357,
+    "cgFailed" : 1,
+    "cgRateLimited" : 17,
+    "llamaOk" : 21,
+    "llamaFailed" : 0,
+    "marketCoins" : 2500,
+    "universeTarget" : 2500,
+    "tracked" : 344,
+    "trackedWithLatest" : 335,
+    "supplyKnown" : 2500,
+    "pathBMapped" : 40,
+    "snapshotStatus" : "快照 snapshot_v1.json 校验通过",
+    "exclusionsFresh" : true,
+    "problems" : [ ]
+  },
+  "reportFile" : null,
+  "aGrades" : [ ],
+  "prelim" : {
+    "just" : {
+      "coinId" : "just",
+      "price" : 0.147839,
+      "peerGroup" : "Lending",
+      "peerCount" : 9,
+      "annualRevenue" : 2635243.846153846,
+      "marketCap" : 1.18537823E9,
+      "currentMultiple" : 449.8172841690026,
+      "peerMultiples" : {
+        "p25" : 5.32291251410132,
+        "median" : 12.19163273974694,
+        "p75" : 21.01324773286918
+      },
+      "growth" : {
+        "optimistic" : 1.0,
+        "conservative" : 0.0,
+        "base" : 0.5
+      },
+      "scenarios" : [ {
+        "name" : "conservative",
+        "label" : "保守",
+        "growth" : 0.0,
+        "multiple" : 5.32291251410132,
+        "multipleAt" : {
+          "6" : 0.8353055868544621,
+          "12" : 0.6706111737089243,
+          "24" : 0.3412223474178488,
+          "36" : 0.011833521126773182
+        },
+        "monthsTo" : {
+          "3" : null,
+          "5" : null,
+          "10" : null
+        }
+      }, {
+        "name" : "base",
+        "label" : "基准",
+        "growth" : 0.5,
+        "multiple" : 12.19163273974694,
+        "multipleAt" : {
+          "6" : 1.026153219666005,
+          "12" : 1.013551786095813,
+          "24" : 0.790655358287439,
+          "36" : 0.09147455614673743
+        },
+        "monthsTo" : {
+          "3" : null,
+          "5" : null,
+          "10" : null
+        }
+      }, {
+        "name" : "optimistic",
+        "label" : "乐观",
+        "growth" : 1.0,
+        "multiple" : 449.816454213136,
+        "multipleAt" : {
+          "6" : 1.414213562373095,
+          "12" : 2.0,
+          "24" : 4.0,
+          "36" : 8.0
+        },
+        "monthsTo" : {
+          "3" : 20,
+          "5" : 28,
+          "10" : null
+        }
+      } ]
+    },
+    "trust-wallet-token" : {
+      "coinId" : "trust-wallet-token",
+      "price" : 0.30906,
+      "peerGroup" : "全部协议",
+      "peerCount" : 77,
+      "annualRevenue" : 2.6972701813186813E7,
+      "marketCap" : 1.28769923E8,
+      "currentMultiple" : 4.774083215387976,
+      "peerMultiples" : {
+        "p25" : 3.1415947827329216,
+        "median" : 7.462448845642019,
+        "p75" : 19.84694469090646
+      },
+      "growth" : {
+        "optimistic" : 1.0,
+        "conservative" : 0.0,
+        "base" : 0.5
+      },
+      "scenarios" : [ {
+        "name" : "conservative",
+        "label" : "保守",
+        "growth" : 0.0,
+        "multiple" : 3.1415947827329216,
+        "multipleAt" : {
+          "6" : 0.9430087481507267,
+          "12" : 0.8860174963014538,
+          "24" : 0.7720349926029071,
+          "36" : 0.658052488904361
+        },
+        "monthsTo" : {
+          "3" : null,
+          "5" : null,
+          "10" : null
+        }
+      }, {
+        "name" : "base",
+        "label" : "基准",
+        "growth" : 0.5,
+        "multiple" : 7.462448845642019,
+        "multipleAt" : {
+          "6" : 1.3396908311833557,
+          "12" : 1.7815589494843012,
+          "24" : 3.094676848452903,
+          "36" : 5.275522909019031
+        },
+        "monthsTo" : {
+          "3" : 24,
+          "5" : 35,
+          "10" : null
+        }
+      }, {
+        "name" : "optimistic",
+        "label" : "乐观",
+        "growth" : 1.0,
+        "multiple" : 19.84694469090646,
+        "multipleAt" : {
+          "6" : 2.158379755370792,
+          "12" : 4.104819845593794,
+          "24" : 12.419279382375176,
+          "36" : 33.25783814712553
+        },
+        "monthsTo" : {
+          "3" : 9,
+          "5" : 14,
+          "10" : 22
+        }
+      } ]
+    },
+    "liquity" : {
+      "coinId" : "liquity",
+      "price" : 0.13331,
+      "peerGroup" : "全部协议",
+      "peerCount" : 77,
+      "annualRevenue" : 1348380.5131868133,
+      "marketCap" : 1.3186538E7,
+      "currentMultiple" : 9.779537653532563,
+      "peerMultiples" : {
+        "p25" : 3.1415947827329216,
+        "median" : 7.462448845642019,
+        "p75" : 19.84694469090646
+      },
+      "growth" : {
+        "optimistic" : 1.0,
+        "conservative" : 0.0,
+        "base" : 0.5
+      },
+      "scenarios" : [ {
+        "name" : "conservative",
+        "label" : "保守",
+        "growth" : 0.0,
+        "multiple" : 3.1415947827329216,
+        "multipleAt" : {
+          "6" : 0.8868735697197264,
+          "12" : 0.7737471394394526,
+          "24" : 0.5474942788789051,
+          "36" : 0.3212414183183577
+        },
+        "monthsTo" : {
+          "3" : null,
+          "5" : null,
+          "10" : null
+        }
+      }, {
+        "name" : "base",
+        "label" : "基准",
+        "growth" : 0.5,
+        "multiple" : 7.462448845642019,
+        "multipleAt" : {
+          "6" : 1.176381147720341,
+          "12" : 1.3815335549444783,
+          "24" : 1.894600664833434,
+          "36" : 2.5753514958752266
+        },
+        "monthsTo" : {
+          "3" : null,
+          "5" : null,
+          "10" : null
+        }
+      }, {
+        "name" : "optimistic",
+        "label" : "乐观",
+        "growth" : 1.0,
+        "multiple" : 19.84694469090646,
+        "multipleAt" : {
+          "6" : 1.6568535877997057,
+          "12" : 2.68628962946573,
+          "24" : 6.74515851786292,
+          "36" : 16.235475553588756
+        },
+        "monthsTo" : {
+          "3" : 14,
+          "5" : 21,
+          "10" : 30
+        }
+      } ]
+    },
+    "compound-governance-token" : {
+      "coinId" : "compound-governance-token",
+      "price" : 17.96,
+      "peerGroup" : "Lending",
+      "peerCount" : 9,
+      "annualRevenue" : 4281498.131868131,
+      "marketCap" : 1.79608994E8,
+      "currentMultiple" : 41.95003441975854,
+      "peerMultiples" : {
+        "p25" : 5.32291251410132,
+        "median" : 12.19163273974694,
+        "p75" : 21.01324773286918
+      },
+      "growth" : {
+        "optimistic" : 1.0,
+        "conservative" : 0.0,
+        "base" : 0.5
+      },
+      "scenarios" : [ {
+        "name" : "conservative",
+        "label" : "保守",
+        "growth" : 0.0,
+        "multiple" : 5.32291251410132,
+        "multipleAt" : {
+          "6" : 0.8544822197338736,
+          "12" : 0.7089644394677472,
+          "24" : 0.41792887893549474,
+          "36" : 0.1268933184032422
+        },
+        "monthsTo" : {
+          "3" : null,
+          "5" : null,
+          "10" : null
+        }
+      }, {
+        "name" : "base",
+        "label" : "基准",
+        "growth" : 0.5,
+        "multiple" : 12.19163273974694,
+        "multipleAt" : {
+          "6" : 1.0799468094567493,
+          "12" : 1.1453186325157263,
+          "24" : 1.1859558975471787,
+          "36" : 0.9809007694811525
+        },
+        "monthsTo" : {
+          "3" : null,
+          "5" : null,
+          "10" : null
+        }
+      }, {
+        "name" : "optimistic",
+        "label" : "乐观",
+        "growth" : 1.0,
+        "multiple" : 41.9479337531874,
+        "multipleAt" : {
+          "6" : 1.414213562373095,
+          "12" : 2.0,
+          "24" : 4.0,
+          "36" : 8.0
+        },
+        "monthsTo" : {
+          "3" : 20,
+          "5" : 28,
+          "10" : null
+        }
+      } ]
+    },
+    "venice-token" : {
+      "coinId" : "venice-token",
+      "price" : 29.7,
+      "peerGroup" : "全部协议",
+      "peerCount" : 77,
+      "annualRevenue" : 1.1878981153846154E7,
+      "marketCap" : 1.463608277E9,
+      "currentMultiple" : 123.20991657825097,
+      "peerMultiples" : {
+        "p25" : 3.1415947827329216,
+        "median" : 7.462448845642019,
+        "p75" : 19.84694469090646
+      },
+      "growth" : {
+        "optimistic" : 1.0,
+        "conservative" : 0.0,
+        "base" : 0.5
+      },
+      "scenarios" : [ {
+        "name" : "conservative",
+        "label" : "保守",
+        "growth" : 0.0,
+        "multiple" : 3.1415947827329216,
+        "multipleAt" : {
+          "6" : 0.8375833556726181,
+          "12" : 0.6751667113452362,
+          "24" : 0.35033342269047263,
+          "36" : 0.025500134035709048
+        },
+        "monthsTo" : {
+          "3" : null,
+          "5" : null,
+          "10" : null
+        }
+      }, {
+        "name" : "base",
+        "label" : "基准",
+        "growth" : 0.5,
+        "multiple" : 7.462448845642019,
+        "multipleAt" : {
+          "6" : 1.0329849836954639,
+          "12" : 1.030286122011088,
+          "24" : 0.8408583660332634,
+          "36" : 0.20443132357484273
+        },
+        "monthsTo" : {
+          "3" : null,
+          "5" : null,
+          "10" : null
+        }
+      }, {
+        "name" : "optimistic",
+        "label" : "乐观",
+        "growth" : 1.0,
+        "multiple" : 123.19914782932564,
+        "multipleAt" : {
+          "6" : 1.414213562373095,
+          "12" : 2.0,
+          "24" : 4.0,
+          "36" : 8.0
+        },
+        "monthsTo" : {
+          "3" : 20,
+          "5" : 28,
+          "10" : null
+        }
+      } ]
+    },
+    "lighter" : {
+      "coinId" : "lighter",
+      "price" : 2.41,
+      "peerGroup" : "全部协议",
+      "peerCount" : 77,
+      "annualRevenue" : 6.108710593406593E7,
+      "marketCap" : 6.03522043E8,
+      "currentMultiple" : 9.879696112161682,
+      "peerMultiples" : {
+        "p25" : 3.1415947827329216,
+        "median" : 7.462448845642019,
+        "p75" : 19.84694469090646
+      },
+      "growth" : {
+        "optimistic" : 1.0,
+        "conservative" : 0.0,
+        "base" : 0.5
+      },
+      "scenarios" : [ {
+        "name" : "conservative",
+        "label" : "保守",
+        "growth" : 0.0,
+        "multiple" : 3.1415947827329216,
+        "multipleAt" : {
+          "6" : 0.8864207284356056,
+          "12" : 0.7728414568712114,
+          "24" : 0.545682913742423,
+          "36" : 0.31852437061363453
+        },
+        "monthsTo" : {
+          "3" : null,
+          "5" : null,
+          "10" : null
+        }
+      }, {
+        "name" : "base",
+        "label" : "基准",
+        "growth" : 0.5,
+        "multiple" : 7.462448845642019,
+        "multipleAt" : {
+          "6" : 1.1750637319957322,
+          "12" : 1.3783065586400678,
+          "24" : 1.8849196759202043,
+          "36" : 2.553569270820459
+        },
+        "monthsTo" : {
+          "3" : null,
+          "5" : null,
+          "10" : null
+        }
+      }, {
+        "name" : "optimistic",
+        "label" : "乐观",
+        "growth" : 1.0,
+        "multiple" : 19.84694469090646,
+        "multipleAt" : {
+          "6" : 1.6528077869295419,
+          "12" : 2.674846376543237,
+          "24" : 6.699385506172947,
+          "36" : 16.09815651851884
+        },
+        "monthsTo" : {
+          "3" : 14,
+          "5" : 21,
+          "10" : 30
+        }
+      } ]
+    },
+    "pyth-network" : {
+      "coinId" : "pyth-network",
+      "price" : 0.04840245,
+      "peerGroup" : "全部协议",
+      "peerCount" : 77,
+      "annualRevenue" : 6462658.393406593,
+      "marketCap" : 3.81167292E8,
+      "currentMultiple" : 58.979953572801996,
+      "peerMultiples" : {
+        "p25" : 3.1415947827329216,
+        "median" : 7.462448845642019,
+        "p75" : 19.84694469090646
+      },
+      "growth" : {
+        "optimistic" : 1.0,
+        "conservative" : 0.0,
+        "base" : 0.5
+      },
+      "scenarios" : [ {
+        "name" : "conservative",
+        "label" : "保守",
+        "growth" : 0.0,
+        "multiple" : 3.1415947827329216,
+        "multipleAt" : {
+          "6" : 0.8422109113153862,
+          "12" : 0.6844218226307721,
+          "24" : 0.36884364526154434,
+          "36" : 0.053265467892316724
+        },
+        "monthsTo" : {
+          "3" : null,
+          "5" : null,
+          "10" : null
+        }
+      }, {
+        "name" : "base",
+        "label" : "基准",
+        "growth" : 0.5,
+        "multiple" : 7.462448845642019,
+        "multipleAt" : {
+          "6" : 1.04644756933874,
+          "12" : 1.0632625874556327,
+          "24" : 0.9397877623668975,
+          "36" : 0.4270224653255198
+        },
+        "monthsTo" : {
+          "3" : null,
+          "5" : null,
+          "10" : null
+        }
+      }, {
+        "name" : "optimistic",
+        "label" : "乐观",
+        "growth" : 1.0,
+        "multiple" : 58.97995281077936,
+        "multipleAt" : {
+          "6" : 1.4142135623730954,
+          "12" : 2.0,
+          "24" : 4.0,
+          "36" : 8.0
+        },
+        "monthsTo" : {
+          "3" : 20,
+          "5" : 28,
+          "10" : null
+        }
+      } ]
+    },
+    "threshold-network-token" : {
+      "coinId" : "threshold-network-token",
+      "price" : 0.0039018,
+      "peerGroup" : "全部协议",
+      "peerCount" : 77,
+      "annualRevenue" : 959977.4752747252,
+      "marketCap" : 4.3524606E7,
+      "currentMultiple" : 45.33919505511749,
+      "peerMultiples" : {
+        "p25" : 3.1415947827329216,
+        "median" : 7.462448845642019,
+        "p75" : 19.84694469090646
+      },
+      "growth" : {
+        "optimistic" : 1.0,
+        "conservative" : 0.0,
+        "base" : 0.5
+      },
+      "scenarios" : [ {
+        "name" : "conservative",
+        "label" : "保守",
+        "growth" : 0.0,
+        "multiple" : 3.1415947827329216,
+        "multipleAt" : {
+          "6" : 0.8448818280657168,
+          "12" : 0.6897636561314333,
+          "24" : 0.3795273122628664,
+          "36" : 0.06929096839429971
+        },
+        "monthsTo" : {
+          "3" : null,
+          "5" : null,
+          "10" : null
+        }
+      }, {
+        "name" : "base",
+        "label" : "基准",
+        "growth" : 0.5,
+        "multiple" : 7.462448845642019,
+        "multipleAt" : {
+          "6" : 1.0542178585093478,
+          "12" : 1.0822958310774953,
+          "24" : 0.9968874932324863,
+          "36" : 0.555496859773094
+        },
+        "monthsTo" : {
+          "3" : null,
+          "5" : null,
+          "10" : null
+        }
+      }, {
+        "name" : "optimistic",
+        "label" : "乐观",
+        "growth" : 1.0,
+        "multiple" : 45.339166929457576,
+        "multipleAt" : {
+          "6" : 1.414213562373095,
+          "12" : 2.0,
+          "24" : 4.0,
+          "36" : 8.0
+        },
+        "monthsTo" : {
+          "3" : 20,
+          "5" : 28,
+          "10" : null
+        }
+      } ]
+    },
+    "sun-token" : {
+      "coinId" : "sun-token",
+      "price" : 0.01453892,
+      "peerGroup" : "全部协议",
+      "peerCount" : 77,
+      "annualRevenue" : 2051256.2401098905,
+      "marketCap" : 2.7936458E8,
+      "currentMultiple" : 136.1919464459661,
+      "peerMultiples" : {
+        "p25" : 3.1415947827329216,
+        "median" : 7.462448845642019,
+        "p75" : 19.84694469090646
+      },
+      "growth" : {
+        "optimistic" : 1.0,
+        "conservative" : 0.0,
+        "base" : 0.5
+      },
+      "scenarios" : [ {
+        "name" : "conservative",
+        "label" : "保守",
+        "growth" : 0.0,
+        "multiple" : 3.1415947827329216,
+        "multipleAt" : {
+          "6" : 0.8371779004644511,
+          "12" : 0.674355800928902,
+          "24" : 0.34871160185780403,
+          "36" : 0.02306740278670584
+        },
+        "monthsTo" : {
+          "3" : null,
+          "5" : null,
+          "10" : null
+        }
+      }, {
+        "name" : "base",
+        "label" : "基准",
+        "growth" : 0.5,
+        "multiple" : 7.462448845642019,
+        "multipleAt" : {
+          "6" : 1.0318054245748747,
+          "12" : 1.0273968040441976,
+          "24" : 0.8321904121325923,
+          "36" : 0.1849284272983323
+        },
+        "monthsTo" : {
+          "3" : null,
+          "5" : null,
+          "10" : null
+        }
+      }, {
+        "name" : "optimistic",
+        "label" : "乐观",
+        "growth" : 1.0,
+        "multiple" : 136.19195935415266,
+        "multipleAt" : {
+          "6" : 1.4142135623730956,
+          "12" : 2.0000000000000004,
+          "24" : 4.000000000000001,
+          "36" : 8.000000000000002
+        },
+        "monthsTo" : {
+          "3" : 20,
+          "5" : 28,
+          "10" : null
+        }
+      } ]
+    },
+    "nest-2" : {
+      "coinId" : "nest-2",
+      "price" : 0.0088166,
+      "peerGroup" : "全部协议",
+      "peerCount" : 77,
+      "annualRevenue" : 8383744.763736264,
+      "marketCap" : 2664182.0,
+      "currentMultiple" : 0.3177794738604008,
+      "peerMultiples" : {
+        "p25" : 3.1415947827329216,
+        "median" : 7.462448845642019,
+        "p75" : 19.84694469090646
+      },
+      "growth" : {
+        "optimistic" : 1.0,
+        "conservative" : 0.0,
+        "base" : 0.5
+      },
+      "scenarios" : [ {
+        "name" : "conservative",
+        "label" : "保守",
+        "growth" : 0.0,
+        "multiple" : 0.31777963143781474,
+        "multipleAt" : {
+          "6" : 1.0,
+          "12" : 1.0,
+          "24" : 1.0,
+          "36" : 1.0
+        },
+        "monthsTo" : {
+          "3" : null,
+          "5" : null,
+          "10" : null
+        }
+      }, {
+        "name" : "base",
+        "label" : "基准",
+        "growth" : 0.5,
+        "multiple" : 7.462448845642019,
+        "multipleAt" : {
+          "6" : 5.814087145204749,
+          "12" : 12.741546825826568,
+          "24" : 35.9746404774797,
+          "36" : 79.25544107432931
+        },
+        "monthsTo" : {
+          "3" : 3,
+          "5" : 6,
+          "10" : 10
+        }
+      }, {
+        "name" : "optimistic",
+        "label" : "乐观",
+        "growth" : 1.0,
+        "multiple" : 19.84694469090646,
+        "multipleAt" : {
+          "6" : 15.899309184540588,
+          "12" : 42.97003736228082,
+          "24" : 167.88014944912328,
+          "36" : 499.64044834736984
+        },
+        "monthsTo" : {
+          "3" : 2,
+          "5" : 3,
+          "10" : 5
+        }
+      } ]
+    },
+    "instadapp" : {
+      "coinId" : "instadapp",
+      "price" : 1.48,
+      "peerGroup" : "Lending",
+      "peerCount" : 9,
+      "annualRevenue" : 8402968.270879121,
+      "marketCap" : 1.23546776E8,
+      "currentMultiple" : 14.702754076575193,
+      "peerMultiples" : {
+        "p25" : 5.32291251410132,
+        "median" : 12.19163273974694,
+        "p75" : 21.01324773286918
+      },
+      "growth" : {
+        "optimistic" : 0.5160092211343572,
+        "conservative" : 0.0,
+        "base" : 0.2580046105671786
+      },
+      "scenarios" : [ {
+        "name" : "conservative",
+        "label" : "保守",
+        "growth" : 0.0,
+        "multiple" : 5.32291251410132,
+        "multipleAt" : {
+          "6" : 0.8935143071633879,
+          "12" : 0.7870286143267755,
+          "24" : 0.5740572286535511,
+          "36" : 0.36108584298032664
+        },
+        "monthsTo" : {
+          "3" : null,
+          "5" : null,
+          "10" : null
+        }
+      }, {
+        "name" : "base",
+        "label" : "基准",
+        "growth" : 0.2580046105671786,
+        "multiple" : 12.19163273974694,
+        "multipleAt" : {
+          "6" : 1.08927457592208,
+          "12" : 1.1854736484135013,
+          "24" : 1.4000870306118793,
+          "36" : 1.6465302087410147
+        },
+        "monthsTo" : {
+          "3" : null,
+          "5" : null,
+          "10" : null
+        }
+      }, {
+        "name" : "optimistic",
+        "label" : "乐观",
+        "growth" : 0.5160092211343572,
+        "multiple" : 21.01324773286918,
+        "multipleAt" : {
+          "6" : 1.3185716544525792,
+          "12" : 1.7310084525887142,
+          "24" : 2.95016559340761,
+          "36" : 4.966607528234473
+        },
+        "monthsTo" : {
+          "3" : 25,
+          "5" : null,
+          "10" : null
+        }
+      } ]
+    },
+    "sosovalue" : {
+      "coinId" : "sosovalue",
+      "price" : 0.31595,
+      "peerGroup" : "全部协议",
+      "peerCount" : 77,
+      "annualRevenue" : 2.410224558956044E7,
+      "marketCap" : 1.13163271E8,
+      "currentMultiple" : 4.695133927645942,
+      "peerMultiples" : {
+        "p25" : 3.1415947827329216,
+        "median" : 7.462448845642019,
+        "p75" : 19.84694469090646
+      },
+      "growth" : {
+        "optimistic" : 0.6497759970463515,
+        "conservative" : 0.0,
+        "base" : 0.32488799852317574
+      },
+      "scenarios" : [ {
+        "name" : "conservative",
+        "label" : "保守",
+        "growth" : 0.0,
+        "multiple" : 3.1415947827329216,
+        "multipleAt" : {
+          "6" : 0.9448528871062232,
+          "12" : 0.8897057742124465,
+          "24" : 0.7794115484248928,
+          "36" : 0.6691173226373394
+        },
+        "monthsTo" : {
+          "3" : null,
+          "5" : null,
+          "10" : null
+        }
+      }, {
+        "name" : "base",
+        "label" : "基准",
+        "growth" : 0.32488799852317574,
+        "multiple" : 7.462448845642019,
+        "multipleAt" : {
+          "6" : 1.2641082569529336,
+          "12" : 1.585184755243164,
+          "24" : 2.445056306696385,
+          "36" : 3.6963319961411307
+        },
+        "monthsTo" : {
+          "3" : 30,
+          "5" : null,
+          "10" : null
+        }
+      }, {
+        "name" : "optimistic",
+        "label" : "乐观",
+        "growth" : 0.6497759970463515,
+        "multiple" : 19.84694469090646,
+        "multipleAt" : {
+          "6" : 1.9752767565661964,
+          "12" : 3.4244573995900067,
+          "24" : 8.577414401072437,
+          "36" : 18.981070741292232
+        },
+        "monthsTo" : {
+          "3" : 11,
+          "5" : 17,
+          "10" : 27
+        }
+      } ]
+    }
+  },
+  "picks" : [ ],
+  "simEvents" : [ ],
+  "simSummary" : {
+    "book" : "portfolio",
+    "open" : 0,
+    "invested" : 0.0,
+    "openValue" : 0.0,
+    "unrealized" : 0.0,
+    "closed" : 0,
+    "realized" : 0.0,
+    "wins" : 0,
+    "losses" : 0,
+    "equity" : 5000.0,
+    "cash" : 5000.0
+  },
+  "aList" : [ ],
+  "bList" : [ ],
+  "eliminated" : [ {
+    "coinId" : "ore",
+    "name" : "ORE（ORE）",
+    "grade" : "B",
+    "reason" : "不再满足筛选条件（今日未进入预筛或收入不再连增）"
+  } ],
+  "excludedByQuality" : 1,
+  "pathATotalBeforeCap" : 2,
+  "backtest" : {
+    "from" : "2026-02-16",
+    "to" : "2026-11-22",
+    "signalDays" : 277,
+    "episodes" : 173,
+    "coinsCovered" : 2518,
+    "collapsedPct" : 34.104046242774565,
+    "validated" : false,
+    "verdict" : "入选后 90 天没有跑赢 BTC 或山寨中位数，策略尚未验证有效",
+    "horizons" : [ {
+      "days" : 30,
+      "n" : 152,
+      "avgReturn" : -0.09706702782752931,
+      "winRate" : 0.27631578947368424,
+      "excessBtc" : -0.06526422292812986,
+      "excessEth" : -0.04120716663539493,
+      "excessAlt" : 0.007420631954256063,
+      "avgMaxDrawdown" : -0.4200164387981238
+    }, {
+      "days" : 90,
+      "n" : 89,
+      "avgReturn" : -0.24077213269144895,
+      "winRate" : 0.16853932584269662,
+      "excessBtc" : -0.20862483946434668,
+      "excessEth" : -0.2211353978342033,
+      "excessAlt" : -0.03508540417323334,
+      "avgMaxDrawdown" : -0.610909256990746
+    }, {
+      "days" : 180,
+      "n" : 46,
+      "avgReturn" : -0.14876048861959615,
+      "winRate" : 0.2826086956521739,
+      "excessBtc" : -0.2228494612898375,
+      "excessEth" : -0.25108756884645544,
+      "excessAlt" : 0.10413595942410009,
+      "avgMaxDrawdown" : -0.7036101780969386
+    } ],
+    "runDay" : "2026-11-22"
+  },
+  "pathAWatch" : [ {
+    "coinId" : "evaa-protocol",
+    "name" : "EVAA Protocol（EVAA）",
+    "path" : "A",
+    "grade" : "B",
+    "price" : 2.8245820733738,
+    "marketCap" : 1.8599402E7,
+    "fdv" : 1.40521916E8,
+    "r30" : 4.53679304097604,
+    "r90" : 2.7543909294322457,
+    "excess30" : 4.743307797167876,
+    "excess90" : 2.9909264162258724,
+    "strength" : 7.734234213393749,
+    "quality" : {
+      "score" : 2,
+      "items" : {
+        "团队背景" : false,
+        "使用/收入数据" : false,
+        "价值捕获" : false,
+        "主流交易所现货" : true,
+        "第三方审计" : true
+      },
+      "missing" : [ "团队背景", "使用/收入数据", "价值捕获" ],
+      "researched" : true,
+      "selfReported" : false,
+      "excluded" : false,
+      "cap" : "B",
+      "exchanges" : [ "Kraken" ],
+      "auditUnknown" : false
+    },
+    "unlock" : {
+      "circRatio" : 0.13235944,
+      "unlock12mPct" : null,
+      "unlock36mPct" : null,
+      "nextUnlockDate" : null,
+      "nextUnlockAmount" : null,
+      "supply12m" : null,
+      "flags" : [ "高稀释风险（流通率 <30%）", "解锁数据缺失" ],
+      "blocksA" : true
+    },
+    "target" : {
+      "targetPrice" : null,
+      "targetMcap" : null,
+      "upside" : null,
+      "method" : null,
+      "supplyBasis" : null,
+      "reason" : "无可核实收入，无法估值"
+    },
+    "ev" : {
+      "n" : null,
+      "pTarget" : null,
+      "pStop" : null,
+      "ev" : null,
+      "note" : "无法估值，没有目标涨幅"
+    },
+    "stop" : 0.43954968218445106,
+    "downside" : 0.8443841705546781,
+    "refPrice" : 10.090317568433404,
+    "risks" : [ "高稀释风险（流通率 <30%）", "解锁数据缺失", "无可核实收入，无法估值", "长期跌幅超过 90%，归零风险高" ],
+    "reason" : "超跌转强：长期 -91.8%；30天 +453.7%、90天 +275.4%，比最强基准高 +474/+299 个百分点；量能 19.5 倍，站上 90 日均线",
+    "excluded" : false,
+    "avgVolume30" : 2.3054215550418146E7,
+    "revenueGrowth" : null,
+    "price90" : null,
+    "revenueAnnual" : null,
+    "holdersRevenueAnnual" : null,
+    "gate" : "路径 A 已降级为观察，不进入推荐",
+    "revenueBasis" : null
+  } ],
+  "pathBNotListed" : [ {
+    "coinId" : "just",
+    "name" : "JUST（JST）",
+    "path" : "B",
+    "grade" : "B",
+    "price" : 0.1479135791671902,
+    "marketCap" : 1.18537823E9,
+    "fdv" : 1.18537823E9,
+    "r30" : 0.06560469019488369,
+    "r90" : 0.5230752813942163,
+    "excess30" : 0.2721194463867203,
+    "excess90" : 0.7596107681878431,
+    "strength" : 1.0317302145745635,
+    "quality" : {
+      "score" : 4,
+      "items" : {
+        "团队背景" : false,
+        "使用/收入数据" : true,
+        "价值捕获" : true,
+        "主流交易所现货" : true,
+        "第三方审计" : true
+      },
+      "missing" : [ "团队背景" ],
+      "researched" : true,
+      "selfReported" : false,
+      "excluded" : false,
+      "cap" : "A",
+      "exchanges" : [ "Binance", "Kraken" ],
+      "auditUnknown" : false
+    },
+    "unlock" : {
+      "circRatio" : 1.0,
+      "unlock12mPct" : 0.0,
+      "unlock36mPct" : 0.0,
+      "nextUnlockDate" : null,
+      "nextUnlockAmount" : null,
+      "supply12m" : 8.018019892341737E9,
+      "flags" : [ ],
+      "blocksA" : false
+    },
+    "target" : {
+      "targetPrice" : 0.001610185600180988,
+      "targetMcap" : 1.2910500172613379E7,
+      "upside" : -0.9891140109701425,
+      "method" : "年化协议收入 $1.1M × 中位数 12.2 倍（同赛道 Lending，9 个）",
+      "supplyBasis" : "研究核实的未来 12 个月流通量",
+      "reason" : null
+    },
+    "ev" : {
+      "n" : null,
+      "pTarget" : null,
+      "pStop" : null,
+      "ev" : null,
+      "note" : "样本不足（路径 B 没有可回测的历史收入数据）"
+    },
+    "stop" : 0.0946830738697126,
+    "downside" : 0.35987571659874384,
+    "refPrice" : null,
+    "risks" : [ "现价已高于估值目标", "近期收入异常偏高，可能不可持续（近30天×12 超过近12个月实际的 2 倍）" ],
+    "reason" : "收入连增：JUST 最近季度收入 +420.3%，币价 90 天 +52.3%（收入增速比币价涨幅高 +368 个百分点）",
+    "excluded" : false,
+    "avgVolume30" : 2.5817477593118906E7,
+    "revenueGrowth" : 4.20334848652844,
+    "price90" : 0.5230752813942163,
+    "revenueAnnual" : 1058964.0,
+    "holdersRevenueAnnual" : 0.0,
+    "gate" : "现价已高于估值目标",
+    "revenueBasis" : {
+      "r30x12" : 6711852.0,
+      "r90x4" : 2621704.0,
+      "actual12m" : 1058964.0,
+      "used" : 1058964.0,
+      "spike" : true
+    }
+  }, {
+    "coinId" : "trust-wallet-token",
+    "name" : "Trust Wallet（TWT）",
+    "path" : "B",
+    "grade" : "B",
+    "price" : 0.30628709309997226,
+    "marketCap" : 1.28769923E8,
+    "fdv" : 3.09060252E8,
+    "r30" : -0.28798507777127,
+    "r90" : -0.3436930145834646,
+    "excess30" : -0.0814703215794334,
+    "excess90" : -0.10715752778983778,
+    "strength" : -0.18862784936927118,
+    "quality" : {
+      "score" : 4,
+      "items" : {
+        "团队背景" : true,
+        "使用/收入数据" : true,
+        "价值捕获" : true,
+        "主流交易所现货" : true,
+        "第三方审计" : false
+      },
+      "missing" : [ "第三方审计" ],
+      "researched" : true,
+      "selfReported" : false,
+      "excluded" : false,
+      "cap" : "A",
+      "exchanges" : [ "Binance", "Bybit" ],
+      "auditUnknown" : true
+    },
+    "unlock" : {
+      "circRatio" : 0.4166499,
+      "unlock12mPct" : null,
+      "unlock36mPct" : null,
+      "nextUnlockDate" : null,
+      "nextUnlockAmount" : null,
+      "supply12m" : null,
+      "flags" : [ "解锁数据缺失" ],
+      "blocksA" : true
+    },
+    "target" : {
+      "targetPrice" : 0.08186213416481575,
+      "targetMcap" : 8.186213416481575E7,
+      "upside" : -0.7327274442540878,
+      "method" : "年化协议收入 $11.0M × 中位数 7.5 倍（全部协议（同赛道 Interface 只有 3 个，不足 5 个），77 个）",
+      "supplyBasis" : "总量（未找到解锁计划，假设全部解锁，保守）",
+      "reason" : null
+    },
+    "ev" : {
+      "n" : null,
+      "pTarget" : null,
+      "pStop" : null,
+      "ev" : null,
+      "note" : "样本不足（路径 B 没有可回测的历史收入数据）"
+    },
+    "stop" : 0.19908661051498197,
+    "downside" : 0.35,
+    "refPrice" : null,
+    "risks" : [ "解锁数据缺失", "现价已高于估值目标", "近期收入异常偏高，可能不可持续（近30天×12 超过近12个月实际的 2 倍）" ],
+    "reason" : "收入连增：Trust Wallet 最近季度收入 +314.2%，币价 90 天 -34.4%（收入增速比币价涨幅高 +349 个百分点）",
+    "excluded" : false,
+    "avgVolume30" : 1.44563569227725E7,
+    "revenueGrowth" : 3.142360197689487,
+    "price90" : -0.3436930145834646,
+    "revenueAnnual" : 1.096987542E7,
+    "holdersRevenueAnnual" : 132190.83333333334,
+    "gate" : "现价已高于估值目标",
+    "revenueBasis" : {
+      "r30x12" : 3.5896104E7,
+      "r90x4" : 2.647998E7,
+      "actual12m" : 1.096987542E7,
+      "used" : 1.096987542E7,
+      "spike" : true
+    }
+  }, {
+    "coinId" : "liquity",
+    "name" : "Liquity（LQTY）",
+    "path" : "B",
+    "grade" : "B",
+    "price" : 0.1328569474905233,
+    "marketCap" : 1.3186538E7,
+    "fdv" : 1.3330991E7,
+    "r30" : -0.31884822148056025,
+    "r90" : -0.41158168148203267,
+    "excess30" : -0.11233346528872362,
+    "excess90" : -0.17504619468840588,
+    "strength" : -0.2873796599771295,
+    "quality" : {
+      "score" : 5,
+      "items" : {
+        "团队背景" : true,
+        "使用/收入数据" : true,
+        "价值捕获" : true,
+        "主流交易所现货" : true,
+        "第三方审计" : true
+      },
+      "missing" : [ ],
+      "researched" : true,
+      "selfReported" : false,
+      "excluded" : false,
+      "cap" : "A",
+      "exchanges" : [ "Binance", "Coinbase", "OKX", "Kraken" ],
+      "auditUnknown" : false
+    },
+    "unlock" : {
+      "circRatio" : 0.9891641577629554,
+      "unlock12mPct" : 1.16,
+      "unlock36mPct" : 1.16,
+      "nextUnlockDate" : null,
+      "nextUnlockAmount" : null,
+      "supply12m" : 1.0006384619930057E8,
+      "flags" : [ ],
+      "blocksA" : false
+    },
+    "target" : {
+      "targetPrice" : 0.05473307153466059,
+      "targetMcap" : 5476801.652059593,
+      "upside" : -0.5880300385603492,
+      "method" : "年化协议收入 $733915 × 中位数 7.5 倍（全部协议（同赛道 CDP 只有 2 个，不足 5 个），77 个）",
+      "supplyBasis" : "研究核实的未来 12 个月流通量",
+      "reason" : null
+    },
+    "ev" : {
+      "n" : null,
+      "pTarget" : null,
+      "pStop" : null,
+      "ev" : null,
+      "note" : "样本不足（路径 B 没有可回测的历史收入数据）"
+    },
+    "stop" : 0.08635701586884015,
+    "downside" : 0.35,
+    "refPrice" : null,
+    "risks" : [ "现价已高于估值目标", "近期收入异常偏高，可能不可持续（近30天×12 超过近12个月实际的 2 倍）" ],
+    "reason" : "收入连增：Liquity 最近季度收入 +132.8%，币价 90 天 -41.2%（收入增速比币价涨幅高 +174 个百分点）",
+    "excluded" : false,
+    "avgVolume30" : 1696097.7385091225,
+    "revenueGrowth" : 1.3276276477964255,
+    "price90" : -0.41158168148203267,
+    "revenueAnnual" : 733914.8,
+    "holdersRevenueAnnual" : 1902360.655,
+    "gate" : "现价已高于估值目标",
+    "revenueBasis" : {
+      "r30x12" : 3324688.9200000004,
+      "r90x4" : 1333590.32,
+      "actual12m" : 733914.8,
+      "used" : 733914.8,
+      "spike" : true
+    }
+  }, {
+    "coinId" : "compound-governance-token",
+    "name" : "Compound（COMP）",
+    "path" : "B",
+    "grade" : "B",
+    "price" : 17.951231315901506,
+    "marketCap" : 1.79608994E8,
+    "fdv" : 1.79608994E8,
+    "r30" : -0.19411139619966633,
+    "r90" : -0.07515916451442817,
+    "excess30" : 0.012403359992170293,
+    "excess90" : 0.16137632227919863,
+    "strength" : 0.17377968227136892,
+    "quality" : {
+      "score" : 3,
+      "items" : {
+        "团队背景" : false,
+        "使用/收入数据" : true,
+        "价值捕获" : false,
+        "主流交易所现货" : true,
+        "第三方审计" : true
+      },
+      "missing" : [ "团队背景", "价值捕获" ],
+      "researched" : true,
+      "selfReported" : false,
+      "excluded" : false,
+      "cap" : "B",
+      "exchanges" : [ "Binance", "OKX", "Bybit", "Coinbase", "Kraken" ],
+      "auditUnknown" : false
+    },
+    "unlock" : {
+      "circRatio" : 1.0,
+      "unlock12mPct" : null,
+      "unlock36mPct" : null,
+      "nextUnlockDate" : null,
+      "nextUnlockAmount" : null,
+      "supply12m" : null,
+      "flags" : [ "解锁数据缺失", "解锁数据冲突" ],
+      "blocksA" : true
+    },
+    "target" : {
+      "targetPrice" : 3.9013627091070613,
+      "targetMcap" : 3.9013627091070615E7,
+      "upside" : -0.782668796337599,
+      "method" : "年化协议收入 $3.2M × 中位数 12.2 倍（同赛道 Lending，9 个）",
+      "supplyBasis" : "总量（未找到解锁计划，假设全部解锁，保守）",
+      "reason" : null
+    },
+    "ev" : {
+      "n" : null,
+      "pTarget" : null,
+      "pStop" : null,
+      "ev" : null,
+      "note" : "样本不足（路径 B 没有可回测的历史收入数据）"
+    },
+    "stop" : 11.66830035533598,
+    "downside" : 0.35,
+    "refPrice" : null,
+    "risks" : [ "解锁数据缺失", "解锁数据冲突", "现价已高于估值目标" ],
+    "reason" : "收入连增：Compound 最近季度收入 +123.1%，币价 90 天 -7.5%（收入增速比币价涨幅高 +131 个百分点）",
+    "excluded" : false,
+    "avgVolume30" : 1.216746021682539E7,
+    "revenueGrowth" : 1.2305197654640359,
+    "price90" : -0.07515916451442817,
+    "revenueAnnual" : 3200033.0,
+    "holdersRevenueAnnual" : 0.0,
+    "gate" : "现价已高于估值目标",
+    "revenueBasis" : {
+      "r30x12" : 4415160.0,
+      "r90x4" : 4226336.0,
+      "actual12m" : 3200033.0,
+      "used" : 3200033.0,
+      "spike" : false
+    }
+  }, {
+    "coinId" : "venice-token",
+    "name" : "Venice Token（VVV）",
+    "path" : "B",
+    "grade" : "B",
+    "price" : 29.24065426849258,
+    "marketCap" : 1.463608277E9,
+    "fdv" : 2.414682118E9,
+    "r30" : 0.16007922308169187,
+    "r90" : 0.6191384175550967,
+    "excess30" : 0.3665939792735285,
+    "excess90" : 0.8556739043487235,
+    "strength" : 1.222267883622252,
+    "quality" : {
+      "score" : 4,
+      "items" : {
+        "团队背景" : false,
+        "使用/收入数据" : true,
+        "价值捕获" : true,
+        "主流交易所现货" : true,
+        "第三方审计" : true
+      },
+      "missing" : [ "团队背景" ],
+      "researched" : true,
+      "selfReported" : false,
+      "excluded" : false,
+      "cap" : "A",
+      "exchanges" : [ "Coinbase", "Bybit", "OKX", "Kraken", "Upbit" ],
+      "auditUnknown" : false
+    },
+    "unlock" : {
+      "circRatio" : 0.6061287596678883,
+      "unlock12mPct" : null,
+      "unlock36mPct" : null,
+      "nextUnlockDate" : null,
+      "nextUnlockAmount" : null,
+      "supply12m" : null,
+      "flags" : [ "解锁数据缺失", "解锁数据冲突" ],
+      "blocksA" : true
+    },
+    "target" : {
+      "targetPrice" : 1.0822172166484914,
+      "targetMcap" : 8.7979197361195E7,
+      "upside" : -0.9629892954271341,
+      "method" : "年化协议收入 $11.8M × 中位数 7.5 倍（全部协议（同赛道 Farm 只有 1 个，不足 5 个），77 个）",
+      "supplyBasis" : "总量（未找到解锁计划，假设全部解锁，保守）",
+      "reason" : null
+    },
+    "ev" : {
+      "n" : null,
+      "pTarget" : null,
+      "pStop" : null,
+      "ev" : null,
+      "note" : "样本不足（路径 B 没有可回测的历史收入数据）"
+    },
+    "stop" : 16.078653254477967,
+    "downside" : 0.45012676163668974,
+    "refPrice" : null,
+    "risks" : [ "解锁数据缺失", "解锁数据冲突", "现价已高于估值目标" ],
+    "reason" : "收入连增：Venice Token 最近季度收入 +123.0%，币价 90 天 +61.9%（收入增速比币价涨幅高 +61 个百分点）",
+    "excluded" : false,
+    "avgVolume30" : 4.091978637907838E7,
+    "revenueGrowth" : 1.2302162661612246,
+    "price90" : 0.6191384175550967,
+    "revenueAnnual" : 1.1789588E7,
+    "holdersRevenueAnnual" : 1.4160880666666666E7,
+    "gate" : "现价已高于估值目标",
+    "revenueBasis" : {
+      "r30x12" : 1.335078E7,
+      "r90x4" : 1.1789588E7,
+      "actual12m" : null,
+      "used" : 1.1789588E7,
+      "spike" : false
+    }
+  }, {
+    "coinId" : "lighter",
+    "name" : "Lighter（LIT）",
+    "path" : "B",
+    "grade" : "B",
+    "price" : 2.3971591670606354,
+    "marketCap" : 6.03522043E8,
+    "fdv" : 2.370415578E9,
+    "r30" : -0.20408624104046968,
+    "r90" : -0.35384423919761254,
+    "excess30" : 0.002428515151366939,
+    "excess90" : -0.11730875240398575,
+    "strength" : -0.11488023725261881,
+    "quality" : {
+      "score" : 5,
+      "items" : {
+        "团队背景" : true,
+        "使用/收入数据" : true,
+        "价值捕获" : true,
+        "主流交易所现货" : true,
+        "第三方审计" : true
+      },
+      "missing" : [ ],
+      "researched" : true,
+      "selfReported" : false,
+      "excluded" : false,
+      "cap" : "A",
+      "exchanges" : [ "Bybit", "OKX", "Coinbase", "Kraken", "Upbit" ],
+      "auditUnknown" : false
+    },
+    "unlock" : {
+      "circRatio" : 0.25460600596421695,
+      "unlock12mPct" : null,
+      "unlock36mPct" : null,
+      "nextUnlockDate" : null,
+      "nextUnlockAmount" : null,
+      "supply12m" : null,
+      "flags" : [ "高稀释风险（流通率 <30%）", "解锁数据缺失" ],
+      "blocksA" : true
+    },
+    "target" : {
+      "targetPrice" : 0.22974985246065974,
+      "targetMcap" : 2.2559351220975262E8,
+      "upside" : -0.9041574478584266,
+      "method" : "年化协议收入 $53.6M × 中位数 4.2 倍（同赛道 Derivatives，5 个）",
+      "supplyBasis" : "总量（未找到解锁计划，假设全部解锁，保守）",
+      "reason" : null
+    },
+    "ev" : {
+      "n" : null,
+      "pTarget" : null,
+      "pStop" : null,
+      "ev" : null,
+      "note" : "样本不足（路径 B 没有可回测的历史收入数据）"
+    },
+    "stop" : 1.558153458589413,
+    "downside" : 0.35,
+    "refPrice" : null,
+    "risks" : [ "高稀释风险（流通率 <30%）", "解锁数据缺失", "现价已高于估值目标" ],
+    "reason" : "收入连增：Lighter 最近季度收入 +94.1%，币价 90 天 -35.4%（收入增速比币价涨幅高 +130 个百分点）",
+    "excluded" : false,
+    "avgVolume30" : 8.043944093586688E7,
+    "revenueGrowth" : 0.941257282294665,
+    "price90" : -0.35384423919761254,
+    "revenueAnnual" : 5.3646703E7,
+    "holdersRevenueAnnual" : 5.822115E7,
+    "gate" : "现价已高于估值目标",
+    "revenueBasis" : {
+      "r30x12" : 6.9097932E7,
+      "r90x4" : 6.0257056E7,
+      "actual12m" : 5.3646703E7,
+      "used" : 5.3646703E7,
+      "spike" : false
+    }
+  }, {
+    "coinId" : "pyth-network",
+    "name" : "Pyth Network（PYTH）",
+    "path" : "B",
+    "grade" : "B",
+    "price" : 0.048239923869604705,
+    "marketCap" : 3.81167292E8,
+    "fdv" : 4.84024507E8,
+    "r30" : -0.35859753644050063,
+    "r90" : -0.01666487704947406,
+    "excess30" : -0.152082780248664,
+    "excess90" : 0.21987060974415273,
+    "strength" : 0.06778782949548873,
+    "quality" : {
+      "score" : 5,
+      "items" : {
+        "团队背景" : true,
+        "使用/收入数据" : true,
+        "价值捕获" : true,
+        "主流交易所现货" : true,
+        "第三方审计" : true
+      },
+      "missing" : [ ],
+      "researched" : true,
+      "selfReported" : false,
+      "excluded" : false,
+      "cap" : "A",
+      "exchanges" : [ "Binance", "Bybit", "OKX", "Coinbase", "Kraken" ],
+      "auditUnknown" : false
+    },
+    "unlock" : {
+      "circRatio" : 0.7874958541877695,
+      "unlock12mPct" : 26.98,
+      "unlock36mPct" : 26.98,
+      "nextUnlockDate" : "2027-05-19",
+      "nextUnlockAmount" : 2.125041283E9,
+      "supply12m" : 9.999622356476297E9,
+      "flags" : [ ],
+      "blocksA" : false
+    },
+    "target" : {
+      "targetPrice" : 0.0025241505890099534,
+      "targetMcap" : 2.5240552660976745E7,
+      "upside" : -0.9476750710504254,
+      "method" : "年化协议收入 $3.4M × 中位数 7.5 倍（全部协议（同赛道 Oracle 只有 2 个，不足 5 个），77 个）",
+      "supplyBasis" : "研究核实的未来 12 个月流通量",
+      "reason" : null
+    },
+    "ev" : {
+      "n" : null,
+      "pTarget" : null,
+      "pStop" : null,
+      "ev" : null,
+      "note" : "样本不足（路径 B 没有可回测的历史收入数据）"
+    },
+    "stop" : 0.03135595051524306,
+    "downside" : 0.35,
+    "refPrice" : null,
+    "risks" : [ "现价已高于估值目标", "近期收入异常偏高，可能不可持续（近30天×12 超过近12个月实际的 2 倍）" ],
+    "reason" : "收入连增：Pyth Network 最近季度收入 +83.7%，币价 90 天 -1.7%（收入增速比币价涨幅高 +85 个百分点）",
+    "excluded" : false,
+    "avgVolume30" : 2.575016334017941E7,
+    "revenueGrowth" : 0.8370107662222983,
+    "price90" : -0.01666487704947406,
+    "revenueAnnual" : 3382341.8,
+    "holdersRevenueAnnual" : 0.0,
+    "gate" : "现价已高于估值目标",
+    "revenueBasis" : {
+      "r30x12" : 7461376.800000001,
+      "r90x4" : 6444934.359999999,
+      "actual12m" : 3382341.8,
+      "used" : 3382341.8,
+      "spike" : true
+    }
+  }, {
+    "coinId" : "threshold-network-token",
+    "name" : "Threshold Network（T）",
+    "path" : "B",
+    "grade" : "B",
+    "price" : 0.003909221014873894,
+    "marketCap" : 4.3524606E7,
+    "fdv" : 4.3524606E7,
+    "r30" : -0.18322068273359082,
+    "r90" : 0.03877787425774004,
+    "excess30" : 0.0232940734582458,
+    "excess90" : 0.27531336105136683,
+    "strength" : 0.29860743450961263,
+    "quality" : {
+      "score" : 4,
+      "items" : {
+        "团队背景" : true,
+        "使用/收入数据" : true,
+        "价值捕获" : false,
+        "主流交易所现货" : true,
+        "第三方审计" : true
+      },
+      "missing" : [ "价值捕获" ],
+      "researched" : true,
+      "selfReported" : false,
+      "excluded" : false,
+      "cap" : "A",
+      "exchanges" : [ "Binance", "Coinbase", "Kraken", "OKX" ],
+      "auditUnknown" : false
+    },
+    "unlock" : {
+      "circRatio" : 1.0,
+      "unlock12mPct" : null,
+      "unlock36mPct" : null,
+      "nextUnlockDate" : null,
+      "nextUnlockAmount" : null,
+      "supply12m" : null,
+      "flags" : [ "解锁数据缺失" ],
+      "blocksA" : true
+    },
+    "target" : {
+      "targetPrice" : 4.332435159043154E-4,
+      "targetMcap" : 4832831.419912638,
+      "upside" : -0.8891739519827861,
+      "method" : "年化协议收入 $647620 × 中位数 7.5 倍（全部协议（同赛道 Decentralized BTC 只有 0 个，不足 5 个），77 个）",
+      "supplyBasis" : "总量（未找到解锁计划，假设全部解锁，保守）",
+      "reason" : null
+    },
+    "ev" : {
+      "n" : null,
+      "pTarget" : null,
+      "pStop" : null,
+      "ev" : null,
+      "note" : "样本不足（路径 B 没有可回测的历史收入数据）"
+    },
+    "stop" : 0.002540993659668031,
+    "downside" : 0.35,
+    "refPrice" : null,
+    "risks" : [ "解锁数据缺失", "现价已高于估值目标", "近期收入异常偏高，可能不可持续（近30天×12 超过近12个月实际的 2 倍）" ],
+    "reason" : "收入连增：Threshold Network 最近季度收入 +61.3%，币价 90 天 +3.9%（收入增速比币价涨幅高 +57 个百分点）",
+    "excluded" : false,
+    "avgVolume30" : 3541703.120127534,
+    "revenueGrowth" : 0.6132942616280856,
+    "price90" : 0.03877787425774004,
+    "revenueAnnual" : 647620.04,
+    "holdersRevenueAnnual" : 0.0,
+    "gate" : "现价已高于估值目标",
+    "revenueBasis" : {
+      "r30x12" : 1880556.0,
+      "r90x4" : 952147.4,
+      "actual12m" : 647620.04,
+      "used" : 647620.04,
+      "spike" : true
+    }
+  }, {
+    "coinId" : "sun-token",
+    "name" : "Sun Token（SUN）",
+    "path" : "B",
+    "grade" : "B",
+    "price" : 0.014527550491943804,
+    "marketCap" : 2.7936458E8,
+    "fdv" : 2.89335094E8,
+    "r30" : -0.10830980289684455,
+    "r90" : -0.13514296471435283,
+    "excess30" : 0.09820495329499207,
+    "excess90" : 0.10139252207927396,
+    "strength" : 0.19959747537426603,
+    "quality" : {
+      "score" : 4,
+      "items" : {
+        "团队背景" : false,
+        "使用/收入数据" : true,
+        "价值捕获" : true,
+        "主流交易所现货" : true,
+        "第三方审计" : true
+      },
+      "missing" : [ "团队背景" ],
+      "researched" : true,
+      "selfReported" : false,
+      "excluded" : false,
+      "cap" : "A",
+      "exchanges" : [ "Binance", "Bybit", "Kraken" ],
+      "auditUnknown" : false
+    },
+    "unlock" : {
+      "circRatio" : 0.9655399078931102,
+      "unlock12mPct" : null,
+      "unlock36mPct" : null,
+      "nextUnlockDate" : null,
+      "nextUnlockAmount" : null,
+      "supply12m" : null,
+      "flags" : [ "解锁数据缺失" ],
+      "blocksA" : true
+    },
+    "target" : {
+      "targetPrice" : 2.1314536189940205E-4,
+      "targetMcap" : 4241748.297912288,
+      "upside" : -0.9853281967928729,
+      "method" : "年化协议收入 $1.2M × 中位数 3.7 倍（同赛道 Dexs，7 个）",
+      "supplyBasis" : "总量（未找到解锁计划，假设全部解锁，保守）",
+      "reason" : null
+    },
+    "ev" : {
+      "n" : null,
+      "pTarget" : null,
+      "pStop" : null,
+      "ev" : null,
+      "note" : "样本不足（路径 B 没有可回测的历史收入数据）"
+    },
+    "stop" : 0.009442907819763473,
+    "downside" : 0.35,
+    "refPrice" : null,
+    "risks" : [ "解锁数据缺失", "现价已高于估值目标" ],
+    "reason" : "收入连增：Sun Token 最近季度收入 +27.1%，币价 90 天 -13.5%（收入增速比币价涨幅高 +41 个百分点）",
+    "excluded" : false,
+    "avgVolume30" : 9955401.726602849,
+    "revenueGrowth" : 0.2713797954641337,
+    "price90" : -0.13514296471435283,
+    "revenueAnnual" : 1150438.39,
+    "holdersRevenueAnnual" : 577892.3333333334,
+    "gate" : "现价已高于估值目标",
+    "revenueBasis" : {
+      "r30x12" : 2227453.08,
+      "r90x4" : 1915344.36,
+      "actual12m" : 1150438.39,
+      "used" : 1150438.39,
+      "spike" : false
+    }
+  }, {
+    "coinId" : "nest-2",
+    "name" : "NEST（NEST）",
+    "path" : "B",
+    "grade" : "B",
+    "price" : 0.008760561546116962,
+    "marketCap" : 2664182.0,
+    "fdv" : 1.7650442E7,
+    "r30" : -0.45154467525697684,
+    "r90" : -0.3376175954960937,
+    "excess30" : -0.2450299190651402,
+    "excess90" : -0.10108210870246692,
+    "strength" : -0.34611202776760713,
+    "quality" : {
+      "score" : 3,
+      "items" : {
+        "团队背景" : false,
+        "使用/收入数据" : true,
+        "价值捕获" : true,
+        "主流交易所现货" : false,
+        "第三方审计" : true
+      },
+      "missing" : [ "团队背景", "主流交易所现货" ],
+      "researched" : true,
+      "selfReported" : false,
+      "excluded" : false,
+      "cap" : "B",
+      "exchanges" : [ ],
+      "auditUnknown" : false
+    },
+    "unlock" : {
+      "circRatio" : 0.1509414026439817,
+      "unlock12mPct" : null,
+      "unlock36mPct" : null,
+      "nextUnlockDate" : null,
+      "nextUnlockAmount" : null,
+      "supply12m" : null,
+      "flags" : [ "高稀释风险（流通率 <30%）", "解锁数据缺失", "解锁数据冲突" ],
+      "blocksA" : true
+    },
+    "target" : {
+      "targetPrice" : 0.008766862519431344,
+      "targetMcap" : 1.7550875359301362E7,
+      "upside" : 7.192430851847842E-4,
+      "method" : "年化协议收入 $4.8M × 中位数 3.7 倍（同赛道 Dexs，7 个）",
+      "supplyBasis" : "总量（未找到解锁计划，假设全部解锁，保守）",
+      "reason" : null
+    },
+    "ev" : {
+      "n" : null,
+      "pTarget" : null,
+      "pStop" : null,
+      "ev" : null,
+      "note" : "样本不足（路径 B 没有可回测的历史收入数据）"
+    },
+    "stop" : 0.0056943650049760255,
+    "downside" : 0.35,
+    "refPrice" : null,
+    "risks" : [ "高稀释风险（流通率 <30%）", "解锁数据缺失", "解锁数据冲突", "近期收入异常偏高，可能不可持续（近30天×12 超过近12个月实际的 2 倍）" ],
+    "reason" : "收入连增：NEST 最近季度收入 +10.3%，币价 90 天 -33.8%（收入增速比币价涨幅高 +44 个百分点）",
+    "excluded" : false,
+    "avgVolume30" : 256291.48790846273,
+    "revenueGrowth" : 0.10324746923201555,
+    "price90" : -0.3376175954960937,
+    "revenueAnnual" : 4760112.9,
+    "holdersRevenueAnnual" : 1.1467375333333334E7,
+    "gate" : "流动性不足：30 天日均成交额 $256291（< 50 万美元）",
+    "revenueBasis" : {
+      "r30x12" : 1.10864508E7,
+      "r90x4" : 8280291.6,
+      "actual12m" : 4760112.9,
+      "used" : 4760112.9,
+      "spike" : true
+    }
+  }, {
+    "coinId" : "instadapp",
+    "name" : "Fluid（FLUID）",
+    "path" : "B",
+    "grade" : "B",
+    "price" : 1.462494287377679,
+    "marketCap" : 1.23546776E8,
+    "fdv" : 1.47611958E8,
+    "r30" : -0.3367003423392001,
+    "r90" : 0.05111411967096213,
+    "excess30" : -0.13018558614736347,
+    "excess90" : 0.2876496064645889,
+    "strength" : 0.15746402031722545,
+    "quality" : {
+      "score" : 4,
+      "items" : {
+        "团队背景" : true,
+        "使用/收入数据" : true,
+        "价值捕获" : false,
+        "主流交易所现货" : true,
+        "第三方审计" : true
+      },
+      "missing" : [ "价值捕获" ],
+      "researched" : true,
+      "selfReported" : false,
+      "excluded" : false,
+      "cap" : "A",
+      "exchanges" : [ "Bybit", "Coinbase", "OKX" ],
+      "auditUnknown" : false
+    },
+    "unlock" : {
+      "circRatio" : 0.8369699682034638,
+      "unlock12mPct" : null,
+      "unlock36mPct" : null,
+      "nextUnlockDate" : null,
+      "nextUnlockAmount" : null,
+      "supply12m" : null,
+      "flags" : [ "解锁数据缺失", "解锁数据冲突" ],
+      "blocksA" : true
+    },
+    "target" : {
+      "targetPrice" : 1.0103825337604937,
+      "targetMcap" : 1.0103825337604937E8,
+      "upside" : -0.30913744930097664,
+      "method" : "年化协议收入 $8.3M × 中位数 12.2 倍（同赛道 Lending，9 个）",
+      "supplyBasis" : "总量（未找到解锁计划，假设全部解锁，保守）",
+      "reason" : null
+    },
+    "ev" : {
+      "n" : null,
+      "pTarget" : null,
+      "pStop" : null,
+      "ev" : null,
+      "note" : "样本不足（路径 B 没有可回测的历史收入数据）"
+    },
+    "stop" : 0.9506212867954913,
+    "downside" : 0.35,
+    "refPrice" : null,
+    "risks" : [ "解锁数据缺失", "解锁数据冲突", "现价已高于估值目标" ],
+    "reason" : "收入连增：Fluid 最近季度收入 +17.2%，币价 90 天 +5.1%（收入增速比币价涨幅高 +12 个百分点）",
+    "excluded" : false,
+    "avgVolume30" : 2974585.3021108205,
+    "revenueGrowth" : 0.17170283330014602,
+    "price90" : 0.05111411967096213,
+    "revenueAnnual" : 8287507.96,
+    "holdersRevenueAnnual" : 0.0,
+    "gate" : "现价已高于估值目标",
+    "revenueBasis" : {
+      "r30x12" : 8540196.0,
+      "r90x4" : 8287507.96,
+      "actual12m" : 8578397.84,
+      "used" : 8287507.96,
+      "spike" : false
+    }
+  }, {
+    "coinId" : "sosovalue",
+    "name" : "SoSoValue（SOSO）",
+    "path" : "B",
+    "grade" : "B",
+    "price" : 0.3164144557655305,
+    "marketCap" : 1.13163271E8,
+    "fdv" : 3.15950066E8,
+    "r30" : 0.01875968048036003,
+    "r90" : 0.008096074043651091,
+    "excess30" : 0.22527443667219665,
+    "excess90" : 0.24463156083727788,
+    "strength" : 0.46990599750947454,
+    "quality" : {
+      "score" : 4,
+      "items" : {
+        "团队背景" : true,
+        "使用/收入数据" : true,
+        "价值捕获" : false,
+        "主流交易所现货" : true,
+        "第三方审计" : true
+      },
+      "missing" : [ "价值捕获" ],
+      "researched" : true,
+      "selfReported" : false,
+      "excluded" : false,
+      "cap" : "A",
+      "exchanges" : [ "Bybit", "Kraken" ],
+      "auditUnknown" : false
+    },
+    "unlock" : {
+      "circRatio" : 0.358168214,
+      "unlock12mPct" : null,
+      "unlock36mPct" : null,
+      "nextUnlockDate" : null,
+      "nextUnlockAmount" : null,
+      "supply12m" : null,
+      "flags" : [ "解锁数据缺失" ],
+      "blocksA" : true
+    },
+    "target" : {
+      "targetPrice" : 0.15459556233989447,
+      "targetMcap" : 1.5459556233989447E8,
+      "upside" : -0.5114143506311453,
+      "method" : "年化协议收入 $20.7M × 中位数 7.5 倍（全部协议（同赛道 Indexes 只有 1 个，不足 5 个），77 个）",
+      "supplyBasis" : "总量（未找到解锁计划，假设全部解锁，保守）",
+      "reason" : null
+    },
+    "ev" : {
+      "n" : null,
+      "pTarget" : null,
+      "pStop" : null,
+      "ev" : null,
+      "note" : "样本不足（路径 B 没有可回测的历史收入数据）"
+    },
+    "stop" : 0.20566939624759484,
+    "downside" : 0.35,
+    "refPrice" : null,
+    "risks" : [ "解锁数据缺失", "现价已高于估值目标" ],
+    "reason" : "收入连增：SoSoValue 最近季度收入 +14.8%，币价 90 天 +0.8%（收入增速比币价涨幅高 +14 个百分点）",
+    "excluded" : false,
+    "avgVolume30" : 3350059.110059934,
+    "revenueGrowth" : 0.14788891947309524,
+    "price90" : 0.008096074043651091,
+    "revenueAnnual" : 2.071646527E7,
+    "holdersRevenueAnnual" : 0.0,
+    "gate" : "现价已高于估值目标",
+    "revenueBasis" : {
+      "r30x12" : 2.433438E7,
+      "r90x4" : 2.344571604E7,
+      "actual12m" : 2.071646527E7,
+      "used" : 2.071646527E7,
+      "spike" : false
+    }
+  } ],
+  "nearMiss" : [ {
+    "coinId" : "ether-fi",
+    "name" : "Ether.fi（ETHFI）",
+    "missing" : "只差收入连增：前一季度收入 -17.0%（没有增长）",
+    "detail" : "最近季度收入 +26.3%（比两个季度前 +4.9%），币价 90 天 -22.4%；30 天日均成交额 $31.7M"
+  }, {
+    "coinId" : "lido-dao",
+    "name" : "Lido DAO（LDO）",
+    "missing" : "只差收入连增：前一季度收入 -18.1%（没有增长）",
+    "detail" : "最近季度收入 +42.6%（比两个季度前 +16.7%），币价 90 天 -36.6%；30 天日均成交额 $21.2M"
+  }, {
+    "coinId" : "syrup",
+    "name" : "Maple Finance（SYRUP）",
+    "missing" : "只差收入连增：前一季度收入 -1.7%（没有增长）",
+    "detail" : "最近季度收入 +36.4%（比两个季度前 +34.1%），币价 90 天 -64.7%；30 天日均成交额 $7.3M"
+  } ],
+  "watch" : [ {
+    "entry" : {
+      "coinId" : "arbitrum",
+      "name" : "Arbitrum（ARB）",
+      "added" : "2026-10-20",
+      "reason" : "渣打银行（Geoff Kendrick，2026-09-15）预测 2030 年 10 美元：Arbitrum 拿其他链（如 Robinhood Chain）净协议收入的 10%，押注资产代币化增长。当前持币人收入为 0，属于无法估值。",
+      "revenueSlugs" : [ "arbitrum", "arbitrum-nitro", "arbitrum-timeboost" ],
+      "partners" : [ {
+        "slug" : "robinhood-chain",
+        "name" : "Robinhood Chain",
+        "share" : 0.1
+      } ],
+      "signals" : [ "分成收入连续增长：Arbitrum 相关收入 + 合作链收入 × 10%（估算）连续两个 30 天环比增长", "持币人收入出现：DefiLlama 持币人收入 > 0（DAO 通过回购/分红等价值捕获）" ]
+    },
+    "price" : 0.11296451290786386,
+    "marketCap" : 7.95699882E8,
+    "fdv" : 1.137092543E9,
+    "circRatio" : 0.6997670388,
+    "r30" : -0.3296786208642728,
+    "r90" : 0.2283687476502123,
+    "revenue30" : 574338.0,
+    "revenuePrev30" : 769387.0,
+    "partner30" : 86766.0,
+    "partnerPrev30" : 156865.4,
+    "holders30" : 0.0,
+    "revenueGrowing" : false,
+    "revenueNote" : "近 30 天 $661104，比前 30 天 $926252 下降",
+    "holdersPositive" : false,
+    "newlyTriggered" : [ ]
+  } ]
+}
