@@ -1,0 +1,206 @@
+{
+ "coin_id": "threshold-network-token",
+ "researched_at": "2026-11-26T03:40:00Z",
+ "grade_hint": "B",
+ "items": {
+  "identity": {
+   "ok": true,
+   "claim": "T：以太坊合约 0xcdf7028ceab81fa0c6971208e83fa7872994bee5（沿用 2026-11-19 研究）；无最大供应",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-19-threshold-network-token.json",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "supply_verifiable": {
+   "ok": null,
+   "claim": "候选文件：价格 $0.003909，流通市值 = FDV $43.52M，流通率 100%（推算约 11.13B）；无最大供应，未来 12 个月是否增发未核实",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-19-threshold-network-token.json",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "economic_activity": {
+   "ok": true,
+   "claim": "候选文件（DefiLlama 口径）：tBTC 桥收入，季度收入 q0 $0.24M、q1 $0.15M、q2 $0.12M（连增，最近季度 +61.3%）；年化口径 30d×12 $1.88M、90d×4 $0.95M、近12个月实际 $0.65M，采用 $0.65M；标“近期收入异常偏高”",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "value_capture": {
+   "ok": null,
+   "mechanism": "buyback",
+   "claim": "据搜索结果摘要：2025-04-17 DAO 重组并“launches strategic reinvestment via T token buyback”（Decrypt/The Defiant 新闻稿），Daily Hodl 称回购消息后 T 周涨 55%；摘要未给出已执行回购的数量和日期；候选文件持币人收入 $0、质量分“价值捕获”✗",
+   "sources": [
+    {
+     "url": "https://decrypt.co/315301/threshold-network-restructures-for-profitability-launches-strategic-reinvestment-via-t-token-buyback",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://dailyhodl.com/2025/04/19/native-asset-of-bitcoin-defi-project-surges-by-more-than-55-this-week-amid-new-token-buyback",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "liquidity": {
+   "ok": true,
+   "spot_volume_30d_usd": 106251094,
+   "claim": "候选文件：30 天日均成交额 $3.54M（≥50 万门槛；2,500 美元仓位远低于日均 1%），Binance、Coinbase、Kraken、OKX 有现货（候选文件质量分交易所字段）；成交额为服务器 CoinGecko 口径，未单独剔除衍生品/刷量",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "no_security_issue": {
+   "ok": null,
+   "claim": "事故分开记录（沿用 2026-11-19 研究，据搜索结果摘要）：① 2026-05-18 攻击者试图无抵押铸造 tBTC 失败，官方称未发出无效 tBTC、用户资金未受风险，桥暂停 9 天后恢复，无损失；② 另有因安全措施暂停 tBTC 铸造/赎回（KuCoin 标题，日期未核实）；③ 过往交易延展性漏洞经 Immunefi 赏金修复，未见资金损失",
+   "sources": [
+    {
+     "url": "https://www.kucoin.com/news/flash/threshold-network-pauses-tbtc-minting-and-redemption-amid-security-measures",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-19-threshold-network-token.json",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://immunefi.com/blog/bug-fix-reviews/threshold-transaction-malleability/",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "data_consistent": {
+   "ok": null,
+   "claim": "总量约 11.1B 与初始 10B 设计不同（增发历史未核实）；收入 30d×12 为 12 个月实际约 2.9 倍；11-19 研究发现 30 天成交曾被单日异常放量主导",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-19-threshold-network-token.json",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "supply_growth": {
+   "ok": null,
+   "supply_growth_12m_pct": null,
+   "claim": "流通率 100%（≥50%）；但无最大供应、未来 12 个月增发量未核实",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "audit": {
+   "ok": true,
+   "claim": "候选文件质量分“第三方审计”✓（DefiLlama 审计记录）",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "team": {
+   "ok": true,
+   "claim": "Threshold 由 Keep Network 与 NuCypher 2022 年合并而来（沿用 2026-11-19 研究的搜索结果）；候选文件质量分“团队背景”✓；现任核心成员实名未确认",
+   "sources": [
+    {
+     "url": "https://blog.threshold.network/decentralized-merger",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-19-threshold-network-token.json",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "unlock": {
+   "ok": null,
+   "unlock_12m_pct": null,
+   "unlock_36m_pct": null,
+   "next_unlock_date": null,
+   "next_unlock_amount": null,
+   "fully_unlocked": null,
+   "conflict": false,
+   "claim": "候选文件流通率 100%，似无锁仓，但官方解锁/增发计划未从搜索摘要获得（候选文件 unlock 标“解锁数据缺失”）",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    }
+   ]
+  }
+ },
+ "self_reported_mcap": false,
+ "scenario_inputs": {
+  "price_usd": 0.003909221014873894,
+  "circulating_supply": 11133830969,
+  "total_supply": 11133830969,
+  "supply_by_month": null,
+  "annual_revenue_usd": 647620,
+  "revenue_growth": null,
+  "peer_multiples": {
+   "p25": 3.14,
+   "median": 7.46,
+   "p75": 19.85
+  },
+  "peers": [
+   {
+    "name": "DefiLlama 全部协议（77 个协议，服务器计算的流通市值/年化收入分位数）",
+    "multiple": 7.46,
+    "source": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json"
+   }
+  ],
+  "metric": "Threshold 协议收入（DefiLlama revenue 口径，候选文件 revenueBasis.used = 近 12 个月实际）；同赛道 Decentralized BTC 0 个，服务器退回全部协议 77 个分位数"
+ },
+ "risks": [
+  "流通市值约为年化收入 67 倍，现价远高于候选估值目标",
+  "收入规模很小（年化 $0.65M）",
+  "tBTC 桥 2026-05 遭攻击尝试并暂停 9 天",
+  "无最大供应，增发未核实",
+  "日均成交约 $3.5M，流动性一般"
+ ],
+ "unverified": [
+  "回购是否实际执行及数量",
+  "未来 12 个月增发/解锁",
+  "暂停事件的日期与是否完全恢复",
+  "现任团队实名",
+  "合约地址（沿用 2026-11-19 研究）"
+ ],
+ "catalysts": [
+  {
+   "claim": "据搜索结果摘要：Threshold 推出直接、免 gas 的 tBTC 铸造（新闻稿）",
+   "url": "https://www.theblock.co/press-releases/378372/threshold-network-simplifies-bitcoin-onchain-access-with-direct-and-gasless-tbtc-minting",
+   "date": "2026-11-26"
+  }
+ ],
+ "summary_reason": "tBTC 桥有真实收入且连增，但规模小、回购执行未证实、估值远高于目标，观察"
+}

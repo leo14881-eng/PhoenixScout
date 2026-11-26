@@ -1,0 +1,203 @@
+{
+ "coin_id": "compound-governance-token",
+ "researched_at": "2026-11-26T03:40:00Z",
+ "grade_hint": "B",
+ "items": {
+  "identity": {
+   "ok": true,
+   "claim": "COMP：以太坊合约 0xc00e94cb662c3520282e6f5717214004a7f26888（沿用 2026-11-19 研究）；最大供应 10M",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-19-compound-governance-token.json",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "supply_verifiable": {
+   "ok": true,
+   "claim": "候选文件：价格 $17.95，流通市值 = FDV $179.6M，流通率 100%（推算流通约 10.01M）",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "economic_activity": {
+   "ok": true,
+   "claim": "候选文件（DefiLlama Compound 合并口径）：季度收入 q0 $1.07M、q1 $0.48M、q2 $0.15M（连增，最近季度 +123.1%）；年化口径 30d×12 $4.42M、90d×4 $4.23M、近12个月实际 $3.20M，采用 $3.20M",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "value_capture": {
+   "ok": false,
+   "mechanism": null,
+   "claim": "候选文件持币人收入年化 $0、质量分“价值捕获”✗；据搜索结果摘要只见费用再分配讨论（Blockworks）、治理提案列表与 DefiLlama“COMP Token Rights”页，未见已执行的回购、销毁或手续费分配",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://blockworks.com/news/compound-considers-fee-switch-governance-attacker",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://defillama.com/protocol/token-rights/compound-finance",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "liquidity": {
+   "ok": true,
+   "spot_volume_30d_usd": 365023807,
+   "claim": "候选文件：30 天日均成交额 $12.17M（≥50 万门槛；2,500 美元仓位远低于日均 1%），Binance、OKX、Bybit、Coinbase、Kraken 有现货（候选文件质量分交易所字段）；成交额为服务器 CoinGecko 口径，未单独剔除衍生品/刷量",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "no_security_issue": {
+   "ok": null,
+   "claim": "事故分开记录（据搜索结果摘要）：① 2024 治理攻击（“$25M drained from Compound treasury … governance exploit”标题），后和解；② 2026 年 KelpDAO rsETH 被盗后 Compound 治理清算攻击者抵押品（Santiment 深度文章标题），Compound 自身坏账未核实；③ 2026 年 Proposal 612 拟把金库延迟从 2 天延长至 10 天（治理加固，Cryptobriefing 标题）；损失/赔付证据均未核实",
+   "sources": [
+    {
+     "url": "https://cryptorank.io/news/feed/b660e-25-million-drained-from-compound-comp-treasury-in-latest-governance-exploit-incident",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://app.santiment.net/insights/read/deep-dive-how-defi-governance-liquidated-the-kelpdao-hacker-s-collateral-on-compound-10841",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://cryptobriefing.com/compound-proposal-612-treasury-delays/",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "data_consistent": {
+   "ok": null,
+   "claim": "候选文件流通率 100% 与 2026-11-05 研究 DefiLlama 代币页 9.67M 不一致（差 3.3%）；候选文件 unlock 标“解锁数据冲突”，本次未取得第二来源",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-05-compound-governance-token.json",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "supply_growth": {
+   "ok": true,
+   "supply_growth_12m_pct": 3.4,
+   "claim": "最大供应 10M 已全部铸造，流通 ≥96.7%（两个口径中较低者），未来 12 个月流通最多增加约 0.33M（≤3.4%）（沿用 2026-11-19 研究）",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-19-compound-governance-token.json",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "audit": {
+   "ok": true,
+   "claim": "候选文件质量分“第三方审计”✓（DefiLlama 审计记录）",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "team": {
+   "ok": null,
+   "claim": "本次搜索结果未给出现任核心团队/机构背景（只见治理新闻）；候选文件质量分“团队背景”✗",
+   "sources": [
+    {
+     "url": "https://blockworks.com/news/compound-considers-fee-switch-governance-attacker",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "unlock": {
+   "ok": null,
+   "unlock_12m_pct": null,
+   "unlock_36m_pct": null,
+   "next_unlock_date": null,
+   "next_unlock_amount": null,
+   "fully_unlocked": null,
+   "conflict": true,
+   "claim": "无锁仓解锁计划；候选文件流通率 100%，DefiLlama 9.67M（2026-11-05 研究），差额约 0.33M 构成未核实",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-05-compound-governance-token.json",
+     "date": "2026-11-26"
+    }
+   ]
+  }
+ },
+ "self_reported_mcap": false,
+ "scenario_inputs": {
+  "price_usd": 17.951231315901506,
+  "circulating_supply": 10005386,
+  "total_supply": 10005386,
+  "supply_by_month": {
+   "12": 10000000,
+   "24": 10000000,
+   "36": 10000000
+  },
+  "annual_revenue_usd": 3200033,
+  "revenue_growth": null,
+  "peer_multiples": {
+   "p25": 5.32,
+   "median": 12.19,
+   "p75": 21.01
+  },
+  "peers": [
+   {
+    "name": "DefiLlama Lending（9 个协议，服务器计算的流通市值/年化收入分位数）",
+    "multiple": 12.19,
+    "source": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json"
+   }
+  ],
+  "metric": "Compound 协议收入（DefiLlama revenue 口径，候选文件 revenueBasis.used = 近 12 个月实际）；同赛道 Lending 9 个协议分位数（服务器 prelim 计算）"
+ },
+ "risks": [
+  "持币人收入为 0，费用开关长期未执行",
+  "流通市值约为年化收入 56 倍，现价约为候选估值目标 4.6 倍",
+  "收入增长来自很低的基数",
+  "2026 年受 KelpDAO 等事件波及"
+ ],
+ "unverified": [
+  "团队背景",
+  "候选文件与 DefiLlama 流通量差额",
+  "2026 年事件中 Compound 自身的坏账与赔付",
+  "是否有任何已执行的回购/分配",
+  "合约地址（沿用 2026-11-19 研究）"
+ ],
+ "catalysts": [],
+ "summary_reason": "收入低基数连增，但无已执行价值捕获、估值远高于目标，维持观察"
+}

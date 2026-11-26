@@ -1,0 +1,218 @@
+{
+ "coin_id": "venice-token",
+ "researched_at": "2026-11-26T03:40:00Z",
+ "grade_hint": "B",
+ "items": {
+  "identity": {
+   "ok": true,
+   "claim": "VVV：Base 链合约 0xacfe6019ed1a7dc6f7b508c02d1b04ec88cc21bf（沿用 2026-11-19 研究）；无最大供应（持续增发）",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-19-venice-token.json",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "supply_verifiable": {
+   "ok": null,
+   "claim": "候选文件：价格 $29.24，流通市值 $1.464B，FDV $2.415B，流通率 60.6%（推算流通约 50.05M、总量约 82.58M，11-19 为 49.03M/81.26M）；总量与流通之差约 32.5M 的释放安排仍无官方说明，候选文件 unlock 标“解锁数据缺失/冲突”",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-19-venice-token.json",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "economic_activity": {
+   "ok": true,
+   "claim": "候选文件（DefiLlama 口径）：季度收入 q0 $2.96M、q1 $1.33M、q2 $0.48M（连增，最近季度 +123.0%）；年化口径 30d×12 $13.35M、90d×4 $11.79M、近12个月实际 缺失，采用 $11.79M（不足 12 个月数据）",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "value_capture": {
+   "ok": true,
+   "mechanism": "burn",
+   "claim": "候选文件持币人收入年化 $14.16M（>0）；据搜索结果摘要（标题）已执行销毁：Bankless“venice sets a new vvv burn record”、The Block“airdrop ends, 100 million usd unclaimed VVV tokens burned”；销毁累计数量未逐笔核实；质押收益来自增发，不计入",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://www.bankless.com/read/news/venice-sets-a-new-vvv-burn-record",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://www.theblock.co/post/345912/venice-airdrop-ends-100-million-usd-unclaimed-vvv-tokens-burned",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "liquidity": {
+   "ok": true,
+   "spot_volume_30d_usd": 1227593591,
+   "claim": "候选文件：30 天日均成交额 $40.92M（≥50 万门槛；2,500 美元仓位远低于日均 1%），Coinbase、Bybit、OKX、Kraken、Upbit 有现货（候选文件质量分交易所字段）；成交额为服务器 CoinGecko 口径，未单独剔除衍生品/刷量",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "no_security_issue": {
+   "ok": null,
+   "claim": "据搜索结果摘要（2026-11-26 重新搜索）：未见 Venice/VVV 合约被盗事故标题；治理/市场事件：上线时两名 Aerodrome 贡献者因交易 VVV 被暂停（The Block）；Coingape 标题质疑“团队是否在 Coinbase 上市后抛售 5.7M 枚”（未核实）；仅凭搜索标题不能确认无事故",
+   "sources": [
+    {
+     "url": "https://www.theblock.co/amp/post/337521/two-contributors-suspended-from-venices-vvv-token-launch-on-aerodrome",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://coingape.com/trending/did-venice-team-dump-5-7m-tokens-after-coinbase-listing/amp",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://nhimg.org/articles/venices-automatic-vvv-burns-raise-new-token-governance-questions/",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "data_consistent": {
+   "ok": false,
+   "claim": "矛盾仍在：持币人收入年化 $14.16M 高于协议收入年化 $11.79M；增发速率媒体说法不一（KuCoin 3M/年 vs Crypto Briefing 2M/年）；流通一周（11-19→11-26 推算）增加约 1.02M，与 2M/年不符（推算口径受价格时点影响，仅作参考）；约 32.5M 未流通份额无官方说明",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/research/research-2026-11-19-venice-token.json",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://cryptobriefing.com/venice-cuts-vvv-emissions-2-million/",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://www.kucoin.com/news/flash/venice-ai-cuts-vvv-emissions-to-3m-tokens-per-year-80-below-launch-rate",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "supply_growth": {
+   "ok": null,
+   "supply_growth_12m_pct": null,
+   "claim": "流通率 60.6%（≥50%）；据搜索结果摘要增发降至约 2M/年（约流通 4%），但未流通份额释放安排未核实，12 个月供应增长无法确定",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://cryptobriefing.com/venice-cuts-vvv-emissions-2-million/",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "audit": {
+   "ok": true,
+   "claim": "候选文件质量分“第三方审计”✓（DefiLlama 审计记录）",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "team": {
+   "ok": null,
+   "claim": "据搜索结果摘要：The Block 标题“erik voorhees ai platform venice token ethereum layer 2 base”——创始人 Erik Voorhees（ShapeShift 创始人）；其余团队成员与融资未核实；候选文件质量分“团队背景”✗",
+   "sources": [
+    {
+     "url": "https://www.theblock.co/post/337196/erik-voorhees-ai-platform-venice-token-ethereum-layer-2-base",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    }
+   ]
+  },
+  "unlock": {
+   "ok": null,
+   "unlock_12m_pct": null,
+   "unlock_36m_pct": null,
+   "next_unlock_date": null,
+   "next_unlock_amount": null,
+   "fully_unlocked": null,
+   "conflict": true,
+   "claim": "“无锁仓、增发给质押者”的说法与总量-流通差约 32M 矛盾；未找到官方解锁表（候选文件 unlock 标“解锁数据缺失/冲突”）",
+   "sources": [
+    {
+     "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json",
+     "date": "2026-11-26"
+    },
+    {
+     "url": "https://www.kucoin.com/news/flash/venice-ai-cuts-vvv-emissions-to-3m-tokens-per-year-80-below-launch-rate",
+     "date": "2026-11-26"
+    }
+   ]
+  }
+ },
+ "self_reported_mcap": false,
+ "scenario_inputs": {
+  "price_usd": 29.24065426849258,
+  "circulating_supply": 50053883,
+  "total_supply": 82579620,
+  "supply_by_month": null,
+  "annual_revenue_usd": 11789588,
+  "revenue_growth": null,
+  "peer_multiples": {
+   "p25": 3.14,
+   "median": 7.46,
+   "p75": 19.85
+  },
+  "peers": [
+   {
+    "name": "DefiLlama 全部协议（77 个协议，服务器计算的流通市值/年化收入分位数）",
+    "multiple": 7.46,
+    "source": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-26.json"
+   }
+  ],
+  "metric": "Venice 协议收入（DefiLlama revenue 口径，候选文件 revenueBasis.used = 90d×4）；同赛道 Farm 只有 1 个，服务器退回全部协议 77 个分位数"
+ },
+ "risks": [
+  "流通市值约为年化协议收入 123 倍，现价约为候选估值目标 27 倍",
+  "约 32M 未流通份额去向不明、持续增发",
+  "持币人收入高于协议收入的口径矛盾",
+  "90 天涨 62%，波动大；团队抛售质疑未核实"
+ ],
+ "unverified": [
+  "未流通份额释放安排",
+  "销毁累计数量与链上记录",
+  "实际年增发速率",
+  "团队其余成员与融资",
+  "是否发生过安全事故（只看了搜索标题）",
+  "合约地址（沿用 2026-11-19 研究）"
+ ],
+ "catalysts": [
+  {
+   "claim": "据搜索结果摘要：增发降至每年 2M 枚",
+   "url": "https://cryptobriefing.com/venice-cuts-vvv-emissions-2-million/",
+   "date": "2026-11-26"
+  }
+ ],
+ "summary_reason": "收入连增且有已执行销毁，但估值约 123 倍年化收入、供应数据矛盾，维持观察"
+}
