@@ -135,3 +135,7 @@ research-2026-11-24-just.json
 research-2026-11-25-arbitrum.json
 research-2026-11-25-lido-dao.json
 research-2026-11-25-syrup.json
+research-2026-11-26-compound-governance-token.json
+research-2026-11-26-pyth-network.json
+research-2026-11-26-threshold-network-token.json
+research-2026-11-26-venice-token.json
