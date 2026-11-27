@@ -1,0 +1,202 @@
+{
+  "coin_id": "sosovalue",
+  "researched_at": "2026-11-27T03:30:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "SOSO：Ethereum 0x76a0e27618462bdac7a29104bdcfff4e6bfcea2d，Base 0x624e2e7fdc8903165f64891672267ab0fcb98831（沿用 2026-11-20 研究，搜索结果 Phantom 代币页链接含同一地址）；总量/最大 1B",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://phantom.com/tokens/ethereum/0x76a0e27618462bdac7a29104bdcfff4e6bfcea2d",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://phantom.com/tokens/base/0x624e2e7fdc8903165f64891672267ab0fcb98831",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": null,
+      "claim": "候选文件 2026-11-27：价格 $0.3189，市值 $116.3M，FDV $316.8M，流通率 36.7%（2026-11-20 为 35.8%，11-24 解锁后上升）；未来 12 个月解锁总量未核实（白皮书代币经济页、Tokenomist 有页面但未打开）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://sosovalue-white-paper.gitbook.io/sosovalue-whitepaper/8.-tokennomics/8.2-tokenomics",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://tokenomist.ai/sosovalue/unlock-events",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（DefiLlama 口径）：季度协议收入 $4.68M → $5.31M → $5.98M，最近季度 +12.7%；年化协议收入（保守口径，近 12 个月实际）$20.8M",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": false,
+      "claim": "候选文件：DefiLlama 持币人收入 0；搜索“SoSoValue SOSO buyback burn 2026”未见已执行回购/销毁的新闻（Tokenomist 有 burn 页面链接，但内容未知）；协议收入不等于持币人利润",
+      "mechanism": "other",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://tokenomist.ai/sosovalue/burn",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": null,
+      "claim": "候选文件：30 天日均成交 $3.40M（30 天合计按日均×30 推算约 $102M，含 DEX 与小所）；主流所现货仅 Bybit、Kraken，主流所现货成交占比未核实",
+      "spot_volume_30d_usd": null,
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "据搜索结果摘要：搜索“SoSoValue SoDEX hack security incident”未见针对 SoSoValue/SoDEX 的安全事故报道；沿用 2026-11-20 研究：GoPlus 提示以太坊合约为代理合约、所有者可修改代码（治理/中心化风险）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/sodex-launches-to-rebuild-crypto-s-financial-ark-amid-industry-challenges",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": null,
+      "claim": "候选文件 prelim 年化收入 $24.0M 与保守口径 $20.8M 不同口径；同赛道 Indexes 仅 1 个，倍数退回全部协议；CoinGecko 页面此前有流通量/成交额不一致（沿用 2026-11-20 研究）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "claim": "流通率 36.7% < 50%；据搜索结果按月持续解锁（2026-05-24 约 1,582 万枚，2026-11-24 约 2,346 万枚，沿用 2026-11-20 研究），无强证据抵消稀释",
+      "supply_growth_12m_pct": null,
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://bitrss.com/rootdata-soso-%E5%B0%86%E4%BA%8E%E4%B8%80%E5%91%A8%E5%90%8E%E8%A7%A3%E9%94%81%E4%BB%B7%E5%80%BC%E7%BA%A6-588-%E4%B8%87%E7%BE%8E%E5%85%83%E7%9A%84%E4%BB%A3%E5%B8%81-211566",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://www.kucoin.com/news/articles/understanding-the-impact-of-the-soso-token-unlock-on-the-2026-crypto-market",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "audit": {
+      "ok": true,
+      "claim": "沿用 2026-11-20 研究：据搜索结果标题 BlockSec《Security Audit Report for SoSoValue Index》",
+      "sources": [
+        {
+          "url": "https://blocksec.com/zh/audit-report/Security-Audit-Report-for-SoSoValue-Index",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "沿用 2026-11-20 研究：2025-01 完成 $15M A 轮、估值 $200M（The Block、Fortune 标题）；创始人实名未从摘要获得",
+      "sources": [
+        {
+          "url": "https://www.theblock.co/post/333620/sosovalue-funding-valuation",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "上一次大额解锁 2026-11-24 约 23.46M（沿用 2026-11-20 研究，已过）；下一次日期与数量、未来 12/36 个月合计未从搜索摘要取得（DefiLlama/Tokenomist 解锁页存在但未打开）",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://defillama.com/unlocks/sosovalue",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://tokenomist.ai/sosovalue/unlock-events",
+          "date": "2026-11-27"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.318921,
+    "circulating_supply": 364745288,
+    "total_supply": 993401044,
+    "supply_by_month": null,
+    "annual_revenue_usd": 20831801.27,
+    "revenue_growth": {
+      "optimistic": 0.6364920243575105,
+      "conservative": 0.0,
+      "base": 0.31824601217875526
+    },
+    "peer_multiples": {
+      "p25": 3.24,
+      "median": 7.56,
+      "p75": 21.77
+    },
+    "peers": [
+      {
+        "name": "候选文件 prelim：全部协议 76 个协议的流通市值/年化收入分位数",
+        "multiple": 7.56,
+        "source": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json"
+      }
+    ],
+    "metric": "协议年化收入（DefiLlama revenue 保守口径，近 12 个月实际，候选文件 pathBNotListed.revenueAnnual）"
+  },
+  "risks": [
+    "持币人收入为 0，无已执行回购，协议收入不等于持币人利润",
+    "流通约 37%，按月持续解锁",
+    "代理合约所有者可改代码",
+    "主流所现货少，现价高于服务端估值目标（按总量）"
+  ],
+  "unverified": [
+    "下一次解锁日期与数量、未来 12/36 个月解锁比例",
+    "主流所现货成交占比",
+    "创始人实名",
+    "SoSoValue 是否有已执行的回购/销毁"
+  ],
+  "catalysts": [],
+  "summary_reason": "指数/数据平台收入稳定增长（年化约 $21M），但持币人无收入、流通仅约 37% 且按月解锁，只能观察"
+}

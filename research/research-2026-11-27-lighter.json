@@ -1,0 +1,228 @@
+{
+  "coin_id": "lighter",
+  "researched_at": "2026-11-27T03:30:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "LIT：Ethereum 0x232ce3bd40fcd6f80f3d55a522d03f25df784ee2（沿用 2026-11-20 研究）；候选文件按 FDV/价格推算总量约 986.2M；最大供应 1B 沿用 2026-11-20 研究",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://www.theblock.co/amp/post/383940/lighter-native-token-lit",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": null,
+      "claim": "候选文件 2026-11-27：价格 $2.471，市值 $620.5M，FDV $2437.2M，流通率 25.5%；未来 12 个月供应变化（12 月起团队/投资人解锁悬崖）具体数量未核实",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://www.tokenomist.ai/research/lighter-lit-tokenomics-robinhood-hype-a-real-burn-and-the-december-2026-cliff-2",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（DefiLlama 口径）：季度协议收入 $7.58M → $7.92M → $15.06M，最近季度 +90.3%；年化协议收入（保守口径）$53.2M，持币人收入年化 $59.6M",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "claim": "候选文件：DefiLlama 持币人收入年化 $59.6M > 0；据搜索结果摘要（标题）：2026-01 The Block“protocol indicates active buyback”，2026-07“首次用收入回购后销毁 15.5M LIT”，Q3 回购周期销毁 2,452,017 LIT——属已执行回购销毁；累计规模未逐笔核实",
+      "mechanism": "buyback",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://www.theblock.co/post/384399/lighter-lit-buyback",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://beincrypto.com/lighter-lit-token-burn-rally/",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://egamers.io/lighter-permanently-retires-2452017-lit-as-q3-2026-buyback-cycle-wraps-up/",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "claim": "候选文件：30 天日均成交 $79.4M（30 天合计按日均×30 推算约 $2.38B，含全部市场，现货占比未核实）；主流所现货：Bybit、OKX、Coinbase、Kraken、Upbit",
+      "spot_volume_30d_usd": 2381828574,
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "据搜索结果摘要，分开记录：① 2026-11-17 前后一名交易者 API 密钥泄露，约 $10.4M 被转走（另有 $15.5M 说法），Lighter 暂停提款后恢复，返还/追回约 $5M USDC（The Block 2026-11-17 标题）；剩余约 $5.4M 以上损失由谁承担、是否赔付未见证据；Cointelegraph 另有文章讨论“风险超出提款控制”。② forklog 标题称 Lighter 金库在 ARC 代币交易亏损 $8.2M，日期与性质未核实",
+      "sources": [
+        {
+          "url": "https://theblock.co/news/defi/2026-11-17-lighter-reopens-withdrawals-after-traders-api-key-leak-returns-about-5-million-in-usdc-442113",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://cointelegraph.com/news/lighter-dex-pauses-withdrawals-10m-exploit",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://cointelegraph.com/news/lighter-incident-exposes-risks-beyond-withdrawal-controls",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://cryptoticker.io/en/lighter-halts-withdrawals-leaked-api-key-10-4-million/",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://forklog.com/news/lighter-kit-poteryal-8-2-mln-na-sdelke-s-tokenom-arc",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": null,
+      "claim": "候选文件 prelim 年化收入 $60.4M 与 pathBNotListed 保守口径 $53.2M 口径不同；同类倍数 prelim 用全部协议 76 个、估值目标用 Derivatives 5 个；被盗金额报道 $10.4M/$15.5M 冲突；解锁数量缺失无法交叉核对",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://cryptoticker.io/en/lighter-halts-withdrawals-leaked-api-key-10-4-million/",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": false,
+      "claim": "流通率 25.5% < 50%（候选文件）；据搜索结果标题团队/投资人占 50%、1 年锁定后 3 年释放，2026 年 12 月起解锁悬崖；无抵消稀释的强证据",
+      "supply_growth_12m_pct": null,
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://www.tokenomist.ai/research/lighter-lit-tokenomics-robinhood-hype-a-real-burn-and-the-december-2026-cliff-2",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://cointelegraph.com/news/lighter-lit-tokenomics-split-community-reaction",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "audit": {
+      "ok": true,
+      "claim": "沿用 2026-11-20 研究：据搜索结果摘要（标题）zkSecurity 发布多份 Lighter 电路审计报告；候选文件质量分“第三方审计”为 ✓",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://reports.zksecurity.xyz/reports/zklighter-block.md",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "沿用 2026-11-20 研究：创始人 Vladimir Novakovski 实名；融资 $68M、估值 $1.5B，Founders Fund、Robinhood 参投（据搜索结果标题）",
+      "sources": [
+        {
+          "url": "https://thedefiant.io/news/defi/lighter-becomes-top-perp-dex-by-volume-reveals-usd68-million-raise",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "据搜索结果摘要（标题）：50% 归团队/投资人（另有生态分配），1 年锁定 + 3 年线性释放，2026 年 12 月首次解锁悬崖（TGE 约 2025-12）；具体日期、数量未从摘要取得，未写比例",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://www.tokenomist.ai/research/lighter-lit-tokenomics-robinhood-hype-a-real-burn-and-the-december-2026-cliff-2",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://coinlaunch.space/projects/lighter/vesting/?timeStatus=past",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://www.theblock.co/amp/post/383940/lighter-native-token-lit",
+          "date": "2026-11-27"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 2.471372,
+    "circulating_supply": 251085953,
+    "total_supply": 986174507,
+    "supply_by_month": null,
+    "annual_revenue_usd": 53206769.0,
+    "revenue_growth": {
+      "optimistic": 1.0,
+      "conservative": 0.0,
+      "base": 0.5
+    },
+    "peer_multiples": {
+      "p25": 3.24,
+      "median": 7.56,
+      "p75": 21.77
+    },
+    "peers": [
+      {
+        "name": "候选文件 prelim：全部协议 76 个协议的流通市值/年化收入分位数",
+        "multiple": 7.56,
+        "source": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json"
+      }
+    ],
+    "metric": "协议年化收入（DefiLlama revenue 保守口径，候选文件 pathBNotListed.revenueAnnual）"
+  },
+  "risks": [
+    "流通仅约 25%，FDV 约为市值 3.9 倍；2026 年 12 月起团队/投资人解锁悬崖，可能 7 天内出现大额解锁",
+    "2026-11-17 API 密钥泄露约 $10.4M 被转走，仅追回约 $5M，剩余赔付不明",
+    "按服务端估值目标现价已明显高于目标（同赛道倍数低）",
+    "收入前一季度几乎持平，增长主要来自最近一个季度"
+  ],
+  "unverified": [
+    "12 月解锁具体日期与数量、未来 12/36 个月解锁比例",
+    "回购销毁累计规模与链上记录",
+    "API 密钥事件最终损失与赔付",
+    "金库 ARC 交易亏损 $8.2M 的日期与性质",
+    "30 天成交额中现货占比",
+    "最大供应 1B（沿用 2026-11-20 研究）"
+  ],
+  "catalysts": [],
+  "summary_reason": "永续 DEX 收入最近季度 +90%、持币人收入为正且回购销毁已执行，但流通仅 25%、12 月解锁悬崖临近且刚发生 API 密钥事件，只能观察"
+}

@@ -1,0 +1,198 @@
+{
+  "coin_id": "instadapp",
+  "researched_at": "2026-11-27T03:30:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "FLUID（原 INST）：Ethereum 0x6f40d4a6237c257fff2db00fa0510deeecd303eb，最大供应 100M（沿用 2026-11-20 研究）；候选文件 FDV/价格推算总量约 100.2M",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": true,
+      "claim": "候选文件 2026-11-27：价格 $1.525，市值 $127.8M，FDV $152.7M，流通率 83.7%；剩余未流通约 16.3M，占流通 19.5%，为未来供应增加上限",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（DefiLlama 口径）：季度协议收入 $1.71M → $1.78M → $2.07M，最近季度 +16.1%；年化协议收入（保守口径）$8.19M",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": false,
+      "claim": "候选文件：DefiLlama 持币人收入年化 0；据搜索结果摘要（标题）有 Instadapp 博客《FLUID Reserve: Buybacks & Growth Strategy》、Tokenomist 回购页及“Wintermute 以折价回购偿还贷款”新闻，但无法从摘要确认近期仍在执行协议收入回购；Kinetic Group 拟收购最多 10% 供应属外部买入，不算价值捕获",
+      "mechanism": "buyback",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://blog.instadapp.io/fluid-reserve-buybacks-growth-strategy",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://tokenomist.ai/instadapp/buyback",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/fluid-surges-50-as-wintermute-repays-loan-with-discounted-token-buyback",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "claim": "候选文件：30 天日均成交 $2.94M（30 天合计按日均×30 推算约 $88M）；主流所现货：OKX、Coinbase、Bybit",
+      "spot_volume_30d_usd": 88168487,
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "据搜索结果摘要，分开记录：① 2026-03 Resolv（USR）被攻破，Fluid 约 $21M 坏账，标题称已全部覆盖（处置 $19.3M 由各方分担）；② 2026-05-31 运营密钥被盗，损失约 125K FLUID + 51.9K GHO，赔付证据未见；③ KuCoin 标题“后端系统被黑、承诺全额赔付”，日期未核实，可能与②相同；④ RootData 标题“Fluid 奖励合约被攻破，损失约 $215,000”，日期未核实，可能为新事件",
+      "sources": [
+        {
+          "url": "https://www.kucoin.com/news/flash/fluid-confirms-21m-bad-debt-from-resolv-exploit-fully-covered",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://www.cryptotimes.io/2026/05/31/fluid-protocol-loses-125k-fluid-51-9k-gho-in-key-compromise-attack/",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/defi-protocol-fluid-reports-hack-impacting-backend-system-promises-full-loss-coverage",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://www.rootdata.com/news/657050",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": null,
+      "claim": "服务端仍标记“解锁数据冲突”（此前 Tokenomist 已解锁 52% vs CoinGecko 流通约 84%），本次无法消解",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": true,
+      "claim": "流通率 83.7% ≥ 50%；即使剩余未流通全部 12 个月内释放，增长上限 19.5% ≤ 25%（上限值，实际节奏未核实）",
+      "supply_growth_12m_pct": 19.5,
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "沿用 2026-11-20 研究：CER.live 平台审计覆盖 50%、Immunefi 赏金 $500K；具体审计报告未取得（候选文件质量分该项为 ✓，来自 DefiLlama 审计记录）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://immunefi.com/bounty/instadapp",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "team": {
+      "ok": true,
+      "claim": "沿用 2026-11-20 研究：创始人 Jain 兄弟；2019 年 Pantera 领投 $2.4M、2021 年 Standard Crypto 领投 $10M（据搜索结果标题）",
+      "sources": [
+        {
+          "url": "https://www.coindesk.com/instadapp-defi-site-raises-2-4-million-from-prominent-crypto-investors",
+          "date": "2026-11-27"
+        },
+        {
+          "url": "https://www.theblock.co/linked/108224/defi-startup-instadapp-raises-10-million-in-new-funding",
+          "date": "2026-11-27"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "未找到官方解锁表；剩余未流通约 16.3M（占流通 19.5%）为上限；与 Tokenomist 数据冲突，不写具体比例",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": true,
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json",
+          "date": "2026-11-27"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 1.524978,
+    "circulating_supply": 83827684,
+    "total_supply": 100156144,
+    "supply_by_month": null,
+    "annual_revenue_usd": 8194213.16,
+    "revenue_growth": {
+      "optimistic": 0.4651843161923388,
+      "conservative": 0.0,
+      "base": 0.2325921580961694
+    },
+    "peer_multiples": {
+      "p25": 5.68,
+      "median": 12.15,
+      "p75": 21.21
+    },
+    "peers": [
+      {
+        "name": "候选文件 prelim：Lending 9 个协议的流通市值/年化收入分位数",
+        "multiple": 12.15,
+        "source": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-27.json"
+      }
+    ],
+    "metric": "Fluid 协议年化收入（DefiLlama revenue 保守口径，候选文件 pathBNotListed.revenueAnnual）"
+  },
+  "risks": [
+    "持币人收入为 0，未确认回购仍在执行，协议收入不是持币人利润",
+    "多起安全/坏账事件（Resolv 坏账、运营密钥被盗、奖励合约被攻破），密钥管理有隐患",
+    "解锁数据冲突",
+    "币价 90 天涨幅已与收入增速持平，现价高于服务端估值目标"
+  ],
+  "unverified": [
+    "回购是否仍在执行及规模",
+    "“后端被黑”与“奖励合约 $215K”事件日期与赔付",
+    "具体审计报告",
+    "未来 12/36 个月解锁节奏"
+  ],
+  "catalysts": [],
+  "summary_reason": "借贷+DEX 收入稳定增长、流通 84% 稀释小，但持币人无收入、多起安全事件且解锁数据冲突，只能观察"
+}
