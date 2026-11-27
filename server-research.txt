@@ -139,3 +139,6 @@ research-2026-11-26-compound-governance-token.json
 research-2026-11-26-pyth-network.json
 research-2026-11-26-threshold-network-token.json
 research-2026-11-26-venice-token.json
+research-2026-11-27-instadapp.json
+research-2026-11-27-lighter.json
+research-2026-11-27-sosovalue.json
