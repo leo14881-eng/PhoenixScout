@@ -1,0 +1,216 @@
+{
+  "coin_id": "streamflow",
+  "researched_at": "2026-11-28T03:40:00Z",
+  "grade_hint": "C",
+  "items": {
+    "identity": {
+      "ok": true,
+      "claim": "STREAM：Solana 代币 STREAMribRwybYpMmSYoCsQUdr6MZNXEqHgm7p1gu9M（搜索结果 Solana Compass 代币页链接含该地址）；据搜索结果摘要（标题）基金会销毁 699.99M，总量降至 300M；候选文件 FDV/价格推算总量约 299,975,574，与 300M 一致",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-28.json",
+          "date": "2026-11-28"
+        },
+        {
+          "url": "https://solanacompass.com/tokens/STREAMribRwybYpMmSYoCsQUdr6MZNXEqHgm7p1gu9M",
+          "date": "2026-11-28"
+        },
+        {
+          "url": "https://solanacompass.com/news/streamflow-foundation-burns-69999m-stream-cutting-token-supply-70-to-300m",
+          "date": "2026-11-28"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": null,
+      "claim": "候选文件 2026-11-28：价格 $0.00852，市值 $1.36M，FDV $2.56M，流通率 53.2%（推算流通约 159,561,952）；服务端 unlock 字段为“解锁数据缺失”，未来 12 个月供应变化未核实",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-28.json",
+          "date": "2026-11-28"
+        },
+        {
+          "url": "https://defillama.com/unlocks/streamflow",
+          "date": "2026-11-28"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件（DefiLlama 口径）：最近季度收入 +2.2%；年化协议收入保守口径 $1.62M（近30天×12 $2.10M、近90天×4 $1.96M、近12个月实际 $1.62M）；据搜索结果摘要 DefiLlama 页面标题 TVL 约 $8—11M",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-28.json",
+          "date": "2026-11-28"
+        },
+        {
+          "url": "https://defillama.com/protocol/streamflow",
+          "date": "2026-11-28"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "claim": "候选文件：DefiLlama 持币人收入年化约 $13.7 万（>0）；据搜索结果摘要（标题）协议收入分配给 STREAM 质押者（“Streamflow Turns Protocol Revenue Into Staking Rewards”“revenue-backed STREAM APY”），属手续费分成；70% 供应销毁为基金会持仓销毁，非市场回购",
+      "mechanism": "real_yield_staking",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-28.json",
+          "date": "2026-11-28"
+        },
+        {
+          "url": "https://mpost.io/streamflow-turns-protocol-revenue-into-staking-rewards/",
+          "date": "2026-11-28"
+        },
+        {
+          "url": "https://crypto.news/streamflow-surpasses-1-6b-in-tvl-as-revenue-backed-stream-apy-rises-to-49-6/",
+          "date": "2026-11-28"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": false,
+      "claim": "候选文件：30 天日均成交额 $70,773（< 50 万美元门槛），按日均×30 推算约 $2.1M；服务端未识别到主流交易所现货（exchanges 为空）",
+      "spot_volume_30d_usd": null,
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-28.json",
+          "date": "2026-11-28"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "据搜索结果摘要：搜索“Streamflow Solana hack exploit”未见明确针对 Streamflow 的安全事故标题（Solana 播客“The $100k exploit…six hours to recovery”一集主体未知，未核实）",
+      "sources": [
+        {
+          "url": "https://solana.com/ko/podcasts/pirates-parley/episodes/the-100k-exploit-the-attacker-who-tuned-in-and-six-hours-to-recovery-e3mehjr",
+          "date": "2026-11-28"
+        },
+        {
+          "url": "https://helius.dev/blog/solana-hacks",
+          "date": "2026-11-28"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": true,
+      "claim": "候选文件 FDV/价格推算总量约 3 亿与搜索结果标题“销毁后总量 300M”一致；三种年化收入口径在 $1.6M—$2.1M 区间，无重大矛盾（prelim 年化 $1.98M 与保守口径 $1.62M 为不同口径）",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-28.json",
+          "date": "2026-11-28"
+        },
+        {
+          "url": "https://www.theblock.co/press-releases/streamflow-foundation-burns-70-of-total-stream-supply-permanently-removing-stream-holdings-from-circulation-417184",
+          "date": "2026-11-28"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": null,
+      "claim": "流通率 53.2%（≥50%）；未来 12 个月解锁量未取得，增长率未核实",
+      "supply_growth_12m_pct": null,
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-28.json",
+          "date": "2026-11-28"
+        },
+        {
+          "url": "https://defillama.com/unlocks/streamflow",
+          "date": "2026-11-28"
+        }
+      ]
+    },
+    "audit": {
+      "ok": true,
+      "claim": "据搜索结果摘要（标题）：Neodyme 审计报告《Streamflow Protocol》《Streamflow Distributor》，MoveBit 审计 Sui 代码，官方文档有 security audits 页",
+      "sources": [
+        {
+          "url": "https://neodyme.io/reports/Streamflow-Protocol.pdf",
+          "date": "2026-11-28"
+        },
+        {
+          "url": "https://www.neodyme.io/reports/Streamflow-Distributor.pdf",
+          "date": "2026-11-28"
+        },
+        {
+          "url": "https://developers.streamflow.finance/docs/resources/security-audits",
+          "date": "2026-11-28"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "据搜索结果摘要：Blockworks Token Transparency 有 Streamflow“Project and Team”披露页，但团队实名、投资机构未从摘要取得",
+      "sources": [
+        {
+          "url": "https://blockworks.com/token-transparency/filing/streamflow",
+          "date": "2026-11-28"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "DefiLlama 有 Streamflow 解锁页但未打开；未来 12/36 个月解锁比例、下一次解锁未取得；销毁后总量 300M（据搜索结果标题）",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://defillama.com/unlocks/streamflow",
+          "date": "2026-11-28"
+        },
+        {
+          "url": "https://beincrypto.com/streamflow-foundation-burns-70-total-stream-supply/",
+          "date": "2026-11-28"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": 0.008519750349073813,
+    "circulating_supply": 159561952,
+    "total_supply": 299975574,
+    "supply_by_month": null,
+    "annual_revenue_usd": 1624699.0,
+    "revenue_growth": {
+      "conservative": 0.0,
+      "base": 0.09,
+      "optimistic": 0.2
+    },
+    "peer_multiples": {
+      "p25": 3.14,
+      "median": 7.45,
+      "p75": 19.48
+    },
+    "peers": [
+      {
+        "name": "候选文件 prelim：全部协议 78 个协议的流通市值/年化收入分位数（同赛道 Payments 只有 1 个）",
+        "multiple": 7.45,
+        "source": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-28.json"
+      }
+    ],
+    "metric": "协议年化收入（DefiLlama revenue 保守口径，近 12 个月实际）；基准增速按最近季度 +2.2% 年化约 9%，乐观取 20%（研究层取值，比 prelim 50%/100% 更保守）"
+  },
+  "risks": [
+    "流动性极低：日均成交约 $7 万，远低于 50 万美元门槛，无主流交易所现货",
+    "市值仅约 $136 万，微型币",
+    "持币人收入年化约 $13.7 万，规模很小",
+    "解锁计划未取得",
+    "团队实名未核实"
+  ],
+  "unverified": [
+    "未来 12/36 个月解锁比例、下一次解锁日期与数量",
+    "团队实名与投资机构",
+    "是否有安全事故（仅凭搜索标题）",
+    "合约地址仅来自搜索结果链接，未打开核对",
+    "self_reported_mcap 默认 false，未核实"
+  ],
+  "catalysts": [],
+  "summary_reason": "Solana 代币分发/锁仓工具，有审计和手续费分成给质押者、收入小幅增长，但日均成交仅约 $7 万，流动性不达标，淘汰"
+}

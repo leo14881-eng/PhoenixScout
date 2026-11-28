@@ -1,0 +1,206 @@
+{
+  "coin_id": "chainlink",
+  "researched_at": "2026-11-28T03:40:00Z",
+  "grade_hint": "B",
+  "items": {
+    "identity": {
+      "ok": null,
+      "claim": "候选文件 2026-11-28 仅在 nearMiss 中列出 Chainlink（LINK），未提供合约地址、总量、最大供应；以前无该币研究文件可沿用",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-28.json",
+          "date": "2026-11-28"
+        }
+      ]
+    },
+    "supply_verifiable": {
+      "ok": null,
+      "claim": "候选文件未提供 LINK 的价格、市值、FDV、流通量；据搜索结果摘要（标题），LINK 从非流通供应分批解锁（如“21M LINK Unlocked from Chainlink Non-circulating Supply”、2026-07“Chainlink's $165M token unlock”），未来 12 个月供应变化未核实",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-28.json",
+          "date": "2026-11-28"
+        },
+        {
+          "url": "https://fxdailyreport.com/21m-link-unlocked-from-chainlink-non-circulating-supply/",
+          "date": "2026-11-28"
+        },
+        {
+          "url": "https://startupfortune.com/chainlinks-165m-token-unlock-tests-investor-patience/",
+          "date": "2026-11-28"
+        }
+      ]
+    },
+    "economic_activity": {
+      "ok": true,
+      "claim": "候选文件 nearMiss：最近季度收入 +3.1%、两个季度前 +2.8%、前一季度 -0.3%（收入未连增）；绝对收入金额候选文件未给出。据搜索结果摘要（标题）：2026-05 KelpDAO 在 LayerZero 被盗 $292M 后，多个项目把约 $4B 资产迁到 Chainlink CCIP",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-28.json",
+          "date": "2026-11-28"
+        },
+        {
+          "url": "https://www.theblock.co/news/ecosystems/2026-05-05-kelp-dao-ditches-layerzero-chainlink-cross-chain-infrastructure-292-million-exploit-400131",
+          "date": "2026-11-28"
+        },
+        {
+          "url": "https://crypto.news/chainlink-ccip-draws-4b-from-layerzero-exodus/",
+          "date": "2026-11-28"
+        }
+      ]
+    },
+    "value_capture": {
+      "ok": true,
+      "claim": "据搜索结果摘要（标题）：Chainlink Reserve 用链上/链下收入在市场回购 LINK，已执行多次（如“Chainlink Reserve repurchased 106,300 LINK, with a total purchase of 6.68 million LINK”、“Chainlink Adds 92,000 LINK to Strategic Reserve, Total Holdings Reach 5.67 Million”）；回购进入储备而非销毁，储备未来用途未核实；协议收入不等于持币人利润",
+      "mechanism": "buyback",
+      "sources": [
+        {
+          "url": "https://www.rootdata.com/news/827308",
+          "date": "2026-11-28"
+        },
+        {
+          "url": "https://www.kucoin.com/news/flash/chainlink-adds-92-000-link-to-strategic-reserve-total-holdings-reach-5-67-million",
+          "date": "2026-11-28"
+        },
+        {
+          "url": "https://www.theblock.co/post/365988/chainlink-strategic-link-reserve",
+          "date": "2026-11-28"
+        }
+      ]
+    },
+    "liquidity": {
+      "ok": true,
+      "claim": "候选文件 nearMiss：30 天日均成交额 $286.3M（30 天合计按日均×30 推算约 $8.6B，口径含全部市场，现货占比未核实）",
+      "spot_volume_30d_usd": null,
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-28.json",
+          "date": "2026-11-28"
+        }
+      ]
+    },
+    "no_security_issue": {
+      "ok": null,
+      "claim": "据搜索结果摘要：搜索“Chainlink CCIP exploit vulnerability incident 2026”结果均为他方（KelpDAO/LayerZero）事故及资产迁往 CCIP，未见针对 Chainlink 本身的安全事故标题；仅凭标题不足以确认，列为未核实",
+      "sources": [
+        {
+          "url": "https://www.kucoin.com/news/flash/kelpdao-hack-sparks-4b-migration-from-layerzero-to-chainlink-ccip",
+          "date": "2026-11-28"
+        },
+        {
+          "url": "https://threatcluster.io/entities/platform/Chainlink%20CCIP",
+          "date": "2026-11-28"
+        }
+      ]
+    },
+    "data_consistent": {
+      "ok": null,
+      "claim": "候选文件只有 nearMiss 文字描述（收入增速、90 天币价 -18.2%、日均成交额），无价格/市值/收入金额字段，无法交叉核对",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-28.json",
+          "date": "2026-11-28"
+        }
+      ]
+    },
+    "supply_growth": {
+      "ok": null,
+      "claim": "候选文件无流通率；据搜索结果摘要（标题）LINK 定期从非流通供应解锁约 1,900 万—2,100 万枚/次（如“Chainlink Unlocks 19M LINK”），另有“273M LINK in Chainlink Labs hands”报道；12 个月供应增长与流通/总量比例未核实",
+      "supply_growth_12m_pct": null,
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-28.json",
+          "date": "2026-11-28"
+        },
+        {
+          "url": "https://coinpedia.org/news/chainlink-unlocks-19m-link-165m-moved-to-market/amp/",
+          "date": "2026-11-28"
+        },
+        {
+          "url": "https://dev.to/mrnasdog/chainlink-link-no-inflation-but-273m-link-in-chainlink-labs-hands-5h5e",
+          "date": "2026-11-28"
+        }
+      ]
+    },
+    "audit": {
+      "ok": null,
+      "claim": "候选文件未提供 LINK 的审计记录；搜索未专门核实",
+      "sources": [
+        {
+          "url": "https://github.com/leo14881-eng/PhoenixScout/blob/research-data/candidates/candidates-2026-11-28.json",
+          "date": "2026-11-28"
+        }
+      ]
+    },
+    "team": {
+      "ok": null,
+      "claim": "据搜索结果摘要：由 Chainlink Labs 开发运营（标题提及 Chainlink Labs 持有 LINK）；核心团队实名未从摘要取得",
+      "sources": [
+        {
+          "url": "https://dev.to/mrnasdog/chainlink-link-no-inflation-but-273m-link-in-chainlink-labs-hands-5h5e",
+          "date": "2026-11-28"
+        }
+      ]
+    },
+    "unlock": {
+      "ok": null,
+      "claim": "据搜索结果摘要（标题）：LINK 按期从非流通供应解锁（约 19M—21M 枚/次，2026-07 一次约 $165M）；下一次日期、数量、未来 12/36 个月占比未取得（DefiLlama 解锁页存在但未打开）",
+      "unlock_12m_pct": null,
+      "unlock_36m_pct": null,
+      "next_unlock_date": null,
+      "next_unlock_amount": null,
+      "fully_unlocked": false,
+      "conflict": false,
+      "sources": [
+        {
+          "url": "https://defillama.com/unlocks/chainlink",
+          "date": "2026-11-28"
+        },
+        {
+          "url": "https://startupfortune.com/chainlinks-165m-token-unlock-tests-investor-patience/",
+          "date": "2026-11-28"
+        },
+        {
+          "url": "https://fxdailyreport.com/21m-link-unlocked-from-chainlink-non-circulating-supply/",
+          "date": "2026-11-28"
+        }
+      ]
+    }
+  },
+  "self_reported_mcap": false,
+  "scenario_inputs": {
+    "price_usd": null,
+    "circulating_supply": null,
+    "total_supply": null,
+    "supply_by_month": null,
+    "annual_revenue_usd": null,
+    "revenue_growth": null,
+    "peer_multiples": null,
+    "peers": [],
+    "metric": "候选文件未提供 LINK 的价格与年化收入，无法推算"
+  },
+  "risks": [
+    "前一季度收入 -0.3%，收入未连增",
+    "Chainlink Labs 持有大量非流通 LINK 并定期解锁，稀释压力",
+    "回购进入储备而非销毁，储备未来用途未核实",
+    "币价 90 天 -18.2%"
+  ],
+  "unverified": [
+    "合约地址、总量、最大供应",
+    "价格、市值、FDV、流通率（候选文件无）",
+    "年化收入绝对值",
+    "未来 12/36 个月解锁比例、下一次解锁日期与数量",
+    "第三方审计记录",
+    "核心团队实名",
+    "是否有未解决的安全事故（仅凭搜索标题）",
+    "self_reported_mcap 默认 false，未核实"
+  ],
+  "catalysts": [
+    {
+      "claim": "KelpDAO/LayerZero 事故后约 $4B 资产迁往 CCIP（据搜索结果标题）",
+      "url": "https://crypto.news/chainlink-ccip-draws-4b-from-layerzero-exodus/",
+      "date": "2026-11-28"
+    }
+  ],
+  "summary_reason": "预言机/CCIP 龙头，已执行回购入储备、流动性充足，但收入只差一季连增，且供应解锁与估值输入未核实，只能观察"
+}
