@@ -142,3 +142,5 @@ research-2026-11-26-venice-token.json
 research-2026-11-27-instadapp.json
 research-2026-11-27-lighter.json
 research-2026-11-27-sosovalue.json
+research-2026-11-28-chainlink.json
+research-2026-11-28-streamflow.json
